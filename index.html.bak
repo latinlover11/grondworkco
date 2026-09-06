@@ -516,7 +516,7 @@
         <!-- Project 1: Hardscaping -->
         <a href="/work.html#case-studies" class="work-preview-card">
           <div class="preview-media">
-  <img src="img/case-studies/river-rock-after.jpg" alt="River Rock Parking Pad">
+  <img src="/img/case-studies/river-rock-after.jpg" alt="River Rock Parking Pad">
 </div>
           <div class="preview-content">
             <h3>River Rock Parking Pad</h3>
@@ -532,7 +532,7 @@
         <!-- Project 2: Fencing -->
         <a href="/work.html#case-studies" class="work-preview-card">
           <div class="preview-media">
-  <img src="img/case-studies/cedar-fence.jpg" alt="Cedar Privacy Fence">
+  <img src="/img/case-studies/cedar-fence.jpg" alt="Cedar Privacy Fence">
 </div>
           <div class="preview-content">
             <h3>Cedar Privacy Fence</h3>
@@ -548,7 +548,7 @@
         <!-- Project 3: Lawn Care -->
         <a href="/work.html#case-studies" class="work-preview-card">
           <div class="preview-media">
-  <img src="img/case-studies/front-rock-after-installed.jpg" alt="Front Yard Xeriscape">
+  <img src="/img/case-studies/front-rock-after-installed.jpg" alt="Front Yard Xeriscape">
 </div>
           <div class="preview-content">
             <h3>Front Yard Xeriscape</h3>
@@ -608,7 +608,7 @@
         </a>
       </div>
       <!-- Form -->
-      <form action="https://formspree.io/f/mjyvregb" method="POST" style="display:flex; flex-direction:column; gap:16px;">
+      <form action="#" method="POST" style="display:flex; flex-direction:column; gap:16px;">
         <div class="form-row">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required placeholder="Your name">
