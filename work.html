@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work & Case Studies — Groundwork Outdoor Co.</title>
+<meta name="description" content="Explore real hardscaping, fencing, and landscape restoration case studies from Groundwork Outdoor Co. in Longmont and Boulder County, CO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a.active{color:var(--ember-bright);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:10px 20px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13.5px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a{color:var(--ink-muted); transition:color .2s ease;}
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  /* Hero Section */
+  .work-hero{
+    padding:48px 0 64px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(193,106,46,0.18), transparent 60%),
+      linear-gradient(180deg, #171C1D 0%, #14181A 100%);
+  }
+  .work-hero-eyebrow{
+    color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:10px;
+  }
+  .work-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .work-hero h1{
+    font-size:clamp(36px, 5vw, 62px);
+    line-height:1.06;
+    max-width:16ch;
+    margin-bottom:20px;
+  }
+  .work-hero p{
+    color:var(--ink-muted); font-size:18px; max-width:54ch; line-height:1.6;
+  }
+
+  /* Section Shell */
+  section{padding:80px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:48px; border-bottom:1px solid var(--line); padding-bottom:24px;
+  }
+  .section-head h2{font-size:clamp(28px,3.4vw,42px); max-width:16ch;}
+  .section-head p{color:var(--ink-muted); max-width:36ch; font-size:15px;}
+
+  /* Case Studies Layout */
+  .case-studies-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .case-study-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .case-study-card:hover {
+    border-color: rgba(224, 138, 62, 0.35);
+  }
+
+  /* Photo Showcase Panel */
+  .case-media-panel {
+    background: var(--bg-panel-alt);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .main-photo-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 480px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: #14181a;
+  }
+  .main-photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    cursor: zoom-in;
+  }
+  .main-photo-container:hover img {
+    transform: scale(1.02);
+  }
+  .photo-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(20, 24, 26, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    pointer-events: none;
+  }
+  .photo-real-tag {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--ember);
+    color: #16130e;
+    padding: 5px 12px;
+    border-radius: 3px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Thumbnail Row */
+  .case-thumb-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .case-thumb-row::-webkit-scrollbar {
+    height: 4px;
+  }
+  .case-thumb-row::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 2px;
+  }
+  .thumb-btn {
+    flex: 1 1 0;
+    min-width: 80px;
+    height: 64px;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: #14181a;
+    padding: 0;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .thumb-btn.active, .thumb-btn:hover {
+    opacity: 1;
+    border-color: var(--ember-bright);
+    transform: translateY(-2px);
+  }
+  .thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Story Content */
+  .case-story-content {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .case-story-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .story-steps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .story-steps-grid { grid-template-columns: 1fr; }
+  }
+  .case-header-tag {
+    font-size: 12px;
+    color: var(--moss);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .case-header-tag::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--moss);
+  }
+  .case-story-content h3 {
+    font-size: 26px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 0;
+  }
+  .case-specs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .spec-pill {
+    background: var(--bg-panel-alt);
+    border: 1px solid var(--line);
+    padding: 4px 12px;
+    border-radius: 3px;
+    color: var(--ink-muted);
+  }
+  .spec-pill strong {
+    color: var(--ember-bright);
+  }
+
+  /* Story Progression Blocks */
+  .story-step {
+    border-left: 3px solid var(--line);
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .story-step.problem {
+    border-color: #e08a3e;
+    background: rgba(224, 138, 62, 0.04);
+    padding: 14px 16px;
+    border-radius: 0 4px 4px 0;
+  }
+  .story-step.design {
+    border-color: var(--moss);
+    background: rgba(110, 131, 103, 0.05);
+    padding: 14px 16px;
+    border-radius: 0 4px 4px 0;
+  }
+  .story-step.result {
+    border-color: var(--ember-bright);
+    background: rgba(193, 106, 46, 0.08);
+    padding: 14px 16px;
+    border-radius: 0 4px 4px 0;
+  }
+  .step-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .story-step.problem .step-label { color: #e08a3e; }
+  .story-step.design .step-label { color: var(--moss); }
+  .story-step.result .step-label { color: var(--ember-bright); }
+
+  .story-step p {
+    font-size: 14.5px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .story-step.result p {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .design-bullets {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+  }
+  .design-bullets li {
+    position: relative;
+    padding-left: 14px;
+  }
+  .design-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--moss);
+  }
+  .design-bullets li strong {
+    color: var(--ink);
+  }
+
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--ink); padding:12px 22px; border-radius:var(--radius);
+    text-decoration:none; font-weight:500; font-size:14.5px; transition:border-color .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-ghost:hover{border-color:var(--ember-bright); background:rgba(224,138,62,0.06); color:var(--ember-bright);}
+
+  /* Lightbox Modal */
+  .lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 13, 0.94);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+  .lightbox-modal.open { display: flex; }
+  .lightbox-content {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+  }
+  .lightbox-caption {
+    margin-top: 14px;
+    color: var(--ink);
+    font-size: 15px;
+    text-align: center;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -40px; right: 0;
+    background: none; border: none;
+    color: var(--ink); font-size: 32px;
+    cursor: pointer; opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 1; color: var(--ember-bright); }
+
+  /* Contact CTA Banner */
+  .contact-banner-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 48px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 64px;
+  }
+  @media (max-width: 768px) {
+    .contact-banner-box { flex-direction: column; text-align: center; }
+  }
+
+  /* Footer */
+  footer{border-top:1px solid var(--line); padding:40px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html" class="active">Our Work</a></li>
+      <li><a href="/index.html#process">Process</a></li>
+      <li><a href="/index.html#about">About Us</a></li>
+      <li><a href="/index.html#contact">Contact</a></li>
+    </ul>
+    <a href="/index.html#contact" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="/index.html">Home</a> &rsaquo; <span>Our Work &amp; Case Studies</span>
+  </div>
+
+  <div class="work-hero">
+    <div class="work-hero-eyebrow">Boulder County Field Reports</div>
+    <h1>Our Work & Case Studies</h1>
+    <p>Explore real property challenges across Longmont and Boulder County — from initial site issues to material selection, structural execution, and final transformations.</p>
+  </div>
+
+  <section id="case-studies">
+    <div class="case-studies-wrap">
+
+      <!-- Case Study 1: River Rock Parking Area -->
+      <div class="case-study-card">
+        <div class="case-media-panel">
+          <span class="photo-real-tag">Real Job Photos</span>
+          <div class="main-photo-container" id="cs1-main-box">
+            <img src="/img/case-studies/river-rock-after.jpg" alt="Completed 8-ton river rock parking area" id="cs1-main-img" onclick="openLightbox(this.src, this.alt)">
+            <div class="photo-badge" id="cs1-badge">Photo 1 of 5: Completed 8-Ton River Rock Parking Pad</div>
+          </div>
+          <div class="case-thumb-row">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs1', '/img/case-studies/river-rock-after.jpg', 'Photo 1 of 5: Completed 8-Ton River Rock Parking Pad', this)">
+              <img src="/img/case-studies/river-rock-after.jpg" alt="Completed parking pad">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', '/img/case-studies/river-rock-before.jpg', 'Photo 2 of 5: Initial Cleared & Rough Ground', this)">
+              <img src="/img/case-studies/river-rock-before.jpg" alt="Cleared ground before rock placement">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', '/img/case-studies/river-rock-prep.jpg', 'Photo 3 of 5: Weeding, Grading & Ground Leveling', this)">
+              <img src="/img/case-studies/river-rock-prep.jpg" alt="Weeding and ground leveling">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', '/img/case-studies/river-rock-cleanup.jpg', 'Photo 4 of 5: Final Site Clean-up & Dust Blow-off', this)">
+              <img src="/img/case-studies/river-rock-cleanup.jpg" alt="Leaf blower detail clean-up">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', '/img/case-studies/river-rock-wide.jpg', 'Photo 5 of 5: Full Overview under Shade Canopy', this)">
+              <img src="/img/case-studies/river-rock-wide.jpg" alt="Wide view of river rock pad">
+            </button>
+          </div>
+        </div>
+
+        <div class="case-story-content">
+          <div class="case-story-header">
+            <div>
+              <div class="case-header-tag">Case Study #1 · Landscaping & Excavation</div>
+              <h3 style="font-size:24px; margin-top:6px;">Off-Street Vehicle Parking Pad & Ground Stabilization</h3>
+            </div>
+            <div class="case-specs-row">
+              <span class="spec-pill">Location: <strong>Longmont, CO</strong></span>
+              <span class="spec-pill">Material: <strong>8 Tons River Rock</strong></span>
+              <span class="spec-pill">Scope: <strong>Clearing, Leveling & Aggregate</strong></span>
+            </div>
+          </div>
+
+          <div class="story-steps-grid">
+            <div class="story-step problem">
+              <span class="step-label">⚠ The Problem</span>
+              <p>An unpaved side-yard area was overgrown with deep-rooted weeds and rutted dirt. Parking vehicles on raw earth caused severe mud pooling during snowmelts, washing dirt onto the driveway and creating an unkempt property eye-sore.</p>
+            </div>
+
+            <div class="story-step design">
+              <span class="step-label">🔨 Design & Execution</span>
+              <ul class="design-bullets">
+                <li><strong>Vegetation Stripping:</strong> Grubbed out weeds & topsoil to expose subgrade.</li>
+                <li><strong>Precision Leveling:</strong> Re-graded terrain to eliminate dips and ensure runoff.</li>
+                <li><strong>8-Ton Aggregate Lay:</strong> Compacted 8 tons of river rock to a 4" depth.</li>
+                <li><strong>Perimeter Clean-off:</strong> Power-blew asphalt borders for a sharp edge.</li>
+              </ul>
+            </div>
+
+            <div class="story-step result">
+              <span class="step-label">✓ The Result</span>
+              <p>A heavy-capacity, low-maintenance parking pad that completely eliminates mud tracking, holds its shape under heavy vehicles, and cleanly integrates into the yard.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:8px; display:flex; justify-content:flex-end;">
+            <a href="/case-studies/river-rock-parking-pad.html" class="btn-ghost" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; padding:10px 20px; border-color:var(--ember-bright); color:var(--ember-bright);">Read Full Detailed Report &amp; Gallery &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 2: Landscape Clean-up -->
+      <div class="case-study-card">
+        <div class="case-media-panel">
+          <span class="photo-real-tag">Real Job Photos</span>
+          <div class="main-photo-container" id="cs2-main-box">
+            <img src="/img/case-studies/cleanup-after-overview.jpg" alt="Restored rock beds and flagstone walkway after detailed clean-up" id="cs2-main-img" onclick="openLightbox(this.src, this.alt)">
+            <div class="photo-badge" id="cs2-badge">Photo 1 of 5: Restored Rock Beds & Turf Border Overview</div>
+          </div>
+          <div class="case-thumb-row">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs2', '/img/case-studies/cleanup-after-overview.jpg', 'Photo 1 of 5: Restored Rock Beds & Turf Border Overview', this)">
+              <img src="/img/case-studies/cleanup-after-overview.jpg" alt="Restored rock beds and lawn border">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', '/img/case-studies/cleanup-before-overgrown1.jpg', 'Photo 2 of 5: Initial Weed Infestation around Deck & Turf', this)">
+              <img src="/img/case-studies/cleanup-before-overgrown1.jpg" alt="Weeds growing through rock and turf border">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', '/img/case-studies/cleanup-before-overgrown2.jpg', 'Photo 3 of 5: Heavy Overgrowth along Deck Stairs & Planters', this)">
+              <img src="/img/case-studies/cleanup-before-overgrown2.jpg" alt="Weeds along deck stairs and planters">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', '/img/case-studies/cleanup-after-walkway.jpg', 'Photo 4 of 5: Cleaned Flagstone Path & House Wall Border', this)">
+              <img src="/img/case-studies/cleanup-after-walkway.jpg" alt="Clean flagstone path next to deck steps">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', '/img/case-studies/cleanup-after-fencepath.jpg', 'Photo 5 of 5: Refreshed Flagstone Pathway along Fence', this)">
+              <img src="/img/case-studies/cleanup-after-fencepath.jpg" alt="Clean flagstone pathway along fence">
+            </button>
+          </div>
+        </div>
+
+        <div class="case-story-content">
+          <div class="case-story-header">
+            <div>
+              <div class="case-header-tag">Case Study #2 · Seasonal Care & Landscape Restoration</div>
+              <h3 style="font-size:24px; margin-top:6px;">Seasonal Landscape Clean-up & Invasive Weed Mitigation</h3>
+            </div>
+            <div class="case-specs-row">
+              <span class="spec-pill">Location: <strong>Longmont, CO</strong></span>
+              <span class="spec-pill">Scope: <strong>Weed Extraction & Leaf Clearance</strong></span>
+              <span class="spec-pill">Area: <strong>Rock Beds & Walkways</strong></span>
+            </div>
+          </div>
+
+          <div class="story-steps-grid">
+            <div class="story-step problem">
+              <span class="step-label">⚠ The Problem</span>
+              <p>Late summer growth led to aggressive weed infestation sprouting through river rock beds, flagstone steppers, and turf borders. Organic leaf litter choked decorative stone pathways and dulled property lines.</p>
+            </div>
+
+            <div class="story-step design">
+              <span class="step-label">🔨 Design & Execution</span>
+              <ul class="design-bullets">
+                <li><strong>Manual Root Extraction:</strong> Grubbed out deep weed root networks across rock beds.</li>
+                <li><strong>Debris Clearance:</strong> Removed accumulated leaf litter from deck foundations.</li>
+                <li><strong>Stepper Restructuring:</strong> Re-seated flagstone steppers and raked river rock level.</li>
+                <li><strong>Surface Polish:</strong> Power-blew hardscapes and deck steps clean.</li>
+              </ul>
+            </div>
+
+            <div class="story-step result">
+              <span class="step-label">✓ The Result</span>
+              <p>Restored crisp, manicured landscape contrast, eliminated weed competition around hardscapes, and refreshed overall yard aesthetic.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:8px; display:flex; justify-content:flex-end;">
+            <a href="/case-studies/seasonal-landscape-cleanup.html" class="btn-ghost" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; padding:10px 20px; border-color:var(--ember-bright); color:var(--ember-bright);">Read Full Detailed Report &amp; Gallery &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study 3: Front Yard Turf Removal -->
+      <div class="case-study-card">
+        <div class="case-media-panel">
+          <span class="photo-real-tag">Real Job Photos</span>
+          <div class="main-photo-container" id="cs3-main-box">
+            <img src="/img/case-studies/front-rock-after-installed.jpg" alt="Completed 12-ton river rock front yard conversion" id="cs3-main-img" onclick="openLightbox(this.src, this.alt)">
+            <div class="photo-badge" id="cs3-badge">Photo 1 of 5: Spreading & Hand-Raking 12 Tons River Rock</div>
+          </div>
+          <div class="case-thumb-row">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs3', '/img/case-studies/front-rock-after-installed.jpg', 'Photo 1 of 5: Spreading & Hand-Raking 12 Tons River Rock', this)">
+              <img src="/img/case-studies/front-rock-after-installed.jpg" alt="Spreading river rock in front yard">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', '/img/case-studies/front-rock-prep-clearedyard.jpg', 'Photo 2 of 5: Turf Stripped & Cleared Subgrade Soil', this)">
+              <img src="/img/case-studies/front-rock-prep-clearedyard.jpg" alt="Cleared front yard soil prior to rock">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', '/img/case-studies/front-rock-prep-stringline.jpg', 'Photo 3 of 5: String-Line Laser Leveling along Driveway Edge', this)">
+              <img src="/img/case-studies/front-rock-prep-stringline.jpg" alt="String line leveling along driveway">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', '/img/case-studies/front-rock-prep-clearing.jpg', 'Photo 4 of 5: Blow-Down & Foundation Edge Clearing', this)">
+              <img src="/img/case-studies/front-rock-prep-clearing.jpg" alt="Blowing dirt and clearing near house wall">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', '/img/case-studies/front-rock-trailer-loading.jpg', 'Photo 5 of 5: Utility Trailer Unloading & Transport', this)">
+              <img src="/img/case-studies/front-rock-trailer-loading.jpg" alt="Loading river rock from trailer">
+            </button>
+          </div>
+        </div>
+
+        <div class="case-story-content">
+          <div class="case-story-header">
+            <div>
+              <div class="case-header-tag">Case Study #3 · Xeriscaping & Turf Conversion</div>
+              <h3 style="font-size:24px; margin-top:6px;">Front Yard Lawn Stripping & 12-Ton River Rock Conversion</h3>
+            </div>
+            <div class="case-specs-row">
+              <span class="spec-pill">Location: <strong>Longmont, CO</strong></span>
+              <span class="spec-pill">Material: <strong>12 Tons River Rock Aggregate</strong></span>
+              <span class="spec-pill">Scope: <strong>Turf Removal & Rock Spread</strong></span>
+            </div>
+          </div>
+
+          <div class="story-steps-grid">
+            <div class="story-step problem">
+              <span class="step-label">⚠ The Problem</span>
+              <p>An outdated front yard lawn suffered from patchy turf, heavy weed intrusion, high irrigation demands, and uneven grading. The homeowner desired a clean, water-wise xeriscape conversion that eliminated constant mowing.</p>
+            </div>
+
+            <div class="story-step design">
+              <span class="step-label">🔨 Design & Execution</span>
+              <ul class="design-bullets">
+                <li><strong>Turf Stripping:</strong> Excavated patchy turf down to clean subgrade earth.</li>
+                <li><strong>String-Line Leveling:</strong> Set guide lines along driveway border to micro-grade soil.</li>
+                <li><strong>12-Ton Rock Import:</strong> Hauled and wheelbarrowed 12 tons of river rock.</li>
+                <li><strong>Screeding & Raking:</strong> Raked stone to a 3"–4" depth for clean borders.</li>
+              </ul>
+            </div>
+
+            <div class="story-step result">
+              <span class="step-label">✓ The Result</span>
+              <p>A striking, low-maintenance front yard xeriscape that slashes water usage, eliminates lawn mowing, and delivers long-lasting curb appeal.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:8px; display:flex; justify-content:flex-end;">
+            <a href="/case-studies/front-yard-xeriscape.html" class="btn-ghost" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; padding:10px 20px; border-color:var(--ember-bright); color:var(--ember-bright);">Read Full Detailed Report &amp; Gallery &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact CTA Banner -->
+    <div class="contact-banner-box">
+      <div>
+        <h2 style="font-size:28px; margin-bottom:8px;">Ready to start your outdoor project?</h2>
+        <p style="color:var(--ink-muted); font-size:15.5px; max-width:48ch;">Whether it's a parking pad, fence line, or seasonal landscape clean-up, get a free on-site consultation.</p>
+      </div>
+      <a href="/index.html#contact" class="nav-cta" style="padding:14px 28px; font-size:15px;">Get a free quote &rarr;</a>
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Groundwork Outdoor Co.</div>
+    <div>Licensed & insured · Longmont, CO</div>
+  </div>
+</footer>
+
+<script>
+function switchCasePhoto(caseId, imgSrc, badgeText, btn) {
+  const mainImg = document.getElementById(caseId + '-main-img');
+  const badge = document.getElementById(caseId + '-badge');
+  if (mainImg) {
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+      mainImg.src = imgSrc;
+      mainImg.alt = badgeText;
+      mainImg.style.opacity = '1';
+    }, 150);
+  }
+  if (badge) {
+    badge.textContent = badgeText;
+  }
+  if (btn) {
+    const parentRow = btn.closest('.case-thumb-row');
+    if (parentRow) {
+      parentRow.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  }
+}
+
+function openLightbox(imgSrc, caption) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalCaption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-close'))) {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});
+</script>
+</body>
+</html>

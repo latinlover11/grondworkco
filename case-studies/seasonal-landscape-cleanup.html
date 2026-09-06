@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seasonal Landscape Clean-up Case Study — Groundwork Outdoor Co.</title>
+<meta name="description" content="Read how Groundwork Outdoor Co. restored rock beds, flagstone pathways, and deck borders through weed extraction and debris cleanup in Longmont, CO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:9px 18px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  /* Case Hero */
+  .case-hero{
+    padding:40px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-hero-eyebrow{
+    color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px;
+  }
+  .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .case-hero h1{
+    font-size:clamp(32px, 4.5vw, 54px);
+    line-height:1.08;
+    max-width:18ch;
+    margin-bottom:20px;
+  }
+  .case-meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px; margin-top:32px;
+  }
+  .meta-card{
+    background:var(--bg-panel); border:1px solid var(--line);
+    padding:16px 20px; border-radius:var(--radius);
+  }
+  .meta-card label{font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
+  .meta-card value{font-size:15px; font-weight:600; color:var(--ember-bright);}
+
+  /* Story Layout */
+  .story-layout{
+    display:grid; grid-template-columns:1fr 340px; gap:56px;
+    padding:64px 0;
+  }
+  .story-main{display:flex; flex-direction:column; gap:40px;}
+  
+  .story-section h2{
+    font-size:26px; margin-bottom:14px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  .story-section h2 span{
+    font-size:14px; font-family:'Work Sans', sans-serif;
+    padding:3px 10px; border-radius:3px; text-transform:uppercase; font-weight:600;
+  }
+  .pill-problem{background:rgba(224, 138, 62, 0.15); color:#E08A3E; border:1px solid rgba(224, 138, 62, 0.3);}
+  .pill-design{background:rgba(110, 131, 103, 0.15); color:var(--moss); border:1px solid rgba(110, 131, 103, 0.3);}
+  .pill-result{background:rgba(193, 106, 46, 0.2); color:var(--ember-bright); border:1px solid rgba(193, 106, 46, 0.4);}
+
+  .story-section p{color:var(--ink-muted); font-size:16px; line-height:1.65; margin-bottom:14px;}
+  
+  .bullet-list{list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:12px;}
+  .bullet-list li{
+    background:var(--bg-panel); border:1px solid var(--line); padding:16px 20px;
+    border-radius:var(--radius); color:var(--ink); font-size:15px; line-height:1.5;
+    border-left:3px solid var(--moss);
+  }
+  .bullet-list li strong{color:var(--ember-bright);}
+
+  /* Photo Showcase Gallery Grid */
+  .photo-grid-section{
+    padding:40px 0 64px; border-top:1px solid var(--line);
+  }
+  .photo-grid-section h2{font-size:28px; margin-bottom:24px;}
+  .case-gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+  }
+  .gallery-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .gallery-card:hover{
+    transform:translateY(-3px); border-color:var(--ember-bright);
+  }
+  .gallery-card img{width:100%; height:220px; object-fit:cover;}
+  .gallery-card .caption{padding:14px 18px; font-size:13.5px; color:var(--ink-muted); background:var(--bg-panel-alt);}
+
+  /* Sidebar CTA */
+  .story-sidebar{
+    display:flex; flex-direction:column; gap:24px; position:sticky; top:96px; height:fit-content;
+  }
+  .cta-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; border-top:3px solid var(--ember);
+  }
+  .cta-box h3{font-size:22px; margin-bottom:12px;}
+  .cta-box p{color:var(--ink-muted); font-size:14px; margin-bottom:20px;}
+  .btn-sidebar{
+    background:var(--ember); color:#16130E; text-align:center; padding:14px 20px;
+    border-radius:var(--radius); font-weight:600; font-size:15px; display:block;
+    transition:background 0.2s ease;
+  }
+  .btn-sidebar:hover{background:var(--ember-bright);}
+
+  /* Lightbox */
+  .lightbox-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 13, 0.94); backdrop-filter: blur(12px);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 32px;
+  }
+  .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+  .lightbox-content {
+    max-width: 1100px; max-height: 90vh; position: relative;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .lightbox-content img {
+    max-width: 100%; max-height: 80vh; object-fit: contain;
+    border-radius: 4px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  }
+  .lightbox-caption { margin-top: 14px; color: var(--ink); font-size: 15px; text-align: center; font-family: 'Fraunces', serif; }
+  .lightbox-close {
+    position: absolute; top: -40px; right: 0; background: none; border: none;
+    color: var(--ink-muted); font-size: 28px; cursor: pointer; transition: color 0.2s ease;
+  }
+  .lightbox-close:hover { color: var(--ink); }
+
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:40px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--ink-muted);}
+
+  @media (max-width:860px){
+    .story-layout{grid-template-columns:1fr; gap:40px;}
+    .story-sidebar{position:static;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html">Our Work</a></li>
+      <li><a href="/index.html#process">Process</a></li>
+      <li><a href="/index.html#about">About Us</a></li>
+      <li><a href="/index.html#contact">Contact</a></li>
+    </ul>
+    <a href="/index.html#contact" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="/index.html">Home</a> &rsaquo; <a href="/work.html">Our Work</a> &rsaquo; <span>Seasonal Landscape Clean-up</span>
+  </div>
+
+  <section class="case-hero">
+    <div class="case-hero-eyebrow">Seasonal Care & Restoration</div>
+    <h1>Seasonal Landscape Clean-up & Invasive Weed Mitigation</h1>
+    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">How our crew extracted deep weed root networks, removed organic leaf litter, and re-aligned flagstone pathways around deck skirtings and stone borders in Longmont, CO.</p>
+
+    <div class="case-meta-grid">
+      <div class="meta-card"><label>Location</label><value>Longmont, CO</value></div>
+      <div class="meta-card"><label>Primary Service</label><value>Weed Extraction & Clean-up</value></div>
+      <div class="meta-card"><label>Areas Restored</label><value>Rock Beds & Flagstone Paths</value></div>
+      <div class="meta-card"><label>Turnaround Time</label><value>Single-Day Refresh</value></div>
+    </div>
+  </section>
+
+  <div class="story-layout">
+    <div class="story-main">
+
+      <div class="story-section">
+        <h2><span class="pill-problem">The Problem</span> Weed Overgrowth & Debris Accumulation</h2>
+        <p>Late summer heat and rainfall caused rapid invasive weed growth across decorative river rock beds, flagstone walking paths, and turf borders. Weeds had sprouted around deck stairs and planter boxes, while accumulated leaf litter trapped moisture along house walls and fence lines.</p>
+        <p>The homeowner wanted a comprehensive seasonal clean-up to eliminate weeds down to the root, clear organic debris, and restore crisp hardscape borders.</p>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-design">Design & Solution</span> Step-by-Step Restoration</h2>
+        <p>Our landscape maintenance crew performed a detailed 4-step cleanup process:</p>
+        <ul class="bullet-list">
+          <li><strong>1. Complete Manual Root Grubbing:</strong> Hand-pulled invasive weed root systems out of river rock beds and flagstone joints without tearing the underlying weed barrier fabric.</li>
+          <li><strong>2. Debris & Leaf Clearance:</strong> Cleared trapped leaf litter and organic detritus from deck lattice, foundation perimeter walls, and planter tubs.</li>
+          <li><strong>3. Flagstone & Rock Bed Re-alignment:</strong> Re-seated shifted flagstone steppers, raked river rock level, and redefined turf borders for crisp geometric contrast.</li>
+          <li><strong>4. Surface Blow-Down & Final Polish:</strong> Power-blew all hardscapes, deck steps, and walkways, leaving a clean stone surface.</li>
+        </ul>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-result">The Result</span> Clean Landscape Contrast</h2>
+        <p>Restored clean, manicured landscape contrast, eliminated weed competition around structural hardscapes, and refreshed the yard's overall aesthetic and usability.</p>
+      </div>
+
+    </div>
+
+    <aside class="story-sidebar">
+      <div class="cta-box">
+        <h3>Need seasonal clean-up?</h3>
+        <p>From spring weed grubbing to fall leaf cleanup and stone border edging, we keep your property looking sharp year-round.</p>
+        <a href="/index.html#contact" class="btn-sidebar">Get a Free Estimate</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="photo-grid-section">
+    <h2>Project Photo Gallery</h2>
+    <p style="color:var(--ink-muted); margin-bottom:24px;">Click any photo to view full resolution.</p>
+
+    <div class="case-gallery-grid">
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cleanup-after-overview.jpg', 'Restored Rock Beds & Turf Border Overview')">
+        <img src="/img/case-studies/cleanup-after-overview.jpg" alt="Restored rock beds and lawn border after cleanup">
+        <div class="caption">✓ <strong>Restored Landscape:</strong> Clean river rock beds and sharp turf border.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cleanup-before-overgrown1.jpg', 'Initial Weed Infestation around Deck & Turf')">
+        <img src="/img/case-studies/cleanup-before-overgrown1.jpg" alt="Weeds growing through rock and turf border">
+        <div class="caption">⚠ <strong>Initial Overgrowth:</strong> Weeds sprouting heavily through rock beds.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cleanup-before-overgrown2.jpg', 'Heavy Overgrowth along Deck Stairs & Planters')">
+        <img src="/img/case-studies/cleanup-before-overgrown2.jpg" alt="Weeds along deck stairs and planters">
+        <div class="caption">⚠ <strong>Deck Stairs Overgrowth:</strong> Vegetation choking deck lattice.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cleanup-after-walkway.jpg', 'Cleaned Flagstone Path & House Wall Border')">
+        <img src="/img/case-studies/cleanup-after-walkway.jpg" alt="Clean flagstone path next to deck steps">
+        <div class="caption">✓ <strong>Cleaned Path:</strong> Flagstone steppers cleared and raked level.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cleanup-after-fencepath.jpg', 'Refreshed Flagstone Pathway along Fence Line')">
+        <img src="/img/case-studies/cleanup-after-fencepath.jpg" alt="Clean flagstone pathway along fence">
+        <div class="caption">🌿 <strong>Fence Line Pathway:</strong> Cleared leaves and weeds under tree canopy.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Groundwork Outdoor Co.</div>
+    <div>Licensed & insured · Longmont, CO</div>
+  </div>
+</footer>
+
+<script>
+function openLightbox(imgSrc, caption) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalCaption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-close'))) {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});
+</script>
+</body>
+</html>
