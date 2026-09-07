@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Groundwork Outdoor Co.</title>
+<meta name="description" content="Meet the crew behind Groundwork Outdoor Co. — hardscaping, fencing, and lawn care built to last in Longmont and Boulder County, CO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a.active{color:var(--ember-bright);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:10px 20px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13.5px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a{color:var(--ink-muted); transition:color .2s ease;}
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  /* Hero Section */
+  .about-hero{
+    padding:48px 0 64px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(193,106,46,0.18), transparent 60%),
+      linear-gradient(180deg, #171C1D 0%, #14181A 100%);
+  }
+  .about-hero-eyebrow{
+    color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:10px;
+  }
+  .about-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .about-hero h1{
+    font-size:clamp(36px, 5vw, 62px);
+    line-height:1.06;
+    max-width:16ch;
+    margin-bottom:20px;
+  }
+  .about-hero p{
+    color:var(--ink-muted); font-size:18px; max-width:54ch; line-height:1.6;
+  }
+
+  /* Section Shell */
+  section{padding:80px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:48px; border-bottom:1px solid var(--line); padding-bottom:24px;
+  }
+  .section-head h2{font-size:clamp(28px,3.4vw,42px); max-width:16ch;}
+  .section-head p{color:var(--ink-muted); max-width:36ch; font-size:15px;}
+
+  /* Story */
+  .story-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  .story-copy p{color:var(--ink-muted); font-size:16px; margin-bottom:18px; max-width:48ch;}
+  .story-copy p:last-child{margin-bottom:0;}
+  .story-photo{
+    border-radius:6px; overflow:hidden; border:1px solid var(--line);
+    aspect-ratio:4/3;
+  }
+  .story-photo img{width:100%; height:100%; object-fit:cover;}
+
+  /* Values */
+  .values-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .value-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; display:flex; flex-direction:column; gap:14px;
+  }
+  .value-card h3{font-size:20px; font-weight:460;}
+  .value-card p{color:var(--ink-muted); font-size:14.5px;}
+
+  /* Stats */
+  .about-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:48px 0;
+  }
+  .about-stat{text-align:center;}
+  .about-stat b{
+    display:block; font-family:'Fraunces', serif; font-size:44px; font-weight:460;
+    color:var(--ember-bright); margin-bottom:8px;
+  }
+  .about-stat span{color:var(--ink-muted); font-size:14px;}
+
+  /* Contact CTA Banner */
+  .contact-banner-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:6px;
+    padding:48px 40px; display:flex; align-items:center; justify-content:space-between;
+    gap:32px;
+  }
+
+  /* Footer */
+  footer{border-top:1px solid var(--line); padding:40px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+  .footer-row a{color:var(--ink-muted); text-decoration:none; transition:color .2s ease;}
+  .footer-row a:hover{color:var(--ember-bright);}
+  .footer-links a{margin-right:12px;}
+
+  /* Responsive */
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .story-grid{grid-template-columns:1fr; gap:36px;}
+    .story-photo{order:-1;}
+    .values-grid{grid-template-columns:1fr;}
+    .about-stats{grid-template-columns:1fr; gap:32px;}
+    .contact-banner-box{flex-direction:column; text-align:center;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="work.html">Our Work</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a> &rsaquo; <span>About Us</span>
+  </div>
+
+  <div class="about-hero">
+    <div class="about-hero-eyebrow">Who We Are</div>
+    <h1>Built by a crew that lives with the results.</h1>
+    <p>Groundwork Outdoor Co. is a Longmont-based crew of hardscapers, fence builders, and lawn care pros who treat every property like it's our own.</p>
+  </div>
+</main>
+
+<section id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-copy">
+        <p>Groundwork Outdoor Co. started with a simple idea: outdoor work should be done right the first time, by people who actually stand behind it. What began as a small crew building patios and fences in Longmont has grown into a full-service outdoor company serving Boulder County — without losing the hands-on approach we started with.</p>
+        <p>We don't subcontract out the trades we're known for. The same crew that pours footings for your fence is the one that grades your patio base and mows your lawn the following spring. That continuity is why our work holds its shape season after season.</p>
+        <p>Every project — big or small — gets the same walk-through, the same clear estimate, and the same crew that shows up when they say they will.</p>
+      </div>
+      <div class="story-photo">
+        <img src="img/case-studies/bluestone-patio.jpg" alt="Groundwork Outdoor Co. crew on-site">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values" style="background:var(--bg-panel-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we stand for</h2>
+      <p>The principles that guide every job we take on.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <h3>Built to last</h3>
+        <p>We use materials and methods rated for Colorado's freeze-thaw cycles, not just what looks good on install day.</p>
+      </div>
+      <div class="value-card">
+        <h3>Straight answers</h3>
+        <p>Clear estimates, honest timelines, and no surprise change orders. If something changes, we tell you before we do it.</p>
+      </div>
+      <div class="value-card">
+        <h3>One crew, start to finish</h3>
+        <p>The people who design your project are the same people who build it and the same people you can call after.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-stats-section">
+  <div class="wrap">
+    <div class="about-stats">
+      <div class="about-stat">
+        <b>14</b>
+        <span>years building patios, walls & fences that last</span>
+      </div>
+      <div class="about-stat">
+        <b>220+</b>
+        <span>properties under seasonal maintenance</span>
+      </div>
+      <div class="about-stat">
+        <b>4</b>
+        <span>materials we stand behind: stone, cedar, steel, sod</span>
+      </div>
+    </div>
+
+    <div class="contact-banner-box" style="margin-top:64px;">
+      <div>
+        <h2 style="font-size:28px; margin-bottom:8px;">Want to work with us?</h2>
+        <p style="color:var(--ink-muted); font-size:15.5px; max-width:48ch;">Tell us about your property and we'll set up a free on-site consultation.</p>
+      </div>
+      <a href="contact.html" class="nav-cta" style="padding:14px 28px; font-size:15px;">Get a free quote &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Groundwork Outdoor Co.</div>
+    <div>Licensed & insured · Longmont, CO</div>
+  </div>
+</footer>
+
+</body>
+</html>
