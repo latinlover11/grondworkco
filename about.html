@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us — Groundwork Outdoor Co.</title>
 <meta name="description" content="Meet the crew behind Groundwork Outdoor Co. — hardscaping, fencing, and lawn care built to last in Longmont and Boulder County, CO.">
+<meta property="og:title" content="About Us — Groundwork Outdoor Co.">
+<meta property="og:description" content="Meet the crew behind Groundwork Outdoor Co. — hardscaping, fencing, and lawn care built to last in Longmont and Boulder County, CO.">
+<meta property="og:image" content="/img/og-image.jpg">
+<meta property="og:type" content="business.business">
+<meta property="og:url" content="https://groundworkoutdoor.co/about.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -174,26 +179,106 @@
     .contact-banner-box{flex-direction:column; text-align:center;}
     section{padding:56px 0;}
   }
+  /* Toggle button and mobile panel */
+  .nav-toggle {
+    display: none;
+  }
+  .nav-mobile-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(20,24,26,0.92);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    padding: 20px 32px;
+    z-index: 50;
+  }
+  .nav-mobile-panel.open {
+    display: block;
+  }
+  @media (max-width:860px) {
+    .nav-toggle {
+      display: block;
+    }
+  }
+
 </style>
+  <!-- Local Business Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Groundwork Outdoor Co.",
+    "image": "/img/logo.png",
+    "@id": "https://groundworkoutdoor.co/",
+    "url": "https://groundworkoutdoor.co/about.html",
+    "telephone": "(555) 019-4420",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main St",
+      "addressLocality": "Longmont",
+      "postalCode": "80501",
+      "addressRegion": "CO",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.1672,
+      "longitude": -105.1019
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      }
+    ],
+    "servesArea": {
+      "@type": "Place",
+      "name": "Longmont and Boulder County, CO"
+    }
+  }
+  </script>
+    <link rel="canonical" href="https://groundworkoutdoor.co/about.html">
 </head>
 <body>
 
 <header>
   <nav class="nav">
-    <a href="index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <a href="/index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
     <ul class="nav-links">
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="work.html">Our Work</a></li>
-      <li><a href="about.html" class="active">About Us</a></li>
-      <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html">Our Work</a></li>
+      <li><a href="/about.html" class="active">About Us</a></li>
+      <li><a href="/blog/index.html">Blog</a></li>
     </ul>
-    <a href="contact.html" class="nav-cta">Get a quote</a>
+    <a href="/contact.html" class="nav-cta">Get a quote</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile-panel">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+   <div class="nav-mobile-panel" id="nav-mobile-panel">
+     <a href="/index.html#services">Services</a>
+     <a href="/work.html">Our Work</a>
+     <a href="/about.html">About Us</a>
+     <a href="/blog/index.html">Blog</a>
+     <a href="/contact.html" class="nav-cta">Get a quote</a>
+   </div>
 </header>
 
 <main class="wrap">
   <div class="breadcrumbs">
-    <a href="index.html">Home</a> &rsaquo; <span>About Us</span>
+    <a href="/index.html">Home</a> &rsaquo; <span>About Us</span>
   </div>
 
   <div class="about-hero">
@@ -212,7 +297,7 @@
         <p>Every project — big or small — gets the same walk-through, the same clear estimate, and the same crew that shows up when they say they will.</p>
       </div>
       <div class="story-photo">
-        <img src="img/case-studies/bluestone-patio.jpg" alt="Groundwork Outdoor Co. crew on-site">
+        <img src="/img/case-studies/bluestone-patio.jpg" alt="Groundwork Outdoor Co. crew on-site">
       </div>
     </div>
   </div>
@@ -275,5 +360,20 @@
   </div>
 </footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('nav-toggle');
+    const mobilePanel = document.getElementById('nav-mobile-panel');
+    
+    if (toggleBtn && mobilePanel) {
+      toggleBtn.addEventListener('click', function() {
+        mobilePanel.classList.toggle('open');
+        // Update aria-expanded attribute
+        const expanded = toggleBtn.getAttribute('aria-expanded') === 'true' || false;
+        toggleBtn.setAttribute('aria-expanded', !expanded);
+      });
+    }
+  });
+</script>
 </body>
 </html>
