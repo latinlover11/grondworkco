@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Extending the Life of Your Wood Fence: Maintenance Tips — Groundwork Outdoor Co.</title>
+<meta content="Learn how to properly maintain and protect your cedar or redwood fence to ensure it lasts decades in our challenging climate." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+  
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a.active{color:var(--ember-bright);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:10px 20px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+  
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13.5px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a{color:var(--ink-muted); transition:color .2s ease;}
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+  
+  /* Article Styles */
+  .article{
+    max-width:800px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  .article-header{
+    text-align:center;
+    padding:40px 0;
+    border-bottom:1px solid var(--line);
+    margin-bottom:40px;
+  }
+  .article-tag{
+    display:inline-block;
+    background:var(--ember);
+    color:var(--bg);
+    font-size:0.75rem;
+    font-weight:600;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-bottom:16px;
+  }
+  .article h1{
+    font-size:clamp(32px, 6vw, 48px);
+    line-height:1.2;
+    margin-bottom:24px;
+  }
+  .article-meta{
+    color:var(--ink-muted);
+    font-size:14px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .article-content{
+    line-height:1.8;
+    margin-bottom:40px;
+  }
+  .article-content p{
+    margin-bottom:24px;
+  }
+  .article-content h2{
+    font-size:clamp(24px, 4vw, 32px);
+    margin:32px 0 16px 0;
+  }
+  .article-content h3{
+    font-size:clamp(20px, 3.5vw, 28px);
+    margin:24px 0 12px 0;
+  }
+  .article-content ul{
+    margin-bottom:24px;
+    padding-left:24px;
+  }
+  .article-content li{
+    margin-bottom:12px;
+    position:relative;
+  }
+  .article-content li::before{
+    content:'→';
+    position:absolute;
+    left:-12px;
+    color:var(--ember-bright);
+  }
+  .article-image{
+    margin:32px 0;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .article-image img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .blockquote{
+    border-left:4px solid var(--ember);
+    padding-left:24px;
+    margin:32px 0;
+    font-style:italic;
+    color:var(--ink-muted);
+  }
+  
+  /* Navigation */
+  .article-nav{
+    display:flex;
+    justify-content:space-between;
+    margin-top:48px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .article-nav a{
+    color:var(--ink-muted);
+    text-decoration:none;
+    font-weight:500;
+    transition:color .2s ease;
+  }
+  .article-nav a:hover{
+    color:var(--ember-bright);
+  }
+  
+  /* Contact CTA */
+  .contact-banner{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:32px;
+    margin:48px auto;
+    max-width:800px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .contact-banner-content{
+    flex:1;
+  }
+  .contact-banner h2{
+    font-size:1.5rem;
+    margin-bottom:8px;
+  }
+  .contact-banner p{
+    color:var(--ink-muted);
+    font-size:1rem;
+    margin-bottom:0;
+  }
+  .contact-banner .btn-primary{
+    padding:12px 24px;
+    font-size:1rem;
+  }
+  
+  /* Footer */
+  footer{border-top:1px solid var(--line); padding:40px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+  
+  /* Responsive */
+  @media (max-width:768px){
+    .article{padding:0 16px;}
+    .contact-banner{flex-direction:column; text-align:center; gap:24px;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a href="../index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <ul class="nav-links"><li><a href="../index.html#services">Services</a></li><li><a href="../work.html">Our Work</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../about.html">About Us</a></li><li><a href="../testimonials.html">Testimonials</a></li><li><a class="active" href="../blog/index.html">Blog</a></li></ul>
+    <a class="nav-cta" href="../contact.html">Get a quote</a>
+    <button aria-controls="nav-mobile-panel" aria-expanded="false" aria-label="Toggle menu" class="nav-toggle" id="nav-toggle" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="../index.html#services">Services</a><a href="../work.html">Our Work</a><a href="../about.html">About Us</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="article">
+    <div class="article-header">
+      <span class="article-tag">Fencing</span>
+      <h1>Extending the Life of Your Wood Fence: Maintenance Tips</h1>
+      <div class="article-meta">
+        <span>February 10, 2024</span>
+        <span>5 min read</span>
+      </div>
+    </div>
+    
+    <div class="article-content">
+      <p>A well-built wood fence can be a beautiful and functional addition to your Colorado property, providing privacy, security, and aesthetic appeal. However, our unique climate—with intense UV exposure, dramatic temperature fluctuations, and occasional moisture from snow and spring rains—presents specific challenges for wood fences that require proper maintenance to maximize their lifespan.</p>
+      
+      <p>With the right care and attention, a quality cedar or redwood fence can easily last 15-20 years or more in our region. Neglect, on the other hand, can lead to premature deterioration, warping, and costly replacements. Here's our comprehensive guide to maintaining your wood fence for maximum longevity:</p>
+      
+      <h2>Regular Cleaning: The Foundation of Fence Care</h2>
+      <p>Dirt, debris, and organic matter can trap moisture against the wood, accelerating decay. Regular cleaning prevents this buildup:</p>
+      <ul>
+        <li><strong>Frequency:</strong> Clean your fence at least twice a year—spring and fall</li>
+        <li><strong>Method:</strong> Use a garden hose with a spray nozzle to remove loose dirt and debris</li>
+        <li><strong>For tougher grime:</strong> Mix mild detergent with water and scrub gently with a soft-bristled brush</li>
+        <li><strong>Avoid:</strong> Pressure washers, which can damage wood fibers and force water deep into the grain</li>
+      </ul>
+      <p>Pay special attention to the bottom 6-8 inches of the fence where moisture and debris tend to accumulate.</p>
+      
+      <h2>Inspection and Repair: Catch Problems Early</h2>
+      <p>Regular inspections help you identify and address issues before they become major problems:</p>
+      <ul>
+        <li><strong>Check for:</strong> Loose or rotting posts, broken or warped boards, rusted hardware</li>
+        <li><strong>Focus areas:</strong> Post bases (where they meet the ground), tops of posts (where water collects), and gate hardware</li>
+        <li><strong>Repair promptly:</strong> Replace damaged boards, tighten loose hardware, and address any signs of rot immediately</li>
+        <li><strong>Post rot:</strong> If you notice soft, spongy wood at the base of a post, it likely needs replacement</li>
+      </ul>
+      <p>Spring is the ideal time for a thorough inspection after winter weather has passed.</p>
+      
+      <h2>Protection Against the Elements</h2>
+      <p>Applying protective finishes significantly extends the life of your wood fence:</p>
+      <ul>
+        <li><strong>Stain vs. Paint:</strong> We recommend semi-transparent stain over paint, as paint tends to peel and trap moisture</li>
+        <li><strong>Frequency:</strong> Reapply stain every 3-5 years, depending on sun exposure and product quality</li>
+        <li><strong>Preparation:</strong> Clean the fence thoroughly and allow it to dry completely before staining</li>
+        <li><strong>Application:</strong> Use a brush, roller, or sprayer to apply an even coat, following the wood grain</li>
+      </ul>
+      <p>For maximum protection, choose stains with UV inhibitors and water repellents specifically formulated for exterior wood.</p>
+      
+      <h2>Preventing Ground Contact Damage</h2>
+      <p>One of the most common causes of premature fence failure is prolonged contact with moisture:</p>
+      <ul>
+        <li><strong>Clear vegetation:</strong> Keep plants, shrubs, and grass trimmed back at least 6 inches from the fence</li>
+        <li><strong>Improve drainage:</strong> Ensure soil slopes away from the fence to prevent water pooling</li>
+        <li><strong>Gravel board:</strong> Consider installing a pressure-treated gravel board at the base to lift the fence above soil contact</li>
+        <li><strong>Avoid sprinklers:</strong> Adjust irrigation systems to prevent water from consistently hitting the fence</li>
+      </ul>
+      <p>Even naturally rot-resistant woods like cedar benefit from minimized ground contact.</p>
+      
+      <h2>Hardware Maintenance</h2>
+      <p>Don't overlook the importance of maintaining your fence's hardware:</p>
+      <ul>
+        <li><strong>Gate hinges and latches:</strong> Lubricate annually with silicone-based lubricant</li>
+        <li><strong>Check for rust:</strong> Replace any corroded hardware with stainless steel or galvanized alternatives</li>
+        <li><strong>Tighten connections:</strong> Periodically check and tighten bolts, screws, and nails</li>
+        <li><strong>Gate alignment:</strong> Ensure gates swing freely and latch properly to avoid stress on posts</li>
+      </ul>
+      <p>Well-maintained hardware not only functions better but also reduces stress on the wood structure.</p>
+      
+      <h2>When to Consider Repair vs. Replacement</h2>
+      <p>Not every issue requires a full fence replacement. Here's how to determine the best course of action:</p>
+      <ul>
+        <li><strong>Repair when:</strong> Damage is isolated to specific boards or posts, the fence is otherwise structurally sound, or you're addressing cosmetic issues</li>
+        <li><strong>Consider replacement when:</strong> Multiple posts are rotted or unstable, there's widespread warping or twisting, or the fence has reached the end of its expected lifespan</li>
+        <li><strong>Partial replacement:</strong> Often, you can replace just the failing sections while keeping the sound portions</li>
+      </ul>
+      <p>A professional assessment can help you make the most cost-effective decision for your specific situation.</p>
+      
+      <p>By implementing these maintenance practices, you'll not only extend the life of your wood fence but also maintain its beauty and functionality for years to come. Remember that a little preventive care goes a long way in protecting your investment.</p>
+      
+      <p>If you're unsure about the condition of your fence or need help with maintenance or repairs, our team is here to assist. <a href="../contact.html" class="btn-primary">Schedule a fence inspection today</a> to ensure your fence continues to serve your property well for years to come.</p>
+    </div>
+    
+    <div class="article-nav">
+      <a href="blog-post-1.html">← Previous: Patio Materials Guide</a>
+      <a href="../blog/index.html">Back to Blog</a>
+      <a href="blog-post-3.html">Next: Water-Wise Lawn Alternatives →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© <script>document.write(new Date().getFullYear())</script> Groundwork Outdoor Co. All rights reserved.</div>
+    <div>
+      <a href="#" style="color:var(--ink-muted); text-decoration:none; margin-right:12px;">Privacy</a>
+      <a href="#" style="color:var(--ink-muted); text-decoration:none;">Terms</a>
+    </div>
+    <div>
+      <a href="tel:+15550194420" style="color:var(--ink-muted); text-decoration:none;">(555) 019-4420</a>
+      <br>
+      <a href="mailto:info@groundworkoutdoor.co" style="color:var(--ink-muted); text-decoration:none;">info@groundworkoutdoor.co</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+var navToggle = document.getElementById('nav-toggle');
+var navPanel = document.getElementById('nav-mobile-panel');
+if (navToggle && navPanel) {
+  navToggle.addEventListener('click', function(){
+    var isOpen = navPanel.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navPanel.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navPanel.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+</script>
+</body>
+</html>

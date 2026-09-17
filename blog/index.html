@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groundwork Outdoor Co. Blog — Expert Tips for Hardscaping, Fencing & Lawn Care</title>
+<meta name="description" content="Explore our blog for expert advice on hardscaping, fencing, lawn care, and outdoor living in Longmont and Boulder County, CO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+  
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a.active{color:var(--ember-bright);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:10px 20px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+  .nav-toggle{
+    display:none;
+    background:none; border:none; padding:8px; cursor:pointer;
+    flex-direction:column; gap:5px; justify-content:center;
+  }
+  .nav-toggle span{
+    display:block; width:24px; height:2px; background:var(--ink);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-mobile-panel{
+    display:none;
+    flex-direction:column;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mobile-panel.open{display:flex;}
+  .nav-mobile-panel a{
+    padding:16px 32px; color:var(--ink-muted); font-size:15px;
+    border-top:1px solid var(--line);
+  }
+  .nav-mobile-panel a:hover{color:var(--ink); background:var(--bg-panel);}
+  .nav-mobile-panel .nav-cta{margin:16px 32px; text-align:center; border-top:none;}
+  
+  /* Blog Styles */
+  .blog-header{
+    text-align:center;
+    padding:80px 0 60px;
+    border-bottom:1px solid var(--line);
+  }
+  .blog-header h1{
+    font-size:clamp(32px, 6vw, 48px);
+    margin-bottom:16px;
+  }
+  .blog-header p{
+    color:var(--ink-muted);
+    max-width:48ch;
+    margin:0 auto;
+    font-size:18px;
+  }
+  .blog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:32px;
+    padding:56px 0;
+  }
+  .blog-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    text-decoration:none;
+    color:inherit;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .blog-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--ember-bright);
+  }
+  .blog-image{
+    height:200px;
+    overflow:hidden;
+    position:relative;
+  }
+  .blog-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .blog-card:hover .blog-image img{
+    transform:scale(1.05);
+  }
+  .blog-content{
+    flex:1;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+  }
+  .blog-tag{
+    display:inline-block;
+    background:var(--ember);
+    color:var(--bg);
+    font-size:0.75rem;
+    font-weight:600;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-bottom:12px;
+  }
+  .blog-content h2{
+    font-size:1.5rem;
+    margin-bottom:12px;
+    flex-grow:1;
+  }
+  .blog-excerpt{
+    color:var(--ink-muted);
+    line-height:1.7;
+    margin-bottom:20px;
+    flex-grow:1;
+  }
+  .blog-meta{
+    display:flex;
+    justify-content:space-between;
+    font-size:0.9rem;
+    color:var(--ink-muted);
+    margin-top:auto;
+  }
+  /* Footer */
+  footer{border-top:1px solid var(--line); padding:40px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+  .footer-row a{color:var(--ink-muted); text-decoration:none; transition:color .2s ease;}
+  .footer-row a:hover{color:var(--ember-bright);}
+  .footer-links a{margin-right:12px;}
+  /* Responsive */
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+    .blog-grid{grid-template-columns:1fr;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="../index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../work.html">Our Work</a></li>
+      <li><a href="../about.html">About Us</a></li>
+      <li><a class="active" href="../blog/index.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="../contact.html">Get a quote</a>
+    <button aria-controls="nav-mobile-panel" aria-expanded="false" aria-label="Toggle menu" class="nav-toggle" id="nav-toggle" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="../index.html#services">Services</a>
+    <a href="../work.html">Our Work</a>
+    <a href="../about.html">About Us</a>
+    <a href="../blog/index.html">Blog</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="blog-header">
+    <h1>Our Outdoor Living Blog</h1>
+    <p>Expert tips, seasonal guides, and inspiration for your hardscaping, fencing, and lawn care projects in Longmont and Boulder County.</p>
+  </section>
+  
+  <section>
+    <div class="blog-grid">
+      <!-- Blog Post 1: Spring Cleanup -->
+      <a href="blog-post-5.html" class="blog-card">
+        <div class="blog-image">
+          <img src="../img/case-studies/river-rock-after.jpg" alt="Spring landscape cleanup">
+        </div>
+        <div class="blog-content">
+          <span class="blog-tag">Seasonal Guide</span>
+          <h2>Spring Landscape Cleanup Checklist</h2>
+          <p class="blog-excerpt">Essential tasks to remove winter debris, assess plant health, and prepare your lawn and gardens for optimal growth throughout the growing season.</p>
+          <div class="blog-meta">
+            <span>April 15, 2024</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Blog Post 2: Patio Materials -->
+      <a href="blog-post-1.html" class="blog-card">
+        <div class="blog-image">
+          <img src="../img/case-studies/bluestone-patio.jpg" alt="Bluestone patio options">
+        </div>
+        <div class="blog-content">
+          <span class="blog-tag">Hardscaping</span>
+          <h2>Choosing the Right Patio Material for Colorado Weather</h2>
+          <p class="blog-excerpt">A comprehensive guide to selecting durable, beautiful patio materials that withstand our freeze-thaw cycles and intense sun exposure.</p>
+          <div class="blog-meta">
+            <span>March 22, 2024</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Blog Post 3: Fence Maintenance -->
+      <a href="blog-post-2.html" class="blog-card">
+        <div class="blog-image">
+          <img src="../img/case-studies/cedar-fence.jpg" alt="Cedar fence maintenance">
+        </div>
+        <div class="blog-content">
+          <span class="blog-tag">Fencing</span>
+          <h2>Extending the Life of Your Wood Fence: Maintenance Tips</h2>
+          <p class="blog-excerpt">Learn how to properly maintain and protect your cedar or redwood fence to ensure it lasts decades in our challenging climate.</p>
+          <div class="blog-meta">
+            <span>February 10, 2024</span>
+            <span>5 min read</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Blog Post 4: Lawn Care -->
+      <a href="blog-post-3.html" class="blog-card">
+        <div class="blog-image">
+          <img src="../img/case-studies/front-yard-xeriscape.jpg" alt="Xeriscape lawn alternative">
+        </div>
+        <div class="blog-content">
+          <span class="blog-tag">Lawn Care</span>
+          <h2>Water-Wise Lawn Alternatives for Colorado Homes</h2>
+          <p class="blog-excerpt">Discover beautiful, low-water alternatives to traditional grass that thrive in our semi-arid climate while reducing maintenance and costs.</p>
+          <div class="blog-meta">
+            <span>January 18, 2024</span>
+            <span>7 min read</span>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Blog Post 6: Outdoor Kitchens -->
+      <a href="blog-post-6.html" class="blog-card">
+        <div class="blog-image">
+          <img src="../img/case-studies/outdoor-kitchen.jpg" alt="Outdoor kitchen design">
+        </div>
+        <div class="blog-content">
+          <span class="blog-tag">Hardscaping</span>
+          <h2>Designing the Perfect Outdoor Kitchen for Entertaining</h2>
+          <p class="blog-excerpt">From layout and appliances to materials and workflow, learn how to create an outdoor cooking space that's both functional and beautiful.</p>
+          <div class="blog-meta">
+            <span>December 5, 2023</span>
+            <span>9 min read</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© <script>document.write(new Date().getFullYear())</script> Groundwork Outdoor Co. All rights reserved.</div>
+    <div>
+      <a href="#" style="color:var(--ink-muted); text-decoration:none; margin-right:12px;">Privacy</a>
+      <a href="#" style="color:var(--ink-muted); text-decoration:none;">Terms</a>
+    </div>
+    <div>
+      <a href="tel:+15550194420" style="color:var(--ink-muted); text-decoration:none;">(555) 019-4420</a>
+      <br>
+      <a href="mailto:info@groundworkoutdoor.co" style="color:var(--ink-muted); text-decoration:none;">info@groundworkoutdoor.co</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+var navToggle = document.getElementById('nav-toggle');
+var navPanel = document.getElementById('nav-mobile-panel');
+if (navToggle && navPanel) {
+  navToggle.addEventListener('click', function(){
+    var isOpen = navPanel.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navPanel.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navPanel.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+</script>
+</body>
+</html>
