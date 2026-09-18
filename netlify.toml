@@ -1,0 +1,6 @@
+[build]
+  publish = "." 
+  command = "echo 'No build step required'"
+
+[context.production.environment]
+  NODE_VERSION = "16"

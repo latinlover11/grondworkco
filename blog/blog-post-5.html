@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Spring Landscape Cleanup Checklist: Preparing Your Property for Growing Season — Groundwork Outdoor Co.</title>
-<meta content="Essential spring cleanup tasks to remove winter debris, assess plant health, and prepare your lawn and gardens for optimal growth throughout the season." name="description"/>
+<meta content="Essential spring cleanup tasks to remove winter debris, assess plant health, cut back perennials, freshen mulch beds, and prepare your lawn for optimal growth in Colorado." name="description"/>
+<link rel="canonical" href="https://groundworkoutdoor.co/blog/blog-post-5.html"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -71,27 +71,43 @@
     transition:background .2s ease;
   }
   .nav-cta:hover{background:var(--ember-bright);}
-  
-  /* Breadcrumbs */
-  .breadcrumbs{
-    padding:24px 0 0;
-    font-size:13.5px; color:var(--ink-muted);
-    display:flex; align-items:center; gap:8px;
+  .nav-toggle{
+    display:none;
+    background:none; border:none; padding:8px; cursor:pointer;
+    flex-direction:column; gap:5px; justify-content:center;
   }
-  .breadcrumbs a{color:var(--ink-muted); transition:color .2s ease;}
-  .breadcrumbs a:hover{color:var(--ember-bright);}
+  .nav-toggle span{
+    display:block; width:24px; height:2px; background:var(--ink);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-mobile-panel{
+    display:none;
+    flex-direction:column;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mobile-panel.open{display:flex;}
+  .nav-mobile-panel a{
+    padding:16px 32px; color:var(--ink-muted); font-size:15px;
+    border-top:1px solid var(--line);
+  }
+  .nav-mobile-panel a:hover{color:var(--ink); background:var(--bg-panel);}
+  .nav-mobile-panel .nav-cta{margin:16px 32px; text-align:center; border-top:none;}
   
   /* Article Styles */
   .article{
     max-width:800px;
     margin:0 auto;
-    padding:0 20px;
+    padding:40px 20px;
   }
   .article-header{
     text-align:center;
-    padding:40px 0;
+    padding-bottom:32px;
     border-bottom:1px solid var(--line);
-    margin-bottom:40px;
+    margin-bottom:32px;
   }
   .article-tag{
     display:inline-block;
@@ -102,48 +118,20 @@
     padding:2px 8px;
     border-radius:3px;
     margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
   }
   .article h1{
-    font-size:clamp(32px, 6vw, 48px);
+    font-size:clamp(32px, 5vw, 44px);
     line-height:1.2;
-    margin-bottom:24px;
+    margin-bottom:20px;
   }
   .article-meta{
     color:var(--ink-muted);
     font-size:14px;
     display:flex;
+    justify-content:center;
     gap:16px;
-    flex-wrap:wrap;
-    margin-bottom:32px;
-  }
-  .article-content{
-    line-height:1.8;
-    margin-bottom:40px;
-  }
-  .article-content p{
-    margin-bottom:24px;
-  }
-  .article-content h2{
-    font-size:clamp(24px, 4vw, 32px);
-    margin:32px 0 16px 0;
-  }
-  .article-content h3{
-    font-size:clamp(20px, 3.5vw, 28px);
-    margin:24px 0 12px 0;
-  }
-  .article-content ul{
-    margin-bottom:24px;
-    padding-left:24px;
-  }
-  .article-content li{
-    margin-bottom:12px;
-    position:relative;
-  }
-  .article-content li::before{
-    content:'→';
-    position:absolute;
-    left:-12px;
-    color:var(--ember-bright);
   }
   .article-image{
     margin:32px 0;
@@ -156,12 +144,40 @@
     height:auto;
     display:block;
   }
-  .blockquote{
-    border-left:4px solid var(--ember);
+  .article-content{
+    line-height:1.8;
+  }
+  .article-content p{
+    margin-bottom:24px;
+    color:var(--ink);
+  }
+  .article-content h2{
+    font-size:clamp(22px, 3.5vw, 28px);
+    margin:36px 0 16px 0;
+    color:var(--ink);
+  }
+  .article-content ul{
+    margin-bottom:24px;
     padding-left:24px;
-    margin:32px 0;
-    font-style:italic;
+  }
+  .article-content li{
+    margin-bottom:12px;
     color:var(--ink-muted);
+  }
+  .article-content li strong{
+    color:var(--ink);
+  }
+  .btn-primary{
+    display:inline-block;
+    background:var(--ember);
+    color:#16130E;
+    padding:12px 24px;
+    border-radius:var(--radius);
+    font-weight:600;
+    transition:background .2s ease;
+  }
+  .btn-primary:hover{
+    background:var(--ember-bright);
   }
   
   /* Navigation */
@@ -182,51 +198,24 @@
     color:var(--ember-bright);
   }
   
-  /* Contact CTA */
-  .contact-banner{
-    background:var(--bg-panel);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:32px;
-    margin:48px auto;
-    max-width:800px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .contact-banner-content{
-    flex:1;
-  }
-  .contact-banner h2{
-    font-size:1.5rem;
-    margin-bottom:8px;
-  }
-  .contact-banner p{
-    color:var(--ink-muted);
-    font-size:1rem;
-    margin-bottom:0;
-  }
-  .contact-banner .btn-primary{
-    padding:12px 24px;
-    font-size:1rem;
-  }
-  
   /* Footer */
-  footer{border-top:1px solid var(--line); padding:40px 0;}
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:60px;}
   .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
   
   /* Responsive */
   @media (max-width:768px){
-    .article{padding:0 16px;}
-    .contact-banner{flex-direction:column; text-align:center; gap:24px;}
+    .article{padding:20px 16px;}
+    .nav-links, .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
   }
 </style>
-<script type="application/ld+json">{
+<script type="application/ld+json">
+{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Spring Landscape Cleanup Checklist: Preparing Your Property for Growing Season",
-  "description": "Essential spring cleanup tasks to remove winter debris, assess plant health, and prepare your lawn and gardens for optimal growth throughout the season.",
-  "image": "/img/og-image.jpg",
+  "description": "Essential spring cleanup tasks to remove winter debris, assess plant health, cut back perennials, freshen mulch beds, and prepare your lawn for optimal growth in Colorado.",
+  "image": "https://groundworkoutdoor.co/img/blog/spring-cleanup.jpg",
   "author": {
     "@type": "Organization",
     "name": "Groundwork Outdoor Co."
@@ -239,20 +228,129 @@
       "url": "https://groundworkoutdoor.co/img/logo.png"
     }
   },
+  "datePublished": "2024-02-28",
   "url": "https://groundworkoutdoor.co/blog/blog-post-5.html"
-    <link rel="canonical" href="https://groundworkoutdoor.co/blog/blog-post-5.html">
-}</script></head>
+}
+</script>
+</head>
 <body>
 <header>
-<nav class="nav">
-<a href="../index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
-<ul class="nav-links"><li><a href="../index.html#services">Services</a></li><li><a href="../work.html">Our Work</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="../about.html">About Us</a></li><li><a href="../testimonials.html">Testimonials</a></li><li><a class="active" href="../blog/index.html">Blog</a></li></ul>
-<a class="nav-cta" href="../contact.html">Get a quote</a>
-<button aria-controls="nav-mobile-panel" aria-expanded="false" aria-label="Toggle menu" class="nav-toggle" id="nav-toggle" type="button">
-<span></span><span></span><span></span>
-</button>
-</nav>
-<div class="nav-mobile-panel" id="nav-mobile-panel">
-<a href="../index.html#services">Services</a><a href="../work.html">Our Work</a><a href="../blog/index.html">Blog</a><a href="../about.html">About Us</a>
-</div>
+  <nav class="nav">
+    <a href="../index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../work.html">Our Work</a></li>
+      <li><a href="../about.html">About Us</a></li>
+      <li><a class="active" href="../blog/index.html">Blog</a></li>
+    </ul>
+    <a href="../contact.html" class="nav-cta">Get a quote</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile-panel">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="../index.html#services">Services</a>
+    <a href="../work.html">Our Work</a>
+    <a href="../about.html">About Us</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../contact.html" class="nav-cta">Get a quote</a>
+  </div>
 </header>
+
+<main class="wrap">
+  <div class="article">
+    <div class="article-header">
+      <span class="article-tag">Maintenance</span>
+      <h1>Spring Landscape Cleanup Checklist: Preparing Your Property for Growing Season</h1>
+      <div class="article-meta">
+        <span>February 28, 2024</span>
+        <span>6 min read</span>
+      </div>
+    </div>
+    
+    <div class="article-image">
+      <img src="../img/blog/spring-cleanup.jpg" alt="Clean and manicured spring garden in Colorado with freshly edged mulch beds, blooming perennials, and pristine lawn">
+    </div>
+
+    <div class="article-content">
+      <p>Spring in Colorado brings warmer days, melting snowpack, and the exciting renewal of our outdoor living spaces. However, winter storms, high winds, and heavy snowfall leave behind accumulated leaves, dead foliage, fallen branches, and compacted soil. A thorough spring landscape cleanup is essential to set your yard up for vibrant, healthy growth throughout the upcoming season.</p>
+      
+      <p>Whether you manage a residential property in Longmont, Boulder, or surrounding areas, follow this comprehensive spring landscape cleanup checklist to prepare your lawn, gardens, and hardscapes for peak summer beauty.</p>
+
+      <h2>1. Clear Winter Debris and Leaf Litter</h2>
+      <p>Start by clearing away leaves, pine needles, twigs, and trash that gathered over the winter months. Heavy layers of wet leaves trap moisture against turfgrass and crown plants, blocking sunlight and promoting fungal diseases like snow mold.</p>
+      <ul>
+        <li>Rake remaining winter leaves out of garden beds and lawn corners.</li>
+        <li>Clear debris out of window wells, drains, and along fence lines.</li>
+        <li>Compost clean organic leaf litter or dispose of it through local green-waste recycling.</li>
+      </ul>
+
+      <h2>2. Prune and Cut Back Perennials & Ornamental Grasses</h2>
+      <p>Early spring—before new growth pushes through—is the ideal window to cut back dormant plants and prune winter-damaged stems:</p>
+      <ul>
+        <li><strong>Ornamental Grasses:</strong> Cut back warm-season grasses (like Karl Foerster and Maiden Grass) to 2–4 inches above the ground using sharp shears.</li>
+        <li><strong>Perennials:</strong> Prune dead stems from lavender, Russian sage, penstemon, and cone-flowers to encourage sturdy new shoots.</li>
+        <li><strong>Deciduous Trees & Shrubs:</strong> Remove broken, diseased, or crossing branches to improve airflow and plant architecture.</li>
+      </ul>
+
+      <h2>3. Redefine Garden Bed Edges & Top-Dress Mulch</h2>
+      <p>Crisp garden bed edges instantly elevate property curb appeal and keep turfgrass roots from invading plant beds. Spade a clean 3-to-4-inch deep vertical trench along all bed borders, then apply a fresh 2-inch top-dressing of organic shredded bark mulch. Mulch retains soil moisture during dry spring stretches and smothers germinating weed seeds.</p>
+
+      <h2>4. Aerate, Fertilize, and Overseed Lawn Areas</h2>
+      <p>Colorado's clay soils become heavily compacted over winter. Core aeration extracts small soil plugs to allow air, water, and nutrients to penetrate deep into the root zone.</p>
+      <ul>
+        <li><strong>Core Aeration:</strong> Perform core aeration in spring or fall to relieve compaction.</li>
+        <li><strong>Overseeding:</strong> Spread drought-tolerant cool-season turfgrass seed over thin or bare patches.</li>
+        <li><strong>Balanced Fertilization:</strong> Apply a slow-release nitrogen fertilizer to encourage root establishment without forcing excessive top-growth.</li>
+      </ul>
+
+      <h2>5. Inspect Irrigation Lines & Hardscape Surfaces</h2>
+      <p>Before turning on your sprinkler system for the season, conduct a thorough inspection. Inspect backflow preventers, check for broken sprinkler heads, and adjust spray patterns away from stone walls and fences. Power-wash flagstone patios and paver walkways to clear winter grime and sand.</p>
+
+      <p>Prefer to leave the heavy lifting to the pros? Groundwork Outdoor Co. offers complete spring landscape cleanup and seasonal maintenance services for homes across Boulder County. <a href="../contact.html" style="color:var(--ember-bright); text-decoration:underline;">Schedule your spring cleanup today</a> to get on our seasonal schedule!</p>
+    </div>
+
+    <div class="article-nav">
+      <a href="blog-post-4.html">← Previous: Seasonal Lawn Care Tips</a>
+      <a href="../blog/index.html">Back to Blog Index</a>
+      <a href="blog-post-6.html">Next: Outdoor Kitchens Guide →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© <script>document.write(new Date().getFullYear())</script> Groundwork Outdoor Co. All rights reserved.</div>
+    <div>
+      <a href="#" style="color:var(--ink-muted); text-decoration:none; margin-right:12px;">Privacy</a>
+      <a href="#" style="color:var(--ink-muted); text-decoration:none;">Terms</a>
+    </div>
+    <div>
+      <a href="tel:+15550194420" style="color:var(--ink-muted); text-decoration:none;">(555) 019-4420</a>
+      <br>
+      <a href="mailto:info@groundworkoutdoor.co" style="color:var(--ink-muted); text-decoration:none;">info@groundworkoutdoor.co</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+var navToggle = document.getElementById('nav-toggle');
+var navPanel = document.getElementById('nav-mobile-panel');
+if (navToggle && navPanel) {
+  navToggle.addEventListener('click', function(){
+    var isOpen = navPanel.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navPanel.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navPanel.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+</script>
+</body>
+</html>
