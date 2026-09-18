@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Received — Groundwork Outdoor Co.</title>
+<meta name="description" content="Your Groundwork Outdoor Co. quote request has been received.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#14181A;--panel:#1B211F;--ink:#ECE7DD;--muted:#9AA39B;--ember:#C16A2E;--bright:#E08A3E;--moss:#6E8367;--line:rgba(236,231,221,.12);--radius:3px;}
+  *{box-sizing:border-box;}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Work Sans',sans-serif;line-height:1.6;display:flex;flex-direction:column;}
+  a{color:inherit;}
+  .wrap{width:min(1180px,100%);margin:0 auto;padding:0 32px;}
+  header{border-bottom:1px solid var(--line);padding:20px 0;}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .brand{font-family:'Fraunces',serif;font-size:20px;font-weight:560;text-decoration:none;}
+  .brand span{color:var(--bright);font-style:italic;font-weight:460;}
+  .nav-link{color:var(--muted);font-size:14px;text-decoration:none;}
+  main{flex:1;display:grid;place-items:center;padding:80px 0;}
+  .confirmation{max-width:700px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:clamp(36px,7vw,72px);}
+  .check{width:56px;height:56px;margin:0 auto 24px;border:1px solid var(--moss);border-radius:50%;display:grid;place-items:center;color:var(--bright);font-size:28px;}
+  h1{font-family:'Fraunces',serif;font-size:clamp(36px,6vw,58px);line-height:1.05;margin:0 0 18px;}
+  .lead{color:var(--muted);font-size:18px;max-width:44ch;margin:0 auto;}
+  .next-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left;margin:40px 0;}
+  .next-step{border-top:1px solid var(--line);padding-top:16px;}
+  .next-step strong{display:block;color:var(--bright);font-family:'Fraunces',serif;font-size:20px;margin-bottom:6px;}
+  .next-step span{color:var(--muted);font-size:14px;}
+  .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;}
+  .button{display:inline-block;padding:13px 22px;border-radius:var(--radius);font-size:15px;font-weight:600;text-decoration:none;}
+  .button-primary{background:var(--ember);color:#16130E;}
+  .button-secondary{border:1px solid var(--line);}
+  footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:13.5px;}
+  .footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  @media(max-width:650px){.wrap{padding:0 20px;}.next-steps{grid-template-columns:1fr;gap:24px;}.nav-link{display:none;}main{padding:48px 0;}}
+</style>
+<link rel="stylesheet" href="site.css">
+<script defer data-domain="groundworkoutdoor.co" src="https://plausible.io/js/script.js"></script>
+<script defer src="site.js"></script>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand">Groundwork <span>Outdoor Co.</span></a>
+    <a href="contact.html" class="nav-link">Back to contact</a>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <section class="confirmation" aria-labelledby="confirmation-title">
+      <div class="check" aria-hidden="true">✓</div>
+      <h1 id="confirmation-title">Request received.</h1>
+      <p class="lead">Thanks for reaching out. We have your project details and will follow up to schedule your on-site consultation.</p>
+      <div class="next-steps">
+        <div class="next-step"><strong>1. Review</strong><span>We’ll look over your service, timeline, and project notes.</span></div>
+        <div class="next-step"><strong>2. Connect</strong><span>We’ll contact you using the information you provided.</span></div>
+        <div class="next-step"><strong>3. Consult</strong><span>We’ll set up a time to see the property and discuss options.</span></div>
+      </div>
+      <div class="actions">
+        <a href="index.html" class="button button-primary">Explore our work</a>
+        <a href="tel:+17207075411" class="button button-secondary">Call (720) 707-5411</a>
+      </div>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrap footer-row">
+    <span>Groundwork Outdoor Co.</span>
+    <span>Serving Longmont &amp; Boulder County</span>
+  </div>
+</footer>
+</body>
+</html>

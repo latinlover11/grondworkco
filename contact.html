@@ -13,7 +13,7 @@
 <meta property="og:description" content="Contact Groundwork Outdoor Co. for expert hardscaping, fencing, and lawn care services in Longmont and Boulder County, CO.">
 <meta property="og:image" content="/img/og-image.jpg">
 <meta property="og:type" content="business.business">
-<meta property="og:url" content="https://groundworkoutdoor.co/contact/">
+<meta property="og:url" content="https://groundworkoutdoor.co/contact.html">
 <!-- Local Business Schema -->
 <script type="application/ld+json">
 {
@@ -22,8 +22,8 @@
   "name": "Groundwork Outdoor Co.",
   "image": "/img/logo.png",
   "@id": "https://groundworkoutdoor.co/",
-  "url": "https://groundworkoutdoor.co/contact/",
-  "telephone": "(555) 019-4420",
+  "url": "https://groundworkoutdoor.co/contact.html",
+  "telephone": "(720) 707-5411",
   "priceRange": "$$$",
   "address": {
     "@type": "PostalAddress",
@@ -214,6 +214,8 @@
     color:var(--ink); padding:12px 14px; font-family:'Work Sans', sans-serif; font-size:14.5px;
   }
   .form-row input:focus, .form-row textarea:focus, .form-row select:focus{border-color:var(--ember);}
+  .form-help{color:var(--ink-muted); font-size:13px; margin-top:-8px;}
+  .form-success{background:rgba(110,131,103,0.16); border:1px solid rgba(110,131,103,0.5); color:var(--ink); padding:14px 16px; border-radius:var(--radius); font-size:14px;}
   .btn-submit{
     background:var(--ember); color:#16130E; border:none; padding:14px 26px; border-radius:var(--radius);
     font-weight:600; font-size:15px; cursor:pointer; transition:background .2s ease; width:100%;
@@ -234,6 +236,9 @@
   }
 </style>
     <link rel="canonical" href="https://groundworkoutdoor.co/contact.html">
+<link rel="stylesheet" href="/site.css">
+<script defer data-domain="groundworkoutdoor.co" src="https://plausible.io/js/script.js"></script>
+<script defer src="/site.js"></script>
 </head>
 <body>
 
@@ -270,7 +275,7 @@
     <h1>Let's build something great together</h1>
     <p>Reach out for a free on-site consultation on hardscaping, fencing, or lawn care across Longmont and Boulder County.</p>
     <div class="contact-hero-actions">
-      <a href="tel:+15550194420" class="btn-primary">Call Now: (555) 019-4420</a>
+      <a href="tel:+17207075411" class="btn-primary">Call Now: (720) 707-5411</a>
     </div>
   </div>
 </main>
@@ -280,22 +285,23 @@
     <div style="display:flex; flex-direction:column; gap:24px;">
       <div class="contact-intro">
         <h2>Ready to start?</h2>
-        <p>Fill out the form below and we'll get back to you quickly.</p>
+        <p>Tell us a little about your project and we'll follow up to schedule an on-site consultation.</p>
       </div>
       <!-- Form -->
       <form action="https://formspree.io/f/mjyvregb" method="POST" style="display:flex; flex-direction:column; gap:16px;">
         <input type="hidden" name="_subject" value="Quote request — Groundwork Outdoor Co.">
+        <input type="hidden" name="_next" value="https://groundworkoutdoor.co/thank-you.html">
         <div class="form-row">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Your name">
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
         </div>
         <div class="form-row">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com">
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
         </div>
         <div class="form-row">
           <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(720) 707-5411">
         </div>
         <div class="form-row">
           <label for="service">Service interested in</label>
@@ -304,12 +310,39 @@
             <option value="hardscaping">Hardscaping</option>
             <option value="fencing">Fencing</option>
             <option value="lawn-care">Lawn maintenance</option>
+            <option value="other">Not sure yet / other</option>
           </select>
         </div>
         <div class="form-row">
-          <label for="message">Message (optional)</label>
-          <textarea id="message" name="message" rows="4" placeholder="Any details about your project?"></textarea>
+          <label for="timeline">Desired timeline</label>
+          <select id="timeline" name="timeline">
+            <option value="">Select a timeline</option>
+            <option value="asap">As soon as possible</option>
+            <option value="1-3-months">Within 1–3 months</option>
+            <option value="planning">Just planning ahead</option>
+          </select>
         </div>
+        <div class="form-row">
+          <label for="budget">Approximate budget (optional)</label>
+          <select id="budget" name="budget">
+            <option value="">Select a range</option>
+            <option value="under-5000">Under $5,000</option>
+            <option value="5000-15000">$5,000–$15,000</option>
+            <option value="15000-30000">$15,000–$30,000</option>
+            <option value="over-30000">$30,000+</option>
+            <option value="not-sure">Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Project details (optional)</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us about the space, approximate size, and what you have in mind."></textarea>
+        </div>
+        <div class="form-row">
+          <label for="photo-link">Project photo link (optional)</label>
+          <input type="url" id="photo-link" name="photo-link" placeholder="Paste a Google Drive, Dropbox, or album link">
+          <span class="form-help">A photo link can help us prepare for the consultation, but it is not required.</span>
+        </div>
+        <div class="form-success" id="form-success" role="status" hidden>Thanks — your request was sent. We’ll be in touch to schedule your consultation.</div>
         <button type="submit" class="btn-submit">Send request</button>
       </form>
     </div>
@@ -323,19 +356,23 @@
         © <script>document.write(new Date().getFullYear())</script> Groundwork Outdoor Co. All rights reserved.
       </div>
       <div class="footer-links">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+        <span>Serving Longmont &amp; Boulder County</span>
       </div>
       <div>
-        <a href="tel:+15550194420">(555) 019-4420</a>
+        <a href="tel:+17207075411">(720) 707-5411</a>
         <br>
-        <a href="mailto:info@groundworkoutdoor.co">info@groundworkoutdoor.co</a>
+        <a href="mailto:cmoneyq11@gmail.com">Email us</a>
       </div>
     </div>
   </div>
   </footer>
 
   <script>
+    // Preselect a service when a visitor arrives from a case study CTA.
+    var requestedService = new URLSearchParams(window.location.search).get('service');
+    var serviceSelect = document.getElementById('service');
+    if (requestedService && serviceSelect) serviceSelect.value = requestedService;
+
     // Mobile nav toggle
     var navToggle = document.getElementById('nav-toggle');
     var navPanel = document.getElementById('nav-mobile-panel');

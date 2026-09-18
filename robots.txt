@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dev-archive/
+Disallow: /dist/
+Disallow: /__pycache__/
+Disallow: /check_links.py
+Disallow: /build.py
+Disallow: /dev.py
+
+Sitemap: https://groundworkoutdoor.co/sitemap.xml
