@@ -82,6 +82,27 @@
     padding:40px 0 56px;
     border-bottom:1px solid var(--line);
   }
+  .case-hero-media{
+    margin-top:32px;
+    aspect-ratio:16 / 7;
+    min-height:260px;
+    overflow:hidden;
+    position:relative;
+    border-radius:var(--radius);
+    background:var(--bg-panel);
+  }
+  .case-hero-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .case-hero-media figcaption{
+    position:absolute;
+    margin:-42px 16px 0;
+    color:var(--ink);
+    font-size:12px;
+    text-shadow:0 1px 12px rgba(0,0,0,.8);
+  }
   .case-hero-eyebrow{
     color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
     text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px;
@@ -103,6 +124,7 @@
   }
   .meta-card label{font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
   .meta-card value{font-size:15px; font-weight:600; color:var(--ember-bright);}
+  .meta-card value{display:block;}
 
   /* Story Layout */
   .story-layout{
@@ -198,9 +220,24 @@
   @media (max-width:860px){
     .story-layout{grid-template-columns:1fr; gap:40px;}
     .story-sidebar{position:static;}
+    .case-hero{padding:28px 0 40px;}
+    .case-hero-media{aspect-ratio:4 / 3; min-height:0; margin-top:24px;}
+    .case-hero h1{font-size:clamp(32px, 9vw, 46px);}
+    .case-meta-grid{grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; margin-top:24px;}
+    .meta-card{padding:14px;}
+    .meta-card value{font-size:13.5px;}
+    .story-main{gap:30px;}
+    .story-section h2{align-items:flex-start; flex-direction:column; gap:8px; font-size:23px;}
+    .bullet-list li{padding:14px 16px; font-size:14px;}
+    .photo-grid-section{padding:32px 0 48px;}
+    .case-gallery-grid{grid-template-columns:1fr; gap:14px;}
+    .gallery-card img{height:240px;}
   }
 </style>
     <link rel="canonical" href="https://groundworkoutdoor.co/case-studies/cedar-privacy-fence.html">
+<link rel="stylesheet" href="/site.css">
+<script defer data-domain="groundworkoutdoor.co" src="https://plausible.io/js/script.js"></script>
+<script defer src="/site.js"></script>
 </head>
 <body>
 
@@ -227,7 +264,11 @@
   <section class="case-hero">
     <div class="case-hero-eyebrow">Fence Installation & Woodwork</div>
     <h1>Cedar Privacy Fence Installation with Custom Gate</h1>
-    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">How we removed an aging fence, set pressure-treated posts in concrete, and installed a western red cedar privacy fence with a matching gate in Longmont, CO.</p>
+    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">A durable western red cedar boundary with a custom gate, carefully set to hold its line through Colorado weather.</p>
+    <figure class="case-hero-media">
+       <img src="/img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp" srcset="/img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence-800.webp 800w, /img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed western red cedar privacy fence with cap rail and double gate" width="1600" height="1067" fetchpriority="high" decoding="async">
+      <figcaption>Completed cedar privacy fence · Lafayette, Colorado</figcaption>
+    </figure>
 
     <div class="case-meta-grid">
       <div class="meta-card"><label>Location</label><value>Longmont, CO</value></div>
@@ -276,29 +317,34 @@
     <p style="color:var(--ink-muted); margin-bottom:24px;">Click any photo to view full resolution.</p>
 
     <div class="case-gallery-grid">
-      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cedar-fence-after.jpg', 'Completed Cedar Privacy Fence with Gate')">
-        <img src="/img/case-studies/cedar-fence-after.jpg" alt="Completed cedar privacy fence and gate">
-        <div class="caption">✓ <strong>Completed Build:</strong> 6-foot western red cedar privacy fence with matching gate.</div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp', 'Completed Cedar Privacy Fence with Cap Rail & Double Gate')">
+         <img src="/img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp" srcset="/img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence-800.webp 800w, /img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed cedar privacy fence with cap rail and double gate">
+        <div class="caption">✓ <strong>Completed Build:</strong> Western red cedar privacy fence with cap rail and double gate.</div>
       </div>
-      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cedar-fence-before.jpg', 'Old Fence Removal & Site Preparation')">
-        <img src="/img/case-studies/cedar-fence-before.jpg" alt="Old fence being removed from property">
-        <div class="caption">⚠ <strong>Initial Condition:</strong> Aging fence leaning and rotting at the base.</div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.webp', 'Diamond Saw-Cutting Footing Openings in Concrete')">
+         <img src="/img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.webp" srcset="/img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout-800.webp 800w, /img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Diamond saw cutting square footing openings through concrete walkway">
+        <div class="caption">🔨 <strong>Footing Prep:</strong> Diamond saw-cutting square post openings through existing concrete.</div>
       </div>
-      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cedar-fence-posts.jpg', 'Pressure-Treated Post Setting')">
-        <img src="/img/case-studies/cedar-fence-posts.jpg" alt="Pressure-treated posts being set in concrete">
-        <div class="caption">🔨 <strong>Post Installation:</strong> Pressure-treated posts set in concrete footings.</div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.webp', 'Setting Pressure-Treated Posts in Concrete')">
+         <img src="/img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.webp" srcset="/img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete-800.webp 800w, /img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Setting 4x4 pressure-treated posts plumb in concrete along a stringline">
+        <div class="caption">🔨 <strong>Post Installation:</strong> 4x4 pressure-treated posts set plumb in high-strength concrete footings.</div>
       </div>
-      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cedar-fence-install.jpg', 'Cedar Board Installation Process')">
-        <img src="/img/case-studies/cedar-fence-install.jpg" alt="Cedar boards being installed on fence">
-        <div class="caption">🌲 <strong>Board Installation:</strong> Western red cedar boards installed with proper spacing.</div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.webp', 'Custom Cedar Rail & Cap Framing')">
+         <img src="/img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.webp" srcset="/img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction-800.webp 800w, /img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cedar fence framing with rails and cap being built">
+        <div class="caption">🌲 <strong>Framing & Boards:</strong> Cedar rails and cap framing going up before boards are fastened.</div>
       </div>
-      <div class="gallery-card" onclick="openLightbox('/img/case-studies/cedar-fence-gate.jpg', 'Custom Gate Construction & Installation')">
-        <img src="/img/case-studies/cedar-fence-gate.jpg" alt="Custom cedar gate being installed">
-        <div class="caption">🚪 <strong>Custom Gate:</strong> Matching cedar gate with heavy-duty hardware.</div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.webp', 'Side Privacy Fence & Custom Cedar Gate')">
+         <img src="/img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.webp" srcset="/img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate-800.webp 800w, /img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Side walkway cedar privacy fence with custom Z-frame gate">
+        <div class="caption">🚪 <strong>Custom Gate:</strong> Side-walkway privacy fence section with heavy-duty Z-frame cedar gate.</div>
       </div>
     </div>
   </section>
 
+  <section class="case-study-cta" aria-labelledby="case-study-cta">
+    <h2 id="case-study-cta">Planning a fence project?</h2>
+    <p>Tell us what you want to build and we’ll help you plan a durable fence or custom gate for your property.</p>
+    <a href="/contact.html?service=fencing" class="btn-sidebar">Request a Similar Project</a>
+  </section>
 </main>
 
 <!-- Lightbox Modal -->

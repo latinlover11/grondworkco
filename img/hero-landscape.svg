@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Groundwork outdoor landscape materials</title>
+  <desc id="desc">An abstract evening landscape with a stone patio, cedar fence, steel edging, and layered turf.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b2928"/>
+      <stop offset="0.55" stop-color="#27352f"/>
+      <stop offset="1" stop-color="#111617"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#556850"/>
+      <stop offset="1" stop-color="#27352b"/>
+    </linearGradient>
+    <linearGradient id="patio" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#aaa394"/>
+      <stop offset="1" stop-color="#656a68"/>
+    </linearGradient>
+    <linearGradient id="warm-light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e08a3e" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#c16a2e" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="cedar" width="44" height="44" patternUnits="userSpaceOnUse">
+      <rect width="44" height="44" fill="#754826"/>
+      <path d="M5 0v44M18 0v44M35 0v44" stroke="#a26736" stroke-width="4" opacity=".65"/>
+      <path d="M11 0v44M29 0v44" stroke="#4f321f" stroke-width="3" opacity=".7"/>
+    </pattern>
+    <filter id="soft"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="1260" cy="160" rx="300" ry="220" fill="url(#warm-light)" filter="url(#soft)"/>
+  <circle cx="1260" cy="174" r="94" fill="#e08a3e" opacity=".35"/>
+  <path d="M0 500 Q240 420 500 492 T1000 455 T1600 420V900H0Z" fill="#1c2823"/>
+  <path d="M0 590 Q280 470 560 570 T1060 530 T1600 505V900H0Z" fill="url(#ground)"/>
+  <g opacity=".92">
+    <rect x="0" y="350" width="700" height="240" fill="url(#cedar)"/>
+    <path d="M0 350h700M0 470h700M0 590h700" stroke="#c07a42" stroke-width="3" opacity=".5"/>
+  </g>
+  <g stroke="#9d6336" stroke-width="12" opacity=".8">
+    <path d="M80 330v300M230 330v300M390 330v300M550 330v300"/>
+  </g>
+  <path d="M310 900 L640 500 L1450 520 L1600 900Z" fill="url(#patio)"/>
+  <g stroke="#77736b" stroke-width="5" opacity=".7">
+    <path d="M500 700h840M420 805h1080M735 510l-110 390M950 510l-30 390M1150 515l55 385M1330 520l130 380"/>
+  </g>
+  <path d="M0 710 Q300 615 560 700 T1100 680 T1600 625V900H0Z" fill="#4d6347" opacity=".82"/>
+  <path d="M0 760 Q340 670 650 755 T1200 725 T1600 690" fill="none" stroke="#879877" stroke-width="8" opacity=".6"/>
+  <path d="M0 790 Q330 705 690 790 T1250 760 T1600 725" fill="none" stroke="#263b2b" stroke-width="24" opacity=".9"/>
+  <g fill="#8b8479" opacity=".95">
+    <path d="M1190 590l70-80 72 80-72 44z"/>
+    <path d="M1325 620l52-68 64 55-49 55z"/>
+    <path d="M1450 590l54-70 70 67-53 50z"/>
+  </g>
+  <g fill="#e08a3e" opacity=".75">
+    <circle cx="900" cy="680" r="7"/><circle cx="936" cy="660" r="5"/><circle cx="975" cy="690" r="6"/>
+  </g>
+  <rect width="1600" height="900" fill="#14181a" opacity=".18"/>
+</svg>

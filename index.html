@@ -79,6 +79,8 @@
   }
   body{
     margin:0;
+    display:flex;
+    flex-direction:column;
     background:var(--bg);
     color:var(--ink);
     font-family:'Work Sans', sans-serif;
@@ -106,7 +108,7 @@
   }
   .nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:20px 32px;
+    padding:14px 32px;
     max-width:1180px; margin:0 auto;
   }
   .brand{
@@ -114,7 +116,7 @@
     display:flex; align-items:baseline; gap:8px;
   }
   .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
-  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:15px;}
   .nav-links a{text-decoration:none; color:var(--ink-muted); transition:color .2s ease;}
   .nav-links a:hover{color:var(--ink);}
   .nav-cta{
@@ -125,7 +127,8 @@
   .nav-cta:hover{background:var(--ember-bright);}
   .nav-toggle{
     display:none;
-    background:none; border:none; padding:8px; cursor:pointer;
+    width:44px; min-height:44px;
+    background:none; border:none; padding:10px; cursor:pointer;
     flex-direction:column; gap:5px; justify-content:center;
   }
   .nav-toggle span{
@@ -154,19 +157,16 @@
     padding:88px 0 0;
     overflow:hidden;
     background:
-      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(193,106,46,0.20), transparent 60%),
-      linear-gradient(180deg, rgba(23,28,29,0.94) 0%, rgba(20,24,26,0.97) 60%),
-      url('img/case-studies/bluestone-patio.jpg');
-    background-size:auto, auto, cover;
-    background-position:center, center, center 65%;
-    background-repeat:no-repeat;
+      linear-gradient(180deg, rgba(20,24,26,.52) 0%, rgba(20,24,26,.84) 82%),
+      url('img/case-studies/outdoor-kitchen.webp') center 52% / cover no-repeat;
+    min-height:720px;
   }
   .hero-grid{
     display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap:40px;
-    align-items:end;
-    padding-bottom:64px;
+    grid-template-columns:minmax(0, 1fr);
+    gap:36px;
+    align-items:center;
+    padding-bottom:42px;
   }
   .hero-eyebrow{
     color:var(--moss); font-size:14px; letter-spacing:0.02em;
@@ -207,68 +207,117 @@
   }
   .btn-ghost:hover{border-color:var(--ink-muted); background:rgba(255,255,255,0.03);}
   .hero-stat-panel{
-    border-left:1px solid var(--line);
-    padding-left:36px;
-    display:flex; flex-direction:column; gap:22px;
-  }
-  .hero-stat{display:flex; justify-content:space-between; align-items:baseline; gap:16px;}
-  .hero-stat b{font-family:'Fraunces', serif; font-size:26px; font-weight:460; color:var(--ember-bright);}
-  .hero-stat span{color:var(--ink-muted); font-size:13.5px; text-align:right; max-width:22ch;}
-  /* material strip — recurring motif used as section divider */
-  .material-strip{
-    display:grid; grid-template-columns:repeat(4,1fr);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
     border-top:1px solid var(--line);
+    padding-top:26px;
   }
-  .swatch{
-    height:64px; position:relative; overflow:hidden;
-    border-right:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
+  .hero-stat{display:flex; align-items:baseline; gap:14px;}
+  .hero-stat b{font-family:'Fraunces', serif; font-size:30px; font-weight:460; color:var(--ember-bright);}
+  .hero-stat span{color:var(--ink-muted); font-size:13.5px; max-width:22ch;}
+  /* scrolling service marquee */
+  .marquee{
+    overflow:hidden;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:rgba(27,33,31,.72);
+    white-space:nowrap;
   }
-  .swatch:last-child{border-right:none;}
-  .swatch-label{
-    position:relative; z-index:2; font-size:12.5px; color:rgba(20,24,26,0.85);
-    font-weight:600; letter-spacing:0.01em;
+  .marquee-track{
+    display:flex; width:max-content;
+    animation:marquee-scroll 28s linear infinite;
   }
-  .swatch.stone{background:repeating-linear-gradient(100deg,#8b8479 0 42px, #776166 42px 84px, #948d7f 84px 126px);}
-  .swatch.cedar{background:repeating-linear-gradient(90deg,#8a5a34 0 6px,#7a4c29 6px 11px,#946638 11px 18px);}
-  .swatch.steel{background:linear-gradient(120deg,#6b7377,#8b9195 45%,#565c5f);}
-  .swatch.turf{background:repeating-linear-gradient(90deg,#5c7350 0 18px,#4d6244 18px 36px);}
+  .marquee-group{display:flex; align-items:center;}
+  .marquee-item{
+    display:inline-flex; align-items:center; gap:28px;
+    min-height:72px; padding:18px 28px;
+    color:var(--ink); font-family:'Fraunces',serif; font-size:17px; font-weight:460;
+  }
+  .marquee-item::after{content:'✦'; color:var(--ember-bright); font-family:'Work Sans',sans-serif; font-size:11px;}
+  @keyframes marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee:hover .marquee-track,.marquee:focus-within .marquee-track{animation-play-state:paused;}
+  @media (prefers-reduced-motion: reduce){
+    .marquee{overflow:auto; white-space:normal;}
+    .marquee-track{animation:none; width:100%;}
+    .marquee-group[aria-hidden="true"]{display:none;}
+    .marquee-item{min-height:56px; padding:14px 18px; font-size:15px;}
+  }
   /* ---------- section shell ---------- */
   section{padding:110px 0;}
+  @media (min-width:861px){
+    section:not(.hero){content-visibility:auto; contain-intrinsic-size:600px;}
+  }
   .section-head{
     display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
-    margin-bottom:56px; border-bottom:1px solid var(--line); padding-bottom:28px;
+    margin-bottom:42px;
   }
   .section-head h2{font-size:clamp(28px,3.4vw,42px); max-width:14ch;}
   .section-head p{color:var(--ink-muted); max-width:34ch; font-size:15px;}
   /* ---------- services ---------- */
   .services-grid{
-    display:grid; grid-template-columns:7fr 5fr; gap:24px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
   }
   .service-card{
-    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:40px; display:flex; flex-direction:column; gap:22px; min-height:340px;
+    display:flex; flex-direction:column; min-height:100%;
+    background:var(--bg-panel); border-radius:var(--radius); overflow:hidden;
+    transition:transform .25s ease, background .25s ease;
   }
-  .service-card.wide{grid-row:span 1;}
-  .service-icon{width:40px;height:40px; color:var(--ember-bright);}
+  .service-card:hover{transform:translateY(-4px); background:var(--bg-panel-alt);}
+  .service-media{aspect-ratio:4 / 3; overflow:hidden; background:var(--bg-panel-alt);}
+  .service-media img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .service-card:hover .service-media img{transform:scale(1.04);}
+  .service-card-copy{display:flex; flex-direction:column; gap:16px; padding:26px 26px 28px; flex:1;}
+  .service-icon{width:34px;height:34px; color:var(--ember-bright);}
   .service-tag{
-    align-self:flex-start; font-size:12px; color:var(--moss); border:1px solid rgba(110,131,103,0.4);
-    padding:4px 10px; border-radius:20px;
+    align-self:flex-start; font-size:11px; color:var(--moss); letter-spacing:.05em;
+    text-transform:uppercase;
   }
-  .service-card h3{font-size:24px; font-weight:460;}
-  .service-card p.desc{color:var(--ink-muted); font-size:15px; max-width:42ch;}
-  .service-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; margin-top:auto; font-size:14px;}
+  .service-card h3{font-size:25px; font-weight:460;}
+  .service-card p.desc{color:var(--ink-muted); font-size:14.5px; max-width:34ch;}
+  .service-list{list-style:none; margin:auto 0 0; padding:0; display:flex; flex-direction:column; gap:7px; font-size:13.5px;}
   .service-list li{display:flex; align-items:center; gap:10px; color:var(--ink);}
-  .service-list li::before{content:''; width:6px; height:6px; background:var(--ember); border-radius:1px; flex-shrink:0;}
-  .service-banner{
-    grid-column:1 / -1;
-    background:var(--bg-panel-alt); border:1px solid var(--line); border-radius:var(--radius);
-    padding:36px 40px; display:flex; align-items:center; gap:36px;
+  .service-list li::before{content:''; width:5px; height:5px; background:var(--ember); border-radius:1px; flex-shrink:0;}
+  .service-link{color:var(--ember-bright); font-size:14px; font-weight:600; text-decoration:none; margin-top:2px;}
+  .service-link:hover{text-decoration:underline; text-underline-offset:4px;}
+  /* ---------- why groundwork ---------- */
+  .why-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1.9fr;
+    gap:56px;
+    align-items:start;
   }
-  .service-banner .service-icon{flex-shrink:0;}
-  .service-banner-copy{flex:1; display:flex; gap:40px; align-items:center; flex-wrap:wrap;}
-  .service-banner h3{font-size:22px; font-weight:460; margin-bottom:6px;}
-  .service-banner p{color:var(--ink-muted); font-size:14.5px; max-width:44ch;}
+  .why-intro h2{font-size:clamp(30px,3.8vw,46px); max-width:10ch;}
+  .why-intro p{color:var(--ink-muted); max-width:34ch; margin-top:18px; font-size:15px;}
+  .why-list{display:grid; grid-template-columns:repeat(2,1fr); gap:14px 28px; margin:0; padding:0; list-style:none;}
+  .why-item{padding:0 0 22px; border-bottom:1px solid var(--line);}
+  .why-item:nth-last-child(-n+2){border-bottom:0; padding-bottom:0;}
+  .why-item b{display:block; color:var(--ember-bright); font-family:'Fraunces',serif; font-size:20px; font-weight:460; margin-bottom:7px;}
+  .why-item p{color:var(--ink-muted); font-size:14px; max-width:30ch;}
+  .proof-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .proof-item{padding-top:18px; border-top:1px solid var(--line);}
+  .proof-item span{color:var(--ember-bright); font:460 18px 'Fraunces',serif;}
+  .proof-item h3{font-size:21px; font-weight:460; margin:16px 0 8px;}
+  .proof-item p{color:var(--ink-muted); font-size:14px; max-width:30ch;}
+  .final-cta{background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .final-cta-inner{display:flex; align-items:center; justify-content:space-between; gap:36px; padding:56px 0;}
+  .final-cta h2{font-size:clamp(28px,4vw,44px); max-width:14ch;}
+  .final-cta p{color:var(--ink-muted); max-width:42ch; margin-top:12px;}
+  .final-cta-actions{display:flex; flex-direction:column; align-items:flex-start; gap:12px; flex-shrink:0;}
+  .final-cta-phone{color:var(--ink-muted); font-size:13.5px; text-decoration:none;}
+  .final-cta-phone:hover{color:var(--ink);}
+  @media (max-width:860px){
+    .final-cta-inner{align-items:flex-start; flex-direction:column; gap:24px; padding:42px 0;}
+    .final-cta-actions{width:100%;}
+    .final-cta-actions .btn-primary{width:100%; text-align:center;}
+  }
+  @media (max-width:860px){
+    .proof-grid{grid-template-columns:1fr; gap:24px;}
+    .proof-item{padding-top:14px;}
+  }
+  @media (max-width:860px){
+    .why-grid{grid-template-columns:1fr; gap:30px;}
+    .why-intro h2{max-width:14ch;}
+  }
   /* ---------- process ---------- */
   .process{
     display:grid; grid-template-columns:repeat(4,1fr); gap:0;
@@ -325,14 +374,35 @@
   footer{border-top:1px solid var(--line); padding:40px 0;}
   .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
   /* ---------- responsive ---------- */
+  /* ---------- premium editorial page rhythm ---------- */
+  body > header{order:1;}
+  body > .hero{order:2;}
+  body > #services{order:3;}
+  body > #why-groundwork{order:4;}
+  body > #work-preview{order:5;}
+  body > #process{order:6;}
+  body > #testimonials{order:7;}
+  body > #final-cta{order:8;}
+  body > footer{order:9;}
+  body > script{display:none;}
+  .work-preview-card:first-child{grid-column:span 2;}
+  .work-preview-card:first-child .preview-media{height:250px;}
   @media (max-width:860px){
+    .work-preview-card:first-child{grid-column:auto;}
+    .work-preview-card:first-child .preview-media{height:210px;}
     .nav-links{display:none;}
+    .brand{font-size:18px; white-space:nowrap;}
+    .brand span{display:none;}
+    .nav{padding:10px 20px; gap:12px;}
+    .nav-cta{padding:10px 14px; font-size:13px;}
     .nav-toggle{display:flex;}
-    .hero-grid{grid-template-columns:1fr; gap:44px;}
-    .hero-stat-panel{border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:24px; flex-direction:row; flex-wrap:wrap;}
-    .material-strip{grid-template-columns:repeat(2,1fr);}
-    .services-grid{grid-template-columns:1fr;}
-    .service-banner{flex-direction:column; align-items:flex-start;}
+    .hero{min-height:0;}
+    .hero-grid{gap:28px; padding-bottom:32px;}
+    .hero-stat-panel{grid-template-columns:1fr; gap:18px; padding-top:22px;}
+    .hero-stat{align-items:center;}
+    .marquee-item{min-height:64px; padding:14px 22px;}
+    .services-grid{grid-template-columns:1fr; gap:16px;}
+    .service-media{aspect-ratio:16 / 9;}
     .process{grid-template-columns:1fr 1fr; row-gap:36px;}
     .testimonial-grid{grid-template-columns:1fr;}
     .contact-shell{grid-template-columns:1fr; padding:32px;}
@@ -448,6 +518,7 @@
 </style>
     <link rel="canonical" href="https://groundworkoutdoor.co/index.html">
 <link rel="stylesheet" href="/site.css">
+<link rel="preload" as="image" href="img/case-studies/outdoor-kitchen.webp" fetchpriority="high">
 <script defer data-domain="groundworkoutdoor.co" src="https://plausible.io/js/script.js"></script>
 <script defer src="/site.js"></script>
 </head>
@@ -481,78 +552,93 @@
     <div class="hero-grid">
       <div>
         <div class="hero-eyebrow">Hardscaping · Fencing · Lawn care</div>
-        <h1>Built to hold its shape, season after season.</h1>
-        <p class="hero-sub">We design and build the outdoor structure of a property — patios, retaining walls, fences, and the lawns around them — and maintain it so it keeps looking like day one.</p>
+        <h1>Outdoor spaces built to last.</h1>
+        <p class="hero-sub">Hardscaping, fencing, and lawn care for Longmont and Boulder County.</p>
         <div class="hero-actions">
           <a href="contact.html" class="btn-primary">Get a quote</a>
           <a href="work.html" class="btn-ghost">See the work</a>
         </div>
       </div>
-      <div class="hero-stat-panel">
-        <div class="hero-stat"><b data-count-to="14" data-suffix="">0</b><span>years building patios, walls & fences that last</span></div>
-        <div class="hero-stat"><b data-count-to="220" data-suffix="+">0</b><span>properties under seasonal maintenance</span></div>
-        <div class="hero-stat"><b data-count-to="4" data-suffix="">0</b><span>materials we stand behind: stone, cedar, steel, sod</span></div>
-      </div>
+    </div>
+    <div class="hero-stat-panel">
+      <div class="hero-stat"><b data-count-to="14" data-suffix="">0</b><span>Years in the field</span></div>
+      <div class="hero-stat"><b data-count-to="220" data-suffix="+">0</b><span>Properties cared for</span></div>
+      <div class="hero-stat"><b data-count-to="4" data-suffix="">0</b><span>Core materials</span></div>
     </div>
   </div>
-  <div class="material-strip">
-    <div class="swatch stone"><span class="swatch-label">Bluestone</span></div>
-    <div class="swatch cedar"><span class="swatch-label">Cedar</span></div>
-    <div class="swatch steel"><span class="swatch-label">Steel</span></div>
-    <div class="swatch turf"><span class="swatch-label">Turf</span></div>
+  <div class="marquee" role="region" aria-label="Groundwork services">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span class="marquee-item">Design + build</span>
+        <span class="marquee-item">Install + repair</span>
+        <span class="marquee-item">Seasonal maintenance</span>
+        <span class="marquee-item">Longmont + Boulder County</span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span class="marquee-item">Design + build</span>
+        <span class="marquee-item">Install + repair</span>
+        <span class="marquee-item">Seasonal maintenance</span>
+        <span class="marquee-item">Longmont + Boulder County</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="services">
   <div class="wrap">
     <div class="section-head">
-      <h2>Three trades, one crew.</h2>
-      <p>Everything below the roofline — from the patio you grill on to the fence that keeps the dog in.</p>
+      <h2>One crew for the whole property.</h2>
+      <p>Thoughtful outdoor work, from the structure underfoot to the landscape around it.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card wide">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 20h18M5 20V10l7-5 7 5v10M9 20v-6h6v6"/></svg>
-        <span class="service-tag">Design + build</span>
-        <h3>Hardscaping</h3>
-        <p class="desc">Patios, walkways, retaining walls, and outdoor kitchens laid in bluestone, granite, and paver systems rated for freeze-thaw cycles.</p>
-        <ul class="service-list">
-          <li>Paver & natural stone patios</li>
-          <li>Segmental retaining walls</li>
-          <li>Fire pits & seating walls</li>
-          <li>Drainage & grading correction</li>
-        </ul>
-        <a href="hardscaping-longmont.html" style="color:var(--ember-bright); font-size:14px; font-weight:600; text-decoration:none;">Explore Longmont hardscaping →</a>
-      </div>
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 21V9m0 0 5-5 3 3-5 5M14 21V9m0 0 5-5v9M4 15h6m4 0h6"/></svg>
-        <span class="service-tag">Install + repair</span>
-        <h3>Fencing</h3>
-        <p class="desc">Privacy, split-rail, and ornamental steel fence, set in concrete footings and squared to hold a line for decades.</p>
-        <ul class="service-list">
-          <li>Cedar privacy & picket</li>
-          <li>Ornamental steel & aluminum</li>
-          <li>Gate hardware & automation</li>
-        </ul>
-        <a href="fencing-boulder.html" style="color:var(--ember-bright); font-size:14px; font-weight:600; text-decoration:none;">Explore Boulder fencing →</a>
-      </div>
-      <div class="service-banner">
-        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="44" height="44"><path d="M4 20c4-6 12-6 16 0M6 14c3-4 9-4 12 0M9 8c1.5-2 4.5-2 6 0"/></svg>
-        <div class="service-banner-copy">
-          <div>
-            <h3>Lawn maintenance</h3>
-            <p>Weekly mowing, seasonal aeration, and fertilization programs that keep new hardscaping surrounded by turf that matches it.</p>
-          </div>
-          <ul class="service-list">
-            <li>Weekly & biweekly mowing</li>
-            <li>Aeration, overseed & fertilization</li>
-            <li>Spring & fall cleanups</li>
-          </ul>
-          <div style="display:flex; flex-wrap:wrap; gap:14px;">
-            <a href="lawn-care-longmont.html" style="color:var(--ember-bright); font-size:14px; font-weight:600; text-decoration:none;">Explore Longmont lawn care →</a>
-            <a href="xeriscaping-boulder-county.html" style="color:var(--ember-bright); font-size:14px; font-weight:600; text-decoration:none;">Explore Boulder County xeriscaping →</a>
-          </div>
+      <article class="service-card">
+        <div class="service-media"> <img decoding="async" src="img/case-studies/outdoor-kitchen.webp" srcset="img/case-studies/outdoor-kitchen-800.webp 800w, img/case-studies/outdoor-kitchen.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Stone outdoor kitchen and patio built by Groundwork" loading="lazy" width="1200" height="800"></div>
+        <div class="service-card-copy">
+          <span class="service-tag">Design + build</span>
+          <h3>Hardscaping</h3>
+          <p class="desc">Patios, retaining walls, drainage, and outdoor living spaces built for Colorado freeze-thaw cycles.</p>
+          <ul class="service-list"><li>Stone & paver patios</li><li>Retaining walls & grading</li><li>Fire pits & seating walls</li></ul>
+          <a class="service-link" href="hardscaping-longmont.html">Explore hardscaping →</a>
         </div>
+      </article>
+      <article class="service-card">
+        <div class="service-media"> <img decoding="async" src="img/case-studies/cedar-fence.webp" srcset="img/case-studies/cedar-fence-800.webp 800w, img/case-studies/cedar-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cedar privacy fence installation" loading="lazy" width="1200" height="800"></div>
+        <div class="service-card-copy">
+          <span class="service-tag">Install + repair</span>
+          <h3>Fencing</h3>
+          <p class="desc">Cedar, split-rail, and ornamental steel fences set straight, finished cleanly, and made to hold a line.</p>
+          <ul class="service-list"><li>Cedar privacy & picket</li><li>Steel & aluminum</li><li>Custom gates & hardware</li></ul>
+          <a class="service-link" href="fencing-boulder.html">Explore fencing →</a>
+        </div>
+      </article>
+      <article class="service-card">
+        <div class="service-media"> <img decoding="async" src="img/case-studies/spring-cleanup.webp" srcset="img/case-studies/spring-cleanup-800.webp 800w, img/case-studies/spring-cleanup.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Freshly maintained lawn and landscape beds" loading="lazy" width="1200" height="800"></div>
+        <div class="service-card-copy">
+          <span class="service-tag">Seasonal maintenance</span>
+          <h3>Lawn care</h3>
+          <p class="desc">Reliable mowing, aeration, cleanup, and lawn programs that keep the whole property looking finished.</p>
+          <ul class="service-list"><li>Weekly & biweekly mowing</li><li>Aeration & overseeding</li><li>Spring & fall cleanup</li></ul>
+          <a class="service-link" href="lawn-care-longmont.html">Explore lawn care →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="why-groundwork">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-intro">
+        <div class="hero-eyebrow">A better way to build outside</div>
+        <h2>Good work starts before the first shovel.</h2>
+        <p>We bring the same care to the plan, the details, and the final cleanup that we bring to the finished landscape.</p>
       </div>
+      <ul class="why-list">
+        <li class="why-item"><b>Built for Colorado</b><p>Materials, drainage, and installation choices are made with freeze-thaw weather in mind.</p></li>
+        <li class="why-item"><b>One accountable crew</b><p>Hardscape, fence, and lawn work stay coordinated instead of being handed between contractors.</p></li>
+        <li class="why-item"><b>Clear from the start</b><p>You get a straightforward scope, material direction, and next step before work begins.</p></li>
+        <li class="why-item"><b>Finished, then cared for</b><p>We leave the site clean and can help maintain the landscape after the build is complete.</p></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -592,14 +678,14 @@
   <section id="work-preview">
     <div class="wrap">
       <div class="section-head">
-        <h2>See our work</h2>
-        <p>Recent projects showing our craftsmanship and attention to detail.</p>
+        <h2>A few places we’ve improved.</h2>
+        <p>Real project photos from Longmont and Boulder County, with the work and thinking behind them.</p>
       </div>
       <div class="work-preview-grid">
         <!-- Project 1: Hardscaping -->
         <a href="work.html#case-studies" class="work-preview-card">
           <div class="preview-media">
-  <img src="img/case-studies/river-rock-after.jpg" alt="River Rock Parking Pad" loading="lazy" width="1200" height="800">
+   <img decoding="async" src="img/case-studies/river-rock-after.webp" srcset="img/case-studies/river-rock-after-800.webp 800w, img/case-studies/river-rock-after.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="River Rock Parking Pad" loading="lazy" width="1200" height="800">
   <div class="preview-overlay"><span>View project</span></div>
 </div>
           <div class="preview-content">
@@ -616,7 +702,7 @@
         <!-- Project 2: Fencing -->
         <a href="work.html#case-studies" class="work-preview-card">
           <div class="preview-media">
-  <img src="img/case-studies/cedar-fence.jpg" alt="Cedar Privacy Fence" loading="lazy" width="1200" height="800">
+   <img decoding="async" src="img/case-studies/cedar-fence.webp" srcset="img/case-studies/cedar-fence-800.webp 800w, img/case-studies/cedar-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cedar Privacy Fence" loading="lazy" width="1200" height="800">
   <div class="preview-overlay"><span>View project</span></div>
 </div>
           <div class="preview-content">
@@ -633,7 +719,7 @@
         <!-- Project 3: Lawn Care -->
         <a href="work.html#case-studies" class="work-preview-card">
           <div class="preview-media">
-  <img src="img/case-studies/front-rock-after-installed.jpg" alt="Front Yard Xeriscape" loading="lazy" width="1200" height="800">
+   <img decoding="async" src="img/case-studies/front-rock-after-installed.webp" srcset="img/case-studies/front-rock-after-installed-800.webp 800w, img/case-studies/front-rock-after-installed.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Front Yard Xeriscape" loading="lazy" width="1200" height="800">
   <div class="preview-overlay"><span>View project</span></div>
 </div>
           <div class="preview-content">
@@ -653,47 +739,29 @@
 <section id="testimonials">
   <div class="wrap">
     <div class="section-head">
-      <h2>What our clients say</h2>
-      <p>Real feedback from homeowners we’ve served.</p>
+      <h2>See the work, then talk it through.</h2>
+      <p>We’re building our reputation project by project. For now, the best proof is the work itself and the way we explain it.</p>
     </div>
-    <div class="testimonial-grid">
-      <!-- First testimonial -->
-      <div class="testimonial">
-        <p class="quote">“Groundwork transformed our backyard with a beautiful stone patio and fire pit. The team was professional, on time, and the quality is outstanding.”</p>
-        <div class="who">
-          <div class="who-mark">SL</div>
-          <div>Sarah L., Longmont</div>
-        </div>
-      </div>
-      <!-- Second testimonial -->
-      <div class="testimonial">
-        <p class="quote">“Our new cedar fence looks perfect and has stood up to two winters already. Highly recommend their fencing expertise.”</p>
-        <div class="who">
-          <div class="who-mark">MT</div>
-          <div>Mark T., Boulder</div>
-        </div>
-      </div>
+    <div class="proof-grid">
+      <article class="proof-item"><span>01</span><h3>Real project photos</h3><p>Explore completed work and the conditions, materials, and details behind each project.</p></article>
+      <article class="proof-item"><span>02</span><h3>Clear project thinking</h3><p>Every case study shows the challenge, the approach, and the result in plain language.</p></article>
+      <article class="proof-item"><span>03</span><h3>A direct conversation</h3><p>Tell us what you’re planning and we’ll help you understand the practical next step.</p></article>
     </div>
-    <p style="text-align:center; margin-top:24px;">
-      <a href="work.html#testimonials" style="color:var(--ink-muted); text-decoration:none; border-bottom:1px solid var(--line);">Read all testimonials →</a>
-    </p>
   </div>
 </section>
 
-<!-- Simple email capture for homepage -->
-<section id="newsletter" style="background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<section id="final-cta" class="final-cta">
   <div class="wrap">
-    <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:24px; padding:40px 0;">
-      <h2 style="font-size:clamp(24px,3vw,32px); margin:0;">Stay updated on our latest projects</h2>
-      <p style="color:var(--ink-muted); max-width:36ch; margin:0;">
-        Get inspiration for your outdoor space and seasonal tips
-      </p>
-      <!-- Simple email form -->
-      <form action="https://formspree.io/f/mjyvregb" method="POST" style="display:flex; gap:8px; max-width:400px; width:100%;">
-        <input type="hidden" name="_subject" value="Newsletter signup — Groundwork Outdoor Co.">
-        <input type="email" name="email" required autocomplete="email" aria-label="Email address" placeholder="your@email.com" style="flex:1; background:var(--bg); border:1px solid var(--line); border-radius:var(--radius); color:var(--ink); padding:12px 14px; font-family:'Work Sans', sans-serif; font-size:14.5px;">
-        <button type="submit" style="background:var(--ember); color:#16130E; border:none; padding:12px 20px; border-radius:var(--radius); font-weight:600; font-size:14.5px; cursor:pointer; white-space:nowrap;">Subscribe</button>
-      </form>
+    <div class="final-cta-inner">
+      <div>
+        <div class="hero-eyebrow">Start with the property</div>
+        <h2>Planning an outdoor project?</h2>
+        <p>Tell us what you’re changing, where you’re located, and what matters most. We’ll help you understand the practical next step.</p>
+      </div>
+      <div class="final-cta-actions">
+        <a href="contact.html" class="btn-primary">Request a quote →</a>
+        <a href="tel:+17207075411" class="final-cta-phone">Or call (720) 707-5411</a>
+      </div>
     </div>
   </div>
 </section>

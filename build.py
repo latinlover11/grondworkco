@@ -75,6 +75,15 @@ def build_html(source: Path, target: Path) -> None:
             css_name = "__".join(source.relative_to(ROOT).with_suffix(".css").parts)
             css_target = DIST / "generated" / css_name
             css_target.parent.mkdir(parents=True, exist_ok=True)
+            # Page <style> blocks may use page-relative url()s; once relocated to
+            # /generated/, those break (browsers resolve against the CSS file's
+            # URL). Rewrite them to be root-relative first.
+            page_dir_prefix = "../" * len(source.relative_to(ROOT).parts)
+            styles = re.sub(
+                r"url\(\s*['\"]?(?!['\"]?(?:data:|https?://|/|#))([^'\")]+)['\"]?\s*\)",
+                lambda m: f"url('{page_dir_prefix}{m.group(1)}')",
+                styles,
+            )
             css_target.write_text(styles + "\n", encoding="utf-8")
             content = content.replace("</head>", f'<link rel="stylesheet" href="/generated/{css_name}">\n</head>', 1)
         content = content.replace("</head>", ASSET_TAGS + "\n</head>", 1)

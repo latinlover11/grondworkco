@@ -147,6 +147,28 @@
   .section-head p{color:var(--ink-muted); max-width:36ch; font-size:15px;}
 
   /* Case Studies Layout */
+  .case-filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  .case-filter{
+    border:1px solid var(--line);
+    background:transparent;
+    color:var(--ink-muted);
+    border-radius:20px;
+    padding:8px 14px;
+    font:500 13px 'Work Sans', sans-serif;
+    cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .case-filter:hover, .case-filter[aria-pressed="true"]{
+    color:#16130E;
+    background:var(--ember);
+    border-color:var(--ember);
+  }
+  .case-study-card[hidden]{display:none;}
   .case-studies-wrap {
     display: flex;
     flex-direction: column;
@@ -470,6 +492,12 @@
 
   /* Testimonials */
   .testimonial-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .proof-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .proof-item{padding-top:18px; border-top:1px solid var(--line);}
+  .proof-item span{color:var(--ember-bright); font:460 18px 'Fraunces',serif;}
+  .proof-item h3{font-size:21px; font-weight:460; margin:16px 0 8px;}
+  .proof-item p{color:var(--ink-muted); font-size:14px; max-width:30ch;}
+  @media (max-width:860px){.proof-grid{grid-template-columns:1fr; gap:24px;}}
   .testimonial{
     background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
     padding:36px; display:flex; flex-direction:column; gap:24px;
@@ -574,31 +602,38 @@
   </div>
 
   <section id="case-studies">
+    <div class="case-filters" aria-label="Filter case studies">
+      <button type="button" class="case-filter" data-filter="all" aria-pressed="true">All projects</button>
+      <button type="button" class="case-filter" data-filter="hardscaping" aria-pressed="false">Hardscaping</button>
+      <button type="button" class="case-filter" data-filter="fencing" aria-pressed="false">Fencing</button>
+      <button type="button" class="case-filter" data-filter="maintenance" aria-pressed="false">Maintenance</button>
+      <button type="button" class="case-filter" data-filter="xeriscaping" aria-pressed="false">Xeriscaping</button>
+    </div>
     <div class="case-studies-wrap">
 
       <!-- Case Study 5: Vertical Flagstone Monolith & Dual-Gravel Xeriscape -->
-      <div class="case-study-card">
+      <div class="case-study-card" data-category="xeriscaping">
         <div class="case-media-panel">
           <span class="photo-real-tag">Real Job Photos</span>
           <div class="main-photo-container" id="cs5-main-box">
-            <img src="img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.jpg" alt="Standing red flagstone monoliths with blue spruce and red granite ring in Longmont, CO" id="cs5-main-img" onclick="openLightbox(this.src, this.alt)">
+             <img src="img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp" srcset="img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail-800.webp 800w, img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Standing red flagstone monoliths with blue spruce and red granite ring in Longmont, CO" id="cs5-main-img" onclick="openLightbox(this.src, this.alt)">
             <div class="photo-badge" id="cs5-badge">Photo 1 of 5: Upright Red Sandstone Monolith Sculpture &amp; Blue Spruce</div>
           </div>
           <div class="case-thumb-row">
-            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.jpg', 'Photo 1 of 5: Upright Red Sandstone Monolith Sculpture &amp; Blue Spruce', this)">
-              <img src="img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.jpg" alt="Standing flagstone monoliths close up">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp', 'Photo 1 of 5: Upright Red Sandstone Monolith Sculpture &amp; Blue Spruce', this)">
+               <img src="img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp" srcset="img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail-800.webp 800w, img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Standing flagstone monoliths close up">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/1-initial-backyard-condition.jpg', 'Photo 2 of 5: Initial Weedy &amp; Patchy Turf Condition Before Sod Removal', this)">
-              <img src="img/case-studies/vertical-flagstone-longmont/1-initial-backyard-condition.jpg" alt="Initial weedy lawn before removal">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/1-initial-backyard-condition.webp', 'Photo 2 of 5: Initial Weedy &amp; Patchy Turf Condition Before Sod Removal', this)">
+               <img src="img/case-studies/vertical-flagstone-longmont/1-initial-backyard-condition.webp" srcset="img/case-studies/vertical-flagstone-longmont/1-initial-backyard-condition-800.webp 800w, img/case-studies/vertical-flagstone-longmont/1-initial-backyard-condition.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Initial weedy lawn before removal">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/2-tree-ring-edging-excavation.jpg', 'Photo 3 of 5: Sod Stripping &amp; Steel Tree Ring Edging Installation', this)">
-              <img src="img/case-studies/vertical-flagstone-longmont/2-tree-ring-edging-excavation.jpg" alt="Steel tree ring edging installation">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/2-tree-ring-edging-excavation.webp', 'Photo 3 of 5: Sod Stripping &amp; Steel Tree Ring Edging Installation', this)">
+               <img src="img/case-studies/vertical-flagstone-longmont/2-tree-ring-edging-excavation.webp" srcset="img/case-studies/vertical-flagstone-longmont/2-tree-ring-edging-excavation-800.webp 800w, img/case-studies/vertical-flagstone-longmont/2-tree-ring-edging-excavation.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Steel tree ring edging installation">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/3-flagstone-footing-excavation.jpg', 'Photo 4 of 5: Deep Subgrade Footing Digging for Standing Flagstones', this)">
-              <img src="img/case-studies/vertical-flagstone-longmont/3-flagstone-footing-excavation.jpg" alt="Digging deep slab footing holes">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/3-flagstone-footing-excavation.webp', 'Photo 4 of 5: Deep Subgrade Footing Digging for Standing Flagstones', this)">
+               <img src="img/case-studies/vertical-flagstone-longmont/3-flagstone-footing-excavation.webp" srcset="img/case-studies/vertical-flagstone-longmont/3-flagstone-footing-excavation-800.webp 800w, img/case-studies/vertical-flagstone-longmont/3-flagstone-footing-excavation.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Digging deep slab footing holes">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/4-completed-xeriscape-deck-view.jpg', 'Photo 5 of 5: Completed Dual-Gravel Backyard Xeriscape Viewed from Deck', this)">
-              <img src="img/case-studies/vertical-flagstone-longmont/4-completed-xeriscape-deck-view.jpg" alt="Completed backyard xeriscape deck overview">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs5', 'img/case-studies/vertical-flagstone-longmont/4-completed-xeriscape-deck-view.webp', 'Photo 5 of 5: Completed Dual-Gravel Backyard Xeriscape Viewed from Deck', this)">
+               <img src="img/case-studies/vertical-flagstone-longmont/4-completed-xeriscape-deck-view.webp" srcset="img/case-studies/vertical-flagstone-longmont/4-completed-xeriscape-deck-view-800.webp 800w, img/case-studies/vertical-flagstone-longmont/4-completed-xeriscape-deck-view.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed backyard xeriscape deck overview">
             </button>
           </div>
         </div>
@@ -643,28 +678,28 @@
           </div>
         </div>
       </div>
-      <div class="case-study-card">
+      <div class="case-study-card" data-category="fencing">
         <div class="case-media-panel">
           <span class="photo-real-tag">Real Job Photos</span>
           <div class="main-photo-container" id="cs4-main-box">
-            <img src="img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.jpg" alt="Completed western red cedar property-line fence with double gate in Lafayette, CO" id="cs4-main-img" onclick="openLightbox(this.src, this.alt)">
+             <img src="img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp" srcset="img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence-800.webp 800w, img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed western red cedar property-line fence with double gate in Lafayette, CO" id="cs4-main-img" onclick="openLightbox(this.src, this.alt)">
             <div class="photo-badge" id="cs4-badge">Photo 1 of 5: Completed Western Red Cedar Property-Line Fence &amp; Gates</div>
           </div>
           <div class="case-thumb-row">
-            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.jpg', 'Photo 1 of 5: Completed Western Red Cedar Property-Line Fence &amp; Gates', this)">
-              <img src="img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.jpg" alt="Completed front yard cedar fence">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp', 'Photo 1 of 5: Completed Western Red Cedar Property-Line Fence &amp; Gates', this)">
+               <img src="img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp" srcset="img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence-800.webp 800w, img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed front yard cedar fence">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.jpg', 'Photo 2 of 5: Diamond Saw-Cutting Square Footing Openings in Concrete', this)">
-              <img src="img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.jpg" alt="Diamond saw cutting concrete footing holes">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.webp', 'Photo 2 of 5: Diamond Saw-Cutting Square Footing Openings in Concrete', this)">
+               <img src="img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.webp" srcset="img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout-800.webp 800w, img/case-studies/lafayette-cedar-fence/1-concrete-sawing-layout.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Diamond saw cutting concrete footing holes">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.jpg', 'Photo 3 of 5: Setting 4x4 Wood Posts Plumb in High-Strength Concrete', this)">
-              <img src="img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.jpg" alt="Setting 4x4 wood fence posts in concrete">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.webp', 'Photo 3 of 5: Setting 4x4 Wood Posts Plumb in High-Strength Concrete', this)">
+               <img src="img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.webp" srcset="img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete-800.webp 800w, img/case-studies/lafayette-cedar-fence/2-setting-posts-concrete.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Setting 4x4 wood fence posts in concrete">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.jpg', 'Photo 4 of 5: Custom Western Red Cedar Rail &amp; Cap Framing', this)">
-              <img src="img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.jpg" alt="Cedar fence framing and cap rails">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.webp', 'Photo 4 of 5: Custom Western Red Cedar Rail &amp; Cap Framing', this)">
+               <img src="img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.webp" srcset="img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction-800.webp 800w, img/case-studies/lafayette-cedar-fence/3-cedar-framing-construction.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cedar fence framing and cap rails">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.jpg', 'Photo 5 of 5: Side Walkway Privacy Fence &amp; Heavy-Duty Cedar Gate', this)">
-              <img src="img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.jpg" alt="Side walkway privacy fence and gate">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs4', 'img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.webp', 'Photo 5 of 5: Side Walkway Privacy Fence &amp; Heavy-Duty Cedar Gate', this)">
+               <img src="img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.webp" srcset="img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate-800.webp 800w, img/case-studies/lafayette-cedar-fence/4-side-privacy-fence-gate.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Side walkway privacy fence and gate">
             </button>
           </div>
         </div>
@@ -709,28 +744,28 @@
           </div>
         </div>
       </div>
-      <div class="case-study-card">
+      <div class="case-study-card" data-category="hardscaping">
         <div class="case-media-panel">
           <span class="photo-real-tag">Real Job Photos</span>
           <div class="main-photo-container" id="cs1-main-box">
-            <img src="img/case-studies/river-rock-after.jpg" alt="Completed 8-ton river rock parking area" id="cs1-main-img" onclick="openLightbox(this.src, this.alt)">
+             <img src="img/case-studies/river-rock-after.webp" srcset="img/case-studies/river-rock-after-800.webp 800w, img/case-studies/river-rock-after.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed 8-ton river rock parking area" id="cs1-main-img" onclick="openLightbox(this.src, this.alt)">
             <div class="photo-badge" id="cs1-badge">Photo 1 of 5: Completed 8-Ton River Rock Parking Pad</div>
           </div>
           <div class="case-thumb-row">
-            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-after.jpg', 'Photo 1 of 5: Completed 8-Ton River Rock Parking Pad', this)">
-              <img src="img/case-studies/river-rock-after.jpg" alt="Completed parking pad">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-after.webp', 'Photo 1 of 5: Completed 8-Ton River Rock Parking Pad', this)">
+               <img src="img/case-studies/river-rock-after.webp" srcset="img/case-studies/river-rock-after-800.webp 800w, img/case-studies/river-rock-after.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed parking pad">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-before.jpg', 'Photo 2 of 5: Initial Cleared & Rough Ground', this)">
-              <img src="img/case-studies/river-rock-before.jpg" alt="Cleared ground before rock placement">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-before.webp', 'Photo 2 of 5: Initial Cleared & Rough Ground', this)">
+               <img src="img/case-studies/river-rock-before.webp" srcset="img/case-studies/river-rock-before-800.webp 800w, img/case-studies/river-rock-before.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cleared ground before rock placement">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-prep.jpg', 'Photo 3 of 5: Weeding, Grading & Ground Leveling', this)">
-              <img src="img/case-studies/river-rock-prep.jpg" alt="Weeding and ground leveling">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-prep.webp', 'Photo 3 of 5: Weeding, Grading & Ground Leveling', this)">
+               <img src="img/case-studies/river-rock-prep.webp" srcset="img/case-studies/river-rock-prep-800.webp 800w, img/case-studies/river-rock-prep.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Weeding and ground leveling">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-cleanup.jpg', 'Photo 4 of 5: Final Site Clean-up & Dust Blow-off', this)">
-              <img src="img/case-studies/river-rock-cleanup.jpg" alt="Leaf blower detail clean-up">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-cleanup.webp', 'Photo 4 of 5: Final Site Clean-up & Dust Blow-off', this)">
+               <img src="img/case-studies/river-rock-cleanup.webp" srcset="img/case-studies/river-rock-cleanup-800.webp 800w, img/case-studies/river-rock-cleanup.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Leaf blower detail clean-up">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-wide.jpg', 'Photo 5 of 5: Full Overview under Shade Canopy', this)">
-              <img src="img/case-studies/river-rock-wide.jpg" alt="Wide view of river rock pad">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs1', 'img/case-studies/river-rock-wide.webp', 'Photo 5 of 5: Full Overview under Shade Canopy', this)">
+               <img src="img/case-studies/river-rock-wide.webp" srcset="img/case-studies/river-rock-wide-800.webp 800w, img/case-studies/river-rock-wide.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Wide view of river rock pad">
             </button>
           </div>
         </div>
@@ -777,28 +812,28 @@
       </div>
 
       <!-- Case Study 2: Landscape Clean-up -->
-      <div class="case-study-card">
+      <div class="case-study-card" data-category="maintenance">
         <div class="case-media-panel">
           <span class="photo-real-tag">Real Job Photos</span>
           <div class="main-photo-container" id="cs2-main-box">
-            <img src="img/case-studies/cleanup-after-overview.jpg" alt="Restored rock beds and flagstone walkway after detailed clean-up" id="cs2-main-img" onclick="openLightbox(this.src, this.alt)">
+             <img src="img/case-studies/cleanup-after-overview.webp" srcset="img/case-studies/cleanup-after-overview-800.webp 800w, img/case-studies/cleanup-after-overview.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Restored rock beds and flagstone walkway after detailed clean-up" id="cs2-main-img" onclick="openLightbox(this.src, this.alt)">
             <div class="photo-badge" id="cs2-badge">Photo 1 of 5: Restored Rock Beds & Turf Border Overview</div>
           </div>
           <div class="case-thumb-row">
-            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-after-overview.jpg', 'Photo 1 of 5: Restored Rock Beds & Turf Border Overview', this)">
-              <img src="img/case-studies/cleanup-after-overview.jpg" alt="Restored rock beds and lawn border">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-after-overview.webp', 'Photo 1 of 5: Restored Rock Beds & Turf Border Overview', this)">
+               <img src="img/case-studies/cleanup-after-overview.webp" srcset="img/case-studies/cleanup-after-overview-800.webp 800w, img/case-studies/cleanup-after-overview.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Restored rock beds and lawn border">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-before-overgrown1.jpg', 'Photo 2 of 5: Initial Weed Infestation around Deck & Turf', this)">
-              <img src="img/case-studies/cleanup-before-overgrown1.jpg" alt="Weeds growing through rock and turf border">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-before-overgrown1.webp', 'Photo 2 of 5: Initial Weed Infestation around Deck & Turf', this)">
+               <img src="img/case-studies/cleanup-before-overgrown1.webp" srcset="img/case-studies/cleanup-before-overgrown1-800.webp 800w, img/case-studies/cleanup-before-overgrown1.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Weeds growing through rock and turf border">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-before-overgrown2.jpg', 'Photo 3 of 5: Heavy Overgrowth along Deck Stairs & Planters', this)">
-              <img src="img/case-studies/cleanup-before-overgrown2.jpg" alt="Weeds along deck stairs and planters">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-before-overgrown2.webp', 'Photo 3 of 5: Heavy Overgrowth along Deck Stairs & Planters', this)">
+               <img src="img/case-studies/cleanup-before-overgrown2.webp" srcset="img/case-studies/cleanup-before-overgrown2-800.webp 800w, img/case-studies/cleanup-before-overgrown2.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Weeds along deck stairs and planters">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-after-walkway.jpg', 'Photo 4 of 5: Cleaned Flagstone Path & House Wall Border', this)">
-              <img src="img/case-studies/cleanup-after-walkway.jpg" alt="Clean flagstone path next to deck steps">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-after-walkway.webp', 'Photo 4 of 5: Cleaned Flagstone Path & House Wall Border', this)">
+               <img src="img/case-studies/cleanup-after-walkway.webp" srcset="img/case-studies/cleanup-after-walkway-800.webp 800w, img/case-studies/cleanup-after-walkway.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Clean flagstone path next to deck steps">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-after-fencepath.jpg', 'Photo 5 of 5: Refreshed Flagstone Pathway along Fence', this)">
-              <img src="img/case-studies/cleanup-after-fencepath.jpg" alt="Clean flagstone pathway along fence">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs2', 'img/case-studies/cleanup-after-fencepath.webp', 'Photo 5 of 5: Refreshed Flagstone Pathway along Fence', this)">
+               <img src="img/case-studies/cleanup-after-fencepath.webp" srcset="img/case-studies/cleanup-after-fencepath-800.webp 800w, img/case-studies/cleanup-after-fencepath.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Clean flagstone pathway along fence">
             </button>
           </div>
         </div>
@@ -845,28 +880,28 @@
       </div>
 
       <!-- Case Study 3: Front Yard Turf Removal -->
-      <div class="case-study-card">
+      <div class="case-study-card" data-category="xeriscaping">
         <div class="case-media-panel">
           <span class="photo-real-tag">Real Job Photos</span>
           <div class="main-photo-container" id="cs3-main-box">
-            <img src="img/case-studies/front-rock-after-installed.jpg" alt="Completed 12-ton river rock front yard conversion" id="cs3-main-img" onclick="openLightbox(this.src, this.alt)">
+             <img src="img/case-studies/front-rock-after-installed.webp" srcset="img/case-studies/front-rock-after-installed-800.webp 800w, img/case-studies/front-rock-after-installed.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed 12-ton river rock front yard conversion" id="cs3-main-img" onclick="openLightbox(this.src, this.alt)">
             <div class="photo-badge" id="cs3-badge">Photo 1 of 5: Spreading & Hand-Raking 12 Tons River Rock</div>
           </div>
           <div class="case-thumb-row">
-            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-after-installed.jpg', 'Photo 1 of 5: Spreading & Hand-Raking 12 Tons River Rock', this)">
-              <img src="img/case-studies/front-rock-after-installed.jpg" alt="Spreading river rock in front yard">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-after-installed.webp', 'Photo 1 of 5: Spreading & Hand-Raking 12 Tons River Rock', this)">
+               <img src="img/case-studies/front-rock-after-installed.webp" srcset="img/case-studies/front-rock-after-installed-800.webp 800w, img/case-studies/front-rock-after-installed.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Spreading river rock in front yard">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-prep-clearedyard.jpg', 'Photo 2 of 5: Turf Stripped & Cleared Subgrade Soil', this)">
-              <img src="img/case-studies/front-rock-prep-clearedyard.jpg" alt="Cleared front yard soil prior to rock">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-prep-clearedyard.webp', 'Photo 2 of 5: Turf Stripped & Cleared Subgrade Soil', this)">
+               <img src="img/case-studies/front-rock-prep-clearedyard.webp" srcset="img/case-studies/front-rock-prep-clearedyard-800.webp 800w, img/case-studies/front-rock-prep-clearedyard.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cleared front yard soil prior to rock">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-prep-stringline.jpg', 'Photo 3 of 5: String-Line Laser Leveling along Driveway Edge', this)">
-              <img src="img/case-studies/front-rock-prep-stringline.jpg" alt="String line leveling along driveway">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-prep-stringline.webp', 'Photo 3 of 5: String-Line Laser Leveling along Driveway Edge', this)">
+               <img src="img/case-studies/front-rock-prep-stringline.webp" srcset="img/case-studies/front-rock-prep-stringline-800.webp 800w, img/case-studies/front-rock-prep-stringline.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="String line leveling along driveway">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-prep-clearing.jpg', 'Photo 4 of 5: Blow-Down & Foundation Edge Clearing', this)">
-              <img src="img/case-studies/front-rock-prep-clearing.jpg" alt="Blowing dirt and clearing near house wall">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-prep-clearing.webp', 'Photo 4 of 5: Blow-Down & Foundation Edge Clearing', this)">
+               <img src="img/case-studies/front-rock-prep-clearing.webp" srcset="img/case-studies/front-rock-prep-clearing-800.webp 800w, img/case-studies/front-rock-prep-clearing.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Blowing dirt and clearing near house wall">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-trailer-loading.jpg', 'Photo 5 of 5: Utility Trailer Unloading & Transport', this)">
-              <img src="img/case-studies/front-rock-trailer-loading.jpg" alt="Loading river rock from trailer">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs3', 'img/case-studies/front-rock-trailer-loading.webp', 'Photo 5 of 5: Utility Trailer Unloading & Transport', this)">
+               <img src="img/case-studies/front-rock-trailer-loading.webp" srcset="img/case-studies/front-rock-trailer-loading-800.webp 800w, img/case-studies/front-rock-trailer-loading.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Loading river rock from trailer">
             </button>
           </div>
         </div>
@@ -927,24 +962,13 @@
 <section id="testimonials">
   <div class="wrap">
     <div class="section-head">
-      <h2>What our clients say</h2>
-      <p>Real feedback from homeowners we've served.</p>
+      <h2>Project proof, not promises.</h2>
+      <p>Until we have customer reviews to publish, explore the work itself and the details behind each build.</p>
     </div>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <p class="quote">"Groundwork transformed our backyard with a beautiful stone patio and fire pit. The team was professional, on time, and the quality is outstanding."</p>
-        <div class="who">
-          <div class="who-mark">SL</div>
-          <div>Sarah L., Longmont</div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <p class="quote">"Our new cedar fence looks perfect and has stood up to two winters already. Highly recommend their fencing expertise."</p>
-        <div class="who">
-          <div class="who-mark">MT</div>
-          <div>Mark T., Boulder</div>
-        </div>
-      </div>
+    <div class="proof-grid">
+      <article class="proof-item"><span>01</span><h3>Real job photos</h3><p>See the conditions, materials, and finished details from projects across the area.</p></article>
+      <article class="proof-item"><span>02</span><h3>Documented approach</h3><p>Each project explains the challenge, execution, and result without filler.</p></article>
+      <article class="proof-item"><span>03</span><h3>Free consultation</h3><p>Bring us the property and the problem. We’ll help you understand the next step.</p></article>
     </div>
   </div>
 </section>
@@ -992,6 +1016,8 @@ function switchCasePhoto(caseId, imgSrc, badgeText, btn) {
     mainImg.style.opacity = '0';
     setTimeout(() => {
       mainImg.src = imgSrc;
+      mainImg.srcset = imgSrc.replace(/\.webp$/, '-800.webp') + ' 800w, ' + imgSrc + ' 1200w';
+      mainImg.sizes = '(max-width: 860px) 100vw, 800px';
       mainImg.alt = badgeText;
       mainImg.style.opacity = '1';
     }, 150);
@@ -1029,6 +1055,18 @@ function closeLightbox(e) {
     }
   }
 }
+
+document.querySelectorAll('.case-filter').forEach(function(filterButton){
+  filterButton.addEventListener('click', function(){
+    var selected = filterButton.getAttribute('data-filter');
+    document.querySelectorAll('.case-filter').forEach(function(button){
+      button.setAttribute('aria-pressed', button === filterButton ? 'true' : 'false');
+    });
+    document.querySelectorAll('.case-study-card[data-category]').forEach(function(card){
+      card.hidden = selected !== 'all' && card.getAttribute('data-category') !== selected;
+    });
+  });
+});
 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {

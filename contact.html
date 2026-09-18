@@ -180,6 +180,13 @@
   .contact-hero p{
     color:var(--ink-muted); font-size:18px; max-width:54ch; line-height:1.6;
   }
+  .response-note{
+    color:var(--moss) !important;
+    font-size:14px !important;
+    line-height:1.5 !important;
+    margin-top:18px;
+  }
+  .response-note strong{color:var(--ink); font-weight:600;}
   .contact-hero-actions{
     display:flex; gap:16px; margin-top:36px;
   }
@@ -206,7 +213,8 @@
    }
   .contact-intro{text-align:center;}
   .contact-intro h2{font-size:clamp(26px,3vw,36px); margin-bottom:8px;}
-  .contact-intro p{color:var(--ink-muted); max-width:28ch; margin:0 auto;}
+  .contact-intro p{color:var(--ink-muted); max-width:34ch; margin:0 auto;}
+  .contact-intro .response-note{margin-top:10px; font-size:13.5px !important;}
   .form-row{display:flex; flex-direction:column; gap:8px; margin-bottom:20px;}
   .form-row label{font-size:13px; color:var(--ink-muted);}
   .form-row input, .form-row textarea, .form-row select{
@@ -215,7 +223,11 @@
   }
   .form-row input:focus, .form-row textarea:focus, .form-row select:focus{border-color:var(--ember);}
   .form-help{color:var(--ink-muted); font-size:13px; margin-top:-8px;}
-  .form-success{background:rgba(110,131,103,0.16); border:1px solid rgba(110,131,103,0.5); color:var(--ink); padding:14px 16px; border-radius:var(--radius); font-size:14px;}
+  .form-success, .form-error{padding:14px 16px; border-radius:var(--radius); font-size:14px;}
+  .form-success{background:rgba(110,131,103,0.16); border:1px solid rgba(110,131,103,0.5); color:var(--ink);}
+  .form-error{background:rgba(193,106,46,0.14); border:1px solid rgba(224,138,62,0.55); color:var(--ink);}
+  .form-row input[aria-invalid="true"], .form-row select[aria-invalid="true"], .form-row textarea[aria-invalid="true"]{border-color:var(--ember-bright);}
+  .btn-submit[disabled]{cursor:wait; opacity:.7;}
   .btn-submit{
     background:var(--ember); color:#16130E; border:none; padding:14px 26px; border-radius:var(--radius);
     font-weight:600; font-size:15px; cursor:pointer; transition:background .2s ease; width:100%;
@@ -274,6 +286,7 @@
     <div class="contact-hero-eyebrow">Get in Touch</div>
     <h1>Let's build something great together</h1>
     <p>Reach out for a free on-site consultation on hardscaping, fencing, or lawn care across Longmont and Boulder County.</p>
+    <p class="response-note"><strong>What happens next:</strong> Share the basics below and we’ll follow up within one business day to discuss the right next step.</p>
     <div class="contact-hero-actions">
       <a href="tel:+17207075411" class="btn-primary">Call Now: (720) 707-5411</a>
     </div>
@@ -286,11 +299,13 @@
       <div class="contact-intro">
         <h2>Ready to start?</h2>
         <p>Tell us a little about your project and we'll follow up to schedule an on-site consultation.</p>
+        <p class="response-note">The more context you share, the more useful our first conversation can be.</p>
       </div>
       <!-- Form -->
-      <form action="https://formspree.io/f/mjyvregb" method="POST" style="display:flex; flex-direction:column; gap:16px;">
+      <form action="https://formspree.io/f/mjyvregb" method="POST" aria-describedby="form-error" style="display:flex; flex-direction:column; gap:16px;">
         <input type="hidden" name="_subject" value="Quote request — Groundwork Outdoor Co.">
         <input type="hidden" name="_next" value="https://groundworkoutdoor.co/thank-you.html">
+        <div class="form-error" id="form-error" role="alert" hidden></div>
         <div class="form-row">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
@@ -342,7 +357,7 @@
           <input type="url" id="photo-link" name="photo-link" placeholder="Paste a Google Drive, Dropbox, or album link">
           <span class="form-help">A photo link can help us prepare for the consultation, but it is not required.</span>
         </div>
-        <div class="form-success" id="form-success" role="status" hidden>Thanks — your request was sent. We’ll be in touch to schedule your consultation.</div>
+        <div class="form-success" id="form-success" role="status" tabindex="-1" hidden>Thanks — your request was sent. We’ll be in touch to schedule your consultation.</div>
         <button type="submit" class="btn-submit">Send request</button>
       </form>
     </div>
