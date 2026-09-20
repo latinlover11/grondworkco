@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Groundwork Landscaping — Hardscaping, Fencing & Lawn Care</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- SEO Basics -->
 <meta name="description" content="Groundwork Landscaping provides expert hardscaping, fencing, and lawn care services in Longmont and Boulder County, CO. Built to last, season after season.">
 <meta property="og:title" content="Groundwork Landscaping — Hardscaping, Fencing & Lawn Care">
@@ -27,13 +24,8 @@
   "priceRange": "$$$",
    "serviceArea": {
      "@type": "AdministrativeArea",
-     "name": "Longmont, Loveland, Mead, Erie, Lyons, Berthoud, CO"
+     "name": "Longmont and Boulder County, Colorado"
    },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 40.1672,
-    "longitude": -105.1019
-  },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -48,24 +40,24 @@
       "closes": "17:00"
     }
   ],
-  "servesArea": {
+  "areaServed": {
     "@type": "Place",
-    "name": "Longmont and Boulder County, CO"
+    "name": "Longmont and Boulder County, Colorado"
   }
 }
 </script>
 <style>
   :root{
-    --bg: #14181A;
-    --bg-panel: #1B211F;
-    --bg-panel-alt: #202521;
-    --ink: #ECE7DD;
-    --ink-muted: #9AA39B;
-    --ember: #C16A2E;
-    --ember-bright: #E08A3E;
-    --moss: #6E8367;
-    --line: rgba(236,231,221,0.12);
-    --radius: 3px;
+    --bg: #F3EEE5;
+    --bg-panel: #E8DED0;
+    --bg-panel-alt: #DFD3C3;
+    --ink: #3B2A22;
+    --ink-muted: #806957;
+    --ember: #C87955;
+    --ember-bright: #B96949;
+    --moss: #78836B;
+    --line: rgba(59,42,34,0.14);
+    --radius: 1rem;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -98,7 +90,7 @@
   /* ---------- header ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(20,24,26,0.88);
+    background:#3B2A22;
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -106,17 +98,20 @@
     display:flex; align-items:center; justify-content:space-between;
     padding:14px 32px;
     max-width:1180px; margin:0 auto;
+    background:transparent;
   }
   .brand{
+    color:#FFF9F0;
+    text-decoration:none;
     font-family:'Fraunces', serif; font-size:20px; font-weight:560;
     display:flex; align-items:baseline; gap:8px;
   }
   .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
   .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:15px;}
-  .nav-links a{text-decoration:none; color:var(--ink-muted); transition:color .2s ease;}
-  .nav-links a:hover{color:var(--ink);}
+  .nav-links a{text-decoration:none; color:rgba(255,249,240,.72); transition:color .2s ease;}
+  .nav-links a:hover{color:#FFF9F0;}
   .nav-cta{
-    background:var(--ember); color:#16130E; padding:10px 20px; border-radius:var(--radius);
+    background:var(--ember); color:#FFF9F0; padding:10px 20px; border-radius:var(--radius);
     text-decoration:none; font-size:14px; font-weight:600; white-space:nowrap;
     transition:background .2s ease;
   }
@@ -128,7 +123,7 @@
     flex-direction:column; gap:5px; justify-content:center;
   }
   .nav-toggle span{
-    display:block; width:24px; height:2px; background:var(--ink);
+    display:block; width:24px; height:2px; background:#FFF9F0;
     transition:transform .25s ease, opacity .25s ease;
   }
   .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -136,28 +131,72 @@
   .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   .nav-mobile-panel{
     display:none;
+    width:100%;
     flex-direction:column;
-    background:var(--bg);
-    border-bottom:1px solid var(--line);
+    background:#3B2A22;
+    border-bottom:1px solid rgba(255,249,240,.16);
   }
   .nav-mobile-panel.open{display:flex;}
   .nav-mobile-panel a{
-    padding:16px 32px; color:var(--ink-muted); font-size:15px;
-    border-top:1px solid var(--line);
+    padding:16px 32px; color:rgba(255,249,240,.72); font-size:15px;
+    border-top:1px solid rgba(255,249,240,.16);
   }
   .nav-mobile-panel a:hover{color:var(--ink); background:var(--bg-panel);}
   .nav-mobile-panel .nav-cta{margin:16px 32px; text-align:center; border-top:none;}
+  .nav-toggle[aria-expanded="true"]{background:rgba(255,249,240,.12); border-radius:var(--radius);}
+  .proof-row{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    margin:0 32px;
+    border:1px solid var(--line); border-radius:var(--radius);
+    background:rgba(59,42,34,.9);
+    overflow:hidden;
+  }
+  .proof-item{
+    display:flex; align-items:center; justify-content:center; min-height:60px; padding:14px 20px;
+    color:#FFF9F0; font-family:'Fraunces',serif; font-size:16px; font-weight:460;
+    text-align:center;
+  }
+  .proof-item + .proof-item{border-left:1px solid var(--line);}
+  @media (max-width:860px){
+    .section-head{align-items:flex-start; flex-direction:column; gap:12px; margin-bottom:30px;}
+    .services-grid{grid-template-columns:1fr; gap:16px;}
+    .why-grid{grid-template-columns:1fr; gap:30px;}
+    .proof-row{grid-template-columns:1fr; margin:0 20px;}
+    .proof-item{min-height:48px; padding:11px 14px; justify-content:flex-start; text-align:left;}
+    .proof-item + .proof-item{border-left:0; border-top:1px solid var(--line);}
+  }
   /* ---------- hero ---------- */
   .hero{
     position:relative;
     padding:88px 0 0;
     overflow:hidden;
-    background:
-      linear-gradient(180deg, rgba(20,24,26,.52) 0%, rgba(20,24,26,.84) 82%),
-      url('img/case-studies/outdoor-kitchen.webp') center 52% / cover no-repeat;
+    background:var(--bg);
     min-height:720px;
   }
+  .hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:linear-gradient(180deg, rgba(59,42,34,.42) 0%, rgba(59,42,34,.78) 82%);
+  }
+  .hero-photo{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background:center 52% / cover no-repeat;
+    opacity:.95;
+    transition:opacity .55s ease;
+  }
+  .hero-photo.is-changing{opacity:0;}
+  .hero > .wrap{position:relative; z-index:1;}
   .hero-grid{
+    position:relative;
+    z-index:1;
     display:grid;
     grid-template-columns:minmax(0, 1fr);
     gap:36px;
@@ -165,13 +204,14 @@
     padding-bottom:42px;
   }
   .hero-eyebrow{
-    color:var(--moss); font-size:14px; letter-spacing:0.02em;
+    color:#C87955; font-size:14px; letter-spacing:0.02em;
     margin-bottom:22px; display:flex; align-items:center; gap:10px;
   }
   .hero-eyebrow::before{
     content:''; width:28px; height:1px; background:var(--moss);
   }
   .hero h1{
+    color:#FFF9F0;
     font-size:clamp(40px, 5.4vw, 72px);
     line-height:1.03;
     max-width:12ch;
@@ -180,7 +220,7 @@
   }
   .hero-sub{
     max-width:40ch;
-    color:var(--ink-muted);
+    color:rgba(255,255,255,.82);
     font-size:17px;
     margin-top:26px;
     opacity:0; transform:translateY(14px);
@@ -193,15 +233,15 @@
   }
   @keyframes rise{ to{opacity:1; transform:translateY(0);} }
   .btn-primary{
-    background:var(--ember); color:#16130E; padding:14px 26px; border-radius:var(--radius);
+    background:var(--ember); color:#FFF9F0; padding:14px 26px; border-radius:var(--radius);
     text-decoration:none; font-weight:600; font-size:15px; transition:background .2s ease, transform .2s ease;
   }
   .btn-primary:hover{background:var(--ember-bright); transform:translateY(-1px);}
   .btn-ghost{
-    border:1px solid var(--line); color:var(--ink); padding:14px 26px; border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.55); color:#FFF9F0; padding:14px 26px; border-radius:var(--radius);
     text-decoration:none; font-weight:500; font-size:15px; transition:border-color .2s ease, background .2s ease;
   }
-  .btn-ghost:hover{border-color:var(--ink-muted); background:rgba(255,255,255,0.03);}
+  .btn-ghost:hover{border-color:#FFF9F0; background:rgba(255,255,255,0.12);}
   .hero-stat-panel{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -211,12 +251,12 @@
   }
   .hero-stat{display:flex; align-items:baseline; gap:14px;}
   .hero-stat b{font-family:'Fraunces', serif; font-size:30px; font-weight:460; color:var(--ember-bright);}
-  .hero-stat span{color:var(--ink-muted); font-size:13.5px; max-width:22ch;}
+  .hero-stat span{color:rgba(255,255,255,.78); font-size:13.5px; max-width:22ch;}
   /* scrolling service marquee */
   .marquee{
     overflow:hidden;
     border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-    background:rgba(27,33,31,.72);
+    background:rgba(22,163,74,.12);
     white-space:nowrap;
   }
   .marquee-track{
@@ -249,6 +289,15 @@
   }
   .section-head h2{font-size:clamp(28px,3.4vw,42px); max-width:14ch;}
   .section-head p{color:var(--ink-muted); max-width:34ch; font-size:15px;}
+  /* ---------- alternating section rhythm ---------- */
+  #why-groundwork,
+  #testimonials{
+    background:var(--bg-panel-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  #why-groundwork .why-item{border-color:rgba(59,42,34,.2);}
+  #testimonials .testimonial{background:var(--bg-panel);}
   /* ---------- services ---------- */
   .services-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
@@ -289,15 +338,15 @@
   .why-item:nth-last-child(-n+2){border-bottom:0; padding-bottom:0;}
   .why-item b{display:block; color:var(--ember-bright); font-family:'Fraunces',serif; font-size:20px; font-weight:460; margin-bottom:7px;}
   .why-item p{color:var(--ink-muted); font-size:14px; max-width:30ch;}
-  .final-cta{background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .final-cta-inner{display:flex; align-items:center; justify-content:space-between; gap:36px; padding:56px 0;}
+  .final-cta{background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:0;}
+  .final-cta-inner{display:flex; align-items:center; justify-content:space-between; gap:36px; padding:42px 0;}
   .final-cta h2{font-size:clamp(28px,4vw,44px); max-width:14ch;}
   .final-cta p{color:var(--ink-muted); max-width:42ch; margin-top:12px;}
   .final-cta-actions{display:flex; flex-direction:column; align-items:flex-start; gap:12px; flex-shrink:0;}
   .final-cta-phone{color:var(--ink-muted); font-size:13.5px; text-decoration:none;}
   .final-cta-phone:hover{color:var(--ink);}
   @media (max-width:860px){
-    .final-cta-inner{align-items:flex-start; flex-direction:column; gap:24px; padding:42px 0;}
+    .final-cta-inner{align-items:flex-start; flex-direction:column; gap:20px; padding:32px 0;}
     .final-cta-actions{width:100%;}
     .final-cta-actions .btn-primary{width:100%; text-align:center;}
   }
@@ -306,6 +355,20 @@
     .why-intro h2{max-width:14ch;}
   }
   /* ---------- process ---------- */
+  #process{
+    padding:64px 0;
+    background:#3B2A22;
+    color:#FFF9F0;
+  }
+  #process .section-head{margin-bottom:28px;}
+  #process .section-head p,
+  #process .step p{color:rgba(255,249,240,.72);}
+  #process .section-head h2,
+  #process .step h3{color:#FFF9F0;}
+  #process .process::before{background:rgba(255,249,240,.22);}
+  #process .step-num{background:#F3EEE5; width:32px; height:32px;}
+  #process .process::before{top:16px;}
+  #process .step{padding-top:44px; padding-right:20px;}
   .process{
     display:grid; grid-template-columns:repeat(4,1fr); gap:0;
     position:relative;
@@ -322,13 +385,14 @@
   .step h3{font-size:18px; font-weight:460; margin-bottom:10px;}
   .step p{color:var(--ink-muted); font-size:14.5px;}
   /* ---------- testimonials ---------- */
-  .testimonial-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-  .testimonial-grid .testimonial:last-child:nth-child(odd){grid-column:span 2;}
+  #testimonials{padding:64px 0;}
+  .testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .testimonial-grid .testimonial:last-child:nth-child(odd){grid-column:auto;}
   .testimonial{
     background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:36px; display:flex; flex-direction:column; gap:24px;
+    padding:24px; display:flex; flex-direction:column; gap:16px;
   }
-  .testimonial p.quote{font-family:'Fraunces', serif; font-size:19px; font-weight:460; line-height:1.4;}
+  .testimonial p.quote{font-family:'Fraunces', serif; font-size:17px; font-weight:460; line-height:1.4;}
   .testimonial .who{display:flex; align-items:center; gap:12px; font-size:14px; color:var(--ink-muted);}
   .who-mark{
     width:34px;height:34px;border-radius:50%; background:var(--bg-panel-alt); border:1px solid var(--line); flex-shrink:0;
@@ -354,13 +418,16 @@
   .form-row input:focus, .form-row textarea:focus, .form-row select:focus{border-color:var(--ember);}
   .form-two{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
   .btn-submit{
-    background:var(--ember); color:#16130E; border:none; padding:14px 26px; border-radius:var(--radius);
+    background:var(--ember); color:#FFF9F0; border:none; padding:14px 26px; border-radius:var(--radius);
     font-weight:600; font-size:15px; cursor:pointer; transition:background .2s ease; width:100%;
   }
   .btn-submit:hover{background:var(--ember-bright);}
   /* ---------- footer ---------- */
-  footer{border-top:1px solid var(--line); padding:40px 0;}
-  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+  footer{background:#3B2A22; border-top:1px solid rgba(255,249,240,.16); padding:40px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:rgba(255,249,240,.72);}
+  footer a,
+  footer .footer-row span{color:rgba(255,249,240,.72) !important;}
+  footer a:hover{color:#FFF9F0 !important;}
   /* ---------- responsive ---------- */
   /* ---------- premium editorial page rhythm ---------- */
   body > header{order:1;}
@@ -386,13 +453,17 @@
     .nav-toggle{display:flex;}
     .hero{min-height:0;}
     .hero-grid{gap:28px; padding-bottom:32px;}
-    .hero-stat-panel{grid-template-columns:1fr; gap:18px; padding-top:22px;}
-    .hero-stat{align-items:center;}
+    .hero-stat-panel{grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding-top:18px;}
+    .hero-stat{align-items:flex-start; flex-direction:column; gap:2px;}
+    .hero-stat b{font-size:25px;}
+    .hero-stat span{font-size:11px; line-height:1.25;}
     .marquee-item{min-height:64px; padding:14px 22px;}
     .services-grid{grid-template-columns:1fr; gap:16px;}
     .service-media{aspect-ratio:16 / 9;}
-    .process{grid-template-columns:1fr 1fr; row-gap:36px;}
-    .testimonial-grid{grid-template-columns:1fr;}
+    #process{padding:48px 0;}
+    .process{grid-template-columns:1fr 1fr; row-gap:28px;}
+    #testimonials{padding:48px 0;}
+    .testimonial-grid{grid-template-columns:1fr; gap:16px;}
     .testimonial-grid .testimonial:last-child:nth-child(odd){grid-column:auto;}
     .contact-shell{grid-template-columns:1fr; padding:32px;}
     section{padding:72px 0;}
@@ -430,7 +501,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(20,24,26,0.55);
+  background: rgba(14,17,22,0.55);
   opacity: 0;
   transition: opacity .25s ease;
 }
@@ -460,6 +531,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+.preview-content p:not(.preview-tag) {
+  align-self: stretch;
 }
 .preview-content h3 {
   margin: 0 0 8px 0;
@@ -467,6 +542,10 @@
 }
 .preview-tag {
   display: inline-block;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: max-content;
   background: var(--ember);
   color: var(--bg);
   font-size: 0.75rem;
@@ -480,10 +559,20 @@
   margin: 0 0 12px 0;
   line-height: 1.5;
   color: var(--ink-muted);
+}  .preview-content .preview-tag {
+  align-self: flex-start !important;
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: max-content !important;
+  margin-right: auto;
+  height: auto !important;
+  min-height: 0;
 }
 .preview-meta {
   display: flex;
   justify-content: space-between;
+  padding: 0 20px 20px;
   font-size: 0.9rem;
   color: var(--ink-muted);
   margin-top: auto;
@@ -504,17 +593,20 @@
 @media (prefers-reduced-motion: reduce){
   .reveal{opacity:1; transform:none; transition:none;}
 }
+  @media (max-width:860px){
+    .section-head{align-items:flex-start !important; flex-direction:column !important; gap:12px; margin-bottom:30px;}
+  }
  </style>
     <link rel="canonical" href="https://groundworkllc.netlify.app/index.html">
-<link rel="stylesheet" href="/site.css">
-<link rel="preload" as="image" href="img/case-studies/outdoor-kitchen.webp" fetchpriority="high">
+<link rel="stylesheet" href="/site.css?v=earthy-v2">
+<link rel="preload" as="image" href="/img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden.webp" fetchpriority="high">
 <script defer src="/site.js"></script>
 </head>
 <body>
 
 <header>
   <nav class="nav">
-    <a href="index.html" class="brand"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10 48h44" stroke="#C16A2E" stroke-width="5"/><path d="M10 37h34" stroke="#C16A2E" stroke-width="5"/><path d="M10 26h24" stroke="#E08A3E" stroke-width="5"/><path d="M43 12c7 1 11 6 10 13-7 0-11-4-10-13Z" stroke="#6E8367" stroke-width="4"/><path d="M43 25c0-5 2-9 6-13" stroke="#6E8367" stroke-width="3"/></g></svg>Groundwork <span>Landscaping</span></a>
+    <a href="index.html" class="brand"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="25" fill="#C87955"/><path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#0E1116"/><path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#16A34A"/><path d="M34 29c1.8-5.2 5.2-9.2 9.6-12.2" fill="none" stroke="#FFF9F0" stroke-width="2.3" stroke-linecap="round"/></svg>Groundwork <span>Landscaping</span></a>
     <ul class="nav-links">
       <li><a href="index.html#services">Services</a></li>
       <li><a href="work.html">Our Work</a></li>
@@ -522,11 +614,11 @@
       <li><a href="blog/index.html">Blog</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Get a quote</a>
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile-panel">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile-panel">
       <span></span><span></span><span></span>
     </button>
   </nav>
-  <div class="nav-mobile-panel" id="nav-mobile-panel">
+  <div class="nav-mobile-panel" id="nav-mobile-panel" aria-hidden="true">
     <a href="index.html#services">Services</a>
     <a href="work.html">Our Work</a>
     <a href="about.html">About Us</a>
@@ -536,6 +628,7 @@
 </header>
 
 <section class="hero">
+  <div class="hero-photo" id="hero-photo" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
       <div>
@@ -551,23 +644,7 @@
     <div class="hero-stat-panel">
       <div class="hero-stat"><b data-count-to="10" data-suffix="">0</b><span>Years in the field</span></div>
       <div class="hero-stat"><b data-count-to="100" data-suffix="+">0</b><span>Properties cared for</span></div>
-      <div class="hero-stat"><b data-count-to="4" data-suffix="">0</b><span>Core materials</span></div>
-    </div>
-  </div>
-  <div class="marquee" role="region" aria-label="Groundwork services">
-    <div class="marquee-track">
-      <div class="marquee-group">
-        <span class="marquee-item">Design + build</span>
-        <span class="marquee-item">Install + repair</span>
-        <span class="marquee-item">Seasonal maintenance</span>
-        <span class="marquee-item">Longmont + Boulder County</span>
-      </div>
-      <div class="marquee-group" aria-hidden="true">
-        <span class="marquee-item">Design + build</span>
-        <span class="marquee-item">Install + repair</span>
-        <span class="marquee-item">Seasonal maintenance</span>
-        <span class="marquee-item">Longmont + Boulder County</span>
-      </div>
+      <div class="hero-stat"><b class="hero-stat-word">Free</b><span>On-site estimates</span></div>
     </div>
   </div>
 </section>
@@ -678,7 +755,7 @@
 </div>
           <div class="preview-content">
             <h3>Vertical Flagstone Monolith</h3>
-            <p class="preview-tag">Hardscaping</p>
+            <span class="preview-tag">Hardscaping</span>
             <p>Upright red sandstone monoliths in a dual-gravel xeriscape with zero-mow maintenance.</p>
           </div>
           <div class="preview-meta">
@@ -695,7 +772,7 @@
 </div>
           <div class="preview-content">
             <h3>Flagstone Entry Refresh</h3>
-            <p class="preview-tag">Hardscaping</p>
+            <span class="preview-tag">Hardscaping</span>
             <p>Flagstone steps and curving path, fresh sod, and mulched planting beds with boulder accents.</p>
           </div>
           <div class="preview-meta">
@@ -712,7 +789,7 @@
 </div>
           <div class="preview-content">
             <h3>Six-Foot Privacy Fence</h3>
-            <p class="preview-tag">Fencing</p>
+            <span class="preview-tag">Fencing</span>
             <p>A clean backyard boundary with a matching gate in Lakewood, Colorado.</p>
           </div>
           <div class="preview-meta">
@@ -729,7 +806,7 @@
 </div>
           <div class="preview-content">
             <h3>Custom Cedar Property-Line Fence</h3>
-            <p class="preview-tag">Fencing</p>
+            <span class="preview-tag">Fencing</span>
             <p>Western red cedar privacy fence with cap rail and custom gate, set to hold its line.</p>
           </div>
           <div class="preview-meta">
@@ -807,12 +884,16 @@
       var isOpen = navPanel.classList.toggle('open');
       navToggle.classList.toggle('open', isOpen);
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      navPanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     });
     navPanel.querySelectorAll('a').forEach(function(link){
       link.addEventListener('click', function(){
         navPanel.classList.remove('open');
         navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+        navPanel.setAttribute('aria-hidden', 'true');
       });
     });
   }
@@ -832,6 +913,35 @@
     revealTargets.forEach(function(el){ revealObserver.observe(el); });
   } else {
     revealTargets.forEach(function(el){ el.classList.add('reveal-visible'); });
+  }
+
+  // Rotate through real project photos in the hero.
+  var heroPhoto = document.getElementById('hero-photo');
+  var heroImages = [
+    '/img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden.webp',
+    '/img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence-800.webp',
+    '/img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp'
+  ];
+  if (heroPhoto && heroImages.length) {
+    var heroIndex = Math.floor(Math.random() * heroImages.length);
+    heroPhoto.style.backgroundImage = 'url("' + heroImages[heroIndex] + '")';
+    heroImages.forEach(function(src, index){
+      if (index !== heroIndex) {
+        var preload = new Image();
+        preload.src = src;
+      }
+    });
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.setInterval(function(){
+        var nextIndex = (heroIndex + 1) % heroImages.length;
+        heroPhoto.classList.add('is-changing');
+        window.setTimeout(function(){
+          heroIndex = nextIndex;
+          heroPhoto.style.backgroundImage = 'url("' + heroImages[heroIndex] + '")';
+          heroPhoto.classList.remove('is-changing');
+        }, 550);
+      }, 6500);
+    }
   }
 
   // Hero stat count-up
