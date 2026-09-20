@@ -7,4 +7,4 @@ Disallow: /check_links.py
 Disallow: /build.py
 Disallow: /dev.py
 
-Sitemap: https://groundworkoutdoor.co/sitemap.xml
+Sitemap: https://groundworkllc.netlify.app/sitemap.xml

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">Groundwork Landscaping mark</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 48h44" stroke="#C16A2E" stroke-width="5"/>
+    <path d="M10 37h34" stroke="#C16A2E" stroke-width="5"/>
+    <path d="M10 26h24" stroke="#E08A3E" stroke-width="5"/>
+    <path d="M43 12c7 1 11 6 10 13-7 0-11-4-10-13Z" stroke="#6E8367" stroke-width="4"/>
+    <path d="M43 25c0-5 2-9 6-13" stroke="#6E8367" stroke-width="3"/>
+  </g>
+</svg>

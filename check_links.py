@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-check_links.py - static link & image checker for the Groundwork Outdoor Co. site.
+check_links.py - static link & image checker for the Groundwork Landscaping site.
 
 Crawls every .html file in the repo (except dev-archive/ and hidden dirs) and
 verifies, entirely offline:

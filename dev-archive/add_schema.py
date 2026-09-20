@@ -28,7 +28,7 @@ def get_page_type(filepath):
 def generate_local_business_jsonld(page_url=None):
     """Generate LocalBusiness JSON-LD."""
     # Use the business homepage URL for @id and url
-    business_url = "https://groundworkoutdoor.co/"
+    business_url = "https://groundworkllc.netlify.app/"
     if page_url:
         # Use the page URL for the 'url' property, but keep @id as the business homepage
         url = page_url
@@ -40,8 +40,8 @@ def generate_local_business_jsonld(page_url=None):
         "@type": "LocalBusiness",
         "name": "Groundwork Outdoor Co.",
         "image": [
-            "https://groundworkoutdoor.co/img/logo.png",  # We'll need to check if this exists
-            "https://groundworkoutdoor.co/img/og-image.jpg"
+            "https://groundworkllc.netlify.app/img/logo.png",  # We'll need to check if this exists
+            "https://groundworkllc.netlify.app/img/og-image.jpg"
         ],
         "@id": business_url,
         "url": url,
@@ -151,7 +151,7 @@ def generate_blog_posting_jsonld(soup, page_url):
     
     # If no image found, use a default
     if not image_url:
-        image_url = "https://groundworkoutdoor.co/img/og-image.jpg"
+        image_url = "https://groundworkllc.netlify.app/img/og-image.jpg"
     
     # Try to get date from the page (if available)
     # We'll look for a time element or a date pattern
@@ -187,7 +187,7 @@ def generate_blog_posting_jsonld(soup, page_url):
             "name": "Groundwork Outdoor Co.",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://groundworkoutdoor.co/img/logo.png"
+                "url": "https://groundworkllc.netlify.app/img/logo.png"
             }
         },
         "url": page_url
@@ -236,7 +236,7 @@ def process_file(filepath):
     rel_path = os.path.relpath(filepath, BASE_DIR)
     # Convert to URL path
     url_path = '/' + rel_path.replace(os.sep, '/')
-    page_url = f"https://groundworkoutdoor.co{url_path}"
+    page_url = f"https://groundworkllc.netlify.app{url_path}"
     
     # Generate JSON-LD based on type
     if page_type == 'local_business':

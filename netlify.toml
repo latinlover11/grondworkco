@@ -2,5 +2,34 @@
   publish = "dist"
   command = "python3 build.py"
 
-[context.production.environment]
-  NODE_VERSION = "16"
+# Static assets are content-hashed by filename pattern (e.g. *-800.webp) or
+# change only on deploy, so returning visitors can cache them hard. HTML
+# always revalidates so deploys propagate immediately.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/site.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/site.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Basic security hardening, applied site-wide.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
