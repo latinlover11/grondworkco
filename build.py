@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build the static Groundwork site into dist/."""
 from pathlib import Path
+import os
 import datetime
 import re
 import shutil
@@ -10,7 +11,7 @@ STYLE_RE = re.compile(r"<style(?:\s[^>]*)?>([\s\S]*?)</style>", re.IGNORECASE)
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
 SKIP_DIRS = {".git", "dev-archive", "__pycache__", "dist", "docs"}
-COPY_FILES = {"site.css", "site.js", "sitemap.xml", "robots.txt"}
+COPY_FILES = {"site.css", "site.js", "sitemap.xml", "robots.txt", "favicon.ico"}
 COPY_DIRS = {"fonts"}
 
 # Print PDFs regenerated from their HTML sources on every build.
@@ -83,6 +84,22 @@ ASSET_TAGS = '''<link rel="stylesheet" href="/site.css?v=earthy-v2">
 <script defer src="/site.js"></script>'''
 FONT_TAGS = '''<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/work-sans-var.woff2" as="font" type="font/woff2" crossorigin>'''
+ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">'''
+
+# Cloudflare Web Analytics: cookieless, aggregate page counts only.
+# Set the token from the Cloudflare dashboard (Web Analytics -> Add a site -> JS install):
+#   CF_ANALYTICS_TOKEN=your_token python3 build.py
+# While the token is unset nothing is injected, so no third-party request is made.
+# NOTE: when this goes live, privacy.html's "Cookies and analytics" section must be
+# updated in the same change - it currently states no analytics platform is in use.
+ANALYTICS_TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
+ANALYTICS_TAGS = (
+    "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
+    "data-cf-beacon='{\"token\": \"" + ANALYTICS_TOKEN + "\"}'></script>"
+) if ANALYTICS_TOKEN else ""
 
 
 def minify_css(css: str) -> str:
@@ -175,6 +192,9 @@ def build_html(source: Path, target: Path) -> None:
     content = re.sub(r'<link[^>]*https://fonts[.]g(?:oogleapis|static)[.]com[^>]*/?>\s*', "", content)
     content = inject_twitter_card(content)
     content = content.replace("</head>", FONT_TAGS + "\n</head>", 1)
+    content = content.replace("</head>", ICON_TAGS + "\n</head>", 1)
+    if ANALYTICS_TAGS:
+        content = content.replace("</head>", ANALYTICS_TAGS + "\n</head>", 1)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
 

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Groundwork Landscaping">
+  <rect width="64" height="64" rx="14" fill="#FDFBF7"/>
+  <circle cx="32" cy="32" r="26" fill="#C87955"/>
+  <path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#3B2A22"/>
+  <path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#78836B"/>
+</svg>

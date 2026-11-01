@@ -4,3 +4,7 @@ dist/
 # Python bytecode
 __pycache__/
 *.pyc
+.freebuff/
+*.backup
+screenshot-*.png
+/*.png
