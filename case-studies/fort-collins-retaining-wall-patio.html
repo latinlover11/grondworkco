@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curved Block Retaining Wall &amp; Concrete Terrace Case Study — Groundwork Landscaping</title>
+<meta name="description" content="How Groundwork Landscaping rebuilt a Fort Collins front bed with a curved segmental block retaining wall, a poured concrete terrace, and planted rock beds over a four-day build.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:9px 18px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  /* Case Hero */
+  .case-hero{
+    padding:40px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-hero-eyebrow{
+    color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px;
+  }
+  .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .case-hero h1{
+    font-size:clamp(32px, 4.5vw, 54px);
+    line-height:1.08;
+    max-width:18ch;
+    margin-bottom:20px;
+  }
+  .case-meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px; margin-top:32px;
+  }
+  .meta-card{
+    background:var(--bg-panel); border:1px solid var(--line);
+    padding:16px 20px; border-radius:var(--radius);
+  }
+  .meta-card label{font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
+  .meta-card value{font-size:15px; font-weight:600; color:var(--ember-bright);}
+
+  /* Story Layout */
+  .story-layout{
+    display:grid; grid-template-columns:1fr 340px; gap:56px;
+    padding:64px 0;
+  }
+  .story-main{display:flex; flex-direction:column; gap:40px;}
+
+  .story-section h2{
+    font-size:26px; margin-bottom:14px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  .story-section h2 span{
+    font-size:14px; font-family:'Work Sans', sans-serif;
+    padding:3px 10px; border-radius:3px; text-transform:uppercase; font-weight:600;
+  }
+  .pill-problem{background:rgba(224, 138, 62, 0.15); color:#E08A3E; border:1px solid rgba(224, 138, 62, 0.3);}
+  .pill-design{background:rgba(110, 131, 103, 0.15); color:var(--moss); border:1px solid rgba(110, 131, 103, 0.3);}
+  .pill-result{background:rgba(193, 106, 46, 0.2); color:var(--ember-bright); border:1px solid rgba(193, 106, 46, 0.4);}
+
+  .story-section p{color:var(--ink-muted); font-size:16px; line-height:1.65; margin-bottom:14px;}
+
+  .bullet-list{list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:12px;}
+  .bullet-list li{
+    background:var(--bg-panel); border:1px solid var(--line); padding:16px 20px;
+    border-radius:var(--radius); color:var(--ink); font-size:15px; line-height:1.5;
+    border-left:3px solid var(--moss);
+  }
+  .bullet-list li strong{color:var(--ember-bright);}
+
+  /* Photo Showcase Gallery Grid */
+  .photo-grid-section{
+    padding:40px 0 64px; border-top:1px solid var(--line);
+  }
+  .photo-grid-section h2{font-size:28px; margin-bottom:24px;}
+  .case-gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+  }
+  .gallery-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .gallery-card:hover{
+    transform:translateY(-3px); border-color:var(--ember-bright);
+  }
+  .gallery-card img{width:100%; height:220px; object-fit:cover;}
+  .gallery-card .caption{padding:14px 18px; font-size:13.5px; color:var(--ink-muted); background:var(--bg-panel-alt);}
+
+  /* Sidebar CTA */
+  .story-sidebar{
+    display:flex; flex-direction:column; gap:24px; position:sticky; top:96px; height:fit-content;
+  }
+  .cta-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; border-top:3px solid var(--ember);
+  }
+  .cta-box h3{font-size:22px; margin-bottom:12px;}
+  .cta-box p{color:var(--ink-muted); font-size:14px; margin-bottom:20px;}
+  .btn-sidebar{
+    background:var(--ember); color:#16130E; text-align:center; padding:14px 20px;
+    border-radius:var(--radius); font-weight:600; font-size:15px; display:block;
+    transition:background 0.2s ease;
+  }
+  .btn-sidebar:hover{background:var(--ember-bright);}
+
+  /* Lightbox */
+  .lightbox-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 13, 0.94); backdrop-filter: blur(12px);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 32px;
+  }
+  .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+  .lightbox-content {
+    max-width: 1100px; max-height: 90vh; position: relative;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .lightbox-content img {
+    max-width: 100%; max-height: 80vh; object-fit: contain;
+    border-radius: 4px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  }
+  .lightbox-caption { margin-top: 14px; color: var(--ink); font-size: 15px; text-align: center; font-family: 'Fraunces', serif; }
+  .lightbox-close {
+    position: absolute; top: -40px; right: 0; background: none; border: none;
+    color: var(--ink-muted); font-size: 28px; cursor: pointer; transition: color 0.2s ease;
+  }
+  .lightbox-close:hover { color: var(--ink); }
+
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:40px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--ink-muted);}
+
+  @media (max-width:860px){
+    .story-layout{grid-template-columns:1fr; gap:40px;}
+    .story-sidebar{position:static;}
+  }
+</style>
+    <link rel="canonical" href="https://groundworkllc.netlify.app/case-studies/fort-collins-retaining-wall-patio.html">
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/index.html" class="brand">Groundwork <span>Landscaping</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html">Our Work</a></li>
+      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="/index.html">Home</a> &rsaquo; <a href="/work.html#case-studies">Case Studies</a> &rsaquo; <span>Front Yard Retaining Wall &amp; Terrace</span>
+  </div>
+
+  <section class="case-hero">
+    <div class="case-hero-eyebrow">Hardscaping &amp; Retaining Walls</div>
+    <h1>Curved Block Retaining Wall, Concrete Terrace &amp; Front Bed Rebuild</h1>
+    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">How we tore out a trampled bed against the foundation, built a curved segmental block wall on a compacted gravel base, poured a concrete terrace, and planted out the new bed — four days, one front yard.</p>
+    <figure class="case-hero-media"><img src="/img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed curved tan block retaining wall holding a rebuilt front bed in Fort Collins, Colorado" width="1200" height="800" fetchpriority="high" decoding="async"><figcaption>Completed curved block wall and rebuilt front bed · Fort Collins, Colorado</figcaption></figure>
+
+    <div class="case-meta-grid">
+      <div class="meta-card"><label>Location</label><value>Fort Collins, CO</value></div>
+      <div class="meta-card"><label>Hardscape</label><value>Segmental Block Wall</value></div>
+      <div class="meta-card"><label>Scope</label><value>Wall, Terrace &amp; Planted Beds</value></div>
+      <div class="meta-card"><label>Timeline</label><value>4-Day Build</value></div>
+    </div>
+  </section>
+
+  <div class="story-layout">
+    <div class="story-main">
+
+      <div class="story-section">
+        <h2><span class="pill-problem">The Problem</span> A Dead Strip Against the House</h2>
+        <p>The front of this ranch had a narrow, compacted bed that had gone bare: trampled soil, weed pressure, and no grade control, so runoff from the roof and lawn washed straight across it. The bed sat on a slight fall, with nothing holding the soil where the planting was supposed to be. There was no usable outdoor space at the entry, just a concrete stoop and a mud strip.</p>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-design">Design &amp; Build</span> Step-by-Step Execution</h2>
+        <p>We rebuilt the whole frontage as one system — retaining wall, terrace, and planting bed — over four working days:</p>
+        <ul class="bullet-list">
+          <li><strong>1. Strip &amp; Grade:</strong> Removed the dead turf and spent bed soil, then graded the subgrade and set string lines to hold a consistent wall line and positive drainage away from the foundation.</li>
+          <li><strong>2. Compactor &amp; Gravel Base:</strong> Compacted a classified gravel base for the wall footprint, then hand-set the first course of segmental block dead level — the step that decides whether the whole wall stays true.</li>
+          <li><strong>3. Curved Wall Build:</strong> Carried the courses around a sweeping curve, cutting blocks at the radius and stepping the cap course to follow the grade.</li>
+          <li><strong>4. Concrete Terrace:</strong> Formed and poured the concrete terrace behind the wall over a vapor barrier, screeded to fall away from the door and finished with control joints.</li>
+          <li><strong>5. Planted Bed:</strong> Backfilled the retained bed with amended soil, set boulders for structure, then planted ornamental grasses, shrubs, and perennials with a rock mulch finish.</li>
+        </ul>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-result">The Result</span> Structure, Then Planting</h2>
+        <p>The bed is now held where it belongs, the entry has a real terrace instead of a stoop, and the front of the house finally has a line that reads from the street. The wall does the structural work; the planting sits on top of it instead of sliding off.</p>
+      </div>
+
+      <div class="story-section">
+        <h2>Photo Notes</h2>
+        <p>The process photos below are from the actual build (22–25 September). The wall and terrace are finished in the last frames; the closing image is a planting concept showing how the finished bed reads once the plantings fill in, not a photograph of the property.</p>
+      </div>
+
+    </div>
+
+    <aside class="story-sidebar">
+      <div class="cta-box">
+        <h3>Need a retaining wall that holds?</h3>
+        <p>Walls fail at the base. We build on compacted gravel, set the first course level, and grade the bed to drain away from your foundation.</p>
+        <a href="/contact.html" class="btn-sidebar">Get a Free Estimate</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="photo-grid-section">
+    <h2>Project Photo Gallery</h2>
+    <p style="color:var(--ink-muted); margin-bottom:24px;">Click any photo to view full resolution.</p>
+
+    <div class="case-gallery-grid">
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition.webp', 'Before: Compacted Bare Bed Along the Foundation')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Before view of bare compacted front bed and lawn">
+        <div class="caption">⚠ <strong>Before:</strong> Bare, compacted bed along the foundation with no grade control.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed.webp', 'Bed Stripped and Graded to String Lines')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Front bed stripped to soil with string lines set on stakes">
+        <div class="caption">📐 <strong>Strip &amp; Grade:</strong> Bed stripped to subgrade and cut to string lines.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base.webp', 'First Block Course on Compacted Gravel Base')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Segmental block edging laid on a compacted gravel base">
+        <div class="caption">🧱 <strong>Wall Base:</strong> First course set dead level on compacted gravel.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour.webp', 'Concrete Terrace Poured Over Vapour Barrier')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Fresh concrete terrace slab with vapor barrier beside block wall">
+        <div class="caption">🚧 <strong>Terrace Pour:</strong> Concrete screeded to fall away from the door.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build.webp', 'Wall Courses Carried Around the Terrace')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Crew building curved block retaining wall beside fresh slab">
+        <div class="caption">🔨 <strong>Wall Build:</strong> Courses carried around the curve as the slab cures.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp', 'Completed Curved Retaining Wall and Rebuilt Bed')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed curved block wall retaining a bare soil bed">
+        <div class="caption">✓ <strong>Completed Wall:</strong> Cap course stepped to follow the grade, bed backfilled.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/7-completed-wall-rain.webp', 'Finished Wall Line Seen From the Lawn')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/7-completed-wall-rain.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/7-completed-wall-rain-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/7-completed-wall-rain.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Finished curved retaining wall viewed from the lawn in rain">
+        <div class="caption">✓ <strong>Street View:</strong> The wall line reads cleanly from the sidewalk.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fort-collins-retaining-wall-patio/8-concept-planted-out-result.webp', 'Planting Concept — How the Finished Bed Reads')">
+         <img src="/img/case-studies/fort-collins-retaining-wall-patio/8-concept-planted-out-result.webp" srcset="/img/case-studies/fort-collins-retaining-wall-patio/8-concept-planted-out-result-800.webp 800w, /img/case-studies/fort-collins-retaining-wall-patio/8-concept-planted-out-result.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Concept rendering of the planted-out front bed with grasses, boulders and perennials">
+        <div class="caption">🌿 <strong>Planting Concept:</strong> Grasses, boulders and perennials filling the new bed (rendering, not a photo).</div>
+      </div>
+    </div>
+  </section>
+  <section class="case-study-cta" aria-labelledby="case-study-cta">
+    <h2 id="case-study-cta">Want a bed that stays put?</h2>
+    <p>Tell us about the grade and drainage at your frontage and we’ll scope the wall, terrace, and planting as one build.</p>
+    <a href="/contact.html?service=hardscaping" class="btn-sidebar">Request a Similar Project</a>
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Groundwork Landscaping</div>
+    <div>Licensed &amp; insured · Longmont, CO</div>
+  </div>
+</footer>
+
+<script>
+function openLightbox(imgSrc, caption) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalCaption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-close'))) {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});
+</script>
+</body>
+</html>

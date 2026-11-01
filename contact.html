@@ -306,6 +306,7 @@
       <form action="https://formspree.io/f/mjyvregb" method="POST" aria-describedby="form-error" class="contact-form">
         <input type="hidden" name="_subject" value="Quote request — Groundwork Landscaping">
         <input type="hidden" name="_next" value="https://groundworkllc.netlify.app/thank-you.html">
+        <input type="hidden" id="source" name="source" value="">
         <div class="form-error" id="form-error" role="alert" hidden></div>
         <div class="form-row">
           <label for="name">Name</label>
@@ -327,6 +328,8 @@
             <option value="fencing">Fencing</option>
             <option value="lawn-care">Lawn maintenance</option>
             <option value="xeriscaping">Xeriscaping</option>
+            <option value="fall-cleanup">Fall cleanup &amp; lawn work</option>
+            <option value="winter-prep">Winterizing (blowout, gutters) / snow</option>
             <option value="other">Not sure yet / other</option>
           </select>
         </div>
@@ -349,6 +352,35 @@
             <option value="over-30000">$30,000+</option>
             <option value="not-sure">Not sure yet</option>
           </select>
+        </div>
+        <div class="form-row">
+          <label for="how-heard">How did you hear about us?</label>
+          <select id="how-heard" name="how_heard">
+            <option value="">Prefer not to say</option>
+            <option value="google">Google search / Maps</option>
+            <option value="nextdoor">Nextdoor</option>
+            <option value="facebook">Facebook</option>
+            <option value="neighbor">Neighbor / referral</option>
+            <option value="flyer">Door hanger / flyer</option>
+            <option value="yard-sign">Yard sign</option>
+            <option value="saw-work">Saw your truck / crew in my area</option>
+            <option value="past-client">I've hired you before</option>
+            <option value="other">Other</option>
+          </select>
+          <input type="text" id="how-heard-other" name="how_heard_other" placeholder="Tell us where you heard about us" style="margin-top:8px;display:none;">
+          <script>
+            (function () {
+              var select = document.getElementById('how-heard');
+              var other = document.getElementById('how-heard-other');
+              function sync() {
+                var show = select.value === 'other';
+                other.style.display = show ? '' : 'none';
+                if (!show) other.value = '';
+              }
+              select.addEventListener('change', sync);
+              sync();
+            })();
+          </script>
         </div>
         <div class="form-row">
           <label for="message">Project details (optional)</label>
@@ -389,6 +421,11 @@
     var requestedService = new URLSearchParams(window.location.search).get('service');
     var serviceSelect = document.getElementById('service');
     if (requestedService && serviceSelect) serviceSelect.value = requestedService;
+
+    // Record which marketing channel sent the visitor (e.g. ?src=nextdoor).
+    var requestedSource = new URLSearchParams(window.location.search).get('src');
+    var sourceInput = document.getElementById('source');
+    if (requestedSource && sourceInput && /^[a-z0-9-]{1,40}$/i.test(requestedSource)) sourceInput.value = requestedSource;
 
     // Mobile nav toggle
     var navToggle = document.getElementById('nav-toggle');

@@ -6,6 +6,17 @@
     if (!form || !service) return;
 
     var params = new URLSearchParams(window.location.search);
+
+    // Record where the lead came from: ?src=nextdoor, ?utm_source=gbp, etc.
+    var sourceField = document.getElementById('source');
+    if (sourceField) {
+      var src = params.get('src') || params.get('utm_source') || '';
+      var campaign = params.get('utm_campaign') || params.get('utm_medium') || '';
+      var page = window.location.pathname.replace(/^\//, '') || 'index.html';
+      var label = [src, campaign].filter(Boolean).join(' / ');
+      sourceField.value = label ? label + ' -> ' + page : 'direct -> ' + page;
+    }
+
     var requestedService = params.get('service');
     var serviceAliases = {
       hardscape: 'hardscaping',
@@ -115,6 +126,8 @@
       '    <button type="button" class="chip" data-value="fencing" aria-pressed="false">Fencing</button>' +
       '    <button type="button" class="chip" data-value="lawn-care" aria-pressed="false">Lawn care</button>' +
       '    <button type="button" class="chip" data-value="xeriscaping" aria-pressed="false">Xeriscape</button>' +
+      '    <button type="button" class="chip" data-value="fall-cleanup" aria-pressed="false">Fall cleanup</button>' +
+      '    <button type="button" class="chip" data-value="winter-prep" aria-pressed="false">Winterize / snow</button>' +
       '  </div>' +
       '  <form action="https://formspree.io/f/mjyvregb" method="POST">' +
       '    <input type="hidden" name="_subject" value="Quick quote — Groundwork Landscaping">' +

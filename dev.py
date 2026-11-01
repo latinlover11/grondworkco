@@ -16,7 +16,22 @@ PORT = 8000
 
 subprocess.run([sys.executable, str(ROOT / "build.py")], check=True)
 os.chdir(DIST)
-server = ThreadingHTTPServer(("127.0.0.1", PORT), SimpleHTTPRequestHandler)
+
+
+class NoCacheHandler(SimpleHTTPRequestHandler):
+    """Serve rebuilt files, never a cached copy.
+
+    SimpleHTTPRequestHandler answers with Last-Modified and no Cache-Control,
+    so browsers may reuse a stale page after build.py rewrites dist/.
+    """
+
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store, max-age=0")
+        self.send_header("Pragma", "no-cache")
+        super().end_headers()
+
+
+server = ThreadingHTTPServer(("127.0.0.1", PORT), NoCacheHandler)
 print(f"Serving {DIST} at http://127.0.0.1:{PORT}")
 try:
     server.serve_forever()

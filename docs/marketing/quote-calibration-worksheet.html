@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Groundwork — Quote Calibration Worksheet</title>
+<style>
+  @page { size: letter; margin: 0.35in; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html, body{
+    font-family: 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
+    color:#2E2B26;
+    font-size: 9pt;
+    line-height: 1.35;
+  }
+  .page{ width: 100%; }
+  h1{
+    font-family:'Fraunces', Georgia, serif;
+    font-size: 17pt;
+    font-weight: 600;
+    color:#241F1B;
+  }
+  h1 span{ color:#C16A2E; font-style: italic; font-weight: 500; font-size: 13pt; }
+  .meta{
+    display:flex; justify-content: space-between;
+    font-size: 8pt;
+    color:#8a857c;
+    margin-top: 2pt;
+  }
+  .rule{ border:none; border-top:2pt solid #C16A2E; margin:6pt 0 10pt 0; }
+  h2{
+    font-family:'Fraunces', Georgia, serif;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color:#241F1B;
+    margin: 0 0 5pt 0;
+  }
+  h2 .num{
+    display:inline-block;
+    background:#C16A2E; color:#FDFBF7;
+    font-family:'Work Sans', sans-serif;
+    font-size: 9pt; font-weight: 700;
+    padding: 1pt 6pt; margin-right: 5pt;
+  }
+  section{ margin-bottom: 10pt; }
+  .cols{ display:flex; gap: 14pt; }
+  .col{ flex:1; }
+
+  /* Field grid */
+  .grid{ display:flex; flex-wrap: wrap; gap: 5pt 10pt; }
+  .field{ flex: 1 1 22%; min-width: 120pt; }
+  .field label{
+    display:block; font-size: 7.5pt; text-transform: uppercase;
+    letter-spacing: 0.05em; color:#6d6a62; margin-bottom: 1pt;
+  }
+  .field .line, .blank{
+    border-bottom: 1pt solid #b9b1a2;
+    min-height: 13pt;
+  }
+  .field.choice label{ text-transform:none; letter-spacing:0; font-size:8.5pt; color:#2E2B26; }
+  .choices{ display:flex; gap: 10pt; font-size:8.5pt; color:#4A463F; }
+  .box{ display:inline-block; width: 9pt; height: 9pt; border: 1pt solid #b9b1a2; margin-right: 3pt; vertical-align: -1pt; }
+
+  /* Timing table */
+  table{ width:100%; border-collapse: collapse; }
+  th{
+    font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.05em;
+    color:#6d6a62; text-align:left; padding: 2pt 4pt;
+    border-bottom: 1pt solid #b9b1a2;
+  }
+  td{ padding: 3.5pt 4pt; border-bottom: 0.5pt solid #e4dcce; }
+  td.fill{ border-bottom: 1pt solid #b9b1a2; }
+  .sum-row td{ border-bottom:2pt solid #C16A2E; font-weight:700; }
+
+  /* Math section */
+  .calc{ width:100%; border-collapse: collapse; }
+  .calc td{ padding: 3.5pt 4pt; border-bottom: 0.5pt solid #e4dcce; vertical-align: bottom;}
+  .calc .desc{ color:#4A463F; }
+  .calc .formula{ font-family:'Work Sans', sans-serif; color:#8a857c; font-size:8pt;}
+  .calc .amt{ width: 110pt; border-bottom: 1pt solid #b9b1a2; }
+  .calc tr.total td{
+    border-top: 2pt solid #C16A2E; border-bottom: none;
+    font-weight: 700; font-size: 10.5pt; color:#241F1B;
+    padding-top: 5pt;
+  }
+  .calc tr.total td.amt{ border-bottom: 1.5pt solid #241F1B; }
+
+  .note{
+    background:#FFF; border-left: 3pt solid #6E8367;
+    padding: 5pt 8pt; font-size: 8pt; color:#4A463F; margin-top: 6pt;
+  }
+  .note b{ color:#241F1B; }
+
+  /* Log table small */
+  .log td{ padding: 4pt 4pt; }
+  ul.tight{ margin-left: 12pt; font-size: 8pt; color:#4A463F; }
+  ul.tight li{ margin-bottom: 2.5pt; }
+  ul.tight li b{ color:#241F1B; }
+  .foot{
+    margin-top: 8pt; border-top: 1pt solid #e4dcce; padding-top: 5pt;
+    display:flex; justify-content: space-between;
+    font-size: 7.5pt; color:#8a857c;
+  }
+  .notesbox{ margin-top: 10pt; }
+  .notesbox .nl{ border-bottom: 0.5pt solid #e4dcce; min-height: 14pt; margin-bottom: 3pt; }
+  .notesbox h2{ margin-bottom: 3pt; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Quote Calibration <span>— practice-run worksheet</span></h1>
+  <div class="meta">
+    <span>Groundwork Landscaping · fall reset &amp; winterize · internal only — never shown to a customer</span>
+    <span>Yard: __________________  Date: ____________</span>
+  </div>
+  <hr class="rule">
+
+  <div class="cols">
+    <div class="col">
+      <section>
+        <h2><span class="num">1</span>Survey the yard (5 min, before you start)</h2>
+        <div class="grid">
+          <div class="field"><label>Turf sq ft</label><div class="line"></div></div>
+          <div class="field"><label>Beds sq ft</label><div class="line"></div></div>
+          <div class="field"><label>Trees (count)</label><div class="line"></div></div>
+          <div class="field"><label>Shrubs to trim</label><div class="line"></div></div>
+          <div class="field choice"><label style="text-transform:none;letter-spacing:0;font-size:8.5pt;color:#2E2B26">Leaf depth</label>
+            <div class="choices"><span><span class="box"></span>light</span><span><span class="box"></span>medium</span><span><span class="box"></span>deep</span></div>
+          </div>
+          <div class="field"><label>Sprinkler zones</label><div class="line"></div></div>
+          <div class="field"><label>Backflow type</label><div class="line"></div></div>
+          <div class="field choice"><label style="text-transform:none;letter-spacing:0;font-size:8.5pt;color:#2E2B26">Gate access</label>
+            <div class="choices"><span><span class="box"></span>easy</span><span><span class="box"></span>tight</span></div>
+          </div>
+          <div class="field"><label>Miles to dump</label><div class="line"></div></div>
+          <div class="field"><label>Dump fee / load</label><div class="line"></div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="num">2</span>Time the work — stopwatch, every phase</h2>
+        <table>
+          <tr><th style="width:45%">Phase</th><th>Start</th><th>Stop</th><th style="width:14%">Min</th></tr>
+          <tr><td>Unload / set up</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td>Leaf &amp; debris removal</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td>Final mow / edging</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td>Bed re-edging &amp; trimming</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td>Sprinkler blowout</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td>Walk-over walkthrough + photos</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td>Loadout / haul</td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr class="sum-row"><td>TOTAL MINUTES</td><td></td><td></td><td class="fill"></td></tr>
+        </table>
+        <div class="note"><b>Blowout:</b> time <i>per zone set</i>, not the compressor warm-up. The number that matters is minutes-on-property ÷ zones → your per-zone pace.</div>
+      </section>
+
+      <section class="notesbox">
+        <h2><span class="num">✎</span>This yard's surprises (stuff you'd double next time)</h2>
+        <div class="nl"></div>
+        <div class="nl"></div>
+        <div class="nl"></div>
+        <div class="nl"></div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section>
+        <h2><span class="num">3</span>Turn minutes into a number</h2>
+        <table class="calc">
+          <tr>
+            <td class="desc">Labor hours<br><span class="formula">total min ÷ 60</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">Target $/hr<br><span class="formula">daily goal $ ______ ÷ productive hrs ______ (fill once, reuse all season)</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">A · Labor $<br><span class="formula">hours × rate</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">B · Haul $<br><span class="formula">loads ______ × (dump fee + round-trip drive min ______ × rate/60)</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">C · Gear/fuel $<br><span class="formula">flat per trick — fill once: $ ______ per visit</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">D · Friction +10–20%<br><span class="formula">tight gate, street parking, heavy leaf, dogs/cats/kids</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">Subtotal (A+B+C+D)</td>
+            <td class="amt"></td>
+          </tr>
+          <tr>
+            <td class="desc">Margin +15%<br><span class="formula">subtotal × 0.15</span></td>
+            <td class="amt"></td>
+          </tr>
+          <tr class="total">
+            <td class="desc">YOUR QUOTE — round to nearest $25</td>
+            <td class="amt"></td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <h2><span class="num">4</span>Rules that keep quotes consistent</h2>
+        <ul class="tight">
+          <li><b>Same formula every yard.</b> Never "it looked medium, so $X." If you can't fill rows 1–3 on this sheet, you're not quoting, you're guessing.</li>
+          <li><b>Round to $25.</b> Odd numbers read like math; round ones read like trust.</li>
+          <li><b>Never go below your floor rate.</b> Your rate ÷ hour is written once in Row 2 — if a yard works out below it after friction, the price is the price.</li>
+          <li><b>Quote separate line items only when asked:</b> cleanup, blowout, and hauling are one job until the customer splits them.</li>
+          <li><b>Practice-run quotes don't go out.</b> This first sheet calibrates you — send nothing until 2 practice runs land within 10% of each other for similar yards.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="num">5</span>After the job — close the loop</h2>
+        <table class="log">
+          <tr><th style="width:20%">Date</th><th>Yard / area</th><th style="width:16%">Quoted</th><th style="width:20%">Actual hrs</th><th style="width:18%">Δ</th></tr>
+          <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+          <tr><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        </table>
+        <div class="note"><b>If actual hours run &gt;20% over the quote</b> two yards in a row, your friction or rate is too low — raise the next like-sized quote by the overshoot. This log is how a series of hedges becomes a real rate card.</div>
+      </section>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Internal · Groundwork Landscaping · pair with docs/marketing/fall-reset-campaign.md</span>
+    <span>One sheet per yard · two practice runs = calibrated</span>
+  </div>
+
+</div>
+</body>
+</html>

@@ -9,14 +9,30 @@ import subprocess
 STYLE_RE = re.compile(r"<style(?:\s[^>]*)?>([\s\S]*?)</style>", re.IGNORECASE)
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
-SKIP_DIRS = {".git", "dev-archive", "__pycache__", "dist"}
+SKIP_DIRS = {".git", "dev-archive", "__pycache__", "dist", "docs"}
 COPY_FILES = {"site.css", "site.js", "sitemap.xml", "robots.txt"}
 COPY_DIRS = {"fonts"}
+
+# Print PDFs regenerated from their HTML sources on every build.
+PDF_JOBS = [
+    (ROOT / "docs/marketing/flyer-door-hanger.html",
+     ROOT / "docs/marketing/flyer-door-hanger.pdf"),
+    (ROOT / "docs/marketing/flyer-fall-cleanup.html",
+     ROOT / "docs/marketing/flyer-fall-cleanup.pdf"),
+    (ROOT / "docs/marketing/realtor-counter-card.html",
+     ROOT / "docs/marketing/realtor-counter-card.pdf"),
+    (ROOT / "docs/marketing/quote-calibration-worksheet.html",
+     ROOT / "docs/marketing/quote-calibration-worksheet.pdf"),
+    (ROOT / "docs/marketing/quote-calibration-worksheet-example.html",
+     ROOT / "docs/marketing/quote-calibration-worksheet-example.pdf"),
+]
 
 HEADER = '''<header>
   <nav class="nav">
     <a href="/index.html" class="brand" style="color:inherit;text-decoration:none"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="25" fill="#C87955"/><path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#3B2A22"/><path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#78836B"/><path d="M34 29c1.8-5.2 5.2-9.2 9.6-12.2" fill="none" stroke="#FFF9F0" stroke-width="2.3" stroke-linecap="round"/></svg>Groundwork <span>Landscaping</span></a>
     <ul class="nav-links">
+      <!-- Seasonal: remove the Fall cleanup item after the campaign ends. -->
+      <li><a href="/fall-cleanup-longmont.html">Fall cleanup</a></li>
       <li><a href="/index.html#services">Services</a></li>
       <li><a href="/work.html">Our Work</a></li>
       <li><a href="/about.html">About Us</a></li>
@@ -28,6 +44,7 @@ HEADER = '''<header>
     </button>
   </nav>
   <div class="nav-mobile-panel" id="nav-mobile-panel" aria-hidden="true">
+    <a href="/fall-cleanup-longmont.html">Fall cleanup</a>
     <a href="/index.html#services">Services</a>
     <a href="/work.html">Our Work</a>
     <a href="/about.html">About Us</a>
@@ -184,6 +201,43 @@ def build_sitemap() -> None:
     (DIST / "sitemap.xml").write_text(content, encoding="utf-8")
 
 
+def _run_pdf_writer() -> object:
+    """Return a callable(src, dst) that renders src.html to dst.pdf, or None."""
+    try:
+        from weasyprint import HTML
+        return lambda src, dst: HTML(str(src)).write_pdf(str(dst))
+    except ImportError:
+        pass
+    venv_python = Path("/tmp/pdfgen/bin/python")
+    if venv_python.exists():
+        code = "import sys; from weasyprint import HTML; HTML(sys.argv[1]).write_pdf(sys.argv[2])"
+        return lambda src, dst, _p=venv_python, _c=code: subprocess.run(
+            [str(_p), "-c", _c, str(src), str(dst)], check=True, capture_output=True
+        )
+    return None
+
+
+def build_pdfs() -> None:
+    """Regenerate marketing PDFs from their HTML sources; never break the site build."""
+    writer = _run_pdf_writer()
+    if writer is None:
+        print("PDF: weasyprint not installed and no /tmp/pdfgen venv found; PDFs left untouched")
+        return
+    for src, dst in PDF_JOBS:
+        if not src.exists():
+            print(f"PDF: source {src.name} missing; left {dst.name} untouched")
+            continue
+        try:
+            # Only re-render when the HTML is newer than the existing PDF.
+            if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
+                print(f"PDF: {dst.name} already up to date")
+                continue
+            writer(src, dst)
+            print(f"PDF: regenerated {dst.name}")
+        except Exception as exc:  # noqa: BLE001 - site build must not die on print output
+            print(f"PDF: FAILED to regenerate {dst.name}: {exc}")
+
+
 def main() -> None:
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -202,6 +256,7 @@ def main() -> None:
     site_css.write_text(minify_css(site_css.read_text(encoding="utf-8")) + "\n", encoding="utf-8")
     build_sitemap()
     print(f"Built {sum(1 for _ in DIST.rglob('*.html'))} HTML pages into {DIST}")
+    build_pdfs()
 
 
 if __name__ == "__main__":

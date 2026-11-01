@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downspout Drainage Channel &amp; Chain-Link Fence Case Study — Groundwork Landscaping</title>
+<meta name="description" content="How Groundwork Landscaping tied a rear downspout into a buried drain line, ran it out under a two-grade river-rock channel to the sidewalk, and closed the back corner with a chain-link fence in Lafayette, Colorado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:9px 18px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  /* Case Hero */
+  .case-hero{
+    padding:40px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-hero-eyebrow{
+    color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px;
+  }
+  .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .case-hero h1{
+    font-size:clamp(32px, 4.5vw, 54px);
+    line-height:1.08;
+    max-width:18ch;
+    margin-bottom:20px;
+  }
+  .case-meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px; margin-top:32px;
+  }
+  .meta-card{
+    background:var(--bg-panel); border:1px solid var(--line);
+    padding:16px 20px; border-radius:var(--radius);
+  }
+  .meta-card label{font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
+  .meta-card value{font-size:15px; font-weight:600; color:var(--ember-bright);}
+
+  /* Story Layout */
+  .story-layout{
+    display:grid; grid-template-columns:1fr 340px; gap:56px;
+    padding:64px 0;
+  }
+  .story-main{display:flex; flex-direction:column; gap:40px;}
+
+  .story-section h2{
+    font-size:26px; margin-bottom:14px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  .story-section h2 span{
+    font-size:14px; font-family:'Work Sans', sans-serif;
+    padding:3px 10px; border-radius:3px; text-transform:uppercase; font-weight:600;
+  }
+  .pill-problem{background:rgba(224, 138, 62, 0.15); color:#E08A3E; border:1px solid rgba(224, 138, 62, 0.3);}
+  .pill-design{background:rgba(110, 131, 103, 0.15); color:var(--moss); border:1px solid rgba(110, 131, 103, 0.3);}
+  .pill-result{background:rgba(193, 106, 46, 0.2); color:var(--ember-bright); border:1px solid rgba(193, 106, 46, 0.4);}
+
+  .story-section p{color:var(--ink-muted); font-size:16px; line-height:1.65; margin-bottom:14px;}
+
+  .bullet-list{list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:12px;}
+  .bullet-list li{
+    background:var(--bg-panel); border:1px solid var(--line); padding:16px 20px;
+    border-radius:var(--radius); color:var(--ink); font-size:15px; line-height:1.5;
+    border-left:3px solid var(--moss);
+  }
+  .bullet-list li strong{color:var(--ember-bright);}
+
+  /* Photo Showcase Gallery Grid */
+  .photo-grid-section{
+    padding:40px 0 64px; border-top:1px solid var(--line);
+  }
+  .photo-grid-section h2{font-size:28px; margin-bottom:24px;}
+  .case-gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+  }
+  .gallery-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .gallery-card:hover{
+    transform:translateY(-3px); border-color:var(--ember-bright);
+  }
+  .gallery-card img{width:100%; height:220px; object-fit:cover;}
+  .gallery-card .caption{padding:14px 18px; font-size:13.5px; color:var(--ink-muted); background:var(--bg-panel-alt);}
+
+  /* Sidebar CTA */
+  .story-sidebar{
+    display:flex; flex-direction:column; gap:24px; position:sticky; top:96px; height:fit-content;
+  }
+  .cta-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; border-top:3px solid var(--ember);
+  }
+  .cta-box h3{font-size:22px; margin-bottom:12px;}
+  .cta-box p{color:var(--ink-muted); font-size:14px; margin-bottom:20px;}
+  .btn-sidebar{
+    background:var(--ember); color:#16130E; text-align:center; padding:14px 20px;
+    border-radius:var(--radius); font-weight:600; font-size:15px; display:block;
+    transition:background 0.2s ease;
+  }
+  .btn-sidebar:hover{background:var(--ember-bright);}
+
+  /* Lightbox */
+  .lightbox-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 13, 0.94); backdrop-filter: blur(12px);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 32px;
+  }
+  .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+  .lightbox-content {
+    max-width: 1100px; max-height: 90vh; position: relative;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .lightbox-content img {
+    max-width: 100%; max-height: 80vh; object-fit: contain;
+    border-radius: 4px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  }
+  .lightbox-caption { margin-top: 14px; color: var(--ink); font-size: 15px; text-align: center; font-family: 'Fraunces', serif; }
+  .lightbox-close {
+    position: absolute; top: -40px; right: 0; background: none; border: none;
+    color: var(--ink-muted); font-size: 28px; cursor: pointer; transition: color 0.2s ease;
+  }
+  .lightbox-close:hover { color: var(--ink); }
+
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:40px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--ink-muted);}
+
+  @media (max-width:860px){
+    .story-layout{grid-template-columns:1fr; gap:40px;}
+    .story-sidebar{position:static;}
+  }
+</style>
+    <link rel="canonical" href="https://groundworkllc.netlify.app/case-studies/lafayette-downspout-drainage.html">
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/index.html" class="brand">Groundwork <span>Landscaping</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html">Our Work</a></li>
+      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="/index.html">Home</a> &rsaquo; <a href="/work.html#case-studies">Case Studies</a> &rsaquo; <span>Downspout Drainage</span>
+  </div>
+
+  <section class="case-hero">
+    <div class="case-hero-eyebrow">Drainage &amp; Fencing</div>
+    <h1>Downspout Drainage Channel and a Chain-Link Corner</h1>
+    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">The rear downspout emptied onto the patio slab, so we tied it into a buried line, ran it out under a river-rock channel to the sidewalk, and closed the open back corner with chain-link.</p>
+    <figure class="case-hero-media"><img src="/img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk.webp" srcset="/img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="River rock drainage channel running past a mulched bed to the public sidewalk" width="1200" height="800" fetchpriority="high" decoding="async"><figcaption>Rock-lined drain run reaching the sidewalk &middot; Lafayette, Colorado</figcaption></figure>
+
+    <div class="case-meta-grid">
+      <div class="meta-card"><label>Location</label><value>Lafayette, CO</value></div>
+      <div class="meta-card"><label>Scope</label><value>Downspout Tie-In, Buried Line &amp; Rock Channel</value></div>
+      <div class="meta-card"><label>Also</label><value>Chain-Link Fence &amp; Gate</value></div>
+      <div class="meta-card"><label>Timeline</label><value>October 2026</value></div>
+    </div>
+  </section>
+
+  <div class="story-layout">
+    <div class="story-main">
+
+      <div class="story-section">
+        <h2><span class="pill-problem">The Problem</span> Water With Nowhere To Go</h2>
+        <p>The downspout at the rear corner dropped straight onto the patio slab. A slab is the flattest thing in a yard, so it becomes the road: an inch of rain on a roof face is hundreds of gallons, delivered through one outlet in a few minutes, and with only mulch to meet it that water crossed the yard, scoured the bed where it ran, and headed for the low corner by the property line.</p>
+        <p>The corner was open, too &mdash; nothing between the house and the existing wood fence, so the side yard sat open to the neighbouring lot and the wind-blown debris that comes with it.</p>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-design">Design &amp; Build</span> Dig, Tie In, Rock It, Close the Corner</h2>
+        <p>Five passes, all in one day:</p>
+        <ul class="bullet-list">
+          <li><strong>1. Trench:</strong> Cut by hand along the fall of the ground, from the downspout corner out to the front where the yard drops to the sidewalk &mdash; so the line drains by gravity instead of sitting full.</li>
+          <li><strong>2. Tie-In:</strong> Coupled a flexible corrugated line to the downspout outlet above grade. The downspout was left intact &mdash; nothing cut, reduced, or sealed into the wall &mdash; so it can still be pulled and flushed.</li>
+          <li><strong>3. Rock Channel:</strong> Backfilled the trench and dressed the run in two grades of river rock: coarse tan cobble on both shoulders to hold the mulch and soil, finer white rock down the middle where the water travels.</li>
+          <li><strong>4. Outlet:</strong> Brought the run out to the sidewalk edge behind a soldier course of brick, so the rock stays out of the walk and the water leaves the property at the low corner.</li>
+          <li><strong>5. Fence:</strong> Set a galvanised chain-link run with top rail and gate between the house corner and the existing wood fence, closing the open side of the yard.</li>
+        </ul>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-result">The Result</span> Out At The Street, Not Across The Bed</h2>
+        <p>Roof water leaves at the street now instead of crossing the slab and cutting through the bed. The stone holds the mulch where runoff used to move it, and if a storm ever tops the line, the channel gives the overflow somewhere to spread and soak rather than a new gully to follow. The back corner is closed, and the side yard reads as finished rather than open.</p>
+      </div>
+
+      <div class="story-section">
+        <h2>Photo Notes</h2>
+        <p>All six photos are from 23 October: the trench at 9:02 in the morning, the finished work between 3:18 and 3:21 in the afternoon. This set has a real in-progress frame, which most job sets don't &mdash; the open line is visible before any rock went down. The chain-link went in after the morning frame, so it appears only in the afternoon photos. The tan cobble is a different stone, not dirty white rock; the two sizes are deliberate.</p>
+      </div>
+
+    </div>
+
+    <aside class="story-sidebar">
+      <div class="cta-box">
+        <h3>Water crossing the yard?</h3>
+        <p>Downspouts, buried lines, rock channels, and the grade that sends water the wrong way &mdash; we scope all of it on a free walk-through.</p>
+        <a href="/drainage-longmont.html" class="btn-sidebar">See our drainage work</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="photo-grid-section">
+    <h2>Project Photo Gallery</h2>
+    <p style="color:var(--ink-muted); margin-bottom:24px;">Click any photo to view full resolution.</p>
+
+    <div class="case-gallery-grid">
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-downspout-drainage/1-trench-cut-through-mulch-bed.webp', 'In Progress. Line cut by hand through the mulch bed, flags marking the run.')">
+         <img src="/img/case-studies/lafayette-downspout-drainage/1-trench-cut-through-mulch-bed.webp" srcset="/img/case-studies/lafayette-downspout-drainage/1-trench-cut-through-mulch-bed-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/1-trench-cut-through-mulch-bed.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Trench cut through a mulched bed with utility flags marking the drain line">
+        <div class="caption">🛠 <strong>In Progress:</strong> Line cut by hand through the mulch bed, flags marking the run.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-downspout-drainage/2-downspout-tied-into-buried-line.webp', 'Tie-In. Flex line coupled to the downspout outlet above grade; nothing cut into the wall.')">
+         <img src="/img/case-studies/lafayette-downspout-drainage/2-downspout-tied-into-buried-line.webp" srcset="/img/case-studies/lafayette-downspout-drainage/2-downspout-tied-into-buried-line-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/2-downspout-tied-into-buried-line.webp 1200w" sizes="(max-width: 860px) 100vw, 400px" alt="Corrugated drain line coupled to a downspout at the corner of a house">
+        <div class="caption">🔗 <strong>Tie-In:</strong> Flex line coupled to the downspout outlet above grade; nothing cut into the wall.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-downspout-drainage/3-two-grade-river-rock-channel.webp', 'Two Grades. Coarse cobble shoulders, finer white rock down the run.')">
+         <img src="/img/case-studies/lafayette-downspout-drainage/3-two-grade-river-rock-channel.webp" srcset="/img/case-studies/lafayette-downspout-drainage/3-two-grade-river-rock-channel-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/3-two-grade-river-rock-channel.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="River rock channel edged in coarse cobble alongside a mulched bed">
+        <div class="caption">🪨 <strong>Two Grades:</strong> Coarse cobble shoulders, finer white rock down the run.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk.webp', 'Outlet. The run reaches the sidewalk edge behind a soldier course of brick.')">
+         <img src="/img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk.webp" srcset="/img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/4-channel-outlet-at-sidewalk.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="River rock drainage channel meeting the public sidewalk behind brick edging">
+        <div class="caption">➡️ <strong>Outlet:</strong> The run reaches the sidewalk edge behind a soldier course of brick.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-downspout-drainage/5-channel-under-maple-long-view.webp', 'Full Run. Under the maple, out toward the front corner.')">
+         <img src="/img/case-studies/lafayette-downspout-drainage/5-channel-under-maple-long-view.webp" srcset="/img/case-studies/lafayette-downspout-drainage/5-channel-under-maple-long-view-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/5-channel-under-maple-long-view.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Long view of the rock drainage channel running under a maple tree">
+        <div class="caption">🌳 <strong>Full Run:</strong> Under the maple, out toward the front corner.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/lafayette-downspout-drainage/6-chainlink-fence-back-corner.webp', 'Corner. Chain-link and gate closing the gap to the existing wood fence.')">
+         <img src="/img/case-studies/lafayette-downspout-drainage/6-chainlink-fence-back-corner.webp" srcset="/img/case-studies/lafayette-downspout-drainage/6-chainlink-fence-back-corner-800.webp 800w, /img/case-studies/lafayette-downspout-drainage/6-chainlink-fence-back-corner.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="New galvanised chain-link fence and gate beside an older wood privacy fence">
+        <div class="caption">✓ <strong>Corner:</strong> Chain-link and gate closing the gap to the existing wood fence.</div>
+      </div>
+    </div>
+  </section>
+  <section class="case-study-cta" aria-labelledby="case-study-cta">
+    <h2 id="case-study-cta">Where does your roof water go?</h2>
+    <p>Send us where it pools, what it has stained or washed out, and we&rsquo;ll walk the property and scope a route for it.</p>
+    <a href="/contact.html?service=drainage" class="btn-sidebar">Request a Similar Project</a>
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Groundwork Landscaping</div>
+    <div>Licensed &amp; insured · Longmont, CO</div>
+  </div>
+</footer>
+
+<script>
+function openLightbox(imgSrc, caption) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalCaption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-close'))) {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});
+</script>
+</body>
+</html>

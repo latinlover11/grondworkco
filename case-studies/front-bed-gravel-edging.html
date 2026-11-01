@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stone-Edged Gravel Bed &amp; Plantings Case Study — Groundwork Landscaping</title>
+<meta name="description" content="How Groundwork Landscaping edged a narrow front bed in rough-cut stone, dressed it with the homeowner's own gravel, and planted junipers and boxwoods.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:9px 18px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  /* Breadcrumbs */
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  /* Case Hero */
+  .case-hero{
+    padding:40px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-hero-eyebrow{
+    color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px;
+  }
+  .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .case-hero h1{
+    font-size:clamp(32px, 4.5vw, 54px);
+    line-height:1.08;
+    max-width:18ch;
+    margin-bottom:20px;
+  }
+  .case-meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px; margin-top:32px;
+  }
+  .meta-card{
+    background:var(--bg-panel); border:1px solid var(--line);
+    padding:16px 20px; border-radius:var(--radius);
+  }
+  .meta-card label{font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
+  .meta-card value{font-size:15px; font-weight:600; color:var(--ember-bright);}
+
+  /* Story Layout */
+  .story-layout{
+    display:grid; grid-template-columns:1fr 340px; gap:56px;
+    padding:64px 0;
+  }
+  .story-main{display:flex; flex-direction:column; gap:40px;}
+
+  .story-section h2{
+    font-size:26px; margin-bottom:14px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  .story-section h2 span{
+    font-size:14px; font-family:'Work Sans', sans-serif;
+    padding:3px 10px; border-radius:3px; text-transform:uppercase; font-weight:600;
+  }
+  .pill-problem{background:rgba(224, 138, 62, 0.15); color:#E08A3E; border:1px solid rgba(224, 138, 62, 0.3);}
+  .pill-design{background:rgba(110, 131, 103, 0.15); color:var(--moss); border:1px solid rgba(110, 131, 103, 0.3);}
+  .pill-result{background:rgba(193, 106, 46, 0.2); color:var(--ember-bright); border:1px solid rgba(193, 106, 46, 0.4);}
+
+  .story-section p{color:var(--ink-muted); font-size:16px; line-height:1.65; margin-bottom:14px;}
+
+  .bullet-list{list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:12px;}
+  .bullet-list li{
+    background:var(--bg-panel); border:1px solid var(--line); padding:16px 20px;
+    border-radius:var(--radius); color:var(--ink); font-size:15px; line-height:1.5;
+    border-left:3px solid var(--moss);
+  }
+  .bullet-list li strong{color:var(--ember-bright);}
+
+  /* Photo Showcase Gallery Grid */
+  .photo-grid-section{
+    padding:40px 0 64px; border-top:1px solid var(--line);
+  }
+  .photo-grid-section h2{font-size:28px; margin-bottom:24px;}
+  .case-gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+  }
+  .gallery-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .gallery-card:hover{
+    transform:translateY(-3px); border-color:var(--ember-bright);
+  }
+  .gallery-card img{width:100%; height:220px; object-fit:cover;}
+  .gallery-card .caption{padding:14px 18px; font-size:13.5px; color:var(--ink-muted); background:var(--bg-panel-alt);}
+
+  /* Sidebar CTA */
+  .story-sidebar{
+    display:flex; flex-direction:column; gap:24px; position:sticky; top:96px; height:fit-content;
+  }
+  .cta-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; border-top:3px solid var(--ember);
+  }
+  .cta-box h3{font-size:22px; margin-bottom:12px;}
+  .cta-box p{color:var(--ink-muted); font-size:14px; margin-bottom:20px;}
+  .btn-sidebar{
+    background:var(--ember); color:#16130E; text-align:center; padding:14px 20px;
+    border-radius:var(--radius); font-weight:600; font-size:15px; display:block;
+    transition:background 0.2s ease;
+  }
+  .btn-sidebar:hover{background:var(--ember-bright);}
+
+  /* Lightbox */
+  .lightbox-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 13, 0.94); backdrop-filter: blur(12px);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 32px;
+  }
+  .lightbox-modal.open { opacity: 1; pointer-events: auto; }
+  .lightbox-content {
+    max-width: 1100px; max-height: 90vh; position: relative;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .lightbox-content img {
+    max-width: 100%; max-height: 80vh; object-fit: contain;
+    border-radius: 4px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  }
+  .lightbox-caption { margin-top: 14px; color: var(--ink); font-size: 15px; text-align: center; font-family: 'Fraunces', serif; }
+  .lightbox-close {
+    position: absolute; top: -40px; right: 0; background: none; border: none;
+    color: var(--ink-muted); font-size: 28px; cursor: pointer; transition: color 0.2s ease;
+  }
+  .lightbox-close:hover { color: var(--ink); }
+
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:40px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--ink-muted);}
+
+  @media (max-width:860px){
+    .story-layout{grid-template-columns:1fr; gap:40px;}
+    .story-sidebar{position:static;}
+  }
+</style>
+    <link rel="canonical" href="https://groundworkllc.netlify.app/case-studies/front-bed-gravel-edging.html">
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/index.html" class="brand">Groundwork <span>Landscaping</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html">Our Work</a></li>
+      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="/index.html">Home</a> &rsaquo; <a href="/work.html#case-studies">Case Studies</a> &rsaquo; <span>Stone-Edged Gravel Bed</span>
+  </div>
+
+  <section class="case-hero">
+    <div class="case-hero-eyebrow">Planting Beds &amp; Edging</div>
+    <h1>Stone-Edged Gravel Bed with Low-Water Plantings</h1>
+    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">A narrow strip along the brick foundation, edged in rough-cut stone, dressed with gravel, and set with junipers and boxwoods &mdash; built from gravel, edging stone, and plants the homeowner supplied.</p>
+    <figure class="case-hero-media"><img src="/img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation.webp" srcset="/img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation-800.webp 800w, /img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Gravel-mulched front bed edged with rough-cut stone and planted with junipers and boxwoods along a brick foundation" width="1200" height="800" fetchpriority="high" decoding="async"><figcaption>Stone-edged gravel bed along the foundation &middot; Lafayette, Colorado</figcaption></figure>
+
+    <div class="case-meta-grid">
+      <div class="meta-card"><label>Location</label><value>Lafayette, CO</value></div>
+      <div class="meta-card"><label>Materials</label><value>Client-Supplied Gravel, Edging &amp; Plants</value></div>
+      <div class="meta-card"><label>Scope</label><value>Edging, Gravel Bed &amp; Plantings</value></div>
+      <div class="meta-card"><label>Timeline</label><value>October 2026</value></div>
+    </div>
+  </section>
+
+  <div class="story-layout">
+    <div class="story-main">
+
+      <div class="story-section">
+        <h2><span class="pill-problem">The Problem</span> A Strip Too Narrow to Wing It</h2>
+        <p>A bed this shallow between the brick and the lawn leaves no room for error. Turf creeps in at the edge, gravel spills out onto the grass, and anything planted has to clear the downspouts, the gas meter, and the foundation while still reading as deliberate from the street. The homeowner had already bought the gravel, the edging stone, and the plants. What the job needed was the layout and the setting that make those materials work as one line.</p>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-design">Design &amp; Build</span> Lay It Out, Set It, Dress It, Plant It</h2>
+        <p>Four passes along the same strip:</p>
+        <ul class="bullet-list">
+          <li><strong>1. Layout:</strong> Marked the bed edge so the stone sweeps consistently from the fence corner to the front of the house.</li>
+          <li><strong>2. Stone Edging:</strong> Set rough-cut blocks on end along the cut line, tamped to grade with tight joints, so the curve holds its shape under a string trimmer.</li>
+          <li><strong>3. Gravel Bed:</strong> Dressed the bed in the homeowner&rsquo;s gravel, worked tight to the brick and clear of the downspout shoes, so water leaves the wall instead of sitting against it.</li>
+          <li><strong>4. Plantings:</strong> Set junipers and boxwoods with room for their mature spread, kept back from the meter, the risers, and the window line.</li>
+          <li><strong>5. Service Access:</strong> Left the gas meter, hose bib, and downspouts clear and reachable &mdash; nothing planted over a fitting.</li>
+        </ul>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-result">The Result</span> A Line That Holds</h2>
+        <p>The stone keeps the gravel off the lawn, the gravel keeps water off the brick, and the plantings sit clear of everything that has to stay accessible. The strip now reads as a finished bed rather than the gap between a wall and some grass &mdash; built from materials the homeowner chose and paid for, set where they actually work.</p>
+      </div>
+
+      <div class="story-section">
+        <h2>Photo Notes</h2>
+        <p>All five photos are from the finished installation on 21 October. There is no before frame in this set: the bed was photographed after the edging, gravel, and plants were in. The lawn beyond the stone is fall-stressed in these frames, not damaged by the install.</p>
+      </div>
+
+    </div>
+
+    <aside class="story-sidebar">
+      <div class="cta-box">
+        <h3>Already have the materials?</h3>
+        <p>If you&rsquo;ve bought the gravel, the edging, or the plants yourself, we&rsquo;ll lay the bed out around them and set them to last. Send us what you have and a photo of the strip.</p>
+        <a href="/contact.html?service=xeriscaping" class="btn-sidebar">Get a Free Estimate</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="photo-grid-section">
+    <h2>Project Photo Gallery</h2>
+    <p style="color:var(--ink-muted); margin-bottom:24px;">Click any photo to view full resolution.</p>
+
+    <div class="case-gallery-grid">
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation.webp', 'Finished Bed. Gravel dressed tight to the brick, with junipers and boxwoods set along the strip.')">
+         <img src="/img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation.webp" srcset="/img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation-800.webp 800w, /img/case-studies/front-bed-gravel-edging/1-gravel-bed-plantings-along-foundation.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Gravel-mulched front bed edged with rough-cut stone along a brick foundation">
+        <div class="caption">🌿 <strong>Finished Bed:</strong> Gravel dressed tight to the brick, with junipers and boxwoods set along the strip.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/front-bed-gravel-edging/2-bed-corner-fence-downspout.webp', 'Corner. The stone line carries past the downspout to the fence corner.')">
+         <img src="/img/case-studies/front-bed-gravel-edging/2-bed-corner-fence-downspout.webp" srcset="/img/case-studies/front-bed-gravel-edging/2-bed-corner-fence-downspout-800.webp 800w, /img/case-studies/front-bed-gravel-edging/2-bed-corner-fence-downspout.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Stone edging running past a downspout toward a wood fence">
+        <div class="caption">🧱 <strong>Corner:</strong> The stone line carries past the downspout to the fence corner.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/front-bed-gravel-edging/3-completed-front-bed-gravel-edging.webp', 'Frontage. The whole strip reads as one line from the street.')">
+         <img src="/img/case-studies/front-bed-gravel-edging/3-completed-front-bed-gravel-edging.webp" srcset="/img/case-studies/front-bed-gravel-edging/3-completed-front-bed-gravel-edging-800.webp 800w, /img/case-studies/front-bed-gravel-edging/3-completed-front-bed-gravel-edging.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed front bed with stone edging and gravel mulch seen from the street">
+        <div class="caption">✓ <strong>Frontage:</strong> The whole strip reads as one line from the street.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/front-bed-gravel-edging/4-gas-meter-corner-bed.webp', 'Service Fittings. Meter, risers and hose bib left clear and reachable.')">
+         <img src="/img/case-studies/front-bed-gravel-edging/4-gas-meter-corner-bed.webp" srcset="/img/case-studies/front-bed-gravel-edging/4-gas-meter-corner-bed-800.webp 800w, /img/case-studies/front-bed-gravel-edging/4-gas-meter-corner-bed.webp 1200w" sizes="(max-width: 860px) 100vw, 400px" alt="Gas meter and risers left clear beside the gravel bed">
+        <div class="caption">⚙️ <strong>Service Fittings:</strong> Meter, risers and hose bib left clear and reachable.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/front-bed-gravel-edging/5-stone-edging-curve-detail.webp', 'Edge Detail. Rough-cut stone set on end, tight joints, gravel held behind it.')">
+         <img src="/img/case-studies/front-bed-gravel-edging/5-stone-edging-curve-detail.webp" srcset="/img/case-studies/front-bed-gravel-edging/5-stone-edging-curve-detail-800.webp 800w, /img/case-studies/front-bed-gravel-edging/5-stone-edging-curve-detail.webp 1200w" sizes="(max-width: 860px) 100vw, 400px" alt="Close view of rough-cut stone edging holding back gravel">
+        <div class="caption">📐 <strong>Edge Detail:</strong> Rough-cut stone set on end, tight joints, gravel held behind it.</div>
+      </div>
+    </div>
+  </section>
+  <section class="case-study-cta" aria-labelledby="case-study-cta">
+    <h2 id="case-study-cta">Want a bed with a clean line?</h2>
+    <p>Tell us how long the strip runs and what you&rsquo;ve already got, and we&rsquo;ll scope the edging, gravel, and planting around it.</p>
+    <a href="/contact.html?service=xeriscaping" class="btn-sidebar">Request a Similar Project</a>
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© 2026 Groundwork Landscaping</div>
+    <div>Licensed &amp; insured · Longmont, CO</div>
+  </div>
+</footer>
+
+<script>
+function openLightbox(imgSrc, caption) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalCaption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-close'))) {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});
+</script>
+</body>
+</html>
