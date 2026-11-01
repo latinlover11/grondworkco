@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import datetime
+import hashlib
 import re
 import shutil
 import subprocess
@@ -90,8 +91,26 @@ MOBILE_CTA = '''<div class="mobile-cta" id="mobile-cta" aria-label="Quick contac
   <button type="button" aria-label="Hide quick contact bar">×</button>
 </div>'''
 
-ASSET_TAGS = '''<link rel="stylesheet" href="/site.css?v=earthy-v3">
-<script defer src="/site.js?v=earthy-v3"></script>'''
+def asset_version(name: str) -> str:
+    """Short content hash, so changing an asset changes its URL.
+
+    netlify.toml marks /site.css and /site.js immutable for a year. With a
+    hand-written ?v= token the URL never changes, so a fix that ships never
+    reaches anyone who has already visited — the browser keeps the old script
+    from disk cache. Hashing the bytes makes the URL change exactly when the
+    file does, and stay identical when it does not.
+    """
+    try:
+        return hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:8]
+    except OSError:
+        return "dev"
+
+
+def asset_tags() -> str:
+    return (
+        f'<link rel="stylesheet" href="/site.css?v={asset_version("site.css")}">\n'
+        f'<script defer src="/site.js?v={asset_version("site.js")}"></script>'
+    )
 FONT_TAGS = '''<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/work-sans-var.woff2" as="font" type="font/woff2" crossorigin>'''
 ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
@@ -358,7 +377,7 @@ def build_html(source: Path, target: Path) -> None:
         content = STYLE_RE.sub("", content)
         if styles:
             content = content.replace("</head>", f"<style>{minify_css(styles)}</style>\n</head>", 1)
-        content = content.replace("</head>", ASSET_TAGS + "\n</head>", 1)
+        content = content.replace("</head>", asset_tags() + "\n</head>", 1)
     content = transform_gallery_markup(content)
     content = re.sub(r'<link[^>]*https://fonts[.]g(?:oogleapis|static)[.]com[^>]*/?>\s*', "", content)
     content = inject_og_tags(content, source.relative_to(ROOT))
