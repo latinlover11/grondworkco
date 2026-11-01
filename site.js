@@ -332,16 +332,75 @@
     });
   }
 
+  // build.py turns the old inline gallery handlers into data attributes; this
+  // hands those clicks back to the page's own openLightbox/switchCasePhoto.
+  function wireGalleryTriggers() {
+    function call(name, args) {
+      if (typeof window[name] !== 'function') return false;
+      window[name].apply(window, args);
+      return true;
+    }
+
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || typeof target.closest !== 'function') return;
+
+      // Closing: the × button or the backdrop behind the photo.
+      var closer = target.closest('.lightbox-close');
+      var backdrop = target.classList.contains('lightbox-modal') ? target : null;
+      var openModal = closer ? closer.closest('.lightbox-modal') : backdrop;
+      if (openModal && openModal.classList.contains('open')) {
+        openModal.classList.remove('open');
+        document.body.style.overflow = '';
+        event.preventDefault();
+        return;
+      }
+
+      var thumb = target.closest('[data-gallery-src]');
+      if (thumb && call('switchCasePhoto', [
+        thumb.getAttribute('data-gallery-id') || '',
+        thumb.getAttribute('data-gallery-src'),
+        thumb.getAttribute('data-gallery-caption') || '',
+        thumb
+      ])) {
+        event.preventDefault();
+        return;
+      }
+
+      var trigger = target.closest('[data-lightbox-trigger]');
+      if (trigger) {
+        var src = trigger.getAttribute('data-lightbox-src') || trigger.getAttribute('src');
+        var caption = trigger.hasAttribute('data-lightbox-src')
+          ? (trigger.getAttribute('data-lightbox-caption') || '')
+          : (trigger.getAttribute('alt') || '');
+        if (src && call('openLightbox', [src, caption])) {
+          event.preventDefault();
+          return;
+        }
+      }
+
+      var card = target.closest('[data-lightbox-src]');
+      if (card && call('openLightbox', [
+        card.getAttribute('data-lightbox-src'),
+        card.getAttribute('data-lightbox-caption') || ''
+      ])) {
+        event.preventDefault();
+      }
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       ensureMobileCta();
       initializeContactForm();
       enhanceKeyboardAccess();
+      wireGalleryTriggers();
     });
   } else {
     ensureMobileCta();
     initializeContactForm();
     enhanceKeyboardAccess();
+    wireGalleryTriggers();
   }
 
 }());
