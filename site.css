@@ -2675,6 +2675,26 @@ align-items:flex-start !important; flex-direction:column !important; gap:12px; m
 }
 
 
+/* ---------- skip to content ---------- */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--ember);
+  color: #16130E;
+  font: 600 15px 'Work Sans', sans-serif;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: top .15s ease;
+}
+.skip-link:focus {
+  top: 12px;
+  outline: 3px solid var(--cream);
+  outline-offset: 2px;
+}
+
 /* Shared mobile conversion bar */
 .mobile-cta {
   display: none;

@@ -80,7 +80,15 @@ FOOTER = '''<footer class="site-footer">
   </div>
 </footer>'''
 
-ASSET_TAGS = '''<link rel="stylesheet" href="/site.css?v=earthy-v2">
+# Server-rendered so the phone's best conversion element survives a slow or
+# blocked script. site.js only wires behaviour onto these buttons.
+MOBILE_CTA = '''<div class="mobile-cta" id="mobile-cta" aria-label="Quick contact">
+  <a href="tel:+17207075411">Call</a>
+  <button type="button" class="mobile-cta-quote">Get a quote</button>
+  <button type="button" aria-label="Hide quick contact bar">×</button>
+</div>'''
+
+ASSET_TAGS = '''<link rel="stylesheet" href="/site.css?v=earthy-v3">
 <script defer src="/site.js"></script>'''
 FONT_TAGS = '''<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/work-sans-var.woff2" as="font" type="font/woff2" crossorigin>'''
@@ -96,10 +104,37 @@ ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 # NOTE: when this goes live, privacy.html's "Cookies and analytics" section must be
 # updated in the same change - it currently states no analytics platform is in use.
 ANALYTICS_TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
+# Byte-for-byte the block from Cloudflare's "Install JS Snippet" panel, including
+# the identifying comments, so what ships is what the dashboard shows you. The
+# module script is deferred without a defer attribute. The token is public - it
+# ends up in every page - so it comes from an env var, never from the repo.
 ANALYTICS_TAGS = (
-    "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' "
+    "<!-- Cloudflare Web Analytics -->"
+    "<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' "
     "data-cf-beacon='{\"token\": \"" + ANALYTICS_TOKEN + "\"}'></script>"
+    "<!-- End Cloudflare Web Analytics -->"
 ) if ANALYTICS_TOKEN else ""
+
+
+# privacy.html has to describe what the build actually ships. The paragraph between
+# these markers is chosen from ANALYTICS_TAGS at build time, so the beacon and the
+# notice can never disagree - and the build fails if the markers ever go missing.
+POLICY_START = "<!-- analytics-policy:start -->"
+POLICY_END = "<!-- analytics-policy:end -->"
+ANALYTICS_POLICY_OFF = """    <p>This site does not currently use advertising cookies or a third-party analytics platform. Your browser may still retain ordinary technical data required to load and operate the site.</p>"""
+ANALYTICS_POLICY_ON = """    <p>We use Cloudflare Web Analytics to count page views. It sets no cookies, does not follow you across other sites, and does not build an advertising profile. It records the page you requested, the site that referred you, and general details such as browser, device type, and country &mdash; in aggregate, and only so we can tell which pages and services people look for.</p>
+    <p>There are no advertising cookies or tracking pixels on this site, and we do not sell visitor data. Cloudflare processes these measurements on our behalf; see <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare\u2019s privacy policy</a>. Your browser may still retain ordinary technical data required to load and operate the site.</p>"""
+
+
+def apply_analytics_policy(content: str) -> str:
+    pattern = re.compile(re.escape(POLICY_START) + r".*?" + re.escape(POLICY_END), re.DOTALL)
+    if not pattern.search(content):
+        raise RuntimeError(
+            "privacy.html is missing the analytics-policy markers: refusing to ship "
+            "an analytics beacon that the privacy notice does not describe."
+        )
+    block = ANALYTICS_POLICY_ON if ANALYTICS_TAGS else ANALYTICS_POLICY_OFF
+    return pattern.sub(block, content, count=1)
 
 
 def minify_css(css: str) -> str:
@@ -176,12 +211,40 @@ def transform_gallery_markup(content: str) -> str:
     return content
 
 
+def inject_skip_link(content: str) -> str:
+    """Put a skip link first in the document and give the page a target for it."""
+    main = re.search(r"<main\b([^>]*)>", content)
+    if main:
+        attrs = main.group(1)
+    else:
+        # index.html is section-per-band rather than <main>-wrapped.
+        main = re.search(r"<section\b([^>]*)>", content)
+        if not main:
+            return content
+        attrs = main.group(1)
+
+    existing = re.search(r'\sid="([^"]+)"', attrs)
+    if existing:
+        target = existing.group(1)
+    else:
+        target = "main"
+        tag_name = re.match(r"<(\w+)", main.group(0)).group(1)
+        content = content.replace(main.group(0), f'<{tag_name} id="main" tabindex="-1"{attrs}>', 1)
+
+    link = f'<a class="skip-link" href="#{target}">Skip to content</a>\n'
+    content = re.sub(r"(<body\b[^>]*>)", lambda m: m.group(1) + "\n" + link, content, count=1)
+
+    if "id=\"mobile-cta\"" not in content:
+        content = content.replace("</body>", MOBILE_CTA + "\n</body>", 1)
+    return content
+
+
 def build_html(source: Path, target: Path) -> None:
     content = source.read_text(encoding="utf-8")
     if source.name != "thank-you.html":
         content = re.sub(r"<header(?:\s[^>]*)?>[\s\S]*?</header>", HEADER, content, count=1)
         content = re.sub(r"<footer(?:\s[^>]*)?>[\s\S]*?</footer>", FOOTER, content, count=1)
-        content = re.sub(r"<link rel=\"stylesheet\" href=\"/?site\.css\">\s*", "", content)
+        content = re.sub(r"<link rel=\"stylesheet\" href=\"/?site\.css(?:\?[^\"]*)?\">\s*", "", content)
         content = re.sub(r"<script defer src=\"/?site\.js\"></script>\s*", "", content)
         styles = "\n\n".join(match.group(1).strip() for match in STYLE_RE.finditer(content))
         content = STYLE_RE.sub("", content)
@@ -195,6 +258,9 @@ def build_html(source: Path, target: Path) -> None:
     content = content.replace("</head>", ICON_TAGS + "\n</head>", 1)
     if ANALYTICS_TAGS:
         content = content.replace("</head>", ANALYTICS_TAGS + "\n</head>", 1)
+    content = inject_skip_link(content)
+    if source.name == "privacy.html":
+        content = apply_analytics_policy(content)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
 

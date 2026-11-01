@@ -242,16 +242,20 @@
   }
 
   function ensureMobileCta() {
-    if (document.getElementById('mobile-cta') || !document.body) return;
+    if (!document.body) return;
 
-    var bar = document.createElement('div');
-    bar.className = 'mobile-cta';
-    bar.id = 'mobile-cta';
-    bar.setAttribute('aria-label', 'Quick contact');
-    bar.innerHTML = '<a href="tel:+17207075411">Call</a>' +
-      '<button type="button" class="mobile-cta-quote">Get a quote</button>' +
-      '<button type="button" aria-label="Hide quick contact bar">×</button>';
-    document.body.appendChild(bar);
+    // The bar ships in the HTML; this only covers pages built before that.
+    var bar = document.getElementById('mobile-cta');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'mobile-cta';
+      bar.id = 'mobile-cta';
+      bar.setAttribute('aria-label', 'Quick contact');
+      bar.innerHTML = '<a href="tel:+17207075411">Call</a>' +
+        '<button type="button" class="mobile-cta-quote">Get a quote</button>' +
+        '<button type="button" aria-label="Hide quick contact bar">×</button>';
+      document.body.appendChild(bar);
+    }
 
     var sheet = ensureQuoteSheet();
     bar.querySelector('.mobile-cta-quote').addEventListener('click', function () {

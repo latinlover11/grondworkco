@@ -6,6 +6,24 @@ pre-deploy link/image checker.
 
 ---
 
+## Analytics
+
+Page counts come from Cloudflare Web Analytics — cookieless, so no consent banner.
+It stays off until `CF_ANALYTICS_TOKEN` is set in Netlify → Site settings →
+Environment variables; `build.py` injects the beacon only when the variable is
+present (`CF_ANALYTICS_TOKEN=… python3 build.py` locally if you want to see it).
+
+The notice cannot drift from the beacon: the paragraph between the
+`analytics-policy` markers in `privacy.html` is swapped between the "no analytics"
+and "Cloudflare Web Analytics" copy at build time, and the build fails rather than
+publish a beacon the notice doesn't describe. Bump the notice's *Last updated*
+date when the token lands.
+
+Known limitation: pageviews only. It cannot attribute phone calls; form leads carry
+`?src=` into the hidden `source` field and are readable per-channel in Formspree.
+
+---
+
 ## Photo checklist
 
 Everything below feeds a real slot on the site. Shoot phone-quality is fine —
