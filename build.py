@@ -30,10 +30,10 @@ PDF_JOBS = [
 
 HEADER = '''<header>
   <nav class="nav">
-    <a href="/index.html" class="brand" style="color:inherit;text-decoration:none"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="25" fill="#C87955"/><path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#3B2A22"/><path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#78836B"/><path d="M34 29c1.8-5.2 5.2-9.2 9.6-12.2" fill="none" stroke="#FFF9F0" stroke-width="2.3" stroke-linecap="round"/></svg>Groundwork <span>Landscaping</span></a>
+    <a href="/index.html" class="brand" style="text-decoration:none"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="25" fill="#C87955"/><path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#3B2A22"/><path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#78836B"/><path d="M34 29c1.8-5.2 5.2-9.2 9.6-12.2" fill="none" stroke="#FFF9F0" stroke-width="2.3" stroke-linecap="round"/></svg>Groundwork <span>Landscaping</span></a>
     <ul class="nav-links">
       <!-- Seasonal: remove the Fall cleanup item after the campaign ends. -->
-      <li><a href="/fall-cleanup-longmont.html">Fall cleanup</a></li>
+      <li><a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a></li>
       <li><a href="/index.html#services">Services</a></li>
       <li><a href="/work.html">Our Work</a></li>
       <li><a href="/about.html">About Us</a></li>
@@ -45,7 +45,7 @@ HEADER = '''<header>
     </button>
   </nav>
   <div class="nav-mobile-panel" id="nav-mobile-panel" aria-hidden="true">
-    <a href="/fall-cleanup-longmont.html">Fall cleanup</a>
+    <a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a>
     <a href="/index.html#services">Services</a>
     <a href="/work.html">Our Work</a>
     <a href="/about.html">About Us</a>
@@ -66,6 +66,8 @@ FOOTER = '''<footer class="site-footer">
         <a href="/work.html">Our Work</a>
         <a href="/about.html">About Us</a>
         <a href="/blog/index.html">Blog</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/accessibility.html">Accessibility</a>
       </nav>
       <div class="site-footer-contact">
         <a href="tel:+17207075411">(720) 707-5411</a>
@@ -89,13 +91,119 @@ MOBILE_CTA = '''<div class="mobile-cta" id="mobile-cta" aria-label="Quick contac
 </div>'''
 
 ASSET_TAGS = '''<link rel="stylesheet" href="/site.css?v=earthy-v3">
-<script defer src="/site.js"></script>'''
+<script defer src="/site.js?v=earthy-v3"></script>'''
 FONT_TAGS = '''<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/work-sans-var.woff2" as="font" type="font/woff2" crossorigin>'''
 ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/img/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">'''
+
+SITE = "https://groundworkllc.netlify.app"
+
+# Case-study pages link to their siblings, so the eleven projects form a set
+# instead of eleven dead ends. Topics come from the filename: a fence page pairs
+# with fence pages first, then with the nearest other work.
+CASE_TOPICS = {
+    "fence": ("fence", "privacy", "property-line", "cedar"),
+    "drainage": ("drainage", "downspout", "channel", "grade"),
+    "stone": ("flagstone", "gravel", "river-rock", "bluestone", "edging", "steps"),
+    "hardscape": ("patio", "wall", "terrace", "pad", "entry"),
+    "planting": ("xeriscape", "planting", "cleanup", "bed"),
+}
+
+
+def case_topics(path: Path) -> set[str]:
+    return {tag for tag, words in CASE_TOPICS.items() if any(word in path.stem for word in words)}
+
+
+def case_label(path: Path) -> str:
+    """The page's own <title>, minus the site suffix."""
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return path.stem.replace("-", " ").title()
+    match = re.search(r"<title>([^<]*)</title>", text)
+    if not match:
+        return path.stem.replace("-", " ").title()
+    return match.group(1).split("|")[0].strip().replace("&amp;", "&")
+
+
+def inject_case_related(content: str, source: Path) -> str:
+    if source.parent.name != "case-studies" or "</main>" not in content:
+        return content
+    mine = case_topics(source)
+    siblings = [path for path in sorted(source.parent.glob("*.html")) if path != source]
+    ranked = sorted(siblings, key=lambda path: (-len(mine & case_topics(path)), path.name))[:3]
+    if not ranked:
+        return content
+    blocks = "".join(
+        f'<div class="service-related"><div><h3>{case_label(other)}</h3>'
+        f'<p>Another finished project from the same kind of work.</p></div>'
+        f'<a href="{other.name}">Open the case study →</a></div>'
+        for other in ranked
+    )
+    return content.replace("</main>", f'<section class="service-page-section">{blocks}</section></main>', 1)
+
+
+def page_url(relative: Path) -> str:
+    posix = relative.as_posix()
+    return SITE + ("/" if posix == "index.html" else "/" + posix)
+
+
+def first_content_image(content: str) -> str:
+    """The page's own first photograph — never an icon, a logo or the shared default."""
+    skip = ("favicon", "logo", "apple-touch-icon", "hero-landscape")
+    for match in re.finditer(r'<img[^>]+src="([^"]+)"', content, re.IGNORECASE):
+        src = match.group(1)
+        if src.startswith("/") and not any(word in src.lower() for word in skip):
+            return src
+    return ""
+
+
+def inject_og_tags(content: str, relative: Path) -> str:
+    """Give every page its own social card: title, description, url and a real photo.
+
+    Only a handful of pages carried og:* tags, so most shared links showed
+    nothing at all. A page with its own photograph uses it; anything else falls
+    back to the site image rather than inventing one.
+    """
+    if "</head>" not in content:
+        return content
+
+    def current(prop: str) -> str | None:
+        match = re.search(rf'<meta property="og:{prop}" content="([^"]*)"', content)
+        return match.group(1) if match else None
+
+    def put(prop: str, value: str) -> None:
+        nonlocal content
+        tag = f'<meta property="og:{prop}" content="{value}">'
+        existing = re.search(rf'<meta property="og:{prop}" content="[^"]*">', content)
+        if existing:
+            content = content.replace(existing.group(0), tag, 1)
+        else:
+            content = content.replace("</head>", tag + "\n</head>", 1)
+
+    title_match = re.search(r"<title>([^<]*)</title>", content)
+    desc_match = re.search(r'<meta name="description" content="([^"]*)"', content)
+    if not current("title") and title_match:
+        put("title", title_match.group(1))
+    if not current("description") and desc_match:
+        put("description", desc_match.group(1))
+    if not current("type"):
+        put("type", "website")
+    if not current("url"):
+        put("url", page_url(relative))
+
+    image = current("image")
+    placeholder = {"/img/og-image.jpg", SITE + "/img/og-image.jpg"}
+    if not image or image.rstrip("/") in placeholder:
+        chosen = first_content_image(content) or "/img/og-image.jpg"
+        put("image", chosen if chosen.startswith("http") else SITE + chosen)
+    elif image.startswith("/"):
+        put("image", SITE + image)
+    return content
+
 
 # Cloudflare Web Analytics: cookieless, aggregate page counts only.
 # Set the token from the Cloudflare dashboard (Web Analytics -> Add a site -> JS install):
@@ -253,6 +361,8 @@ def build_html(source: Path, target: Path) -> None:
         content = content.replace("</head>", ASSET_TAGS + "\n</head>", 1)
     content = transform_gallery_markup(content)
     content = re.sub(r'<link[^>]*https://fonts[.]g(?:oogleapis|static)[.]com[^>]*/?>\s*', "", content)
+    content = inject_og_tags(content, source.relative_to(ROOT))
+    content = inject_case_related(content, source)
     content = inject_twitter_card(content)
     content = content.replace("</head>", FONT_TAGS + "\n</head>", 1)
     content = content.replace("</head>", ICON_TAGS + "\n</head>", 1)
