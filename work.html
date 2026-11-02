@@ -229,8 +229,8 @@
     left: 12px;
     background: rgba(20, 24, 26, 0.85);
     backdrop-filter: blur(8px);
-    border: 1px solid var(--line);
-    color: var(--ink);
+    border: 1px solid rgba(255, 249, 240, 0.22);
+    color: var(--cream);
     padding: 5px 14px;
     border-radius: 20px;
     font-size: 13px;
@@ -471,7 +471,7 @@
   }
   .lightbox-caption {
     margin-top: 14px;
-    color: var(--ink);
+    color: var(--cream);
     font-size: 15px;
     text-align: center;
   }
@@ -484,7 +484,7 @@
     background: rgba(27, 33, 31, 0.85);
     border: 1px solid var(--line);
     border-radius: 50%;
-    color: var(--ink); font-size: 20px;
+    color: var(--cream); font-size: 20px;
     cursor: pointer; opacity: 0.85;
     transition: opacity .2s ease, background .2s ease;
   }
@@ -499,7 +499,7 @@
     position: absolute;
     top: -40px; right: 0;
     background: none; border: none;
-    color: var(--ink); font-size: 32px;
+    color: var(--cream); font-size: 32px;
     cursor: pointer; opacity: 0.8;
     transition: opacity 0.2s;
   }
@@ -772,28 +772,31 @@
       <!-- Case Study 8: Front Yard Block Retaining Wall & Concrete Terrace -->
       <div class="case-study-card" data-category="hardscaping">
         <div class="case-media-panel">
-          <span class="photo-real-tag">Real Job Photos</span>
+          <span class="photo-real-tag">Real Photos + Rendering</span>
           <div class="main-photo-container" id="cs8-main-box">
-             <img src="img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp" srcset="img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall-800.webp 800w, img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed curved tan block retaining wall holding a rebuilt front bed in Fort Collins, CO" id="cs8-main-img" onclick="openLightbox(this.src, this.alt)" loading="lazy" decoding="async">
-            <div class="photo-badge" id="cs8-badge">Photo 1 of 6: Completed Curved Block Retaining Wall</div>
+             <img src="img/case-studies/fort-collins-retaining-wall-patio/9-final-look-planted-bed.webp" srcset="img/case-studies/fort-collins-retaining-wall-patio/9-final-look-planted-bed-800.webp 800w, img/case-studies/fort-collins-retaining-wall-patio/9-final-look-planted-bed.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Concept rendering of the finished front bed with lavender and ornamental grasses behind a curved buff block retaining wall, Fort Collins, CO" id="cs8-main-img" onclick="openLightbox(this.src, this.alt)" loading="lazy" decoding="async">
+            <div class="photo-badge" id="cs8-badge">Photo 1 of 7: Finished Front Bed — Concept Rendering</div>
           </div>
           <div class="case-thumb-row">
-            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp', 'Photo 1 of 6: Completed Curved Block Retaining Wall', this)">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/9-final-look-planted-bed.webp', 'Photo 1 of 7: Finished Front Bed — Concept Rendering', this)">
+               <img src="img/case-studies/fort-collins-retaining-wall-patio/9-final-look-planted-bed-800.webp" alt="Concept rendering of the front bed planted out behind the curved block wall" loading="lazy" decoding="async">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall.webp', 'Photo 2 of 7: Completed Curved Block Retaining Wall', this)">
                <img src="img/case-studies/fort-collins-retaining-wall-patio/6-completed-curved-retaining-wall-800.webp" alt="Completed curved block retaining wall" loading="lazy" decoding="async">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition.webp', 'Photo 2 of 6: Bare Compacted Bed Before Rebuild', this)">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition.webp', 'Photo 3 of 7: Bare Compacted Bed Before Rebuild', this)">
                <img src="img/case-studies/fort-collins-retaining-wall-patio/1-before-front-yard-condition-800.webp" alt="Bare compacted front bed before the rebuild" loading="lazy" decoding="async">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed.webp', 'Photo 3 of 6: Bed Stripped & Graded to String Lines', this)">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed.webp', 'Photo 4 of 7: Bed Stripped & Graded to String Lines', this)">
                <img src="img/case-studies/fort-collins-retaining-wall-patio/2-turf-stripped-graded-bed-800.webp" alt="Bed stripped and graded with string lines" loading="lazy" decoding="async">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base.webp', 'Photo 4 of 6: First Block Course on Compacted Gravel', this)">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base.webp', 'Photo 5 of 7: First Block Course on Compacted Gravel', this)">
                <img src="img/case-studies/fort-collins-retaining-wall-patio/3-block-edging-gravel-base-800.webp" alt="First block course on compacted gravel base" loading="lazy" decoding="async">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour.webp', 'Photo 5 of 6: Concrete Terrace Poured Over Vapour Barrier', this)">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour.webp', 'Photo 6 of 7: Concrete Terrace Poured Over Vapour Barrier', this)">
                <img src="img/case-studies/fort-collins-retaining-wall-patio/4-concrete-terrace-pour-800.webp" alt="Concrete terrace poured over vapor barrier" loading="lazy" decoding="async">
             </button>
-            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build.webp', 'Photo 6 of 6: Wall Courses Carried Around the Curve', this)">
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs8', 'img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build.webp', 'Photo 7 of 7: Wall Courses Carried Around the Curve', this)">
                <img src="img/case-studies/fort-collins-retaining-wall-patio/5-retaining-wall-build-800.webp" alt="Crew building curved block wall around the terrace" loading="lazy" decoding="async">
             </button>
           </div>

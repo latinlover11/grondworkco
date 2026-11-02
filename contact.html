@@ -158,11 +158,13 @@
   .breadcrumbs a:hover{color:var(--ember-bright);}
   /* ---------- contact hero ---------- */
    .contact-hero{
-     padding:48px 0 64px;
-     border-bottom:1px solid var(--line);
+     margin-top:20px;
+     padding:36px 40px 42px;
+     border:1px solid rgba(255,249,240,.12);
+     border-radius:var(--radius);
      background:
-       radial-gradient(ellipse 900px 500px at 82% -10%, rgba(193,106,46,0.18), transparent 60%),
-       linear-gradient(180deg, #171C1D 0%, #14181A 100%);
+       radial-gradient(ellipse 700px 260px at 88% 0%, rgba(200,120,85,.22), transparent 62%),
+       #3B2A22;
    }
   .contact-hero-eyebrow{
     color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em;
@@ -172,21 +174,24 @@
     content: ''; width:24px; height:1px; background:var(--moss);
   }
   .contact-hero h1{
+    color:#FFF9F0;
     font-size:clamp(36px, 5vw, 62px);
     line-height:1.06;
     max-width:16ch;
-    margin-bottom:20px;
+    margin-bottom:16px;
   }
   .contact-hero p{
-    color:var(--ink-muted); font-size:18px; max-width:54ch; line-height:1.6;
+    color:rgba(255,249,240,.76); font-size:17px; max-width:54ch; line-height:1.55;
   }
   .response-note{
-    color:var(--moss) !important;
+    color:var(--ink-muted) !important;
     font-size:14px !important;
     line-height:1.5 !important;
     margin-top:18px;
   }
   .response-note strong{color:var(--ink); font-weight:600;}
+  .contact-hero .response-note{color:rgba(255,249,240,.88) !important; margin-top:18px;}
+  .contact-hero .response-note strong{color:#FFF9F0;}
   .contact-hero-actions{
     display:flex; gap:16px; margin-top:36px;
   }

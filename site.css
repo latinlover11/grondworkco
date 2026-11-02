@@ -226,7 +226,6 @@ html:has(.case-study-cedar-privacy-fence){scroll-behavior:smooth}
 :where(.case-study-cedar-privacy-fence) .breadcrumbs a:hover{color:var(--ember-bright)}
 :where(.case-study-cedar-privacy-fence) .case-hero{padding:40px 0 56px; border-bottom:1px solid var(--line)}
 :where(.case-study-cedar-privacy-fence) .case-hero-media{margin-top:32px}
-:where(.case-study-cedar-privacy-fence) .case-hero-media figcaption{margin:-42px 16px 0}
 :where(.case-study-cedar-privacy-fence) .case-hero-eyebrow{color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px}
 :where(.case-study-cedar-privacy-fence) .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss)}
 :where(.case-study-cedar-privacy-fence) .case-hero h1{font-size:clamp(32px, 4.5vw, 54px); line-height:1.08; max-width:18ch; margin-bottom:20px}
@@ -492,7 +491,6 @@ html:has(.case-study-longmont-flagstone-entry){scroll-behavior:smooth}
 :where(.case-study-longmont-flagstone-entry) .breadcrumbs a:hover{color:var(--ember-bright)}
 :where(.case-study-longmont-flagstone-entry) .case-hero{padding:40px 0 56px; border-bottom:1px solid var(--line)}
 :where(.case-study-longmont-flagstone-entry) .case-hero-media{margin-top:32px}
-:where(.case-study-longmont-flagstone-entry) .case-hero-media figcaption{margin:-42px 16px 0}
 :where(.case-study-longmont-flagstone-entry) .case-hero-eyebrow{color:var(--moss); font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px}
 :where(.case-study-longmont-flagstone-entry) .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss)}
 :where(.case-study-longmont-flagstone-entry) .case-hero h1{font-size:clamp(32px, 4.5vw, 54px); line-height:1.08; max-width:18ch; margin-bottom:20px}
@@ -1214,8 +1212,8 @@ position: absolute;
     left: 12px;
     background: rgba(20, 24, 26, 0.85);
     backdrop-filter: blur(8px);
-    border: 1px solid var(--line);
-    color: var(--ink);
+    border: 1px solid rgba(255, 249, 240, 0.22);
+    color: var(--cream);
     padding: 5px 14px;
     border-radius: 20px;
     font-size: 13px;
@@ -2852,7 +2850,7 @@ body.sheet-open { overflow: hidden; }
   background:var(--bg-panel);
 }
 .case-hero-media img{width:100%; height:100%; object-fit:cover;}
-.case-hero-media figcaption{position:absolute; left:16px; bottom:12px; color:var(--ink); font-size:12px; text-shadow:0 1px 12px rgba(0,0,0,.8);}
+.case-hero-media figcaption{position:absolute; left:16px; bottom:12px; max-width:calc(100% - 32px); color:var(--cream); background:rgba(20,24,26,.85); border:1px solid rgba(255,249,240,.22); border-radius:20px; padding:5px 12px; font-size:12px; backdrop-filter:blur(8px); text-shadow:none;}
 @media (max-width:860px){
   .case-hero-media{aspect-ratio:4 / 3; min-height:0; margin-top:24px;}
 }
@@ -2888,6 +2886,7 @@ body.sheet-open { overflow: hidden; }
 }
 .service-page-hero-media {
   margin: 0;
+  position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius);
@@ -2899,11 +2898,19 @@ body.sheet-open { overflow: hidden; }
   object-fit: cover;
 }
 .service-page-hero-media figcaption {
-  margin: -34px 12px 0;
-  position: relative;
-  color: var(--ink);
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  margin: 0;
+  color: var(--cream);
+  background: rgba(20, 24, 26, .85);
+  border: 1px solid rgba(255, 249, 240, .22);
+  border-radius: 20px;
+  padding: 4px 11px;
   font-size: 11px;
-  text-shadow: 0 1px 10px rgba(0,0,0,.8);
+  backdrop-filter: blur(8px);
+  text-shadow: none;
 }
 .service-page-facts{
   display:grid;
@@ -3296,4 +3303,24 @@ html:has(.quote-page) { scroll-behavior: smooth; }
 }
 @media (max-width: 767.98px){
   .services-grid.services-grid--four{ grid-template-columns: 1fr; }
+}
+
+/* Fall campaign entry in the nav: full-strength cream plus an ember underline, so
+   it reads as seasonal news without competing with the quote button. Written as
+   a.nav-campaign so the build's selector pass leaves it intact. */
+a.nav-campaign {
+  color: var(--cream);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ember-bright);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+a.nav-campaign:hover,
+a.nav-campaign:focus-visible {
+  color: var(--cream);
+  text-decoration-color: var(--cream);
+}
+@media (prefers-reduced-motion: no-preference) {
+  a.nav-campaign { transition: color .2s ease, text-decoration-color .2s ease; }
 }
