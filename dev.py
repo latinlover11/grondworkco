@@ -6,7 +6,7 @@ Run from the project root:
 """
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
-import os
+from functools import partial
 import subprocess
 import sys
 
@@ -15,7 +15,6 @@ DIST = ROOT / "dist"
 PORT = 8000
 
 subprocess.run([sys.executable, str(ROOT / "build.py")], check=True)
-os.chdir(DIST)
 
 
 class NoCacheHandler(SimpleHTTPRequestHandler):
@@ -31,7 +30,11 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
         super().end_headers()
 
 
-server = ThreadingHTTPServer(("127.0.0.1", PORT), NoCacheHandler)
+# Serve dist/ by argument instead of chdir: build.py replaces the dist
+# directory, which would delete the server's working directory out from under
+# it and make every later request fail on os.getcwd().
+handler = partial(NoCacheHandler, directory=str(DIST))
+server = ThreadingHTTPServer(("127.0.0.1", PORT), handler)
 print(f"Serving {DIST} at http://127.0.0.1:{PORT}")
 try:
     server.serve_forever()
