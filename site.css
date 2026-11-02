@@ -2336,11 +2336,11 @@ position: absolute;
   transition: opacity .25s ease;
 }
 :where(.home-page) .preview-overlay span{
-color: var(--ink);
+color: var(--cream);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(255,249,240,0.72);
   padding: 8px 18px;
   border-radius: var(--radius);
 }
