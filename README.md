@@ -27,15 +27,17 @@ Known limitation: pageviews only. It cannot attribute phone calls; form leads ca
 ## Photo checklist
 
 Everything below feeds a real slot on the site. Shoot phone-quality is fine —
-the specs matter more than the camera. Deliver originals as JPG; webp/resize
-variants get generated during the build.
+the specs matter more than the camera. Deliver originals as JPG; they get
+converted to webp (plus a `-800.webp` variant each) and committed to the
+repo — `build.py` copies `img/` verbatim, nothing generates variants at
+build time.
 
 ### Universal shot specs
 
 | Spec | Target |
 |---|---|
 | Orientation | Landscape (horizontal) for everything except instagram-style details |
-| Resolution | Long edge ≥ 1600px (site serves 1200w + 800w variants) |
+| Resolution | Long edge ≥ 1600px (site serves full-size + 800px webp variants) |
 | Light | Overcast or golden hour; avoid harsh noon shadows on stone/wood |
 | Before/after pairs | **Same position, same height, same framing** — stand on the same spot for both; these may become comparison sliders |
 | Per project | 1 wide establishing shot + 3–5 detail shots |
@@ -44,7 +46,8 @@ variants get generated during the build.
 ### Priority 1 — fills an empty slot now
 
 - [ ] **Crew photo — About page story section** (replaces the bluestone-patio
-  stand-in currently at `img/about/`)
+  stand-in the About page currently borrows from
+  `img/case-studies/bluestone-patio.webp`)
   Candid working shot beats a posed lineup: crew on a job site or with the
   truck/trailer, landscape 3:2, everyone identifiable. `alt` text will name it
   honestly, so it should genuinely show the crew.
@@ -91,13 +94,18 @@ Already used in case studies; more is better.
 ### Drop-off conventions
 
 ```
-img/case-studies/<project-slug>/1-<description>.jpg   # numbered process shots
-img/case-studies/<description>.jpg                    # single-purpose shots
-img/blog/<description>.jpg                            # blog imagery
-img/about/crew.jpg                                    # when the crew photo exists
+img/case-studies/<project-slug>/1-<description>.webp  # numbered process shots (7 of 11 projects)
+img/case-studies/<description>.webp                   # single-purpose shots (3 projects: flat files)
+img/blog/<description>.webp                           # blog imagery
+img/about/crew.jpg                                    # when the crew photo exists (dir doesn't exist yet)
 ```
 
-- Lowercase, hyphenated, descriptive (`5-completed-front-cedar-fence.jpg`).
+- Lowercase, hyphenated, descriptive (`1-before-front-yard-condition.webp`).
+- Pages reference images root-absolute (`/img/...`) and only serve `.webp`
+  (plus `.svg`/`.png` icons) — a `.jpg` original in the tree is never
+  referenced by a page. Commit the `.webp` plus its `-800.webp` variant.
+- Layout note: `cedar-privacy-fence.html` currently borrows images from
+  `lafayette-cedar-fence/` — don't propagate that pattern for new projects.
 - Note the project location + date when handing files over — captions and
   schema use them.
 - Get client permission for any recognizable faces or street numbers before
