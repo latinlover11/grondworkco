@@ -35,7 +35,7 @@ HEADER = '''<header>
     <ul class="nav-links">
       <!-- Seasonal: remove the Fall cleanup item after the campaign ends. -->
       <li><a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a></li>
-      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/services.html">Services</a></li>
       <li><a href="/work.html">Our Work</a></li>
       <li><a href="/about.html">About Us</a></li>
       <li><a href="/blog/index.html">Blog</a></li>
@@ -47,7 +47,7 @@ HEADER = '''<header>
   </nav>
   <div class="nav-mobile-panel" id="nav-mobile-panel" aria-hidden="true">
     <a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a>
-    <a href="/index.html#services">Services</a>
+    <a href="/services.html">Services</a>
     <a href="/work.html">Our Work</a>
     <a href="/about.html">About Us</a>
     <a href="/blog/index.html">Blog</a>
@@ -63,7 +63,7 @@ FOOTER = '''<footer class="site-footer">
         <p>Hardscaping, fencing, and lawn care built for Colorado properties.</p>
       </div>
       <nav class="site-footer-links" aria-label="Footer navigation">
-        <a href="/index.html#services">Services</a>
+        <a href="/services.html">Services</a>
         <a href="/work.html">Our Work</a>
         <a href="/about.html">About Us</a>
         <a href="/blog/index.html">Blog</a>
