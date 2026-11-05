@@ -46,11 +46,11 @@ HEADER = '''<header>
     </button>
   </nav>
   <div class="nav-mobile-panel" id="nav-mobile-panel" aria-hidden="true">
-    <a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a>
     <a href="/services.html">Services</a>
     <a href="/work.html">Our Work</a>
     <a href="/about.html">About Us</a>
     <a href="/blog/index.html">Blog</a>
+    <a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a>
     <a href="/contact.html" class="nav-cta">Get a quote</a>
   </div>
 </header>'''
