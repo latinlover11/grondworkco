@@ -371,13 +371,16 @@ def build_html(source: Path, target: Path) -> None:
     if source.name != "thank-you.html":
         content = re.sub(r"<header(?:\s[^>]*)?>[\s\S]*?</header>", HEADER, content, count=1)
         content = re.sub(r"<footer(?:\s[^>]*)?>[\s\S]*?</footer>", FOOTER, content, count=1)
-        content = re.sub(r"<link rel=\"stylesheet\" href=\"/?site\.css(?:\?[^\"]*)?\">\s*", "", content)
-        content = re.sub(r"<script defer src=\"/?site\.js\"></script>\s*", "", content)
         styles = "\n\n".join(match.group(1).strip() for match in STYLE_RE.finditer(content))
         content = STYLE_RE.sub("", content)
         if styles:
             content = content.replace("</head>", f"<style>{minify_css(styles)}</style>\n</head>", 1)
-        content = content.replace("</head>", asset_tags() + "\n</head>", 1)
+    # Versioned asset URLs on every page, thank-you.html included: netlify.toml
+    # caches /site.css and /site.js immutable for a year, so an unversioned
+    # reference would pin returning visitors to a stale script or stylesheet.
+    content = re.sub(r"<link rel=\"stylesheet\" href=\"/?site\.css(?:\?[^\"]*)?\">\s*", "", content)
+    content = re.sub(r"<script defer src=\"/?site\.js\"></script>\s*", "", content)
+    content = content.replace("</head>", asset_tags() + "\n</head>", 1)
     content = transform_gallery_markup(content)
     content = re.sub(r'<link[^>]*https://fonts[.]g(?:oogleapis|static)[.]com[^>]*/?>\s*', "", content)
     content = inject_og_tags(content, source.relative_to(ROOT))
