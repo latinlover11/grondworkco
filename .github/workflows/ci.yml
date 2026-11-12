@@ -30,12 +30,22 @@ jobs:
           path: dist/
 
   deploy-netlify:
-    # Deploys to Netlify only if NETLIFY_SITE_ID + NETLIFY_AUTH_TOKEN secrets
-    # are configured (see README "Deploy to Netlify"). Otherwise skips.
+    # Deploys to Netlify only when pushed to main AND the Netlify secrets
+    # are configured (README: "Deploy to Netlify"). If secrets are missing,
+    # the check step fails loudly instead of deploying to the wrong site.
     needs: check-and-build
-    if: env.NETLIFY_SITE_ID != ''
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+      - name: Fail if Netlify secrets are not configured
+        run: |
+          if [ -z "$NETLIFY_SITE_ID" ] || [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "Netlify credentials not configured for this workflow."
+            echo "Configure NETLIFY_SITE_ID and NETLIFY_AUTH_TOKEN secrets in repo settings,"
+            echo "or deploy manually with: ntl deploy --prod"
+            exit 1
+          fi
+
       - uses: actions/download-artifact@v4
         with:
           name: dist
