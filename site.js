@@ -34,6 +34,8 @@
     var successBox = document.getElementById('form-success');
     var submitButton = form.querySelector('button[type="submit"]');
     var validationFields = Array.prototype.slice.call(form.querySelectorAll('input:not([type="hidden"]), select, textarea'));
+    var emailField = document.getElementById('email');
+    var phoneField = document.getElementById('phone');
 
     function showError(message) {
       if (!errorBox) return;
@@ -45,11 +47,27 @@
       if (errorBox) errorBox.hidden = true;
     }
 
+    function contactMethodError() {
+      var hasEmail = emailField && emailField.value.trim();
+      var hasPhone = phoneField && phoneField.value.trim();
+      if (hasEmail || hasPhone) return '';
+      return 'Please provide at least one way we can reach you (email or phone).';
+    }
+
+    function validateContactFields() {
+      var msg = contactMethodError();
+      if (emailField) emailField.setCustomValidity(msg);
+      if (phoneField) phoneField.setCustomValidity(msg);
+      return !msg;
+    }
+
     validationFields.forEach(function (field) {
       field.addEventListener('blur', function () {
+        if (field === emailField || field === phoneField) validateContactFields();
         field.setAttribute('aria-invalid', field.validity.valid ? 'false' : 'true');
       });
       field.addEventListener('input', function () {
+        if (field === emailField || field === phoneField) validateContactFields();
         if (field.validity.valid) field.setAttribute('aria-invalid', 'false');
         if (validationFields.every(function (item) { return item.validity.valid; })) clearError();
       });
@@ -58,13 +76,15 @@
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       clearError();
+      validateContactFields();
       validationFields.forEach(function (field) {
         field.setAttribute('aria-invalid', field.validity.valid ? 'false' : 'true');
       });
 
       if (!form.checkValidity()) {
-        showError('Please check the highlighted fields before sending your request.');
+        var contactMsg = contactMethodError();
         var firstInvalid = validationFields.find(function (field) { return !field.validity.valid; });
+        showError(contactMsg || 'Please check the highlighted fields before sending your request.');
         if (firstInvalid) firstInvalid.focus();
         return;
       }

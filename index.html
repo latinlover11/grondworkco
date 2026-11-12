@@ -291,7 +291,7 @@
   .section-head h2{font-size:clamp(28px,3.4vw,42px); max-width:14ch;}
   .section-head p{color:var(--ink-muted); max-width:34ch; font-size:15px;}
   /* ---------- alternating section rhythm ---------- */
-  #why-groundwork,
+  #work-preview,
   #testimonials{
     background:var(--bg-panel-alt);
     border-top:1px solid var(--line);
@@ -301,7 +301,7 @@
   #testimonials .testimonial{background:var(--bg-panel);}
   /* ---------- services ---------- */
   .services-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
   }
   .service-card{
     display:flex; flex-direction:column; min-height:100%;
@@ -309,22 +309,31 @@
     transition:transform .25s ease, background .25s ease;
   }
   .service-card:hover{transform:translateY(-4px); background:var(--bg-panel-alt);}
-  .service-media{aspect-ratio:4 / 3; overflow:hidden; background:var(--bg-panel-alt);}
-  .service-media img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-  .service-card:hover .service-media img{transform:scale(1.04);}
-  .service-card-copy{display:flex; flex-direction:column; gap:16px; padding:26px 26px 28px; flex:1;}
+  .service-media{height:96px; overflow:hidden; background:var(--bg-panel-alt); display:flex; align-items:center; justify-content:center; color:var(--ember-bright);}
+  .service-media svg{width:40px; height:40px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .service-card-copy{display:flex; flex-direction:column; gap:10px; padding:18px 18px 20px; flex:1;}
   .service-icon{width:34px;height:34px; color:var(--ember-bright);}
   .service-tag{
     align-self:flex-start; font-size:11px; color:var(--moss); letter-spacing:.05em;
     text-transform:uppercase;
   }
-  .service-card h3{font-size:25px; font-weight:460;}
-  .service-card p.desc{color:var(--ink-muted); font-size:14.5px; max-width:34ch;}
-  .service-list{list-style:none; margin:auto 0 0; padding:0; display:flex; flex-direction:column; gap:7px; font-size:13.5px;}
+  .service-card h3{font-size:22px; font-weight:460;}
+  .service-card p.desc{color:var(--ink-muted); font-size:14px; line-height:1.45; max-width:34ch;}
+  .service-list{list-style:none; margin:2px 0 0; padding:0; display:flex; flex-direction:column; gap:5px; font-size:13px;}
   .service-list li{display:flex; align-items:center; gap:10px; color:var(--ink);}
   .service-list li::before{content:''; width:5px; height:5px; background:var(--ember); border-radius:1px; flex-shrink:0;}
   .service-link{color:var(--ember-bright); font-size:14px; font-weight:600; text-decoration:none; margin-top:2px;}
   .service-link:hover{text-decoration:underline; text-underline-offset:4px;}
+  /* homepage services: compact row layout */
+  #services .services-grid{grid-template-columns:repeat(2,1fr); gap:12px;}
+  #services .service-card{flex-direction:row; align-items:stretch; min-height:0;}
+  #services .service-media{width:84px; min-width:84px; height:auto; align-self:stretch; border-right:1px solid var(--line);}
+  #services .service-media svg{width:34px; height:34px;}
+  #services .service-card-copy{padding:14px 16px; gap:6px;}
+  #services .service-card h3{font-size:20px;}
+  #services .service-card p.desc{font-size:13.5px; line-height:1.4; max-width:none;}
+  #services .service-list{display:none;}
+  #services .service-link{margin-top:4px; font-size:13.5px;}
   /* ---------- why groundwork ---------- */
   .why-grid{
     display:grid;
@@ -434,18 +443,14 @@
   body > header{order:1;}
   body > .hero{order:2;}
   body > #services{order:3;}
-  body > #why-groundwork{order:4;}
-  body > #work-preview{order:5;}
+  body > #work-preview{order:4;}
+  body > #why-groundwork{order:5;}
   body > #process{order:6;}
   body > #testimonials{order:7;}
   body > #final-cta{order:8;}
   body > footer{order:9;}
   body > script{display:none;}
-  .work-preview-card:first-child{grid-column:span 2;}
-  .work-preview-card:first-child .preview-media{height:250px;}
   @media (max-width:860px){
-    .work-preview-card:first-child{grid-column:auto;}
-    .work-preview-card:first-child .preview-media{height:210px;}
     .nav-links{display:none;}
     .brand{font-size:18px; white-space:nowrap;}
     .brand span{display:inline;}
@@ -460,7 +465,10 @@
     .hero-stat span{font-size:11px; line-height:1.25;}
     .marquee-item{min-height:64px; padding:14px 22px;}
     .services-grid{grid-template-columns:1fr; gap:16px;}
-    .service-media{aspect-ratio:16 / 9;}
+    .service-media{height:76px;}
+    #services .services-grid{grid-template-columns:1fr; gap:10px;}
+    #services .service-card{flex-direction:row;}
+    #services .service-media{width:72px; min-width:72px; height:auto;}
     #process{padding:48px 0;}
     .process{grid-template-columns:1fr 1fr; row-gap:28px;}
     #testimonials{padding:48px 0;}
@@ -528,18 +536,20 @@
   transform: scale(1.05);
 }
 .preview-content {
-  padding: 20px;
-  flex: 1;
+  padding: 16px 18px 8px;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 6px;
 }
 .preview-content p:not(.preview-tag) {
   align-self: stretch;
 }
 .preview-content h3 {
-  margin: 0 0 8px 0;
-  font-size: 1.25rem;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2;
 }
 .preview-tag {
   display: inline-block;
@@ -553,12 +563,13 @@
   font-weight: 600;
   padding: 2px 8px;
   border-radius: 3px;
-  margin-bottom: 12px;
+  margin: 0;
 }
 .preview-content p {
-  flex: 1;
-  margin: 0 0 12px 0;
-  line-height: 1.5;
+  flex: 0 0 auto;
+  margin: 0;
+  line-height: 1.45;
+  font-size: 14px;
   color: var(--ink-muted);
 }  .preview-content .preview-tag {
   align-self: flex-start !important;
@@ -573,10 +584,10 @@
 .preview-meta {
   display: flex;
   justify-content: space-between;
-  padding: 0 20px 20px;
-  font-size: 0.9rem;
+  padding: 8px 18px 16px;
+  font-size: 0.85rem;
   color: var(--ink-muted);
-  margin-top: auto;
+  margin-top: 0;
 }
 .link-arrow {
   opacity: 0.7;
@@ -657,97 +668,77 @@
     </div>
     <div class="services-grid services-grid--four">
       <article class="service-card">
-        <div class="service-media"> <img decoding="async" src="img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden.webp" srcset="img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden-800.webp 800w, img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed flagstone path through planted entry beds" loading="lazy" width="1024" height="768"></div>
+        <div class="service-media" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img" focusable="false">
+            <rect x="10" y="36" width="18" height="12" rx="2"></rect>
+            <rect x="30" y="36" width="24" height="12" rx="2"></rect>
+            <rect x="18" y="22" width="20" height="12" rx="2"></rect>
+            <rect x="40" y="22" width="14" height="12" rx="2"></rect>
+            <path d="M8 50h48"></path>
+          </svg>
+        </div>
         <div class="service-card-copy">
           <span class="service-tag">Design + build</span>
           <h3>Hardscaping</h3>
-          <p class="desc">Patios, retaining walls, drainage, and outdoor living spaces built for Colorado freeze-thaw cycles.</p>
-          <ul class="service-list"><li>Stone & paver patios</li><li>Retaining walls & grading</li><li>Fire pits & seating walls</li></ul>
+          <p class="desc">Patios, retaining walls, and outdoor living spaces built for Colorado freeze-thaw cycles.</p>
+          <ul class="service-list"><li>Stone &amp; paver patios</li><li>Retaining walls &amp; grading</li></ul>
           <a class="service-link" href="hardscaping-longmont.html">Explore hardscaping →</a>
         </div>
       </article>
       <article class="service-card">
-        <div class="service-media">   <img decoding="async" src="img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence.webp" srcset="img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence-800.webp 800w, img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Finished wood fence beside gravel landscaping in Lakewood" loading="lazy" width="1200" height="900"></div>
+        <div class="service-media" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img" focusable="false">
+            <path d="M12 18v34M24 18v34M36 18v34M48 18v34"></path>
+            <path d="M8 22h44M8 34h44M8 46h44"></path>
+            <path d="M12 18l6-6 6 6M24 18l6-6 6 6M36 18l6-6 6 6"></path>
+          </svg>
+        </div>
         <div class="service-card-copy">
           <span class="service-tag">Install + repair</span>
           <h3>Fencing</h3>
-          <p class="desc">Cedar, split-rail, and ornamental steel fences set straight, finished cleanly, and made to hold a line.</p>
-          <ul class="service-list"><li>Cedar privacy & picket</li><li>Steel & aluminum</li><li>Custom gates & hardware</li></ul>
+          <p class="desc">Cedar, split-rail, and steel fences set straight, finished cleanly, and built to hold a line.</p>
+          <ul class="service-list"><li>Cedar privacy &amp; picket</li><li>Custom gates &amp; hardware</li></ul>
           <a class="service-link" href="fencing-boulder.html">Explore fencing →</a>
         </div>
       </article>
       <article class="service-card">
-        <div class="service-media"> <img decoding="async" src="img/case-studies/cleanup-after-overview.webp" srcset="img/case-studies/cleanup-after-overview-800.webp 800w, img/case-studies/cleanup-after-overview.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Completed landscape cleanup with tidy beds and lawn" loading="lazy" width="1200" height="800"></div>
+        <div class="service-media" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img" focusable="false">
+            <path d="M10 46c8-10 18-16 30-18"></path>
+            <path d="M14 50c7-8 16-13 26-15"></path>
+            <path d="M18 54c6-6 13-10 22-12"></path>
+            <path d="M40 18c5 2 8 6 10 12-6 0-10-2-13-6-2-3-2-6 3-6z"></path>
+            <path d="M34 28l6-10"></path>
+          </svg>
+        </div>
         <div class="service-card-copy">
           <span class="service-tag">Seasonal maintenance</span>
           <h3>Lawn care</h3>
-          <p class="desc">Reliable mowing, aeration, cleanup, and lawn programs that keep the whole property looking finished.</p>
-          <ul class="service-list"><li>Weekly & biweekly mowing</li><li>Aeration & overseeding</li><li>Spring & fall cleanup</li></ul>
+          <p class="desc">Reliable mowing, aeration, and cleanup programs that keep the property looking finished.</p>
+          <ul class="service-list"><li>Weekly &amp; biweekly mowing</li><li>Aeration &amp; overseeding</li></ul>
           <a class="service-link" href="lawn-care-longmont.html">Explore lawn care →</a>
         </div>
       </article>
       <article class="service-card">
-        <div class="service-media"> <img decoding="async" src="img/case-studies/cleanup-corner-after.webp" srcset="img/case-studies/cleanup-corner-after-800.webp 800w, img/case-studies/cleanup-corner-after.webp 1200w" sizes="(max-width: 860px) 100vw, 400px" alt="Front lawn and gravel beds cleared beside a brick house after a fall cleanup" loading="lazy" width="1200" height="800"></div>
+        <div class="service-media" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img" focusable="false">
+            <path d="M20 14c4 0 7 3 7 7 0 5-4 8-9 8-4 0-7-3-7-7 0-4 4-8 9-8z"></path>
+            <path d="M22 24l18 22"></path>
+            <path d="M34 40l10-4 8 10-10 4z"></path>
+            <path d="M44 18c3 1 5 4 5 7-3 0-6-1-7-4-1-2 0-3 2-3z"></path>
+          </svg>
+        </div>
         <div class="service-card-copy">
           <span class="service-tag">Fall 2026 &middot; booking now</span>
           <h3>Fall cleanup</h3>
-          <p class="desc">Leaves off the lawn and beds, final mow, then core aeration and overseeding in one visit &mdash; plus sprinkler blowouts and gutters.</p>
-          <ul class="service-list"><li>Leaf &amp; debris haul-off</li><li>Aeration &amp; overseeding</li><li>Sprinkler blowouts &amp; gutters</li></ul>
+          <p class="desc">Leaf cleanup, final mow, core aeration and overseeding in one visit&mdash;plus blowouts and gutters.</p>
+          <ul class="service-list"><li>Leaf &amp; debris haul-off</li><li>Aeration &amp; overseeding</li></ul>
           <a class="service-link" href="fall-cleanup-longmont.html?src=home-card">Explore the Fall Reset &rarr;</a>
         </div>
       </article>
     </div>
     <div style="margin-top:28px;">
       <a class="btn-primary" href="services.html">See all services &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<section id="why-groundwork">
-  <div class="wrap">
-    <div class="why-grid">
-      <div class="why-intro">
-        <div class="hero-eyebrow">A better way to build outside</div>
-        <h2>Good work starts before the first shovel.</h2>
-        <p>We bring the same care to the plan, the details, and the final cleanup that we bring to the finished landscape.</p>
-      </div>
-      <ul class="why-list">
-        <li class="why-item"><b>Built for Colorado</b><p>Materials, drainage, and installation choices are made with freeze-thaw weather in mind.</p></li>
-        <li class="why-item"><b>One accountable crew</b><p>Hardscape, fence, and lawn work stay coordinated instead of being handed between contractors.</p></li>
-        <li class="why-item"><b>Clear from the start</b><p>You get a straightforward scope, material direction, and next step before work begins.</p></li>
-        <li class="why-item"><b>Finished, then cared for</b><p>We leave the site clean and can help maintain the landscape after the build is complete.</p></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="process">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Our process</h2>
-      <p>From idea to enjoyment — we keep it simple and transparent.</p>
-    </div>
-    <div class="process">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Consult</h3>
-        <p>We meet on‑site to understand your vision, assess the space, and provide a clear estimate.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Design</h3>
-        <p>We create a detailed plan and material selection so you know exactly what to expect.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Build</h3>
-        <p>Our crew executes the build with craftsmanship, keeping you updated throughout.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h3>Enjoy</h3>
-        <p>Final walk‑through and care guide so your outdoor space stays beautiful year after year.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -828,8 +819,61 @@
           </div>
         </a>
       </div>
+      <div style="margin-top:28px;">
+        <a class="btn-primary" href="work.html">See all work &rarr;</a>
+      </div>
     </div>
   </section>
+
+<section id="why-groundwork">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-intro">
+        <div class="hero-eyebrow">A better way to build outside</div>
+        <h2>Good work starts before the first shovel.</h2>
+        <p>We bring the same care to the plan, the details, and the final cleanup that we bring to the finished landscape.</p>
+      </div>
+      <ul class="why-list">
+        <li class="why-item"><b>Built for Colorado</b><p>Materials, drainage, and installation choices are made with freeze-thaw weather in mind.</p></li>
+        <li class="why-item"><b>One accountable crew</b><p>Hardscape, fence, and lawn work stay coordinated instead of being handed between contractors.</p></li>
+        <li class="why-item"><b>Clear from the start</b><p>You get a straightforward scope, material direction, and next step before work begins.</p></li>
+        <li class="why-item"><b>Finished, then cared for</b><p>We leave the site clean and can help maintain the landscape after the build is complete.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Our process</h2>
+      <p>From idea to enjoyment — we keep it simple and transparent.</p>
+    </div>
+    <div class="process">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Consult</h3>
+        <p>We meet on‑site to understand your vision, assess the space, and provide a clear estimate.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Design</h3>
+        <p>We create a detailed plan and material selection so you know exactly what to expect.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Build</h3>
+        <p>Our crew executes the build with craftsmanship, keeping you updated throughout.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Enjoy</h3>
+        <p>Final walk‑through and care guide so your outdoor space stays beautiful year after year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <section id="testimonials">
   <div class="wrap">

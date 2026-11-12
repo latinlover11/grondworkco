@@ -318,14 +318,6 @@
           <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name">
         </div>
         <div class="form-row">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
-        </div>
-        <div class="form-row">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(720) 707-5411">
-        </div>
-        <div class="form-row">
           <label for="service">Service interested in</label>
           <select id="service" name="service" required>
             <option value="">Select a service</option>
@@ -339,57 +331,76 @@
           </select>
         </div>
         <div class="form-row">
-          <label for="timeline">Desired timeline</label>
-          <select id="timeline" name="timeline">
-            <option value="">Select a timeline</option>
-            <option value="asap">As soon as possible</option>
-            <option value="1-3-months">Within 1–3 months</option>
-            <option value="planning">Just planning ahead</option>
-          </select>
+          <label for="email">Email <span class="form-help-inline">(or provide phone)</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-describedby="contact-method-help">
         </div>
         <div class="form-row">
-          <label for="budget">Approximate budget (optional)</label>
-          <select id="budget" name="budget">
-            <option value="">Select a range</option>
-            <option value="under-5000">Under $5,000</option>
-            <option value="5000-15000">$5,000–$15,000</option>
-            <option value="15000-30000">$15,000–$30,000</option>
-            <option value="over-30000">$30,000+</option>
-            <option value="not-sure">Not sure yet</option>
-          </select>
+          <label for="phone">Phone <span class="form-help-inline">(or provide email)</span></label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(720) 707-5411" aria-describedby="contact-method-help">
+          <span class="form-help" id="contact-method-help">Please share at least one way we can reach you (email or phone).</span>
         </div>
         <div class="form-row">
-          <label for="how-heard">How did you hear about us?</label>
-          <select id="how-heard" name="how_heard">
-            <option value="">Prefer not to say</option>
-            <option value="google">Google search / Maps</option>
-            <option value="nextdoor">Nextdoor</option>
-            <option value="facebook">Facebook</option>
-            <option value="neighbor">Neighbor / referral</option>
-            <option value="flyer">Door hanger / flyer</option>
-            <option value="yard-sign">Yard sign</option>
-            <option value="saw-work">Saw your truck / crew in my area</option>
-            <option value="past-client">I've hired you before</option>
-            <option value="other">Other</option>
-          </select>
-          <input type="text" id="how-heard-other" name="how_heard_other" placeholder="Tell us where you heard about us" style="margin-top:8px;display:none;">
-          <script>
-            (function () {
-              var select = document.getElementById('how-heard');
-              var other = document.getElementById('how-heard-other');
-              function sync() {
-                var show = select.value === 'other';
-                other.style.display = show ? '' : 'none';
-                if (!show) other.value = '';
-              }
-              select.addEventListener('change', sync);
-              sync();
-            })();
-          </script>
+          <label for="location">City or ZIP (optional)</label>
+          <input type="text" id="location" name="location" autocomplete="postal-code address-level2" placeholder="Longmont, 80501, etc.">
+          <span class="form-help">Helps us confirm you’re in our service area.</span>
         </div>
+        <details class="form-row form-optional">
+          <summary>Timeline, budget, and referral (optional)</summary>
+          <div class="form-optional-fields">
+            <div class="form-row">
+              <label for="timeline">Desired timeline</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select a timeline</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1-3-months">Within 1–3 months</option>
+                <option value="planning">Just planning ahead</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="budget">Approximate budget</label>
+              <select id="budget" name="budget">
+                <option value="">Select a range</option>
+                <option value="under-5000">Under $5,000</option>
+                <option value="5000-15000">$5,000–$15,000</option>
+                <option value="15000-30000">$15,000–$30,000</option>
+                <option value="over-30000">$30,000+</option>
+                <option value="not-sure">Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="how-heard">How did you hear about us?</label>
+              <select id="how-heard" name="how_heard">
+                <option value="">Prefer not to say</option>
+                <option value="google">Google search / Maps</option>
+                <option value="nextdoor">Nextdoor</option>
+                <option value="facebook">Facebook</option>
+                <option value="neighbor">Neighbor / referral</option>
+                <option value="flyer">Door hanger / flyer</option>
+                <option value="yard-sign">Yard sign</option>
+                <option value="saw-work">Saw your truck / crew in my area</option>
+                <option value="past-client">I've hired you before</option>
+                <option value="other">Other</option>
+              </select>
+              <input type="text" id="how-heard-other" name="how_heard_other" placeholder="Tell us where you heard about us" style="margin-top:8px;display:none;">
+              <script>
+                (function () {
+                  var select = document.getElementById('how-heard');
+                  var other = document.getElementById('how-heard-other');
+                  function sync() {
+                    var show = select.value === 'other';
+                    other.style.display = show ? '' : 'none';
+                    if (!show) other.value = '';
+                  }
+                  select.addEventListener('change', sync);
+                  sync();
+                })();
+              </script>
+            </div>
+          </div>
+        </details>
         <div class="form-row">
-          <label for="message">Project details (optional)</label>
-          <textarea id="message" name="message" rows="4" placeholder="Tell us about the space, approximate size, and what you have in mind."></textarea>
+          <label for="message">Project details</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Tell us about the space, approximate size, and what you have in mind."></textarea>
         </div>
         <div class="form-row">
           <label for="photo-link">Project photo link (optional)</label>

@@ -2587,11 +2587,15 @@ align-items:flex-start !important; flex-direction:column !important; gap:12px; m
 @media (max-width: 860px) {
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
-  .nav { padding: 10px 20px; gap: 12px; }
-  .brand { font-size: 18px; white-space: nowrap; }
+  .nav { padding: 10px 20px; gap: 10px; }
+  .brand { font-size: 17px; white-space: nowrap; min-width: 0; flex: 1 1 auto; }
   .brand-mark { width: 24px; height: 24px; flex-basis: 24px; }
   .brand span { display: inline; }
-  .nav-cta { padding: 10px 14px; font-size: 13px; }
+  .nav > .nav-cta { display: none; }
+  .nav-mobile-panel .nav-cta { padding: 10px 14px; font-size: 13px; }
+}
+@media (max-width: 380px) {
+  .brand span { display: none; }
 }
 @media (min-width: 861px) {
   .nav-mobile-panel { display: none !important; }
@@ -2742,8 +2746,8 @@ align-items:flex-start !important; flex-direction:column !important; gap:12px; m
     text-decoration: none;
   }
   .mobile-cta a:first-child {
-    color: var(--ink);
-    border: 1px solid var(--line);
+    color: var(--cream);
+    border: 1px solid rgba(255,249,240,.22);
   }
   .mobile-cta .mobile-cta-quote {
     color: #16130E;
@@ -3337,4 +3341,19 @@ a.nav-campaign:focus-visible {
 }
 @media (prefers-reduced-motion: no-preference) {
   a.nav-campaign { transition: color .2s ease, text-decoration-color .2s ease; }
+}
+
+/* Contact form simplification helpers */
+.form-help-inline { color: var(--ink-muted); font-size: 12px; font-weight: 500; }
+.form-optional { border: 1px solid var(--line); border-radius: var(--radius, 6px); padding: 12px 14px; }
+.form-optional summary { cursor: pointer; color: var(--ink-muted); font-size: 14px; font-weight: 500; list-style: none; }
+.form-optional summary::-webkit-details-marker { display: none; }
+.form-optional[open] summary { margin-bottom: 12px; color: var(--ink); }
+.form-optional-fields .form-row { margin-bottom: 16px; }
+.form-optional-fields .form-row:last-child { margin-bottom: 0; }
+@media (max-width: 860px) {
+  .contact-shell { padding: 24px 18px; }
+}
+@media (max-width: 420px) {
+  .contact-shell { padding: 20px 14px; }
 }
