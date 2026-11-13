@@ -204,11 +204,11 @@ def inject_og_tags(content: str, relative: Path) -> str:
             content = content.replace("</head>", tag + "\n</head>", 1)
 
     title_match = re.search(r"<title>([^<]*)</title>", content)
-    desc_match = re.search(r'<meta name="description" content="([^"]*)"', content)
+    desc_match = re.search(r'<meta\s+(?:name="description"\s+content="([^"]*)"|content="([^"]*)"\s+name="description")', content)
     if not current("title") and title_match:
         put("title", title_match.group(1))
     if not current("description") and desc_match:
-        put("description", desc_match.group(1))
+        put("description", desc_match.group(1) or desc_match.group(2))
     if not current("type"):
         put("type", "website")
     if not current("url"):

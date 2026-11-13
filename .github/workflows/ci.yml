@@ -38,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fail if Netlify secrets are not configured
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           if [ -z "$NETLIFY_SITE_ID" ] || [ -z "$NETLIFY_AUTH_TOKEN" ]; then
             echo "Netlify credentials not configured for this workflow."
@@ -52,7 +55,9 @@ jobs:
           path: dist
 
       - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
+        # Pinned to a commit: this action publishes no tags, so @master would
+        # let an upstream push change what runs here.
+        uses: netlify/actions/cli@3185065f4ab2f6df6f2ef41ee013626e1c02a426
         with:
           args: deploy --prod --dir=dist --site=${{ env.NETLIFY_SITE_ID }}
         env:

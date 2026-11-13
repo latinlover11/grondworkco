@@ -47,17 +47,17 @@ Cloudflare Web Analytics, gated entirely on the `CF_ANALYTICS_TOKEN` env var
   content values (lines 77–78).
   Flags: `--root`, `--check-external` (HEAD-requests external links),
   `--quiet`.
-- `site.js` (406 lines) — one IIFE wiring progressive enhancements:
+- `site.js` (426 lines) — one IIFE wiring progressive enhancements:
   `initializeContactForm` (line 3) intercepts submit, validates fields with
-  `aria-invalid` state, posts via `fetch()` with success/error boxes
-  (58–97), and captures lead source (10–18); `requestedService` (100) /
-  `serviceFromPage` (107) with service aliases (`hardscape→hardscaping`,
-  `lawn|maintenance→lawn-care`, lines 21–26); `ensureQuoteSheet` (113);
-  `ensureMobileCta` (244) wires the server-rendered CTA bar and rebuilds the
+  `aria-invalid` state, posts via `fetch()` (97) with success/error boxes,
+  and captures lead source (10–18); `requestedService` (120) /
+  `serviceFromPage` (127) with service aliases (`hardscape→hardscaping`,
+  `lawn|maintenance→lawn-care`, lines 21–26); `ensureQuoteSheet` (133);
+  `ensureMobileCta` (264) wires the server-rendered CTA bar and rebuilds the
   whole bar itself if `#mobile-cta` is absent (covering pages built before
-  it existed); `enhanceKeyboardAccess` (270) adds mobile-nav panel syncing
+  it existed); `enhanceKeyboardAccess` (290) adds mobile-nav panel syncing
   plus lightbox dialog semantics, focus traps, Escape handling, and keyboard
-  activation of gallery cards (282–332); `wireGalleryTriggers` (337,
+  activation of gallery cards; `wireGalleryTriggers` (357,
   lightbox). The mobile CTA markup is server-rendered by the build
   (`build.py` lines 86–92) so it survives blocked scripts.
 
@@ -107,6 +107,14 @@ Root-level invariants:
   case-study pages.
 - `index.html` is section-per-band rather than `<main>`-wrapped; the skip-link
   injector handles that case specially (`inject_skip_link`, lines 341–366).
+- **Breadcrumb schema must match the visible trail**: `services.html`, the six
+  service pages and `about.html` carry `BreadcrumbList` JSON-LD and render the
+  same trail (`.service-page-breadcrumbs` in `site.css`; `.breadcrumbs` on the
+  About page). The last crumb's text must equal the schema's final `name` —
+  same words, same capitalisation.
+- **`og:description` falls back to the page's meta description**, read in either
+  attribute order, so machine-generated heads (`<meta content="…"
+  name="description"/>`, six blog posts) still get a social description.
 
 ## Subdirectories & System Boundaries
 
