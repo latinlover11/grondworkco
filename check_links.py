@@ -40,7 +40,7 @@ from urllib.parse import unquote
 
 IMG_EXT = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".ico", ".avif"}
 PAGE_EXT = {".html", ".htm"}
-SKIP_DIRS = {"dev-archive", "dist"}  # hidden dirs (leading ".") are skipped too
+SKIP_DIRS = {"dev-archive", "dist", "claudplan4gg"}  # hidden dirs (leading ".") are skipped too
 
 
 # --------------------------------------------------------------------------- #

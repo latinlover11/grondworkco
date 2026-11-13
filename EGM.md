@@ -129,9 +129,11 @@ Root-level invariants:
 
 - `dist/` is fully derived output — deleted and rebuilt on every run
   (`build.py` lines 459–462). Never edit `dist/` directly.
-- `SKIP_DIRS` (`build.py` line 14) — `.git`, `dev-archive`, `__pycache__`,
-  `dist`, `docs` — never deploy. Anything that must ship lives at root, in
-  `blog/`, `case-studies/`, `fonts/`, or `img/`.
+- `SKIP_DIRS` (`build.py` line 14) — `.git`, `dev-archive`, `claudplan4gg`,
+  `__pycache__`, `dist`, `docs` — never deploy. Anything that must ship lives
+  at root, in `blog/`, `case-studies/`, `fonts/`, or `img/`. `claudplan4gg/`
+  is an untracked local draft (AI plan + mock landing page) that is also
+  skipped by `check_links.py` so it cannot gate the CI link check.
 - `COPY_FILES` (`build.py` line 15) is the exhaustive list of root files
   copied as-is (`site.css`, `site.js`, `sitemap.xml`, `robots.txt`,
   `favicon.ico`); a new root-level asset needs an entry there or it silently

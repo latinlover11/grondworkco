@@ -11,7 +11,7 @@ import subprocess
 STYLE_RE = re.compile(r"<style(?:\s[^>]*)?>([\s\S]*?)</style>", re.IGNORECASE)
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
-SKIP_DIRS = {".git", "dev-archive", "__pycache__", "dist", "docs"}
+SKIP_DIRS = {".git", "dev-archive", "claudplan4gg", "__pycache__", "dist", "docs"}
 COPY_FILES = {"site.css", "site.js", "sitemap.xml", "robots.txt", "favicon.ico"}
 COPY_DIRS = {"fonts"}
 

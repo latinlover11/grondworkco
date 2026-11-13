@@ -81,6 +81,10 @@ build time.
 - [ ] **Crew photo — About page story section** (replaces the bluestone-patio
   stand-in the About page currently borrows from
   `img/case-studies/bluestone-patio.webp`)
+  **Parked until roughly mid-January 2027** — the owner isn't ready for this
+  shoot yet. Don't add a placeholder image or a "Meet the crew" section in the
+  meantime; the About page keeps the bluestone-patio stand-in until a real
+  candid lands. Revisit after the fall campaign wraps.
   Candid working shot beats a posed lineup: crew on a job site or with the
   truck/trailer, landscape 3:2, everyone identifiable. `alt` text will name it
   honestly, so it should genuinely show the crew.
