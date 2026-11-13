@@ -48,7 +48,9 @@ jobs:
       # built above (build.py + PYTHON_VERSION from netlify.toml are irrelevant
       # to this path — the CI runner is the builder).
       - name: Deploy dist/ to Netlify as a zip deploy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        # TEMPORARY PROBE (reverted next commit): disabled to test whether Netlify
+        # builds this site natively from GitHub, independent of CI.
+        if: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: 38200c77-154d-4ee6-a062-578b904cec1a
