@@ -1,18 +1,20 @@
-# Verify links, build dist/, then publish it to Netlify as a zip deploy.
+# Verify links and build dist/ on every push and pull request.
 #
-# Why a zip deploy and not a git link or a build hook: the site is not
-# Git-connected on Netlify (the API reports `build_settings: {}`), and Netlify
-# only offers build hooks for sites that build from a linked repository — "the
-# link is required for build webhooks to work". So a hook URL cannot deploy this
-# site. A zip deploy needs no repo link: CI uploads the dist/ it has already
-# built to /api/v1/sites/{id}/deploys, which is exactly what `netlify deploy`
-# does under the hood.
+# Deployment does not happen here on purpose. The site is Git-connected on
+# Netlify (the API reports `build_settings.provider: github`, installation
+# 81663554), so Netlify builds and publishes it itself on every push to main.
+# CI therefore stops at the built artifact: exactly one publisher, no race.
+#
+# Proven, not assumed — with the deploy step set to `if: false` and a marker in
+# 404.html, CI run 43528505509 skipped its deploy while production served the
+# marker, so Netlify published it (commits 6e1a9a6, reverted by ead1517).
 #
 # There used to be a deploy-netlify job running netlify/actions/cli behind a
 # guard that exited 1 when NETLIFY_SITE_ID / NETLIFY_AUTH_TOKEN were unset. Those
 # secrets were never created, so every push to main failed the whole workflow
-# without deploying anything. This step skips cleanly instead of failing.
-name: Build, link check, deploy
+# without deploying anything. Both that job and the zip deploy that replaced it
+# are gone now; Netlify's git build is the only path.
+name: Build and link check
 
 on:
   push:
@@ -42,39 +44,3 @@ jobs:
         with:
           name: dist
           path: dist/
-
-      # Publishes what this job already built. Netlify does not run a build
-      # command for a deploy created this way, so dist/ is uploaded exactly as
-      # built above (build.py + PYTHON_VERSION from netlify.toml are irrelevant
-      # to this path — the CI runner is the builder).
-      - name: Deploy dist/ to Netlify as a zip deploy
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 38200c77-154d-4ee6-a062-578b904cec1a
-        run: |
-          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
-            echo "::notice title=Deploy skipped::NETLIFY_AUTH_TOKEN is not set. Add it with: gh secret set NETLIFY_AUTH_TOKEN"
-            exit 0
-          fi
-          python3 - <<'PY'
-          import os, zipfile
-          with zipfile.ZipFile("site.zip", "w", zipfile.ZIP_DEFLATED) as z:
-              for root, _, files in os.walk("dist"):
-                  for name in files:
-                      path = os.path.join(root, name)
-                      z.write(path, os.path.relpath(path, "dist"))
-          PY
-          curl -sS --fail-with-body \
-            -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" \
-            -H "Content-Type: application/zip" \
-            --data-binary @site.zip \
-            "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID/deploys" \
-            -o deploy.json
-          python3 - <<'PY'
-          import json, sys
-          d = json.load(open("deploy.json"))
-          print(f"deploy {d.get('id')} state={d.get('state')} url={d.get('deploy_ssl_url') or d.get('ssl_url')}")
-          if not d.get("id"):
-              sys.exit(f"unexpected response: {d}")
-          PY
