@@ -67,10 +67,11 @@ secrets, revoke it in Netlify → Account settings → Access tokens and then ru
 
 ### GitHub Pages note
 
-`latinlover11.github.io/grondworkco/` is also live via GitHub Pages (legacy
-build from `main`). Deploying the Netlify site is the production path — this
-repo's Netlify project uses `dist/`, while the Pages site builds from the repo
-root. If you re-enable Pages, point it at `dist/` in repo Settings → Pages.
+GitHub Pages is **disabled** (removed 2026-11-13) so the site is served from one
+host only. It previously ran a legacy build from `main`, which served the repo
+root rather than `dist/` — a second, publicly reachable copy of every page and a
+duplicate-content liability. Deploying the Netlify site is the production path.
+If Pages is ever needed again, point it at `dist/` in repo Settings → Pages.
 
 ---
 
