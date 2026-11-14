@@ -1,6 +1,11 @@
 [build]
   publish = "dist"
   command = "python3 build.py"
+  # Pin the interpreter: the build image's default python3 is older than the
+  # 3.12 used in CI, and an unpinned build would run this code on whatever the
+  # image happens to ship. Keeps deploys and `python3 build.py` identical.
+  [build.environment]
+    PYTHON_VERSION = "3.12"
 
 # Static assets are content-hashed by filename pattern (e.g. *-800.webp) or
 # change only on deploy, so returning visitors can cache them hard. HTML
@@ -22,6 +27,14 @@
 
 [[headers]]
   for = "/site.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fonts carry the same ?v=<sha256[:8]> token as site.css (injected into the
+# minified @font-face URLs and the FONT_TAGS preloads by build.py), so the URL
+# changes when the file does and immutable is safe here.
+[[headers]]
+  for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

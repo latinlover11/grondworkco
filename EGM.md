@@ -68,11 +68,14 @@ Root-level invariants:
   except `thank-you.html` (lines 371–373). Edit the nav in `build.py`, not in
   the HTML files. The Fall cleanup nav item is seasonal and must be removed
   after the campaign ends (comment at line 36).
-- **Cache busting is mandatory**: `netlify.toml` serves `/site.css` and
-  `/site.js` immutable for a year, so every reference carries
+- **Cache busting is mandatory**: `netlify.toml` serves `/site.css`,
+  `/site.js` and `/fonts/*` immutable for a year, so every reference carries
   `?v=<sha256[:8]>` of the file bytes (`asset_version`, lines 94–106;
   `asset_tags`, 109–113). A hand-written reference without `?v=` ships an
-  update nobody receives. Every page gets the versioned injection —
+  update nobody receives. Fonts are versioned twice from one hash: the
+  `FONT_TAGS` preloads and the `@font-face` URLs stamped into the minified
+  `dist/site.css` — the two must stay byte-identical or the preload is wasted
+  and the font downloads twice. Every page gets the versioned injection —
   including `thank-you.html`: since 2026-11-05 the strip-and-inject block
   runs outside the thank-you guard (`build.py` `build_html`), so its
   hand-written unversioned references are replaced like every other page's.
@@ -100,9 +103,9 @@ Root-level invariants:
 - **Title suffixes vary by page group** (verified 2026-11-05): root
   info/service pages use `— Groundwork Landscaping` (em dash); the two root
   service-area pages (`drainage-longmont`, `fall-cleanup-longmont`) and all
-  blog and case-study pages use ` | Groundwork`; `services.html` uses
-  ` | Groundwork Landscaping`; `index.html`, `contact.html`, `theme-lab.html`
-  carry no brand suffix. The only build logic that depends on a suffix is
+  blog and case-study pages use ` | Groundwork`, as does `services.html`;
+  `index.html`, `contact.html`, `theme-lab.html` carry no brand suffix.
+  Keep every title at or under 60 characters so it survives SERP truncation. The only build logic that depends on a suffix is
   `case_label` (line 148), which splits on the first `|` and only runs on
   case-study pages.
 - `index.html` is section-per-band rather than `<main>`-wrapped; the skip-link
@@ -150,7 +153,8 @@ Root-level invariants:
   `command = "python3 build.py"`, lines 1–3) and sets caching and security
   headers site-wide: HTML is
   `max-age=0, must-revalidate` (deploys propagate immediately); `/img/*`,
-  `/site.css`, `/site.js` are `max-age=31536000, immutable`; every response
+  `/site.css`, `/site.js`, `/fonts/*` are `max-age=31536000, immutable`;
+  every response
   carries `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`,
   `Referrer-Policy: strict-origin-when-cross-origin`, and
   `Permissions-Policy: camera=(), microphone=(), geolocation=()`.

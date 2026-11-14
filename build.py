@@ -111,8 +111,8 @@ def asset_tags() -> str:
         f'<link rel="stylesheet" href="/site.css?v={asset_version("site.css")}">\n'
         f'<script defer src="/site.js?v={asset_version("site.js")}"></script>'
     )
-FONT_TAGS = '''<link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/work-sans-var.woff2" as="font" type="font/woff2" crossorigin>'''
+FONT_NAMES = ("fraunces-var.woff2", "work-sans-var.woff2")
+FONT_TAGS = "\n".join(f'<link rel="preload" href="/fonts/{name}?v={asset_version("fonts/" + name)}" as="font" type="font/woff2" crossorigin>' for name in FONT_NAMES)
 ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/img/favicon-48.png" sizes="48x48" type="image/png">
@@ -471,7 +471,10 @@ def main() -> None:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
     site_css = DIST / "site.css"
-    site_css.write_text(minify_css(site_css.read_text(encoding="utf-8")) + "\n", encoding="utf-8")
+    # netlify.toml serves /fonts/* immutable, so the @font-face URLs get the same
+    # content hash the preloads carry -- an unversioned immutable font would
+    # never reach a visitor who already had it cached.
+    site_css.write_text(re.sub(r"/fonts/([\w.-]+\.woff2)", lambda m: f"/fonts/{m.group(1)}?v={asset_version('fonts/' + m.group(1))}", minify_css(site_css.read_text(encoding="utf-8"))) + "\n", encoding="utf-8")
     build_sitemap()
     print(f"Built {sum(1 for _ in DIST.rglob('*.html'))} HTML pages into {DIST}")
     build_pdfs()
