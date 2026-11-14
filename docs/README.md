@@ -14,6 +14,10 @@ the marketing flyers are build inputs for print-PDF regeneration.
 
 ## Key Files
 
+- `BRAND_AND_LAUNCH.md` — the brand decision of record: chosen name and the
+  evidence behind it (Colorado entity search, full USPTO class 37/44 sweep,
+  rejected candidates), the launch sequence, and how to re-run each check.
+  Read this before researching the name again, and before the domain move.
 - `MODERNIZATION_PLAN.md` — September 2026 modernization plan (referenced by
   the root README's photo-checklist section, §2.1).
 - `WEBSITE_IMPROVEMENT_PLAN.md` — October 2026 improvement plan (the later
