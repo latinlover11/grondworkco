@@ -26,27 +26,44 @@ Known limitation: pageviews only. It cannot attribute phone calls; form leads ca
 
 ## Deployment
 
+Push to `main` and you are done. The Netlify project (`groundworkllc`, site id
+`38200c77-154d-4ee6-a062-578b904cec1a`) is connected to this repository, so
+Netlify builds the site itself from `netlify.toml` — `python3 build.py` on
+Python 3.12, publishing `dist/`. Nothing runs by hand, and there is no local
+publish step.
+
+That also means Netlify is where `CF_ANALYTICS_TOKEN` takes effect: it is read
+from the site's environment variables at build time, not from your shell.
+
+### What CI does, and deliberately does not do
+
 Every push and pull request runs `.github/workflows/ci.yml`: the link/image
-checker (`check_links.py --quiet`) gates the build, then `dist/` is assembled
-and uploaded as a build artifact. Pushes to `main` also attempt a Netlify deploy
-(see below).
+checker (`check_links.py --quiet`) gates the build, `dist/` is assembled, and it
+is uploaded as a build artifact. CI never publishes.
 
-### Deploy to Netlify (one-time setup)
+That is on purpose. Two publishers for the same commit race each other and make
+it unclear which build is live, so the workflow stops at the artifact and
+leaves deploying to Netlify. This was confirmed, not assumed: with the old CI
+deploy step disabled and a marker added to `404.html`, the workflow skipped its
+deploy while production served the marker — so the publish came from Netlify's
+build.
 
-The site is served from `dist/` (`netlify.toml`). After `gh` is logged in as the
-repo owner:
+One consequence worth knowing: GitHub cannot see Netlify's builds, so a failing
+Netlify build still leaves the workflow green. If a push seems not to have
+landed, look at Netlify → Deploys for that commit rather than at the Actions tab.
 
-1. Get the **Site ID**: Netlify → Site settings → General → Site details.
-2. Create a Netlify personal access token: Netlify account → Account settings →
-   Access tokens → Create token (no special scopes needed).
-3. Add the secrets in repo Settings → Secrets and variables → Actions:
-   - `NETLIFY_SITE_ID` — the site ID from step 1
-   - `NETLIFY_AUTH_TOKEN` — the token from step 2
+### Checking a deploy
 
-Once both are set, the `deploy-netlify` job in `ci.yml` deploys `dist/` to
-`groundworkllc.netlify.app` automatically on push to `main`. Until the secrets
-are configured, the job fails loudly instead of deploying to the wrong site — a
-manual fallback works too: `ntl deploy --prod` (after `ntl login`).
+- `https://groundworkllc.netlify.app` — production
+- Netlify → Deploys — build log and source commit for every deploy
+- HTML is served `must-revalidate` (see `netlify.toml`), so a finished deploy is
+  visible on the next request; `curl -sI https://groundworkllc.netlify.app/`
+  confirms the headers
+
+No Netlify credentials belong in this repo any more. `NETLIFY_AUTH_TOKEN` and
+`NETLIFY_SITE_ID` are unused by CI; if the token is still sitting in the repo's
+secrets, revoke it in Netlify → Account settings → Access tokens and then run
+`gh secret delete NETLIFY_AUTH_TOKEN`.
 
 ### GitHub Pages note
 
