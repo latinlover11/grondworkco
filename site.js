@@ -318,6 +318,18 @@
       }).observe(modal, { attributes: true, attributeFilter: ['class'] });
     });
 
+    // Expose which gallery photo is active to assistive tech.
+    var thumbGroups = {};
+    document.querySelectorAll('[data-gallery-src]').forEach(function (thumb) {
+      var id = thumb.getAttribute('data-gallery-id') || '';
+      (thumbGroups[id] = thumbGroups[id] || []).push(thumb);
+    });
+    Object.keys(thumbGroups).forEach(function (id) {
+      thumbGroups[id].forEach(function (thumb) {
+        thumb.setAttribute('aria-pressed', thumb.classList.contains('active') ? 'true' : 'false');
+      });
+    });
+
     document.querySelectorAll('.gallery-card, .main-photo-container img').forEach(function (trigger) {
       if (!trigger.hasAttribute('tabindex')) trigger.setAttribute('tabindex', '0');
       if (!trigger.hasAttribute('role')) trigger.setAttribute('role', 'button');
@@ -385,6 +397,11 @@
         thumb.getAttribute('data-gallery-caption') || '',
         thumb
       ])) {
+        // Keep aria-pressed in sync so AT users know which photo is showing.
+        var groupId = thumb.getAttribute('data-gallery-id') || '';
+        document.querySelectorAll('[data-gallery-src][data-gallery-id="' + groupId + '"]').forEach(function (peer) {
+          peer.setAttribute('aria-pressed', peer === thumb ? 'true' : 'false');
+        });
         event.preventDefault();
         return;
       }

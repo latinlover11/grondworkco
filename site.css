@@ -2820,7 +2820,7 @@ body.sheet-open { overflow: hidden; }
   color: var(--ink, #3B2A22);
   padding: 12px 14px; font: 400 14.5px 'Work Sans', sans-serif;
 }
-.quote-sheet input:focus, .quote-sheet textarea:focus { border-color: var(--ember, #C87955); outline: none; }
+.quote-sheet input:focus:not(:focus-visible), .quote-sheet textarea:focus:not(:focus-visible) { border-color: var(--ember, #C87955); outline: none; }
 .quote-sheet textarea { resize: vertical; min-height: 56px; }
 .quote-sheet-send {
   background: var(--ember, #C87955); color: var(--cream); border: 0;
@@ -3363,3 +3363,10 @@ a.nav-campaign:focus-visible {
 .service-page-breadcrumbs a{color:var(--ink-muted);}
 .service-page-breadcrumbs a:hover{color:var(--ember-bright);}
 .service-page-breadcrumbs [aria-current]{color:var(--ink);}
+
+/* Reduced-motion guard for case-study galleries and smooth scrolling: their
+   inline page styles ship unguarded (audit 2026-11-15). */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto !important;}
+  .lightbox-modal, .gallery-card, .thumb-btn{transition:none !important;}
+}
