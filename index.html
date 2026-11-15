@@ -10,7 +10,7 @@
 <meta property="og:title" content="Groundwork Landscaping — Hardscaping, Fencing & Lawn Care">
 <meta property="og:description" content="Expert hardscaping, fencing, and lawn care services in Longmont and Boulder County, CO.">
 <meta property="og:image" content="/img/og-image.jpg">
-<meta property="og:type" content="business.business">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://groundworkllc.netlify.app/">
 <!-- Local Business Schema -->
 <script type="application/ld+json">
@@ -609,8 +609,26 @@
     .section-head{align-items:flex-start !important; flex-direction:column !important; gap:12px; margin-bottom:30px;}
   }
  </style>
+<script>
+/* Pick the hero photo before first paint; preload exactly the chosen one. */
+(function(){
+  var small = window.matchMedia && window.matchMedia('(max-width:860px)').matches;
+  var heroes = [
+    '/img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden',
+    '/img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence',
+    '/img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail'
+  ];
+  var src = heroes[Math.floor(Math.random() * heroes.length)] + (small ? '-800' : '') + '.webp';
+  window.__heroSrc = src;
+  var link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = src;
+  link.setAttribute('fetchpriority', 'high');
+  document.head.appendChild(link);
+})();
+</script>
 <link rel="stylesheet" href="/site.css?v=earthy-v2">
-<link rel="preload" as="image" href="/img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden.webp" fetchpriority="high">
 <script defer src="/site.js"></script>
 </head>
 <body>
@@ -972,15 +990,20 @@
     revealTargets.forEach(function(el){ el.classList.add('reveal-visible'); });
   }
 
-  // Rotate through real project photos in the hero.
+  // Rotate through real project photos in the hero. The head script already
+  // picked and preloaded the first one (window.__heroSrc) at the right size
+  // for this viewport, so start from that instead of rolling again.
+  // Keep heroBase in sync with the head script's heroes list.
   var heroPhoto = document.getElementById('hero-photo');
-  var heroImages = [
-    '/img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden.webp',
-    '/img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence-800.webp',
-    '/img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail.webp'
+  var heroBase = [
+    '/img/case-studies/longmont-flagstone-entry/8-completed-flagstone-path-garden',
+    '/img/case-studies/lakewood-privacy-fence/7-lakewood-privacy-fence',
+    '/img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail'
   ];
+  var heroSmall = window.__heroSrc ? window.__heroSrc.indexOf('-800') !== -1 : (window.matchMedia && window.matchMedia('(max-width:860px)').matches);
+  var heroImages = heroBase.map(function(base){ return base + (heroSmall ? '-800' : '') + '.webp'; });
   if (heroPhoto && heroImages.length) {
-    var heroIndex = Math.floor(Math.random() * heroImages.length);
+    var heroIndex = window.__heroSrc ? Math.max(0, heroImages.indexOf(window.__heroSrc)) : Math.floor(Math.random() * heroImages.length);
     heroPhoto.style.backgroundImage = 'url("' + heroImages[heroIndex] + '")';
     heroImages.forEach(function(src, index){
       if (index !== heroIndex) {

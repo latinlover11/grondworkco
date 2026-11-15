@@ -12,6 +12,17 @@ STYLE_RE = re.compile(r"<style(?:\s[^>]*)?>([\s\S]*?)</style>", re.IGNORECASE)
 ROOT = Path(__file__).parent
 DIST = ROOT / "dist"
 SKIP_DIRS = {".git", "dev-archive", "claudplan4gg", "__pycache__", "dist", "docs"}
+# Originals kept in the repo but never shipped: pages reference the .webp
+# twins (only og-image.jpg is referenced anywhere), so copying these to
+# dist/ is ~3.3 MB of dead deploy weight.
+IMG_EXCLUDE = {
+    "img/case-studies/cedar-fence.jpg",
+    "img/case-studies/fort-collins-retaining-wall-patio/9-final-look-planted-bed.jpg",
+    "img/case-studies/cleanup-corner-after.jpg",
+    "img/case-studies/river-rock-after.jpg",
+    "img/case-studies/cleanup-corner-before.jpg",
+    "img/case-studies/lafayette-cedar-fence/5-completed-front-cedar-fence.jpg",
+}
 COPY_FILES = {"site.css", "site.js", "sitemap.xml", "robots.txt", "favicon.ico"}
 COPY_DIRS = {"fonts"}
 
@@ -111,7 +122,7 @@ def asset_tags() -> str:
         f'<link rel="stylesheet" href="/site.css?v={asset_version("site.css")}">\n'
         f'<script defer src="/site.js?v={asset_version("site.js")}"></script>'
     )
-FONT_NAMES = ("fraunces-var.woff2", "work-sans-var.woff2")
+FONT_NAMES = ("fraunces-var.woff2", "fraunces-italic-var.woff2", "work-sans-var.woff2")
 FONT_TAGS = "\n".join(f'<link rel="preload" href="/fonts/{name}?v={asset_version("fonts/" + name)}" as="font" type="font/woff2" crossorigin>' for name in FONT_NAMES)
 ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/img/favicon-32.png" sizes="32x32" type="image/png">
@@ -467,7 +478,7 @@ def main() -> None:
         destination = DIST / relative
         if path.suffix.lower() in {".html", ".htm"}:
             build_html(path, destination)
-        elif path.name in COPY_FILES or relative.parts[0] in COPY_DIRS | {"img"}:
+        elif path.name in COPY_FILES or (relative.parts[0] in COPY_DIRS | {"img"} and relative.as_posix() not in IMG_EXCLUDE):
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
     site_css = DIST / "site.css"
