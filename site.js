@@ -107,6 +107,8 @@
           successBox.focus();
         }
         if (submitButton) submitButton.textContent = 'Request sent';
+        // Inline box stays as the fallback; then land on the thank-you page like the quote sheet does.
+        window.location.href = '/thank-you.html';
       }).catch(function () {
         showError('We couldn’t send your request right now. Please try again or call (720) 707-5411.');
         if (submitButton) {
