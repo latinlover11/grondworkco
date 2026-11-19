@@ -191,7 +191,7 @@ demand resumes in March, so the real deadline is spring quote season.
   `robots.txt`, `url.txt`. `build.py` has `SITE` but no shared template for page
   canonicals; `sitemap.xml` is a source file edited by hand. The move is a
   scripted replace plus a rebuild, not a rewrite.
-- The phone number `(720) 707-5411` appears sitewide the same way. The business
+- The phone number `(720) 893-0394` appears sitewide the same way. The business
   number will change (Google Voice), so **swap the phone number in the same pass
   as the hostname.**
 

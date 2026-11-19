@@ -2,7 +2,7 @@
 
 Theme for a book-it-now push through early November. Everything funnels to the
 new landing page: `groundworkllc.netlify.app/fall-cleanup-longmont.html` (short link
-in captions: just the phone number — (720) 707-5411).
+in captions: just the phone number — (720) 893-0394).
 
 **All packages are BY QUOTE now** — no dollar figures on the page, the flyer, or in
 any post. Every package starts with the free on-site walk-through; the quote is
@@ -54,7 +54,7 @@ Format per the social series: 1 real photo, 1 plain sentence, phone number. Post
 > and leaves left on the lawn smother the grass you'll pay to reseed in spring.
 > We're running a "Fall Reset" this season — cleanup, final mow, re-edge, aeration
 > and overseeding in one visit — with the blowout + gutters option on top. Free
-> on-site estimates in Longmont & Boulder County: (720) 707-5411.
+> on-site estimates in Longmont & Boulder County: (720) 893-0394.
 
 ### Post 2 — the bundle, plainly
 
@@ -64,7 +64,7 @@ Format per the social series: 1 real photo, 1 plain sentence, phone number. Post
 > The Fall Reset: leaves hauled, beds re-edged, final mow, then core aeration and
 > overseeding the same day so the seed catches with the next moisture. One crew,
 > one visit. The Total Winterize adds the sprinkler blowout, gutters, and a
-> frost-visit checklist. (720) 707-5411 — groundworkllc.netlify.app/fall-cleanup-longmont.html
+> frost-visit checklist. (720) 893-0394 — groundworkllc.netlify.app/fall-cleanup-longmont.html
 
 ### Post 3 — the sprinkler urgency piece
 
@@ -73,7 +73,7 @@ Format per the social series: 1 real photo, 1 plain sentence, phone number. Post
 > PSA for Longmont & Niwot neighbors: a blowout is 20 minutes of a compressor vs.
 > a burst backflow preventer and a spring plumbing bill. We slot blowouts onto any
 > fall visit (up to 8 zones on the Total Winterize). This week and next are the
-> safe window — after the first hard freeze you're rolling dice. (720) 707-5411.
+> safe window — after the first hard freeze you're rolling dice. (720) 893-0394.
 
 ### Post 4 — snow pilot
 
@@ -83,7 +83,7 @@ Format per the social series: 1 real photo, 1 plain sentence, phone number. Post
 > driveway edges cleared within 24h of any 2"+ snow. Limited pilot spots (small
 > crew, honest math, not a fleet) for homes we can build into a route roughly near
 > our fall-clients. If you want one less thing to shovel this winter, call/text
-> (720) 707-5411 and we'll tell you straight whether your street fits the route.
+> (720) 893-0394 and we'll tell you straight whether your street fits the route.
 
 ### Post 5 — last-call (mid-November)
 
@@ -92,7 +92,7 @@ Format per the social series: 1 real photo, 1 plain sentence, phone number. Post
 > Last easy weekend for fall work around Longmont — after this, aeration closes
 > until spring and it's boots-and-shovels weather. If the leaves are winning and
 > the sprinklers aren't purged yet, grab a Free Reset estimate slot this week:
-> (720) 707-5411.
+> (720) 893-0394.
 
 *(Pages for the CTA links: the fall page itself. Nextdoor groups: your own hood +
 2–3 neighbors, one per day max. Facebook: business page + relevant local groups
@@ -115,7 +115,7 @@ as a pin-up at the counter of partner spots.
 > New: limited snow-shoveling pilot spots this winter.
 >
 > **Free on-site estimate** · Longmont & Boulder County
-> **Call/text (720) 707-5411**
+> **Call/text (720) 893-0394**
 > groundworkllc.netlify.app/fall-cleanup-longmont.html
 
 *(Drop within 48h of every fall job while the work is visible. Rotate headline:

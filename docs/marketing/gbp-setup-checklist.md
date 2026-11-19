@@ -14,7 +14,7 @@ Work through top to bottom; items marked star are the ones that move rankings.
 - [ ] Service-area business: set Longmont + a realistic radius (Longmont, Boulder,
   Lafayette, Niwot, Louisville, Erie). Show street address only if the home office
   is one you're comfortable publishing.
-- [ ] Add the phone number that actually rings ((720) 707-5411), hours (incl.
+- [ ] Add the phone number that actually rings ((720) 893-0394), hours (incl.
   seasonal notes), website `https://groundworkllc.netlify.app/`, and the exact
   business name format used on the truck.
 - [ ] Verify ownership (postcard, video, or phone — whichever Google offers).
@@ -30,7 +30,7 @@ Work through top to bottom; items marked star are the ones that move rankings.
   County homeowners), what you build, the one-crew accountability point from the site.
 - [ ] Link GBP services to the matching site pages (service pages + work.html).
 - [ ] Turn on messaging with a canned reply: "Thanks for reaching out! We're usually
-  on job sites — call/text (720) 707-5411 or request a quote at [contact page URL]."
+  on job sites — call/text (720) 893-0394 or request a quote at [contact page URL]."
 
 ## 3. Ranking movers (week 1)
 

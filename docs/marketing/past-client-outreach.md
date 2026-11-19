@@ -20,7 +20,7 @@ Rules that keep it from feeling like spam:
 > Hi [Name] — it's [Your name] from Groundwork, we did [the fence / the cleanup /
 > the patio] at your place in [month]. We're doing fall cleanups and sprinkler
 > blowouts through November — want me to add you to the list before the slots
-> fill? (720) 707-5411
+> fill? (720) 893-0394
 
 Why it works: it names the job they paid for, which is the only proof of identity
 they need, and it asks one small question.
@@ -39,7 +39,7 @@ they need, and it asks one small question.
 > same visit. Sprinkler blowouts and gutter clearing can go on the same day.
 >
 > Everything starts with a free walk-through, so the number you get is your yard's
-> number. If you want on the list, reply here or call/text (720) 707-5411.
+> number. If you want on the list, reply here or call/text (720) 893-0394.
 >
 > Thanks — [Your name]
 > Groundwork Landscaping · Longmont & Boulder County
@@ -64,7 +64,7 @@ That is a true statement about your economics, which is why it converts.
 
 > Hi [Name], [Your name] from Groundwork — you asked about [the cleanup / the
 > fence] back in [month] and we never got it scheduled. We've got room this week
-> if it's still on your list. (720) 707-5411
+> if it's still on your list. (720) 893-0394
 
 Send once. If there's no answer, leave it — chasing twice reads as desperate and
 this is a small town.

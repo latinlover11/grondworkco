@@ -82,7 +82,7 @@ FOOTER = '''<footer class="site-footer">
         <a href="/accessibility.html">Accessibility</a>
       </nav>
       <div class="site-footer-contact">
-        <a href="tel:+17207075411">(720) 707-5411</a>
+        <a href="tel:+17208930394">(720) 893-0394</a>
         <a href="mailto:cmoneyq11@gmail.com">Email us</a>
         <span>Longmont &amp; Boulder County</span>
       </div>
@@ -97,7 +97,7 @@ FOOTER = '''<footer class="site-footer">
 # Server-rendered so the phone's best conversion element survives a slow or
 # blocked script. site.js only wires behaviour onto these buttons.
 MOBILE_CTA = '''<div class="mobile-cta" id="mobile-cta" aria-label="Quick contact">
-  <a href="tel:+17207075411">Call</a>
+  <a href="tel:+17208930394">Call</a>
   <button type="button" class="mobile-cta-quote">Get a quote</button>
   <button type="button" aria-label="Hide quick contact bar">×</button>
 </div>'''

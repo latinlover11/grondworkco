@@ -104,16 +104,16 @@ weren't paying attention. Keep the deadline, move the tense.
       The freeze is behind us, the leaves aren't. We're still hauling cleanups
       through November — leaves off the lawn and beds, gutters cleared, and a
       look at whether the sprinkler lines made it. Free estimates, Longmont &
-      Boulder County: (720) 707-5411.
+      Boulder County: (720) 893-0394.
 
       POST — post-freeze, damage control
       If you didn't get the blowout in: a split backflow preventer is the usual
       casualty, and it's cheap to fix now and a plumber's bill in April. We'll
-      check the system while we're there for the leaf cleanup. (720) 707-5411.
+      check the system while we're there for the leaf cleanup. (720) 893-0394.
 
       DM/REPLY — to anyone who asked in October and went quiet
       Still want the yard done before the snow? We have room this week and the
-      leaves are the easy part now they're down. (720) 707-5411.
+      leaves are the easy part now they're down. (720) 893-0394.
 
 ## 6. Past clients — the cheapest money in the plan
 
@@ -149,7 +149,7 @@ signs, and neighbour clutter. The campaign is only as good as the photos.
 
       FALL RESET DONE HERE
       Leaves hauled · beds re-edged · aerated + overseeded
-      Groundwork Landscaping · (720) 707-5411
+      Groundwork Landscaping · (720) 893-0394
 
 ## 9. Weekly scorecard
 

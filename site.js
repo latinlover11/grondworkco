@@ -110,7 +110,7 @@
         // Inline box stays as the fallback; then land on the thank-you page like the quote sheet does.
         window.location.href = '/thank-you.html';
       }).catch(function () {
-        showError('We couldn’t send your request right now. Please try again or call (720) 707-5411.');
+        showError('We couldn’t send your request right now. Please try again or call (720) 893-0394.');
         if (submitButton) {
           submitButton.disabled = false;
           submitButton.textContent = 'Send request';
@@ -163,7 +163,7 @@
       '    <textarea id="qs-notes" name="message" rows="2" placeholder="What are you planning? (optional)"></textarea>' +
       '    <button type="submit" class="quote-sheet-send">Send request</button>' +
       '  </form>' +
-      '  <a class="quote-sheet-call" href="tel:+17207075411">Or call (720) 707-5411</a>' +
+      '  <a class="quote-sheet-call" href="tel:+17208930394">Or call (720) 893-0394</a>' +
       '</div>';
     document.body.appendChild(backdrop);
 
@@ -273,7 +273,7 @@
       bar.className = 'mobile-cta';
       bar.id = 'mobile-cta';
       bar.setAttribute('aria-label', 'Quick contact');
-      bar.innerHTML = '<a href="tel:+17207075411">Call</a>' +
+      bar.innerHTML = '<a href="tel:+17208930394">Call</a>' +
         '<button type="button" class="mobile-cta-quote">Get a quote</button>' +
         '<button type="button" aria-label="Hide quick contact bar">×</button>';
       document.body.appendChild(bar);
