@@ -13,3 +13,10 @@ screenshot-*.png
 /*.png
 
 .wrangler/
+
+# Raw camera originals, sorted by job for the recent-work gallery. build.py
+# already excludes this path from dist/ (343 MB, and the frames carry GPS EXIF),
+# so nothing in here is ever published - the derivatives that ship live beside
+# the pages that use them. Originals stay out of history: commit the cut
+# versions, not the negatives.
+img/photos-to-sort/
