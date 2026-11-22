@@ -7,7 +7,7 @@ structure contract and both are kept.*
 ## System Overview
 
 Static marketing site for Groundwork Landscaping (Longmont & Boulder County,
-CO), deployed on Netlify at `groundworkllc.netlify.app` (`build.py` line 121).
+CO), deployed on Netlify at `waxwinglandscaping.com` (`build.py` line 121).
 Sources are hand-authored plain HTML — 17 pages in the repo root (including
 `theme-lab.html`, a dev-only theme playground, and
 `googleb057abba7f039342.html`, the Google site-verification file) — plus

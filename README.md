@@ -1,6 +1,6 @@
 # Groundwork Landscaping — Site
 
-Static site for groundworkllc.netlify.app. Sources are plain HTML in the repo root;
+Static site for waxwinglandscaping.com. Sources are plain HTML in the repo root;
 `build.py` assembles `dist/` for Netlify. See `check_links.py` for the
 pre-deploy link/image checker.
 
@@ -54,10 +54,10 @@ landed, look at Netlify → Deploys for that commit rather than at the Actions t
 
 ### Checking a deploy
 
-- `https://groundworkllc.netlify.app` — production
+- `https://waxwinglandscaping.com` — production
 - Netlify → Deploys — build log and source commit for every deploy
 - HTML is served `must-revalidate` (see `netlify.toml`), so a finished deploy is
-  visible on the next request; `curl -sI https://groundworkllc.netlify.app/`
+  visible on the next request; `curl -sI https://waxwinglandscaping.com/`
   confirms the headers
 
 No Netlify credentials belong in this repo any more. `NETLIFY_AUTH_TOKEN` and
