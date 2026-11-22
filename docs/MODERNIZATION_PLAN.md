@@ -1,4 +1,4 @@
-# Modernization Plan — groundworkllc.netlify.app
+# Modernization Plan — waxwinglandscaping.com
 
 A prioritized, staged plan based on a real audit of the codebase (Sept 2026).
 Effort estimates assume the existing static-site architecture stays. Nothing

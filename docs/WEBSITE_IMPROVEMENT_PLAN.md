@@ -1,7 +1,7 @@
 # Groundwork Landscaping — Website Improvement Plan
 
 Prepared October 2, 2026
-Website reviewed: https://groundworkllc.netlify.app/
+Website reviewed: https://waxwinglandscaping.com/
 
 ## Goal
 
