@@ -125,10 +125,14 @@ def asset_tags() -> str:
     )
 FONT_NAMES = ("fraunces-var.woff2", "fraunces-italic-var.woff2", "work-sans-var.woff2")
 FONT_TAGS = "\n".join(f'<link rel="preload" href="/fonts/{name}?v={asset_version("fonts/" + name)}" as="font" type="font/woff2" crossorigin>' for name in FONT_NAMES)
-ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/img/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/img/favicon-48.png" sizes="48x48" type="image/png">
-<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">'''
+# The icon set lives under /img/*, which HEADERS_RULES serves immutable for a
+# year, so these four carry the same content hash every other image URL gets.
+ICON_TAGS = (
+    f'<link rel="icon" href="/img/favicon.svg?v={asset_version("img/favicon.svg")}" type="image/svg+xml">\n'
+    f'<link rel="icon" href="/img/favicon-32.png?v={asset_version("img/favicon-32.png")}" sizes="32x32" type="image/png">\n'
+    f'<link rel="icon" href="/img/favicon-48.png?v={asset_version("img/favicon-48.png")}" sizes="48x48" type="image/png">\n'
+    f'<link rel="apple-touch-icon" href="/img/apple-touch-icon.png?v={asset_version("img/apple-touch-icon.png")}">'
+)
 
 # The one place the public origin lives. Every absolute URL the build emits —
 # sitemap <loc>s, og:url, twitter:image — is derived from this, so a domain
@@ -477,6 +481,101 @@ def inject_img_dimensions(content: str, source: Path) -> str:
     return IMG_TAG_RE.sub(patch, content)
 
 
+# --- versioned image URLs ---------------------------------------------------
+# /img/* is served `immutable, max-age=31536000` by HEADERS_RULES below, and the
+# comment there says that is only safe because asset URLs carry a content hash.
+# That was true of site.css, site.js and the fonts and false of every photograph,
+# so a recompressed file kept its old bytes alive in a returning visitor's cache
+# for a year behind an unchanged URL. Hashing the bytes a tag actually points at
+# makes the URL change exactly when the file does, and stay identical when it
+# does not - the same invariant, finally enforced for images.
+_IMAGE_HASH_CACHE: dict[str, str] = {}
+IMG_OR_SOURCE_TAG_RE = re.compile(r"<(?:img|source)\b[^>]*>", re.IGNORECASE)
+# Longest alternative first: `srcset` contains the word `src`.
+IMG_URL_ATTR_RE = re.compile(r'\b(srcset|src)="([^"]*)"')
+# The gallery and lightbox URLs are not on <img> at all - site.js copies them
+# into img.src from the <button> that carries them, so they are matched across
+# the whole document rather than inside an image tag.
+GALLERY_URL_ATTR_RE = re.compile(r'\b(data-gallery-src|data-lightbox-src)="([^"]*)"')
+CSS_IMG_URL_RE = re.compile(r"url\(\s*(['\"]?)([^)'\"]+)\1\s*\)")
+
+
+def image_version(raw: str, source: Path) -> str:
+    """Content hash for a site-local image reference, or "" when there is none.
+
+    data: URIs, remote URLs and the lightbox's empty src have no bytes in the
+    repo to hash. Root-absolute references (/img/...) resolve against ROOT and
+    everything else against the page that names it - the same rule
+    inject_img_dimensions uses, so a tag's URL and its width/height always
+    describe one file.
+    """
+    path_only = raw.split("#", 1)[0].split("?", 1)[0].strip()
+    if not path_only or path_only.startswith(("data:", "http:", "https:", "//", "blob:")):
+        return ""
+    target = ((ROOT / path_only.lstrip("/")) if path_only.startswith("/") else (source.parent / path_only)).resolve()
+    key = str(target)
+    if key not in _IMAGE_HASH_CACHE:
+        try:
+            _IMAGE_HASH_CACHE[key] = hashlib.sha256(target.read_bytes()).hexdigest()[:8] if target.is_file() else ""
+        except OSError:
+            _IMAGE_HASH_CACHE[key] = ""
+    return _IMAGE_HASH_CACHE[key]
+
+
+def versioned_image_url(raw: str, source: Path) -> str:
+    version = image_version(raw, source)
+    if not version:
+        return raw
+    return f"{raw}{'&' if '?' in raw else '?'}v={version}"
+
+
+def versioned_srcset(value: str, source: Path) -> str:
+    """Version every candidate, keeping its width or density descriptor."""
+    out = []
+    for candidate in value.split(","):
+        parts = candidate.strip().split()
+        if parts:
+            parts[0] = versioned_image_url(parts[0], source)
+        out.append(" ".join(parts))
+    return ", ".join(out)
+
+
+def version_image_urls(content: str, source: Path) -> str:
+    """Give every image reference the ?v= its file's bytes dictate.
+
+    Covers src, srcset candidates, the two data-* attributes site.js copies into
+    img.src for the gallery and lightbox, and the photographs still referenced
+    from inlined page CSS. og:image, twitter:image and JSON-LD image are left
+    unversioned on purpose: they are absolute URLs only a crawler fetches, and a
+    stable address is worth more there than a cache refresh.
+    """
+    def patch_tag(match: re.Match) -> str:
+        def patch_attr(attr_match: re.Match) -> str:
+            attr, value = attr_match.group(1), attr_match.group(2)
+            value = versioned_srcset(value, source) if attr == "srcset" else versioned_image_url(value, source)
+            return f'{attr}="{value}"'
+
+        return IMG_URL_ATTR_RE.sub(patch_attr, match.group(0))
+
+    content = IMG_OR_SOURCE_TAG_RE.sub(patch_tag, content)
+
+    def patch_gallery(attr_match: re.Match) -> str:
+        attr, value = attr_match.group(1), attr_match.group(2)
+        return f'{attr}="{versioned_image_url(value, source)}"'
+
+    content = GALLERY_URL_ATTR_RE.sub(patch_gallery, content)
+
+    def patch_css(match: re.Match) -> str:
+        quote, value = match.group(1), match.group(2)
+        # Fonts are reached through site.css, which is itself versioned; only
+        # photographs need the hash here.
+        if "/img/" not in value:
+            return match.group(0)
+        return f"url({quote}{versioned_image_url(value, source)}{quote})"
+
+    return CSS_IMG_URL_RE.sub(patch_css, content)
+
+
 def transform_gallery_markup(content: str) -> str:
     """Convert legacy gallery inline handlers into declarative attributes."""
     def switch_photo(match: re.Match) -> str:
@@ -594,6 +693,9 @@ def build_html(source: Path, target: Path) -> None:
     if source.name == "privacy.html":
         content = apply_analytics_policy(content)
     content = rewrite_page_urls(content)
+    # Last, so the og:image and JSON-LD decisions above still see the clean path
+    # and only the URLs a browser actually fetches carry the hash.
+    content = version_image_urls(content, source)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
 
