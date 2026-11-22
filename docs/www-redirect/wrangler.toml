@@ -1,0 +1,10 @@
+# Zone-level ruleset writes are not available to the credentials on this machine,
+# so the www -> apex 301 is a Worker route instead of a Single Redirect rule.
+# Deploy: npx wrangler deploy --config docs/www-redirect/wrangler.toml
+name = "waxwing-www-redirect"
+main = "src/index.js"
+compatibility_date = "2026-11-22"
+
+[[routes]]
+pattern = "www.waxwinglandscaping.com/*"
+zone_name = "waxwinglandscaping.com"
