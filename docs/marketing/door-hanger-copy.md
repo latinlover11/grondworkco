@@ -22,7 +22,7 @@ of *that street's* job exists, put it on the hanger — local proof beats any he
 > Hardscaping · Fencing · Lawn care · Xeriscaping
 > Concrete, stone, and fence work built for Colorado freeze-thaw.
 >
-> **Call or text (720) 893-0394** · groundworkllc.netlify.app
+> **Call or text (720) 893-0394** · waxwinglandscaping.com
 > Free on-site estimates — Longmont & Boulder County
 
 Body alternates by nearest service. Region honesty: batching to 20 homes, not
@@ -45,20 +45,20 @@ The offer is the free estimate, which is true site-wide.
 For feed stores, garden centers, brewpubs, and realtor front desks — merchant
 consent first, 20–50 cards, replaced when the stack runs out.
 
-> **Groundwork Landscaping**
+> **Waxwing Landscaping**
 > Hardscaping · Fencing · Lawn care · Xeriscaping
 > Longmont & Boulder County · Free on-site estimates
-> **(720) 893-0394** · groundworkllc.netlify.app
+> **(720) 893-0394** · waxwinglandscaping.com
 >
 > Real project photos from Longmont backyards, right on the site.
 
 ### Realtor-only variant
 
-> **Groundwork Landscaping**
+> **Waxwing Landscaping**
 > Pre-listing spruce-ups for your sellers:
 > fence repair, cleanup, and re-edging that photographs well.
 > Flat-rate listing-ready cleanup packages · free yard-assessment walk-throughs
-> **(720) 893-0394** · groundworkllc.netlify.app
+> **(720) 893-0394** · waxwinglandscaping.com
 
 *(When running a listing package, name a price that is actually flat and honored —
 that trade has long memories.)*

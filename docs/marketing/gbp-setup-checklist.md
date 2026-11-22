@@ -1,12 +1,12 @@
 # Google Business Profile setup checklist
 
-Goal: a complete, photo-rich, review-collecting GBP so Groundwork shows up for
+Goal: a complete, photo-rich, review-collecting GBP so Waxwing shows up for
 "fence repair / hardscaping / lawn care near me" in Longmont & Boulder County.
 Work through top to bottom; items marked star are the ones that move rankings.
 
 ## 1. Claim & basics (day 1)
 
-- [ ] Search "Groundwork Landscaping Longmont" on Google Maps — if a profile exists,
+- [ ] Search "Waxwing Landscaping Longmont" on Google Maps — if a profile exists,
   claim it (`google.com/business`). If none exists, create one; use the same name,
   address, and phone everywhere (site footer, invoices, door hangers).
 - [ ] Choose primary category **Landscaper**; add secondary categories
@@ -15,7 +15,7 @@ Work through top to bottom; items marked star are the ones that move rankings.
   Lafayette, Niwot, Louisville, Erie). Show street address only if the home office
   is one you're comfortable publishing.
 - [ ] Add the phone number that actually rings ((720) 893-0394), hours (incl.
-  seasonal notes), website `https://groundworkllc.netlify.app/`, and the exact
+  seasonal notes), website `https://waxwinglandscaping.com/`, and the exact
   business name format used on the truck.
 - [ ] Verify ownership (postcard, video, or phone — whichever Google offers).
 - [ ] Set up GBP notifications ON so new reviews/messages get answered same day.

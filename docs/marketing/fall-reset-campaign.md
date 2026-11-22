@@ -1,7 +1,7 @@
 # The Fall Reset — campaign kit
 
 Theme for a book-it-now push through early November. Everything funnels to the
-new landing page: `groundworkllc.netlify.app/fall-cleanup-longmont.html` (short link
+new landing page: `waxwinglandscaping.com/fall-cleanup-longmont.html` (short link
 in captions: just the phone number — (720) 893-0394).
 
 **All packages are BY QUOTE now** — no dollar figures on the page, the flyer, or in
@@ -64,7 +64,7 @@ Format per the social series: 1 real photo, 1 plain sentence, phone number. Post
 > The Fall Reset: leaves hauled, beds re-edged, final mow, then core aeration and
 > overseeding the same day so the seed catches with the next moisture. One crew,
 > one visit. The Total Winterize adds the sprinkler blowout, gutters, and a
-> frost-visit checklist. (720) 893-0394 — groundworkllc.netlify.app/fall-cleanup-longmont.html
+> frost-visit checklist. (720) 893-0394 — waxwinglandscaping.com/fall-cleanup-longmont.html
 
 ### Post 3 — the sprinkler urgency piece
 
@@ -116,7 +116,7 @@ as a pin-up at the counter of partner spots.
 >
 > **Free on-site estimate** · Longmont & Boulder County
 > **Call/text (720) 893-0394**
-> groundworkllc.netlify.app/fall-cleanup-longmont.html
+> waxwinglandscaping.com/fall-cleanup-longmont.html
 
 *(Drop within 48h of every fall job while the work is visible. Rotate headline:
 "What's in your yard's winter coat?" as a test. Quotes happen on the walk-through —

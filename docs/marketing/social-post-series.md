@@ -1,7 +1,7 @@
 # Social post series — Nextdoor & Facebook
 
 One post per week. Rotate through the series in order, reuse from the top next quarter.
-**Rules for every post:** one photo of a real Groundwork job (never stock), one plain
+**Rules for every post:** one photo of a real Waxwing job (never stock), one plain
 sentence about what happened, and the soft signup line "Free on-site estimates in
 Longmont & Boulder County — call/text (720) 893-0394." No hashtags on Nextdoor; 2–3
 local ones on Facebook (#LongmontCO #BoulderCounty). Post between 8–10am Tue–Thu.
@@ -23,7 +23,7 @@ local ones on Facebook (#LongmontCO #BoulderCounty). Post between 8–10am Tue�
 > Small detail you'd only notice if you stare at fences for a living: [the cap rail
 > on this cedar fence / the grade on this gravel bed]. Everything here was chosen for
 > Colorado freeze-thaw — the yard below the surface is what makes the top last.
-> Groundwork Landscaping · Longmont · (720) 893-0394.
+> Waxwing Landscaping · Longmont · (720) 893-0394.
 
 ## Week 3 — Seasonal/timely CTA
 
@@ -43,7 +43,7 @@ snow-friendly photos, early booking.*
 
 > Did you know Longmont partners with Resource Central to subsidize replacing thirsty
 > lawn with water-wise landscaping? Homeowners can pay a reduced per-square-foot rate
-> for turf removal + conversion — and Groundwork handles the yard build side: design,
+> for turf removal + conversion — and Waxwing handles the yard build side: design,
 > removal, gravel and stone, water-wise planting. Applications open in spring and
 > funding goes fast. Ask us whether your project fits: (720) 893-0394.
 > Program details: resourcecentral.org/lawn
@@ -53,15 +53,19 @@ clients by email.)*
 
 ## Week 5 — Social proof post
 
+**Do not post this one yet.** The quote that used to sit here was a placeholder, and
+the homepage section it came from was removed on 2026-11-21. Run Week 7's case study
+instead until a real client says something worth quoting.
+
 **Photo:** finished project photo with the client's street or neighborhood visible-ish.
 
-> "They showed up when they said they would, and the site was spotless at the end of
-> every day." — D. Rasmussen, Longmont. This kind of note is why we do the boring
-> parts right. Groundwork Landscaping — hardscaping, fencing, lawn care in Longmont
-> & Boulder County. (720) 893-0394.
+> "[The client's own words, unedited.]" — [first name], [neighborhood]. This kind of
+> note is why we do the boring parts right. Waxwing Landscaping — hardscaping,
+> fencing, lawn care in Longmont & Boulder County. (720) 893-0394.
 
-*(Fix typo before posting: correct city spelling. Pull quotes from the testimonials
-section of groundworkllc.netlify.app.)*
+*(Ask right after the final walk-through, while the yard is still fresh, and ask
+permission to use their first name and neighborhood. A photo of finished work is
+honest proof on its own in the meantime.)*
 
 ## Week 6 — Question/starter post
 
@@ -69,7 +73,7 @@ section of groundworkllc.netlify.app.)*
 
 > Neighbors — what's the one outdoor project you keep putting off? Fence on its last
 > legs, a bed that never got re-edged, a patio that doesn't exist yet? Drop it below
-> or call/text (720) 893-0394 for a free on-site look. Groundwork Landscaping,
+> or call/text (720) 893-0394 for a free on-site look. Waxwing Landscaping,
 > Longmont.
 
 ## Week 7 — Case study spotlight
@@ -78,13 +82,13 @@ section of groundworkllc.netlify.app.)*
 
 > New project write-up: [Vertical Flagstone Monolith — Longmont]. Upright sandstone
 > monoliths in a dual-gravel xeriscape, built for zero-mow weekends. Full story and
-> photos: groundworkllc.netlify.app (Our Work page).
+> photos: waxwinglandscaping.com (Our Work page).
 
 ## Week 8 — Team/owner post (single best trust-builder on Nextdoor)
 
 **Photo:** the crew working — the README Priority-1 crew shot when it exists.
 
-> Quick intro for neighbors: Groundwork is a small local crew based in Longmont.
+> Quick intro for neighbors: Waxwing is a small local crew based in Longmont.
 > Same crew from estimate to final walk-through — hardscaping, fencing, and lawn
 > care, all built for Colorado weather. If you've seen our truck around, now you
 > know the name. (720) 893-0394.

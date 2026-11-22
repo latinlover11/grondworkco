@@ -149,7 +149,7 @@ signs, and neighbour clutter. The campaign is only as good as the photos.
 
       FALL RESET DONE HERE
       Leaves hauled · beds re-edged · aerated + overseeded
-      Groundwork Landscaping · (720) 893-0394
+      Waxwing Landscaping · (720) 893-0394
 
 ## 9. Weekly scorecard
 

@@ -17,7 +17,7 @@ Rules that keep it from feeling like spam:
 
 ## 1. The fall text (primary)
 
-> Hi [Name] — it's [Your name] from Groundwork, we did [the fence / the cleanup /
+> Hi [Name] — it's [Your name] from Waxwing, we did [the fence / the cleanup /
 > the patio] at your place in [month]. We're doing fall cleanups and sprinkler
 > blowouts through November — want me to add you to the list before the slots
 > fill? (720) 893-0394
@@ -31,7 +31,7 @@ they need, and it asks one small question.
 
 > Hi [Name],
 >
-> [Your name] here from Groundwork Landscaping — we built [the cedar fence / the
+> [Your name] here from Waxwing Landscaping — we built [the cedar fence / the
 > flagstone entry / the gravel bed] at your place back in [month].
 >
 > We're booking fall cleanups through November: leaves off the lawn and beds and
@@ -42,7 +42,7 @@ they need, and it asks one small question.
 > number. If you want on the list, reply here or call/text (720) 893-0394.
 >
 > Thanks — [Your name]
-> Groundwork Landscaping · Longmont & Boulder County
+> Waxwing Landscaping · Longmont & Boulder County
 
 ## 3. The review ask (same evening as the walk-through)
 
@@ -62,7 +62,7 @@ That is a true statement about your economics, which is why it converts.
 
 ## 5. Reactivation — quotes that went quiet
 
-> Hi [Name], [Your name] from Groundwork — you asked about [the cleanup / the
+> Hi [Name], [Your name] from Waxwing — you asked about [the cleanup / the
 > fence] back in [month] and we never got it scheduled. We've got room this week
 > if it's still on your list. (720) 893-0394
 
