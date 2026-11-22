@@ -7,6 +7,17 @@
   [build.environment]
     PYTHON_VERSION = "3.12"
 
+# The old host keeps working for a year: every legacy URL 301s to the same path
+# on the new domain, so any link, bookmark or index entry pointing at
+# groundworkllc.netlify.app lands on the right page. The rule is scoped to the
+# netlify.app host on purpose — a bare "/*" here would redirect the new domain
+# to itself and loop.
+[[redirects]]
+  from = "https://groundworkllc.netlify.app/*"
+  to = "https://waxwinglandscaping.com/:splat"
+  status = 301
+  force = true
+
 # Static assets are content-hashed by filename pattern (e.g. *-800.webp) or
 # change only on deploy, so returning visitors can cache them hard. HTML
 # always revalidates so deploys propagate immediately.

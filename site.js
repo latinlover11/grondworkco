@@ -152,8 +152,8 @@
       '    <button type="button" class="chip" data-value="winter-prep" aria-pressed="false">Winterize / snow</button>' +
       '  </div>' +
       '  <form action="https://formspree.io/f/mjyvregb" method="POST">' +
-      '    <input type="hidden" name="_subject" value="Quick quote — Groundwork Landscaping">' +
-      '    <input type="hidden" name="_next" value="https://groundworkllc.netlify.app/thank-you.html">' +
+      '    <input type="hidden" name="_subject" value="Quick quote — Waxwing Landscaping">' +
+      '    <input type="hidden" name="_next" value="https://waxwinglandscaping.com/thank-you.html">' +
       '    <input type="hidden" name="service" value="">' +
       '    <label class="visually-hidden" for="qs-name">Name</label>' +
       '    <input id="qs-name" name="name" type="text" placeholder="Your name" required autocomplete="name">' +

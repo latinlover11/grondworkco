@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What a Fall Cleanup Week Actually Looks Like in Longmont | Waxwing</title>
+<meta content="A week of fall work on the Front Range, photographed: poplars coming down, a lawn under a foot of leaves, a trailer of haul-off, and the backflow preventer that sets the blowout deadline." name="description"/>
+<link rel="canonical" href="https://waxwinglandscaping.com/blog/blog-post-8.html"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--header-bg);
+    color:var(--cream);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover, .nav-links a.active{color:var(--ember-bright);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:10px 20px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+  .nav-toggle{
+    display:none;
+    background:none; border:none; padding:8px; cursor:pointer;
+    flex-direction:column; gap:5px; justify-content:center;
+  }
+  .nav-toggle span{
+    display:block; width:24px; height:2px; background:var(--ink);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-mobile-panel{
+    display:none;
+    flex-direction:column;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mobile-panel.open{display:flex;}
+  .nav-mobile-panel a{
+    padding:16px 32px; color:var(--ink-muted); font-size:15px;
+    border-top:1px solid var(--line);
+  }
+  .nav-mobile-panel a:hover{color:var(--ink); background:var(--bg-panel);}
+  .nav-mobile-panel .nav-cta{margin:16px 32px; text-align:center; border-top:none;}
+  .article{
+    max-width:800px;
+    margin:0 auto;
+    padding:40px 20px;
+  }
+  .article-header{
+    text-align:center;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:32px;
+  }
+  .article-tag{
+    display:inline-block;
+    background:var(--ember);
+    color:#16130E;
+    font-size:0.75rem;
+    font-weight:600;
+    padding:2px 8px;
+    border-radius:3px;
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .article h1{
+    font-size:clamp(32px, 5vw, 44px);
+    line-height:1.2;
+    margin-bottom:20px;
+  }
+  .article-meta{
+    color:var(--ink-muted);
+    font-size:14px;
+    display:flex;
+    justify-content:center;
+    gap:16px;
+  }
+  .article-image{
+    margin:32px 0;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .article-image img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  .article-image figcaption{
+    padding:10px 16px;
+    font-size:13.5px;
+    color:var(--ink-muted);
+    background:var(--bg-panel-alt);
+  }
+  .article-content{
+    line-height:1.8;
+  }
+  .article-content p{
+    margin-bottom:24px;
+    color:var(--ink);
+  }
+  .article-content h2{
+    font-size:clamp(22px, 3.5vw, 28px);
+    margin:36px 0 16px 0;
+    color:var(--ink);
+  }
+  .article-content ul{
+    margin-bottom:24px;
+    padding-left:24px;
+  }
+  .article-content li{
+    margin-bottom:12px;
+    color:var(--ink-muted);
+  }
+  .article-content li strong{
+    color:var(--ink);
+  }
+  .btn-primary{
+    display:inline-block;
+    background:var(--ember);
+    color:#16130E;
+    padding:12px 24px;
+    border-radius:var(--radius);
+    font-weight:600;
+    transition:background .2s ease;
+  }
+  .btn-primary:hover{
+    background:var(--ember-bright);
+  }
+  .article-nav{
+    display:flex;
+    justify-content:space-between;
+    margin-top:48px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .article-nav a{
+    color:var(--ink-muted);
+    text-decoration:none;
+    font-weight:500;
+    transition:color .2s ease;
+  }
+  .article-nav a:hover{
+    color:var(--ember-bright);
+  }
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:60px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+  @media (max-width:768px){
+    .article{padding:20px 16px;}
+    .nav-links, .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What a Fall Cleanup Week Actually Looks Like in Longmont",
+  "description": "A week of fall work on the Front Range, photographed: poplars coming down, a lawn under a foot of leaves, a trailer of haul-off, and the backflow preventer that sets the blowout deadline.",
+  "image": "https://waxwinglandscaping.com/img/case-studies/poplar-removal-crew.webp",
+  "author": { "@type": "Organization", "name": "Waxwing Landscaping" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Waxwing Landscaping",
+    "logo": { "@type": "ImageObject", "url": "https://waxwinglandscaping.com/img/logo.png" }
+  },
+  "datePublished": "2026-11-21",
+  "url": "https://waxwinglandscaping.com/blog/blog-post-8.html"
+}
+</script>
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a href="../index.html" class="brand"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="26" fill="#C87955"/><g fill="#FFF9F0"><circle cx="30" cy="36" r="12"/><circle cx="44" cy="23" r="7.5"/><path d="M37 17.5 43 8l5 8Z"/><path d="M51 20.5 60 23.5l-9 3Z"/><path d="M20 41 8 50l13-4Z"/></g><circle cx="47" cy="21" r="1.4" fill="#3B2A22"/></svg>Waxwing <span>Landscaping</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../work.html">Our Work</a></li>
+      <li><a href="../about.html">About Us</a></li>
+      <li><a class="active" href="../blog/index.html">Blog</a></li>
+    </ul>
+    <a href="../contact.html" class="nav-cta">Get a quote</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-mobile-panel">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-panel" id="nav-mobile-panel">
+    <a href="../index.html#services">Services</a>
+    <a href="../work.html">Our Work</a>
+    <a href="../about.html">About Us</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../contact.html" class="nav-cta">Get a quote</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="article">
+    <div class="article-header">
+      <span class="article-tag">Field Notes</span>
+      <h1>What a fall cleanup week actually looks like</h1>
+      <div class="article-meta">
+        <span>November 21, 2026</span>
+        <span>6 min read</span>
+      </div>
+    </div>
+
+    <figure class="article-image">
+      <img src="../img/case-studies/poplar-removal-crew.webp" srcset="../img/case-studies/poplar-removal-crew-800.webp 800w, ../img/case-studies/poplar-removal-crew.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Two crew members with chainsaws and a tall ladder between bare poplars and a wooden fence" width="1200" height="900" fetchpriority="high" decoding="async">
+      <figcaption>Two on the ground, a ladder against the trunk, poplars bare for the season.</figcaption>
+    </figure>
+
+    <div class="article-content">
+      <p>People picture fall cleanup as one job: leaves. The week of November 16 on our schedule was four jobs and sixty-eight photos, and leaves were only one of them. A cedar fence went up over two days, a stand of poplars came down, a yard's worth of roses and old edging came out and stone edging went in, and two properties got their fall cleanups and sprinkler blowouts.</p>
+
+      <p>That spread is normal for late November on the Front Range, and it's why we photograph the work. Not for the highlight reel: the frames are how we check our own sequencing, and how we explain to the next customer what a day actually costs in labour and haul-off.</p>
+
+      <h2>The poplars come down once the leaves are off</h2>
+      <p>Taking a mature tree down next to a fence and a house is a ladder-and-rope job before it's a chainsaw job. You limb it from the top so the pieces you drop are small enough to steer, and you keep the fall zone clear of the fence line the whole way down.</p>
+      <p>November is the good window for it. With the canopy bare, the crew can see the structure of the tree from the ground: which limbs are dead, which are load-bearing, where the lean actually goes. It's also the point in the year when a bare tree leaves the smallest mess to clean up afterwards.</p>
+
+      <figure class="article-image">
+        <img src="../img/case-studies/leaf-bed-before.webp" srcset="../img/case-studies/leaf-bed-before-800.webp 800w, ../img/case-studies/leaf-bed-before.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="A lawn and patio covered in fallen leaves, with a pergola and fire bowl behind" width="1200" height="900" loading="lazy" decoding="async">
+        <figcaption>Before: lawn, patio and all, under one layer of leaves.</figcaption>
+      </figure>
+
+      <h2>The leaves are the easy part</h2>
+      <p>What makes a fall visit take a day isn't raking. It's what the leaves are sitting on. Leaves left on turf smother it through the winter; leaves packed into a bed hold moisture against crowns and stems that would rather stay dry; leaves against a foundation keep the siding and the sill wet longer than they should be.</p>
+      <p>So the work moves in a particular order: beds first, then lawn, then the hard surfaces blown clean, then the pile. That last part is the one homeowners notice. Pushing a pile into the street is not cleanup, it's a transfer, and most Front Range cities treat it as a drainage and nuisance problem. Ours leaves on a trailer.</p>
+
+      <figure class="article-image">
+        <img src="../img/case-studies/leaf-piles-hauled.webp" srcset="../img/case-studies/leaf-piles-hauled-800.webp 800w, ../img/case-studies/leaf-piles-hauled.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="A trailer filled with leaves parked beside a curb, with a wheelbarrow and tarp alongside" width="900" height="1200" loading="lazy" decoding="async">
+        <figcaption>The haul: a trailer of leaves off the property, not into the gutter.</figcaption>
+      </figure>
+
+      <h2>The blowout is the part with a deadline</h2>
+      <p>Everything else in a fall visit can slide a week without much consequence. The sprinkler blowout can't. Water left in a system expands when it freezes, and the fitting that sits above grade, full of water, with the cold hitting it first, is the backflow preventer on the side of the house.</p>
+      <p>A blowout connects an air line to that assembly and pushes air through every zone until the water is out of the mainline, the laterals and the backflow itself. It's a short visit and a cheap one compared with what a split assembly costs to replace in the spring, plumber included.</p>
+
+      <figure class="article-image">
+        <img src="../img/case-studies/sprinkler-blowout-bib.webp" srcset="../img/case-studies/sprinkler-blowout-bib-800.webp 800w, ../img/case-studies/sprinkler-blowout-bib.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Brass backflow preventer mounted on a stone veneer wall with a hose connected" width="1200" height="900" loading="lazy" decoding="async">
+        <figcaption>The backflow preventer on the wall, air line tied in.</figcaption>
+      </figure>
+
+      <h2>What it means for booking the rest of the season</h2>
+      <p>Fall work compresses into a short window and then stops being available at all: once the ground is frozen and the lines are blown out, the outdoor list is done until spring. If your beds are still buried and your system is still wet, the useful move is to get on the schedule now rather than after the first hard freeze shows up in the forecast.</p>
+      <p>We do the whole list in one visit, which is the point of the <a href="../fall-cleanup-longmont.html" style="color:var(--ember-bright); text-decoration:underline;">Fall Reset</a>: leaf cleanup, final mow, bed re-edging, aeration and overseeding where it's needed, the blowout, and the gutters. If you're in Longmont or Boulder County, <a href="../contact.html" style="color:var(--ember-bright); text-decoration:underline;">send us the property</a> and we'll tell you what it needs and when we can get there.</p>
+    </div>
+
+    <div class="article-nav">
+      <a href="blog-post-7.html">&larr; Previous: Sprinkler Blowout 101</a>
+      <a href="../blog/index.html">Back to Blog Index</a>
+      <a href="../work.html#recent-work">See this week's photos &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>© <script>document.write(new Date().getFullYear())</script> Waxwing Landscaping. All rights reserved.</div>
+    <div>
+      <a href="tel:+17208930394" style="color:var(--ink-muted); text-decoration:none;">(720) 893-0394</a>
+      <br>
+      <a href="mailto:cmoneyq11@gmail.com" style="color:var(--ink-muted); text-decoration:none;">Email us</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+var navToggle = document.getElementById('nav-toggle');
+var navPanel = document.getElementById('nav-mobile-panel');
+if (navToggle && navPanel) {
+  navToggle.addEventListener('click', function(){
+    var isOpen = navPanel.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navPanel.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navPanel.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+</script>
+</body>
+</html>

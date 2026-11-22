@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cedar Privacy Fence &amp; Picket Gate, Longmont | Waxwing</title>
+<meta name="description" content="Two days on one Longmont property line: cedar posts set in footings along a narrow side yard, the run closed in, and a picket gate set beside the existing board fence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,460;9..144,560&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14181A;
+    --bg-panel: #1B211F;
+    --bg-panel-alt: #202521;
+    --ink: #ECE7DD;
+    --ink-muted: #9AA39B;
+    --ember: #C16A2E;
+    --ember-bright: #E08A3E;
+    --moss: #6E8367;
+    --line: rgba(236,231,221,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  :focus-visible{outline:2px solid var(--ember-bright); outline-offset:3px;}
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,24,26,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-size:20px; font-weight:560;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .brand span{color:var(--ember-bright); font-style:italic; font-weight:460;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0; font-size:14.5px;}
+  .nav-links a{color:var(--ink-muted); transition:color .2s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ember); color:#16130E; padding:9px 18px; border-radius:var(--radius);
+    font-size:14px; font-weight:600; transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--ember-bright);}
+
+  .breadcrumbs{
+    padding:24px 0 0;
+    font-size:13px; color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .breadcrumbs a:hover{color:var(--ember-bright);}
+
+  .case-hero{
+    padding:40px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-hero-eyebrow{
+    color:#8FA383; font-size:13px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; margin-bottom:12px; display:flex; align-items:center; gap:10px;
+  }
+  .case-hero-eyebrow::before{content:''; width:24px; height:1px; background:var(--moss);}
+  .case-hero h1{
+    font-size:clamp(32px, 4.5vw, 54px);
+    line-height:1.08;
+    max-width:20ch;
+    margin-bottom:20px;
+  }
+  .case-hero-media{margin:28px 0 0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .case-hero-media img{width:100%; height:auto;}
+  .case-hero-media figcaption{padding:12px 18px; font-size:13.5px; color:var(--ink-muted); background:var(--bg-panel-alt);}
+  .case-meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px; margin-top:32px;
+  }
+  .meta-card{
+    background:var(--bg-panel); border:1px solid var(--line);
+    padding:16px 20px; border-radius:var(--radius);
+  }
+  .meta-card label{font-size:11.5px; color:var(--ink-muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:4px;}
+  .meta-card value{font-size:15px; font-weight:600; color:var(--ember-bright);}
+
+  .story-layout{
+    display:grid; grid-template-columns:1fr 340px; gap:56px;
+    padding:64px 0;
+  }
+  .story-main{display:flex; flex-direction:column; gap:40px;}
+
+  .story-section h2{
+    font-size:26px; margin-bottom:14px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  .story-section h2 span{
+    font-size:14px; font-family:'Work Sans', sans-serif;
+    padding:3px 10px; border-radius:3px; text-transform:uppercase; font-weight:600;
+  }
+  .pill-problem{background:rgba(224, 138, 62, 0.15); color:#E7B08A; border:1px solid rgba(224, 138, 62, 0.3);}
+  .pill-design{background:rgba(110, 131, 103, 0.15); color:#A8BB9C; border:1px solid rgba(110, 131, 103, 0.3);}
+  .pill-result{background:rgba(193, 106, 46, 0.2); color:var(--ember-bright); border:1px solid rgba(193, 106, 46, 0.4);}
+
+  .story-section p{color:var(--ink-muted); font-size:16px; line-height:1.65; margin-bottom:14px;}
+
+  .bullet-list{list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:12px;}
+  .bullet-list li{
+    background:var(--bg-panel); border:1px solid var(--line); padding:16px 20px;
+    border-radius:var(--radius); color:var(--ink); font-size:15px; line-height:1.5;
+    border-left:3px solid var(--moss);
+  }
+  .bullet-list li strong{color:var(--ember-bright);}
+
+  .photo-grid-section{
+    padding:40px 0 64px; border-top:1px solid var(--line);
+  }
+  .photo-grid-section h2{font-size:28px; margin-bottom:24px;}
+  .case-gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+  }
+  .gallery-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; transition:transform 0.25s ease, border-color 0.25s ease;
+  }
+  .gallery-card:hover{
+    transform:translateY(-3px); border-color:var(--ember-bright);
+  }
+  .gallery-card img{width:100%; height:220px; object-fit:cover;}
+  .gallery-card .caption{padding:14px 18px; font-size:13.5px; color:var(--ink-muted); background:var(--bg-panel-alt);}
+
+  .story-sidebar{
+    display:flex; flex-direction:column; gap:24px; position:sticky; top:96px; height:fit-content;
+  }
+  .cta-box{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:32px; border-top:3px solid var(--ember);
+  }
+  .cta-box h3{font-size:22px; margin-bottom:12px;}
+  .cta-box p{color:var(--ink-muted); font-size:14px; margin-bottom:20px;}
+  .btn-sidebar{
+    background:var(--ember); color:#16130E; text-align:center; padding:14px 20px;
+    border-radius:var(--radius); font-weight:600; font-size:15px; display:block;
+    transition:background 0.2s ease;
+  }
+  .btn-sidebar:hover{background:var(--ember-bright);}
+
+  .lightbox-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 12, 13, 0.94); backdrop-filter: blur(12px);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0s 0.3s; padding: 32px;
+  }
+  .lightbox-modal.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.3s ease; }
+  .lightbox-content {
+    max-width: 1100px; max-height: 90vh; position: relative;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .lightbox-content img {
+    max-width: 100%; max-height: 80vh; object-fit: contain;
+    border-radius: 4px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  }
+  .lightbox-caption { margin-top: 14px; color: var(--ink); font-size: 15px; text-align: center; font-family: 'Fraunces', serif; }
+  .lightbox-close {
+    position: absolute; top: -40px; right: 0; background: none; border: none;
+    color: var(--ink-muted); font-size: 28px; cursor: pointer; transition: color 0.2s ease;
+  }
+  .lightbox-close:hover { color: var(--ink); }
+
+  footer{border-top:1px solid var(--line); padding:40px 0; margin-top:40px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
+
+  @media (max-width:860px){
+    .story-layout{grid-template-columns:1fr; gap:40px;}
+    .story-sidebar{position:static;}
+  }
+</style>
+    <link rel="canonical" href="https://waxwinglandscaping.com/case-studies/longmont-cedar-fence-picket-gate.html">
+<link rel="stylesheet" href="/site.css">
+<script defer src="/site.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cedar Privacy Fence & Picket Gate, Longmont",
+  "description": "Two days on one Longmont property line: cedar posts set in footings along a narrow side yard, the run closed in, and a picket gate set beside the existing board fence.",
+  "image": "https://waxwinglandscaping.com/img/case-studies/cedar-run-finished.webp",
+  "author": { "@type": "Organization", "name": "Waxwing Landscaping" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Waxwing Landscaping",
+    "logo": { "@type": "ImageObject", "url": "https://waxwinglandscaping.com/img/logo.png" }
+  },
+  "url": "https://waxwinglandscaping.com/case-studies/longmont-cedar-fence-picket-gate.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://waxwinglandscaping.com/case-studies/longmont-cedar-fence-picket-gate.html"
+  }
+}
+</script>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/index.html" class="brand"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="26" fill="#C87955"/><g fill="#FFF9F0"><circle cx="30" cy="36" r="12"/><circle cx="44" cy="23" r="7.5"/><path d="M37 17.5 43 8l5 8Z"/><path d="M51 20.5 60 23.5l-9 3Z"/><path d="M20 41 8 50l13-4Z"/></g><circle cx="47" cy="21" r="1.4" fill="#3B2A22"/></svg>Waxwing <span>Landscaping</span></a>
+    <ul class="nav-links">
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/work.html">Our Work</a></li>
+      <li><a href="/index.html#process">Process</a></li>
+      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/contact.html" class="nav-cta">Get a quote</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="breadcrumbs">
+    <a href="/index.html">Home</a> &rsaquo; <a href="/work.html">Our Work</a> &rsaquo; <span>Cedar Fence &amp; Picket Gate</span>
+  </div>
+
+  <section class="case-hero">
+    <div class="case-hero-eyebrow">Fencing &middot; Longmont, Colorado</div>
+    <h1>Cedar privacy run with a picket gate</h1>
+    <p style="color:var(--ink-muted); max-width:60ch; font-size:17px;">Two days on one property line: cedar dropped on the street, posts set in footings down a narrow side yard, the run closed in, and a picket gate built to sit beside the existing board fence.</p>
+    <figure class="case-hero-media">
+      <img src="/img/case-studies/cedar-run-finished.webp" srcset="/img/case-studies/cedar-run-finished-800.webp 800w, /img/case-studies/cedar-run-finished.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="New cedar privacy fence run finished along a backyard, seen from the open side" width="1200" height="900" fetchpriority="high" decoding="async">
+      <figcaption>Finished cedar run &middot; Longmont, Colorado</figcaption>
+    </figure>
+
+    <div class="case-meta-grid">
+      <div class="meta-card"><label>Location</label><value>Longmont, CO</value></div>
+      <div class="meta-card"><label>Scope</label><value>Cedar privacy + gate</value></div>
+      <div class="meta-card"><label>Timeline</label><value>2 days &middot; Nov 16&ndash;17, 2026</value></div>
+      <div class="meta-card"><label>Photos</label><value>5 frames, unedited</value></div>
+    </div>
+  </section>
+
+  <div class="story-layout">
+    <div class="story-main">
+
+      <div class="story-section">
+        <h2><span class="pill-problem">The Site</span> A narrow side yard with no room to cheat</h2>
+        <p>The line runs down a side yard barely wider than the trailer that delivered the material, past a mature pine, with a utility post standing inside the run and an old board fence marking where the new one had to land. On a fence like this, access is the whole job: every board comes down the street, gets carried in by hand, and lands within a couple of inches of where the last one sits.</p>
+        <p>The other constraint is the fence that was already there. A gate set against an existing run has to clear it, clear the ground, and still swing true after the posts have settled.</p>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-design">The Build</span> Two days, in order</h2>
+        <ul class="bullet-list">
+          <li><strong>1. Material on site:</strong> cedar boards and posts delivered on the trailer and stacked along the street before the first hole was dug.</li>
+          <li><strong>2. Posts in footings:</strong> hole, concrete, post &mdash; set plumb in a straight line down the side yard, working around the pine and the utility post rather than fighting them.</li>
+          <li><strong>3. Run closed in:</strong> panels and rails built onto the posts, keeping the top line level across the whole run.</li>
+          <li><strong>4. Gate built and hung:</strong> picket gate assembled and set against the existing board fence, then adjusted until it swung clear and latched square.</li>
+          <li><strong>5. Detail and clean-up:</strong> the corner by the downspout tidied, the work line cleaned, and the run walked with the homeowner.</li>
+        </ul>
+      </div>
+
+      <div class="story-section">
+        <h2><span class="pill-result">The Result</span> One line, two days</h2>
+        <p>The run reads as a single straight line from the yard instead of a series of panels, the gate swings clear of the old fence beside it, and the posts sit in concrete deep enough to hold through a Front Range spring. Two working days on site, with the gate hung on the second.</p>
+      </div>
+
+    </div>
+
+    <aside class="story-sidebar">
+      <div class="cta-box">
+        <h3>Planning a fence line?</h3>
+        <p>Send us the property, the style you have in mind, and roughly how many feet. We'll tell you what the ground and the access will do to the plan.</p>
+        <a href="/contact.html?service=fencing" class="btn-sidebar">Get a Free Estimate</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="photo-grid-section">
+    <h2>Build photos</h2>
+    <p style="color:var(--ink-muted); margin-bottom:24px;">The build in the order it happened, from material on the street to the gate hung in the finished run. Click any photo to enlarge.</p>
+
+    <div class="case-gallery-grid">
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fence-material-trailer.webp', 'Cedar boards and posts loaded on the trailer, 8:47 am')">
+        <img src="/img/case-studies/fence-material-trailer.webp" srcset="/img/case-studies/fence-material-trailer-800.webp 800w, /img/case-studies/fence-material-trailer.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Trailer loaded with stacked cedar boards and posts parked on a residential street" loading="lazy" decoding="async">
+        <div class="caption"><strong>Material:</strong> cedar on the trailer, before the first hole.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fence-footings.webp', 'Posts set in concrete footings down the side yard')">
+        <img src="/img/case-studies/fence-footings.webp" srcset="/img/case-studies/fence-footings-800.webp 800w, /img/case-studies/fence-footings.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="Cedar posts standing in concrete footings between an old fence and a utility post" loading="lazy" decoding="async" width="900" height="1200">
+        <div class="caption"><strong>Footings:</strong> posts plumb in concrete, working around the utility post.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/fence-posts-set.webp', 'A line of cedar posts standing along the side yard')">
+        <img src="/img/case-studies/fence-posts-set.webp" srcset="/img/case-studies/fence-posts-set-800.webp 800w, /img/case-studies/fence-posts-set.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="A line of cedar posts set in footings along a narrow side yard beside a pine" loading="lazy" decoding="async">
+        <div class="caption"><strong>The line:</strong> posts set the length of the run, past the pine.</div>
+      </div>
+      <div class="gallery-card" onclick="openLightbox('/img/case-studies/picket-gate-in-run.webp', 'White picket gate hung in the finished cedar run')">
+        <img src="/img/case-studies/picket-gate-in-run.webp" srcset="/img/case-studies/picket-gate-in-run-800.webp 800w, /img/case-studies/picket-gate-in-run.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="White picket gate set into a new cedar privacy fence, with a juniper growing over the top rail" loading="lazy" decoding="async">
+        <div class="caption"><strong>Gate:</strong> white pickets hung in the finished cedar run.</div>
+      </div>
+    </div>
+  </section>
+  <section class="service-page-cta" aria-labelledby="case-study-cta">
+    <h2 id="case-study-cta">Need a fence that holds its line?</h2>
+    <p>Posts set in real footings, panels built straight, and a gate hung to swing true the first time.</p>
+    <a href="/contact.html?service=fencing" class="btn-sidebar">Request a Similar Project</a>
+  </section>
+</main>
+
+<div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>&copy; 2026 Waxwing Landscaping</div>
+    <div>Free on-site estimates &middot; Longmont, CO</div>
+  </div>
+</footer>
+
+<script>
+function openLightbox(imgSrc, caption) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalCaption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeLightbox(e) {
+  if (e && e.target && (e.target.id === 'lightbox-modal' || e.target.classList.contains('lightbox-close'))) {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('lightbox-modal');
+    if (modal && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+});
+</script>
+</body>
+</html>

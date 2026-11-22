@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Work & Case Studies — Groundwork Landscaping</title>
-<meta name="description" content="Explore real hardscaping, fencing, and landscape restoration case studies from Groundwork Landscaping in Longmont and Boulder County, CO.">
-<meta property="og:title" content="Our Work & Case Studies — Groundwork Landscaping">
-<meta property="og:description" content="Explore real hardscaping, fencing, and landscape restoration case studies from Groundwork Landscaping in Longmont and Boulder County, CO.">
+<title>Our Work & Case Studies — Waxwing Landscaping</title>
+<meta name="description" content="Explore real hardscaping, fencing, and landscape restoration case studies from Waxwing Landscaping in Longmont and Boulder County, CO.">
+<meta property="og:title" content="Our Work & Case Studies — Waxwing Landscaping">
+<meta property="og:description" content="Explore real hardscaping, fencing, and landscape restoration case studies from Waxwing Landscaping in Longmont and Boulder County, CO.">
 <meta property="og:image" content="/img/og-image.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://groundworkllc.netlify.app/work.html">
+<meta property="og:url" content="https://waxwinglandscaping.com/work.html">
 <style>
   :root{
     --bg: #14181A;
@@ -313,6 +313,15 @@
   .contact-banner-box h2 { font-size: 28px; margin-bottom: 8px; }
   .contact-banner-box p { color: var(--ink-muted); font-size: 15.5px; max-width: 48ch; }
   .contact-banner-box .nav-cta { padding: 14px 28px; font-size: 15px; }
+  .recent-work-section { padding: 56px 0 8px; }
+  .recent-work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 24px; }
+  .recent-work-card { display: block; width: 100%; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-panel); overflow: hidden; cursor: zoom-in; font: inherit; color: inherit; text-align: left; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .recent-work-card:hover { border-color: var(--ember); transform: translateY(-2px); }
+  .recent-work-card:focus-visible { outline: 2px solid var(--ember-bright); outline-offset: 3px; }
+  .recent-work-card img { display: block; width: 100%; height: 230px; object-fit: cover; }
+  .recent-work-caption { display: block; padding: 12px 14px; font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
+  .recent-work-caption strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 860px) { .recent-work-card img { height: 220px; } }
   .story-steps-grid {
     display: grid;
     grid-template-columns: 1fr 1.25fr 1fr;
@@ -525,30 +534,16 @@
   footer{border-top:1px solid var(--line); padding:40px 0;}
   .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13.5px; color:var(--ink-muted);}
 
-  /* Testimonials */
-  .testimonial-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  /* Project proof */
   .proof-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .proof-item{padding-top:18px; border-top:1px solid var(--line);}
   .proof-item span{color:var(--ember-bright); font:460 18px 'Fraunces',serif;}
   .proof-item h3{font-size:21px; font-weight:460; margin:16px 0 8px;}
   .proof-item p{color:var(--ink-muted); font-size:14px; max-width:30ch;}
   @media (max-width:860px){.proof-grid{grid-template-columns:1fr; gap:24px;}}
-  .testimonial{
-    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:36px; display:flex; flex-direction:column; gap:24px;
-  }
-  .testimonial p.quote{font-family:'Fraunces', serif; font-size:19px; font-weight:460; line-height:1.4;}
-  .testimonial .who{display:flex; align-items:center; gap:12px; font-size:14px; color:var(--ink-muted);}
-  .who-mark{
-    width:34px;height:34px;border-radius:50%; background:var(--bg-panel-alt); border:1px solid var(--line); flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-size:13px; font-weight:560; color:var(--ember-bright);
-  }
-
   @media (max-width:860px){
     .nav-links{display:none;}
     .nav-toggle{display:flex;}
-    .testimonial-grid{grid-template-columns:1fr;}
   }
 </style>
   <!-- Local Business Schema -->
@@ -556,12 +551,12 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Groundwork Landscaping",
+    "name": "Waxwing Landscaping",
     "image": "/img/logo.png",
-    "@id": "https://groundworkllc.netlify.app/",
-    "url": "https://groundworkllc.netlify.app/work.html",
+    "@id": "https://waxwinglandscaping.com/",
+    "url": "https://waxwinglandscaping.com/work.html",
     "telephone": "(720) 893-0394",
-    "priceRange": "$$$",
+    "priceRange": "$$",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -582,7 +577,7 @@
     }
   }
   </script>
-    <link rel="canonical" href="https://groundworkllc.netlify.app/work.html">
+    <link rel="canonical" href="https://waxwinglandscaping.com/work.html">
 <link rel="stylesheet" href="/site.css">
 <script defer src="/site.js"></script>
 </head>
@@ -590,7 +585,7 @@
 
 <header>
   <nav class="nav">
-    <a href="/index.html" class="brand"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="25" fill="#C16A2E"/><path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#14181A"/><path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#6E8367"/><path d="M34 29c1.8-5.2 5.2-9.2 9.6-12.2" fill="none" stroke="#ECE7DD" stroke-width="2.3" stroke-linecap="round"/></svg>Groundwork <span>Landscaping</span></a>
+    <a href="/index.html" class="brand"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="26" fill="#C87955"/><g fill="#FFF9F0"><circle cx="30" cy="36" r="12"/><circle cx="44" cy="23" r="7.5"/><path d="M37 17.5 43 8l5 8Z"/><path d="M51 20.5 60 23.5l-9 3Z"/><path d="M20 41 8 50l13-4Z"/></g><circle cx="47" cy="21" r="1.4" fill="#3B2A22"/></svg>Waxwing <span>Landscaping</span></a>
     <ul class="nav-links">
       <li><a href="/index.html#services">Services</a></li>
       <li><a href="/work.html" class="active">Our Work</a></li>
@@ -631,8 +626,74 @@
       <button type="button" class="case-filter" data-filter="maintenance" aria-pressed="false">Maintenance</button>
       <button type="button" class="case-filter" data-filter="xeriscaping" aria-pressed="false">Xeriscaping</button>
     </div>
-    <p class="filter-count-note" id="filter-count" role="status" aria-live="polite">10 projects</p>
+    <p class="filter-count-note" id="filter-count" data-project-count-text role="status" aria-live="polite">11 projects</p>
     <div class="case-studies-wrap">
+
+      <!-- Case Study 11: Cedar Privacy Fence & Picket Gate -->
+      <div class="case-study-card" data-category="fencing">
+        <div class="case-media-panel">
+          <span class="photo-real-tag">Real Job Photos</span>
+          <div class="main-photo-container" id="cs11-main-box">
+             <img src="img/case-studies/cedar-run-finished.webp" srcset="img/case-studies/cedar-run-finished-800.webp 800w, img/case-studies/cedar-run-finished.webp 1200w" sizes="(max-width: 860px) 100vw, 800px" alt="New cedar privacy fence run finished along a backyard" id="cs11-main-img" onclick="openLightbox(this.src, this.alt)" fetchpriority="high">
+            <div class="photo-badge" id="cs11-badge">Photo 1 of 5: Finished run</div>
+          </div>
+          <div class="case-thumb-row">
+            <button type="button" class="thumb-btn active" onclick="switchCasePhoto('cs11', 'img/case-studies/cedar-run-finished.webp', 'Photo 1 of 5: Finished run', this)">
+               <img src="img/case-studies/cedar-run-finished-800.webp" alt="New cedar privacy fence run finished along a backyard" loading="lazy" decoding="async">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs11', 'img/case-studies/fence-material-trailer.webp', 'Photo 2 of 5: Material', this)">
+               <img src="img/case-studies/fence-material-trailer-800.webp" alt="Trailer loaded with stacked cedar boards and posts on a residential street" loading="lazy" decoding="async">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs11', 'img/case-studies/fence-footings.webp', 'Photo 3 of 5: Footings', this)">
+               <img src="img/case-studies/fence-footings-800.webp" alt="Cedar posts standing in concrete footings beside a utility post" loading="lazy" decoding="async">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs11', 'img/case-studies/fence-posts-set.webp', 'Photo 4 of 5: The line', this)">
+               <img src="img/case-studies/fence-posts-set-800.webp" alt="A line of cedar posts set along a narrow side yard" loading="lazy" decoding="async">
+            </button>
+            <button type="button" class="thumb-btn" onclick="switchCasePhoto('cs11', 'img/case-studies/picket-gate-in-run.webp', 'Photo 5 of 5: Gate', this)">
+               <img src="img/case-studies/picket-gate-in-run-800.webp" alt="White picket gate hung in the finished cedar run" loading="lazy" decoding="async">
+            </button>
+          </div>
+        </div>
+
+        <div class="case-story-content">
+          <div class="case-story-header">
+            <div>
+              <div class="case-header-tag">Case Study #11 &middot; Cedar Fencing</div>
+              <h3>Cedar Privacy Run &amp; Picket Gate</h3>
+            </div>
+            <div class="case-specs-row">
+              <span class="spec-pill">Scope: <strong>Cedar privacy + gate</strong></span>
+              <span class="spec-pill">Access: <strong>Narrow side yard</strong></span>
+              <span class="spec-pill">Timeline: <strong>November 2026</strong></span>
+            </div>
+          </div>
+
+          <div class="story-steps-grid">
+            <div class="story-step problem">
+              <span class="step-label">&#9888; The Site</span>
+              <p>A side yard barely wider than the trailer that delivered the material, a mature pine over the line, and a utility post standing inside the run. Every board had to come down the street by hand, and the gate had to land beside a board fence that was staying put.</p>
+            </div>
+
+            <div class="story-step design">
+              <span class="step-label">&#128296; The Build</span>
+              <ul class="design-bullets">
+                <li><strong>Material:</strong> Cedar boards and posts stacked along the street before the first hole.</li>
+                <li><strong>Footings:</strong> Posts set in concrete, plumb in a straight line past the pine and the utility post.</li>
+                <li><strong>Run:</strong> Rails and panels built onto the posts with the top line kept level end to end.</li>
+                <li><strong>Gate:</strong> White picket gate hung in the finished run, adjusted until it swung clear.</li>
+              </ul>
+            </div>
+
+            <div class="story-step result">
+              <span class="step-label">&#10003; The Result</span>
+              <p>One straight line from the yard instead of a row of panels, a gate that clears the ground and latches square, and posts in concrete where a Front Range spring can't work them loose. Two working days on site.</p>
+            </div>
+          </div>
+
+          <div class="case-story-footer"><a href="case-studies/longmont-cedar-fence-picket-gate.html" class="btn-ghost case-report-link">Read Full Detailed Report &amp; Gallery &rarr;</a></div>
+        </div>
+      </div>
 
       <!-- Case Study 10: Downspout Drainage Channel & Chain-Link Fence -->
       <div class="case-study-card" data-category="hardscaping">
@@ -1288,6 +1349,39 @@
 
     </div>
 
+    <section id="recent-work" class="recent-work-section" aria-labelledby="recent-work-title">
+      <div class="section-head">
+        <h2 id="recent-work-title">Recent work &mdash; week of November 16</h2>
+        <p>Straight from the last five days: a cedar run with a picket gate, three raised beds, a curved block wall going in, a stone fire pit, and a river-rock swale. Click any photo to enlarge.</p>
+      </div>
+      <div class="recent-work-grid">
+        <button type="button" class="recent-work-card" onclick="openLightbox('img/case-studies/cedar-run-finished.webp', 'Finished cedar privacy fence run')">
+          <img src="img/case-studies/cedar-run-finished-800.webp" srcset="img/case-studies/cedar-run-finished-800.webp 800w, img/case-studies/cedar-run-finished.webp 1200w" sizes="(max-width: 860px) 100vw, 380px" alt="New cedar privacy fence run finished along a backyard" loading="lazy" decoding="async" width="1200" height="900">
+          <span class="recent-work-caption"><strong>Cedar privacy run</strong> &mdash; panels closed in along the line.</span>
+        </button>
+        <button type="button" class="recent-work-card" onclick="openLightbox('img/case-studies/picket-gate-in-run.webp', 'White picket gate in a cedar fence')">
+          <img src="img/case-studies/picket-gate-in-run-800.webp" srcset="img/case-studies/picket-gate-in-run-800.webp 800w, img/case-studies/picket-gate-in-run.webp 1200w" sizes="(max-width: 860px) 100vw, 380px" alt="White picket gate set into a new cedar privacy fence" loading="lazy" decoding="async" width="1200" height="900">
+          <span class="recent-work-caption"><strong>Picket gate</strong> &mdash; white gate set into the new cedar run.</span>
+        </button>
+        <button type="button" class="recent-work-card" onclick="openLightbox('img/case-studies/recent-work/raised-garden-beds.webp', 'Three raised planting beds with wire trellises')">
+          <img src="img/case-studies/recent-work/raised-garden-beds-800.webp" srcset="img/case-studies/recent-work/raised-garden-beds-800.webp 800w, img/case-studies/recent-work/raised-garden-beds.webp 1200w" sizes="(max-width: 860px) 100vw, 380px" alt="Three raised planting beds edged in block with white wire trellises, set in gravel" loading="lazy" decoding="async" width="1200" height="900">
+          <span class="recent-work-caption"><strong>Raised beds</strong> &mdash; three beds, block edging, wire trellises.</span>
+        </button>
+        <button type="button" class="recent-work-card" onclick="openLightbox('img/case-studies/recent-work/block-wall-build.webp', 'Crew setting curved block edging along a garden path')">
+          <img src="img/case-studies/recent-work/block-wall-build-800.webp" srcset="img/case-studies/recent-work/block-wall-build-800.webp 800w, img/case-studies/recent-work/block-wall-build.webp 1200w" sizes="(max-width: 860px) 100vw, 380px" alt="Two crew members setting curved block edging along a garden path" loading="lazy" decoding="async" width="1200" height="900">
+          <span class="recent-work-caption"><strong>Block wall build</strong> &mdash; curved edging going in along the path.</span>
+        </button>
+        <button type="button" class="recent-work-card" onclick="openLightbox('img/case-studies/recent-work/fire-pit-patio.webp', 'Round stone fire pit with curved seat wall')">
+          <img src="img/case-studies/recent-work/fire-pit-patio-800.webp" srcset="img/case-studies/recent-work/fire-pit-patio-800.webp 800w, img/case-studies/recent-work/fire-pit-patio.webp 1200w" sizes="(max-width: 860px) 100vw, 380px" alt="Round stone fire pit with a curved seat wall on a paver patio" loading="lazy" decoding="async" width="1200" height="900">
+          <span class="recent-work-caption"><strong>Fire pit</strong> &mdash; round pit with a curved seat wall on pavers.</span>
+        </button>
+        <button type="button" class="recent-work-card" onclick="openLightbox('img/case-studies/recent-work/river-rock-swale.webp', 'River rock drainage swale between planted beds')">
+          <img src="img/case-studies/recent-work/river-rock-swale-800.webp" srcset="img/case-studies/recent-work/river-rock-swale-800.webp 800w, img/case-studies/recent-work/river-rock-swale.webp 1200w" sizes="(max-width: 860px) 100vw, 380px" alt="River rock drainage swale running between gravel and mulched beds beside a lawn" loading="lazy" decoding="async" width="1200" height="900">
+          <span class="recent-work-caption"><strong>Rock swale</strong> &mdash; river rock channel between the beds.</span>
+        </button>
+      </div>
+    </section>
+
     <!-- Contact CTA Banner -->
     <div class="contact-banner-box">
       <div>
@@ -1326,8 +1420,8 @@
 
 <footer>
   <div class="wrap footer-row">
-    <div>© 2026 Groundwork Landscaping</div>
-    <div>Licensed & insured · Longmont, CO</div>
+    <div>© 2026 Waxwing Landscaping</div>
+    <div>Free on-site estimates · Longmont, CO</div>
   </div>
 </footer>
 

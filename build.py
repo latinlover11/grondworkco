@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the static Groundwork site into dist/."""
+"""Build the static Waxwing site into dist/."""
 from pathlib import Path
 import os
 import datetime
@@ -42,7 +42,7 @@ PDF_JOBS = [
 
 HEADER = '''<header>
   <nav class="nav">
-    <a href="/index.html" class="brand" style="text-decoration:none"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="25" fill="#C87955"/><path d="M13 45 26 26l7 9 7-11 12 21H13Z" fill="#3B2A22"/><path d="M34 29c.8-8 5-13 12-15 .8 7.5-3.1 13-12 15Z" fill="#78836B"/><path d="M34 29c1.8-5.2 5.2-9.2 9.6-12.2" fill="none" stroke="#FFF9F0" stroke-width="2.3" stroke-linecap="round"/></svg>Groundwork <span>Landscaping</span></a>
+    <a href="/index.html" class="brand" style="text-decoration:none"><svg class="brand-mark" width="28" height="28" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="26" fill="#C87955"/><g fill="#FFF9F0"><circle cx="30" cy="36" r="12"/><circle cx="44" cy="23" r="7.5"/><path d="M37 17.5 43 8l5 8Z"/><path d="M51 20.5 60 23.5l-9 3Z"/><path d="M20 41 8 50l13-4Z"/></g><circle cx="47" cy="21" r="1.4" fill="#3B2A22"/></svg>Waxwing <span>Landscaping</span></a>
     <ul class="nav-links">
       <!-- Seasonal: remove the Fall cleanup item after the campaign ends. -->
       <li><a href="/fall-cleanup-longmont.html" class="nav-campaign">Fall cleanup</a></li>
@@ -70,7 +70,7 @@ FOOTER = '''<footer class="site-footer">
   <div class="wrap">
     <div class="site-footer-grid">
       <div class="site-footer-brand">
-        <a href="/index.html">Groundwork <span>Landscaping</span></a>
+        <a href="/index.html">Waxwing <span>Landscaping</span></a>
         <p>Hardscaping, fencing, and lawn care built for Colorado properties.</p>
       </div>
       <nav class="site-footer-links" aria-label="Footer navigation">
@@ -84,11 +84,12 @@ FOOTER = '''<footer class="site-footer">
       <div class="site-footer-contact">
         <a href="tel:+17208930394">(720) 893-0394</a>
         <a href="mailto:cmoneyq11@gmail.com">Email us</a>
+        <span>Free on-site estimates</span>
         <span>Longmont &amp; Boulder County</span>
       </div>
     </div>
     <div class="site-footer-bottom">
-      <span>© <span id="current-year">2026</span> Groundwork Landscaping</span>
+      <span>© <span id="current-year">2026</span> Waxwing Landscaping</span>
       <a href="/contact.html">Request a quote →</a>
     </div>
   </div>
@@ -129,7 +130,17 @@ ICON_TAGS = '''<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/img/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">'''
 
-SITE = "https://groundworkllc.netlify.app"
+# The one place the public origin lives. Every absolute URL the build emits —
+# sitemap <loc>s, og:url, twitter:image — is derived from this, so a domain
+# switch is this constant plus the hand-written canonicals and JSON-LD urls in
+# the page sources (docs/HANDOFF.md §4 has the ordered flip).
+SITE = "https://waxwinglandscaping.com"
+
+# The project stat is the number of case studies that actually ship, not a figure
+# typed into three pages by hand: work.html announced "10 projects" for weeks after
+# the eleventh shipped. An element tagged data-project-count gets the number;
+# data-project-count-text gets "<n> projects".
+PROJECT_COUNT = len(list((ROOT / "case-studies").glob("*.html")))
 
 # Case-study pages link to their siblings, so the eleven projects form a set
 # instead of eleven dead ends. Topics come from the filename: a fence page pairs
@@ -295,9 +306,9 @@ def inject_twitter_card(content: str) -> str:
     desc = grab("og:description") or grab("description")
     image = grab("og:image", "/img/og-image.jpg")
     if image.startswith("/"):
-        image = "https://groundworkllc.netlify.app" + image
+        image = SITE + image
     tags = (f'<meta name="twitter:card" content="summary_large_image">\n'
-            f'<meta name="twitter:title" content="{title_m.group(1) if title_m else "Groundwork Landscaping"}">\n'
+            f'<meta name="twitter:title" content="{title_m.group(1) if title_m else "Waxwing Landscaping"}">\n'
             f'<meta name="twitter:description" content="{desc}">\n'
             f'<meta name="twitter:image" content="{image}">')
     return content.replace("</head>", tags + "\n</head>", 1)
@@ -377,8 +388,26 @@ def inject_skip_link(content: str) -> str:
     return content
 
 
+def apply_project_count(content: str) -> str:
+    """Set the shipped-project stat from the case-studies folder.
+
+    The lookahead keeps data-project-count-text from matching the plain attribute.
+    """
+    content = re.sub(
+        r"(<[a-z]+\b[^>]*\bdata-project-count-text\b[^>]*>)[^<]*(</)",
+        lambda m: f"{m.group(1)}{PROJECT_COUNT} projects{m.group(2)}",
+        content,
+    )
+    return re.sub(
+        r"(<[a-z]+\b[^>]*\bdata-project-count\b(?!-)[^>]*>)[^<]*(</)",
+        lambda m: f"{m.group(1)}{PROJECT_COUNT}{m.group(2)}",
+        content,
+    )
+
+
 def build_html(source: Path, target: Path) -> None:
     content = source.read_text(encoding="utf-8")
+    content = apply_project_count(content)
     if source.name != "thank-you.html":
         content = re.sub(r"<header(?:\s[^>]*)?>[\s\S]*?</header>", HEADER, content, count=1)
         content = re.sub(r"<footer(?:\s[^>]*)?>[\s\S]*?</footer>", FOOTER, content, count=1)
@@ -421,10 +450,12 @@ def build_sitemap() -> None:
     content = source.read_text(encoding="utf-8")
 
     def add_lastmod(match: re.Match) -> str:
-        loc = match.group(1)
-        rel = loc.replace("https://groundworkllc.netlify.app/", "").lstrip("/")
+        # The host written in sitemap.xml is ignored: every <loc> is re-rooted on
+        # SITE, so a domain switch never has to edit 35 source URLs and the two
+        # cannot drift apart.
+        rel = re.sub(r"^https?://[^/]+/", "", match.group(1))
         page = ROOT / (rel or "index.html")
-        return f"<url><loc>{loc}</loc><lastmod>{git_lastmod(page)}</lastmod></url>"
+        return f"<url><loc>{SITE}/{rel}</loc><lastmod>{git_lastmod(page)}</lastmod></url>"
 
     content = re.sub(r"<url><loc>([^<]+)</loc></url>", add_lastmod, content)
     (DIST / "sitemap.xml").write_text(content, encoding="utf-8")
@@ -478,7 +509,7 @@ def main() -> None:
         destination = DIST / relative
         if path.suffix.lower() in {".html", ".htm"}:
             build_html(path, destination)
-        elif path.name in COPY_FILES or (relative.parts[0] in COPY_DIRS | {"img"} and relative.as_posix() not in IMG_EXCLUDE):
+        elif path.name in COPY_FILES or (relative.parts[0] in COPY_DIRS | {"img"} and relative.as_posix() not in IMG_EXCLUDE and not relative.as_posix().startswith("img/photos-to-sort/")):
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
     site_css = DIST / "site.css"
