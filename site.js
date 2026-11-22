@@ -108,7 +108,7 @@
         }
         if (submitButton) submitButton.textContent = 'Request sent';
         // Inline box stays as the fallback; then land on the thank-you page like the quote sheet does.
-        window.location.href = '/thank-you.html';
+        window.location.href = '/thank-you';
       }).catch(function () {
         showError('We couldn’t send your request right now. Please try again or call (720) 893-0394.');
         if (submitButton) {
@@ -153,7 +153,7 @@
       '  </div>' +
       '  <form action="https://formspree.io/f/mjyvregb" method="POST">' +
       '    <input type="hidden" name="_subject" value="Quick quote — Waxwing Landscaping">' +
-      '    <input type="hidden" name="_next" value="https://waxwinglandscaping.com/thank-you.html">' +
+      '    <input type="hidden" name="_next" value="https://waxwinglandscaping.com/thank-you">' +
       '    <input type="hidden" name="service" value="">' +
       '    <label class="visually-hidden" for="qs-name">Name</label>' +
       '    <input id="qs-name" name="name" type="text" placeholder="Your name" required autocomplete="name">' +
@@ -252,11 +252,11 @@
         headers: { Accept: 'application/json' }
       }).then(function (response) {
         if (!response.ok) throw new Error('failed');
-        window.location.href = '/thank-you.html';
+        window.location.href = '/thank-you';
       }).catch(function () {
         sendButton.disabled = false;
         sendButton.textContent = 'Send request';
-        window.location.href = '/contact.html';
+        window.location.href = '/contact';
       });
     });
 
@@ -282,7 +282,7 @@
     var sheet = ensureQuoteSheet();
     bar.querySelector('.mobile-cta-quote').addEventListener('click', function () {
       if (sheet) sheet.open();
-      else window.location.href = '/contact.html';
+      else window.location.href = '/contact';
     });
     bar.querySelector('button[aria-label="Hide quick contact bar"]').addEventListener('click', function () {
       bar.hidden = true;

@@ -187,9 +187,65 @@ def inject_case_related(content: str, source: Path) -> str:
     return content.replace("</main>", f'<section class="service-page-section">{blocks}</section></main>', 1)
 
 
+# Cloudflare Pages answers /page.html with a 308 to /page, and /dir/index.html
+# with /dir/ - so every internal URL the build emits has to already be in the
+# form Pages serves. Leaving .html in the markup puts a permanent redirect in
+# front of every click and makes each canonical name a URL that redirects
+# somewhere else.
+PAGE_LINK_RE = re.compile(r'(\bhref=)(["\'])([^"\']+)\2')
+# JSON-LD page URLs appear under more than one key: "url" on the entity,
+# "item" in a breadcrumb list, "@id" when the page is its own identifier.
+LD_URL_RE = re.compile(r'("(?:url|item|@id)"\s*:\s*")([^"]+)(")')
+# og:url is a page URL in a meta tag, not an href, so it needs its own pass:
+# existing tags are left alone by inject_og_tags() and would otherwise keep .html.
+OG_URL_RE = re.compile(r'<meta[^>]*property="og:url"[^>]*>', re.IGNORECASE)
+OG_CONTENT_RE = re.compile(r'(content=")([^"]*)(")')
+EXTERNAL_RE = re.compile(r"^(?:[a-z][a-z0-9+.-]*:|//)", re.IGNORECASE)
+
+
+def page_href(url: str) -> str:
+    """Rewrite one internal page URL to the extensionless form Pages serves.
+
+    Other origins, assets, mailto:/tel: links and bare fragments come back
+    untouched, as does anything that is not an .html page. Query strings and
+    fragments are preserved.
+    """
+    if not url or url.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
+        return url
+    prefix, rest = "", url
+    if rest.startswith(SITE + "/") or rest == SITE:
+        prefix, rest = SITE, rest[len(SITE):]
+    elif EXTERNAL_RE.match(rest):
+        return url  # another origin is not ours to rewrite
+    match = re.match(r"^([^?#]*)(.*)$", rest)
+    path, tail = match.group(1), match.group(2)
+    if not path.endswith(".html"):
+        return url
+    stem = path[: -len(".html")]
+    if stem.endswith("/index"):
+        stem = stem[: -len("index")]
+    elif stem == "index":
+        stem = "./"
+    return prefix + stem + tail
+
+
+def rewrite_page_urls(content: str) -> str:
+    """Apply page_href() to every href, JSON-LD "url" field and og:url tag."""
+    content = PAGE_LINK_RE.sub(
+        lambda m: m.group(1) + m.group(2) + page_href(m.group(3)) + m.group(2), content
+    )
+    content = LD_URL_RE.sub(lambda m: m.group(1) + page_href(m.group(2)) + m.group(3), content)
+    return OG_URL_RE.sub(
+        lambda m: OG_CONTENT_RE.sub(
+            lambda c: c.group(1) + page_href(c.group(2)) + c.group(3), m.group(0), count=1
+        ),
+        content,
+    )
+
+
 def page_url(relative: Path) -> str:
     posix = relative.as_posix()
-    return SITE + ("/" if posix == "index.html" else "/" + posix)
+    return page_href(SITE + ("/" if posix == "index.html" else "/" + posix))
 
 
 def first_content_image(content: str) -> str:
@@ -433,6 +489,7 @@ def build_html(source: Path, target: Path) -> None:
     content = inject_skip_link(content)
     if source.name == "privacy.html":
         content = apply_analytics_policy(content)
+    content = rewrite_page_urls(content)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
 
@@ -455,10 +512,52 @@ def build_sitemap() -> None:
         # cannot drift apart.
         rel = re.sub(r"^https?://[^/]+/", "", match.group(1))
         page = ROOT / (rel or "index.html")
-        return f"<url><loc>{SITE}/{rel}</loc><lastmod>{git_lastmod(page)}</lastmod></url>"
+        loc = page_href(f"{SITE}/{rel}")
+        return f"<url><loc>{loc}</loc><lastmod>{git_lastmod(page)}</lastmod></url>"
 
     content = re.sub(r"<url><loc>([^<]+)</loc></url>", add_lastmod, content)
     (DIST / "sitemap.xml").write_text(content, encoding="utf-8")
+
+
+# Cloudflare Pages reads `_headers` from the publish directory, and Netlify reads
+# the same filename, so both hosts get identical rules from this one table instead
+# of a second hand-maintained copy of the netlify.toml blocks. `immutable` is only
+# safe because the asset URLs carry a content hash (?v=<sha256[:8]>) that changes
+# when the file does - the same invariant site.css/site.js already rely on.
+HEADERS_RULES = [
+    ("/*.html", {"Cache-Control": "public, max-age=0, must-revalidate"}),
+    ("/img/*", {"Cache-Control": "public, max-age=31536000, immutable"}),
+    ("/site.css", {"Cache-Control": "public, max-age=31536000, immutable"}),
+    ("/site.js", {"Cache-Control": "public, max-age=31536000, immutable"}),
+    ("/fonts/*", {"Cache-Control": "public, max-age=31536000, immutable"}),
+    ("/*", {
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    }),
+]
+
+
+def build_headers() -> None:
+    """Write dist/_headers so a host that reads it applies the netlify.toml rules.
+
+    No `_redirects` is generated on purpose. The only redirect this site has is
+    the old netlify.app host -> waxwinglandscaping.com 301, and Cloudflare Pages
+    does not support domain-level redirects, so that rule has to keep running on
+    the Netlify site rather than move here.
+    """
+    lines = [
+        "# Generated by build.py - edit build.py, not dist/_headers.",
+        "# Mirrors the [[headers]] blocks in netlify.toml so both hosts agree.",
+        "",
+    ]
+    for path, rules in HEADERS_RULES:
+        lines.append(path)
+        for name, value in rules.items():
+            lines.append(f"  {name}: {value}")
+        lines.append("")
+    (DIST / "_headers").write_text("\n".join(lines), encoding="utf-8")
 
 
 def _run_pdf_writer() -> object:
@@ -513,11 +612,12 @@ def main() -> None:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, destination)
     site_css = DIST / "site.css"
-    # netlify.toml serves /fonts/* immutable, so the @font-face URLs get the same
+    # netlify.toml (and the generated _headers) serve /fonts/* immutable, so the @font-face URLs get the same
     # content hash the preloads carry -- an unversioned immutable font would
     # never reach a visitor who already had it cached.
     site_css.write_text(re.sub(r"/fonts/([\w.-]+\.woff2)", lambda m: f"/fonts/{m.group(1)}?v={asset_version('fonts/' + m.group(1))}", minify_css(site_css.read_text(encoding="utf-8"))) + "\n", encoding="utf-8")
     build_sitemap()
+    build_headers()
     print(f"Built {sum(1 for _ in DIST.rglob('*.html'))} HTML pages into {DIST}")
     build_pdfs()
 

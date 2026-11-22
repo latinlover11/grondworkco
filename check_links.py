@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-check_links.py - static link & image checker for the Groundwork Landscaping site.
+check_links.py - static link & image checker for the Waxwing Landscaping site.
 
 Crawls every .html file in the repo (except dev-archive/ and hidden dirs) and
 verifies, entirely offline:
@@ -145,6 +145,8 @@ def find_file(root: Path, target: Path):
         rel = target.relative_to(root).as_posix()
     except ValueError:
         return None, "escapes-site-root"
+    if rel in {"", "."}:  # a link to "/" is the site index
+        rel = "index.html"
 
     exact = {p.relative_to(root).as_posix(): p for p in root.rglob("*")
              if p.is_file() and ".git" not in p.parts and ".freebuff" not in p.parts}
@@ -225,11 +227,12 @@ def main():
             if "#" in stripped:
                 stripped, frag = stripped.split("#", 1)
 
-            target = resolve_target(root, page_dir, stripped or "./")
-            found, kind = find_file(root, target)
-
             if not stripped and not frag:
                 continue  # bare "#"-less empty href handled above
+
+            # A fragment-only link targets this page, not its directory.
+            target = page if not stripped else resolve_target(root, page_dir, stripped)
+            found, kind = find_file(root, target)
 
             if found is None:
                 rel_guess = target.relative_to(root).as_posix() \
