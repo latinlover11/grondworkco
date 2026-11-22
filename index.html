@@ -597,6 +597,11 @@
     '/img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail'
   ];
   var src = heroes[Math.floor(Math.random() * heroes.length)] + (small ? '-800' : '') + '.webp';
+  // /img/* is cached immutable for a year, so the URL has to carry the file's
+  // hash (build.py fills window.__imgV) or a returning visitor keeps the old
+  // photograph from disk cache.
+  var heroVersion = (window.__imgV || {})[src];
+  if (heroVersion) { src += '?v=' + heroVersion; }
   window.__heroSrc = src;
   var link = document.createElement('link');
   link.rel = 'preload';
@@ -956,7 +961,11 @@
     '/img/case-studies/vertical-flagstone-longmont/5-vertical-flagstone-monolith-detail'
   ];
   var heroSmall = window.__heroSrc ? window.__heroSrc.indexOf('-800') !== -1 : (window.matchMedia && window.matchMedia('(max-width:860px)').matches);
-  var heroImages = heroBase.map(function(base){ return base + (heroSmall ? '-800' : '') + '.webp'; });
+  var heroImages = heroBase.map(function(base){
+    var url = base + (heroSmall ? '-800' : '') + '.webp';
+    var version = (window.__imgV || {})[url];
+    return version ? url + '?v=' + version : url;
+  });
   if (heroPhoto && heroImages.length) {
     var heroIndex = window.__heroSrc ? Math.max(0, heroImages.indexOf(window.__heroSrc)) : Math.floor(Math.random() * heroImages.length);
     heroPhoto.style.backgroundImage = 'url("' + heroImages[heroIndex] + '")';

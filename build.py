@@ -576,6 +576,45 @@ def version_image_urls(content: str, source: Path) -> str:
     return CSS_IMG_URL_RE.sub(patch_css, content)
 
 
+# index.html chooses its hero photograph in JavaScript and composes the URL at
+# runtime (`base + '-800' + '.webp'`), so no attribute exists for the patcher
+# above to version - and those three photos were recompressed too, which left
+# the most-seen hero on the site pinned to last year's bytes. The page asks the
+# build for a hash map instead; it is emitted as the first script in the page so
+# the preload script that follows can use it.
+SCRIPT_BLOCK_RE = re.compile(r"<script\b([^>]*)>(.*?)</script>", re.S | re.IGNORECASE)
+IMG_LITERAL_RE = re.compile(r"['\"](/img/[A-Za-z0-9._/-]+)['\"]")
+SCRIPT_IMG_VARIANTS = ("", "-800", "-400", "-250")
+IMAGE_EXTS = (".webp", ".jpg", ".jpeg", ".png", ".avif", ".svg")
+
+
+def inject_script_image_versions(content: str) -> str:
+    """Emit window.__imgV for image paths a page script builds itself."""
+    literal = re.search(r"<(?:script\b)", content)
+    paths: dict[str, str] = {}
+    for block in SCRIPT_BLOCK_RE.finditer(content):
+        if "ld+json" in block.group(1).lower():
+            continue  # crawler-facing, deliberately unversioned
+        for match in IMG_LITERAL_RE.finditer(block.group(2)):
+            base = match.group(1)
+            has_ext = base.rsplit("/", 1)[-1].endswith(IMAGE_EXTS)
+            candidates = [base] if has_ext else [base + suffix + ".webp" for suffix in SCRIPT_IMG_VARIANTS]
+            for candidate in candidates:
+                target = (ROOT / candidate.lstrip("/"))
+                if not target.is_file():
+                    continue
+                version = image_version(candidate, ROOT / "index.html")
+                if version:
+                    paths[candidate] = version
+    if not paths:
+        return content
+    body = ",".join(f'"{path}":"{version}"' for path, version in paths.items())
+    tag = f'<script>window.__imgV={{{body}}};</script>\n'
+    if not literal:
+        return content
+    return content[:literal.start()] + tag + content[literal.start():]
+
+
 def transform_gallery_markup(content: str) -> str:
     """Convert legacy gallery inline handlers into declarative attributes."""
     def switch_photo(match: re.Match) -> str:
@@ -696,6 +735,7 @@ def build_html(source: Path, target: Path) -> None:
     # Last, so the og:image and JSON-LD decisions above still see the clean path
     # and only the URLs a browser actually fetches carry the hash.
     content = version_image_urls(content, source)
+    content = inject_script_image_versions(content)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content, encoding="utf-8")
 
