@@ -3364,6 +3364,14 @@ a.nav-campaign:focus-visible {
 .service-page-breadcrumbs a:hover{color:var(--ember-bright);}
 .service-page-breadcrumbs [aria-current]{color:var(--ink);}
 
+/* build.py injects width/height on every <img> from the file's own header so
+   the browser can reserve space before the photo lands. Those attributes would
+   otherwise pin the height when CSS narrows the image, so give them back to the
+   intrinsic ratio. :where() keeps element-level specificity, so a rule that
+   crops a photo on purpose (.case-hero-media img, .service-page-photo img)
+   still wins instead of being overridden here. */
+:where(img[width][height]){height:auto}
+
 /* Reduced-motion guard for case-study galleries and smooth scrolling: their
    inline page styles ship unguarded (audit 2026-11-15). */
 @media (prefers-reduced-motion: reduce){

@@ -374,6 +374,109 @@ def should_skip(path: Path) -> bool:
     return any(part in SKIP_DIRS for part in path.parts)
 
 
+# --- intrinsic image dimensions --------------------------------------------
+# Every <img> needs width/height or the browser cannot reserve space, so the
+# gallery strips and case-study photo rows reflow as each file lands (the audit
+# counted 142 of these across 14 pages). The numbers come from the files at
+# build time, not from values typed by hand, so swapping a photo cannot leave a
+# stale size behind. site.css pairs this with `:where(img[width][height]){
+# height:auto}` so the intrinsic ratio is kept without out-ranking the rules
+# that crop a photo on purpose.
+IMG_TAG_RE = re.compile(r"<img\b[^>]*>", re.IGNORECASE)
+IMG_SRC_RE = re.compile(r'\ssrc="([^"]+)"')
+IMG_DIM_RE = re.compile(r"\s(?:width|height)=\"[\d.]*\"")
+# Pages repeat the same photographs, so each file is read once per build.
+_IMAGE_SIZE_CACHE: dict[str, tuple[int, int] | None] = {}
+
+
+def image_size(path: Path) -> tuple[int, int] | None:
+    """Intrinsic pixel size of a WebP/JPEG/PNG/SVG, read from its header only."""
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        chunk = data[12:16]
+        if chunk == b"VP8X":
+            return (int.from_bytes(data[24:27], "little") + 1,
+                    int.from_bytes(data[27:30], "little") + 1)
+        if chunk == b"VP8L":
+            bits = int.from_bytes(data[21:25], "little")
+            return ((bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1)
+        if chunk == b"VP8 ":
+            start = data.find(b"\x9d\x01\x2a", 20)
+            if start < 0:
+                return None
+            return (int.from_bytes(data[start + 3:start + 5], "little") & 0x3FFF,
+                    int.from_bytes(data[start + 5:start + 7], "little") & 0x3FFF)
+        return None
+
+    if data[:2] == b"\xff\xd8":
+        i = 2
+        while i < len(data) - 9:
+            if data[i] != 0xFF:
+                i += 1
+                continue
+            marker = data[i + 1]
+            if marker in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+                          0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                return (int.from_bytes(data[i + 7:i + 9], "big"),
+                        int.from_bytes(data[i + 5:i + 7], "big"))
+            if marker in (0xD8, 0x01) or 0xD0 <= marker <= 0xD7:
+                i += 2
+                continue
+            i += 2 + int.from_bytes(data[i + 2:i + 4], "big")
+        return None
+
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return (int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big"))
+
+    if b"<svg" in data[:400]:
+        text = data[:1000].decode("utf-8", "ignore")
+        width = re.search(r'\bwidth="(\d+)', text)
+        height = re.search(r'\bheight="(\d+)', text)
+        if width and height:
+            return (int(width.group(1)), int(height.group(1)))
+        box = re.search(r'viewBox="([^"]+)"', text)
+        if box:
+            parts = [p for p in re.split(r"[\s,]+", box.group(1).strip()) if p]
+            if len(parts) == 4:
+                return (round(float(parts[2])), round(float(parts[3])))
+    return None
+
+
+def inject_img_dimensions(content: str, source: Path) -> str:
+    """Set width/height on every image tag from the file the tag points at.
+
+    Existing values are replaced when they disagree with the file: twenty-eight
+    tags in the source declared an aspect ratio their photograph never had
+    (blog images said 1200x800 while the file is 1376x768), which reserves the
+    wrong box and shifts the page as the photo lands. A tag whose src cannot be
+    resolved - the lightbox placeholder with src="" - is left exactly as it is,
+    because there is no file to measure.
+    """
+    def patch(match: re.Match) -> str:
+        tag = match.group(0)
+        src = IMG_SRC_RE.search(tag)
+        if not src or not src.group(1).strip() or src.group(1).startswith(("http", "//", "data:")):
+            return tag
+        raw = src.group(1).split("?")[0]
+        # Site-root references (/img/...) resolve against ROOT; everything else
+        # is relative to the page that names it.
+        target = ((ROOT / raw.lstrip("/")) if raw.startswith("/") else (source.parent / raw)).resolve()
+        key = str(target)
+        if key not in _IMAGE_SIZE_CACHE:
+            _IMAGE_SIZE_CACHE[key] = image_size(target) if target.is_file() else None
+        size = _IMAGE_SIZE_CACHE[key]
+        if not size or not all(size):
+            return tag
+        tag = IMG_DIM_RE.sub("", tag).rstrip()
+        return tag[:-1].rstrip().removesuffix("/") + f' width="{size[0]}" height="{size[1]}">'
+
+    return IMG_TAG_RE.sub(patch, content)
+
+
 def transform_gallery_markup(content: str) -> str:
     """Convert legacy gallery inline handlers into declarative attributes."""
     def switch_photo(match: re.Match) -> str:
@@ -478,6 +581,7 @@ def build_html(source: Path, target: Path) -> None:
     content = re.sub(r"<script defer src=\"/?site\.js\"></script>\s*", "", content)
     content = content.replace("</head>", asset_tags() + "\n</head>", 1)
     content = transform_gallery_markup(content)
+    content = inject_img_dimensions(content, source)
     content = re.sub(r'<link[^>]*https://fonts[.]g(?:oogleapis|static)[.]com[^>]*/?>\s*', "", content)
     content = inject_og_tags(content, source.relative_to(ROOT))
     content = inject_case_related(content, source)
