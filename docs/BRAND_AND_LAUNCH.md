@@ -544,17 +544,20 @@ demand resumes in March, so the real deadline is spring quote season.
    service-area business with the address hidden → reviews from first real jobs.
 5. **Rank tracking**, once positions mean something.
 
-### The rename: applied to the source, not committed, not deployed (2026-11-21)
+### The rename: applied, committed, live on the new domain (2026-11-21; state corrected 2026-11-22)
 
-The site source now says **Waxwing Landscaping**. `docs/HANDOFF.md` §2a records 54
-files and 252 brand strings changed at the time of the pass; a check of the tree
-today finds 46 source files mentioning Waxwing, and a rebuilt `dist/` containing 38
-Waxwing pages and zero "Groundwork". The one remaining "Groundwork" in the source
-is `claudplan4gg/index.html`, which `build.py`'s `SKIP_DIRS` never builds.
+The site source says **Waxwing Landscaping** throughout, `dist/` carries no
+"Groundwork", and the apex `https://waxwinglandscaping.com` serves the Waxwing
+pages. `docs/HANDOFF.md` §2a records the 11-21 pass (54 files, 252 brand strings).
+The rename, the domain switch and the 301 are all committed (`44385c0` onward).
 
-**The live host still serves the old name.** None of the rename is committed — 61
-modified files and 4 untracked documents sit in the working tree — so pushing
-`main` is what publishes it.
+**Still true as of 2026-11-22, and the one loose end:** the old host
+`https://groundworkllc.netlify.app` answers **200 with the old name** — `/work.html`
+still returns `<title>Our Work & Case Studies — Groundwork Landscaping</title>`, no
+redirect. The 301 sits in `netlify.toml` but Netlify has not been deployed since it
+was written (the project has no git link and no token on this box), so the redirect
+is not live. Deploy it or take the old site down; until one of those happens the
+retired brand is still being served publicly.
 
 ### State of the site as of 2026-11-13 (counts re-checked 2026-11-21)
 

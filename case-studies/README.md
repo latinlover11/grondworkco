@@ -27,8 +27,8 @@ section pointing at its three closest siblings.
   page contains `</main>` (`build.py` `inject_case_related`, lines 151–165) —
   keep the `</main>` closing tag intact.
 - Each related card's label is the target page's `<title>` minus the
-  ` | Groundwork` suffix (`build.py` `case_label`, lines 139–148; all eleven
-  pages end their titles with exactly that suffix).
+  ` | Waxwing` suffix (`build.py` `case_label`, lines 139–148; all twelve
+  pages end their titles with exactly that suffix, checked 2026-11-22).
 - Gallery images are referenced root-absolute (`/img/case-studies/...`) and
   served as `.webp`. Layout varies by page (verified 2026-11-05): seven
   pages use `<project-slug>/N-<description>.webp` numbered process shots;

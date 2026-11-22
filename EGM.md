@@ -1,4 +1,4 @@
-# Groundwork Landscaping — Repository Blueprint
+# Waxwing Landscaping — Repository Blueprint
 
 *EGM architecture contract. The human-maintained `README.md` (analytics ops +
 photo checklist) remains the operational doc; this file is the code
@@ -6,7 +6,7 @@ structure contract and both are kept.*
 
 ## System Overview
 
-Static marketing site for Groundwork Landscaping (Longmont & Boulder County,
+Static marketing site for Waxwing Landscaping (Longmont & Boulder County,
 CO), deployed on Netlify at `waxwinglandscaping.com` (`build.py` line 121).
 Sources are hand-authored plain HTML — 17 pages in the repo root (including
 `theme-lab.html`, a dev-only theme playground, and
@@ -100,11 +100,16 @@ Root-level invariants:
 - **Sitemap freshness comes from git**: `<lastmod>` per URL is the page's
   last commit date via `git log` (`git_lastmod`, lines 400–405), falling back
   to today.
-- **Title suffixes vary by page group** (verified 2026-11-05): root
-  info/service pages use `— Groundwork Landscaping` (em dash); the two root
-  service-area pages (`drainage-longmont`, `fall-cleanup-longmont`) and all
-  blog and case-study pages use ` | Groundwork`, as does `services.html`;
-  `index.html`, `contact.html`, `theme-lab.html` carry no brand suffix.
+- **Title suffixes vary by page group** (re-verified 2026-11-22): the
+  ` | Waxwing` form ends `services.html`, all eight blog and twelve case-study
+  pages, and most of the Longmont/Boulder service-area pages; the
+  `— Waxwing Landscaping` em-dash form ends the root info pages (`about`,
+  `work`, `404`, `privacy`, `accessibility`, `thank-you`) and the city pages
+  `fencing-boulder`, `hardscaping-longmont`, `lawn-care-longmont` and
+  `xeriscaping-boulder-county`; `index.html`, `contact.html` and
+  `theme-lab.html` carry no brand suffix. The two forms split *within* the
+  service pages (`fencing-longmont` pipes, `fencing-boulder` em-dashes), so
+  read the page rather than inferring the form.
   Keep every title at or under 60 characters so it survives SERP truncation. The only build logic that depends on a suffix is
   `case_label` (line 148), which splits on the first `|` and only runs on
   case-study pages.

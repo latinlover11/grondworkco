@@ -10,12 +10,12 @@ every other page; nothing here is generated.
 
 - `index.html` — blog landing page (linked from the site nav,
   `build.py` line 41: `/blog/index.html`).
-- `blog-post-1.html` … `blog-post-7.html` — the seven posts, in editorial
+- `blog-post-1.html` … `blog-post-8.html` — the eight posts, in editorial
   order by number.
 
 ## Invariants
 
-- Page titles end with ` | Groundwork` (verified across all eight files).
+- Page titles end with ` | Waxwing` (re-verified 2026-11-22 across all nine files: the eight posts plus `index.html`).
   OG- and Twitter-card injection copies each page's full `<title>` verbatim
   (`build.py` `inject_og_tags` line 209, `inject_twitter_card` line 289);
   the suffix-splitting `case_label` helper (lines 139–148) runs only on

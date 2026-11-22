@@ -1,4 +1,4 @@
-# Groundwork Landscaping — Site
+# Waxwing Landscaping — Site
 
 Static site for waxwinglandscaping.com. Sources are plain HTML in the repo root;
 `build.py` assembles `dist/` for Netlify. See `check_links.py` for the

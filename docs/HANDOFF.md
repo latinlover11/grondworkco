@@ -239,7 +239,7 @@ The claims have been resolved against what the business can actually show:
 | `docs/BRAND_AND_LAUNCH.md` | The decision record. §1 why Groundwork had to go, §2a shortlist, §2b Waxwing deep clearance, §2c handles + GBP, **§2d the 32-word field**, §3 Cottonwood & Stone, §4 re-run commands, §5 launch sequence |
 | `docs/NAME_OPTIONS_REPORT.md` | Snapshot report; defers to the file above |
 | `docs/marketing/brand-copy.md` | The copy deck and the apply script |
-| `docs/marketing/gbp-setup-checklist.md` | GBP work, still written against the Groundwork name |
+| `docs/marketing/gbp-setup-checklist.md` | GBP work; renamed with the rest of the marketing collateral (commit `6ec30d6`) |
 | `docs/marketing/social-post-series.md` | Week 5 needs a real quote before it can run |
 
 Re-run commands for every clearance claim are in `BRAND_AND_LAUNCH.md` §4: RDAP returns
