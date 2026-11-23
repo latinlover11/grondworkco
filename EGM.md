@@ -8,11 +8,10 @@ structure contract and both are kept.*
 
 Static marketing site for Waxwing Landscaping (Longmont & Boulder County,
 CO), deployed on Netlify at `waxwinglandscaping.com` (`build.py` line 121).
-Sources are hand-authored plain HTML — 17 pages in the repo root (including
-`theme-lab.html`, a dev-only theme playground, and
-`googleb057abba7f039342.html`, the Google site-verification file) — plus
-`site.css` / `site.js`; `build.py` assembles `dist/` for Netlify (36 HTML
-pages: 17 root + 8 blog + 11 case-studies), injecting shared chrome, meta
+Sources are hand-authored plain HTML — 19 pages in the repo root (including
+`theme-lab.html`, a dev-only theme playground) — plus
+`site.css` / `site.js`; `build.py` assembles `dist/` (40 HTML
+pages: 19 root + 9 blog + 12 case-studies), injecting shared chrome, meta
 tags, cache-busted asset URLs, and the sitemap. Contact forms post to
 Formspree (`site.js` line 4); lead source is captured from `?src=` / `utm_*`
 query params into a hidden form field (`site.js` lines 10–18). Analytics are
