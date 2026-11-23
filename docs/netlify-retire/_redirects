@@ -1,0 +1,24 @@
+# Retires the old host `groundworkllc.netlify.app`.
+#
+# This directory is not part of the site. It is deployed to the Netlify site
+# `groundworkllc` as a manual deploy, in place of a build, so that every request
+# to the old host 301s to the same path on the new domain. The retired Groundwork
+# pages stop being served; inbound links and bookmarks keep resolving.
+#
+#   npx netlify-cli deploy --prod --dir docs/netlify-retire \
+#     --site 38200c77-154d-4ee6-a062-578b904cec1a
+#
+# One catch-all on purpose. Netlify substitutes a placeholder only when it is a
+# whole path segment, so a `/ :page.html` style rule is emitted literally and
+# 404s - tried on 2026-11-22 and reverted the same hour. The cost of the catch-all
+# is one extra hop for `.html` links: the old host 301s to the same path, and
+# Pages 308s that to the extensionless URL. The alternative is enumerating forty
+# paths, which is worse to maintain than a second redirect no visitor notices.
+#
+# `301!` is forced, so the rule applies to paths that could not otherwise be
+# matched. Nothing exists in this directory but this file, so that is every path,
+# including `/`. The same catch-all lives in `netlify.toml` for the day a
+# git-triggered build of `dist/` deploys instead; both routes converge on the same
+# redirect, and either one retires the old brand.
+
+/*  https://waxwinglandscaping.com/:splat  301!
