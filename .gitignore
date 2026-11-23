@@ -23,3 +23,8 @@ screenshot-*.png
 # the pages that use them. Originals stay out of history: commit the cut
 # versions, not the negatives.
 img/photos-to-sort/
+
+# Cloudflare Web Analytics site token. It ships in every page, so it is not a
+# secret - but keeping it untracked means a commit can never silently start or
+# stop measuring. build.py reads this when CF_ANALYTICS_TOKEN is unset.
+.analytics-token

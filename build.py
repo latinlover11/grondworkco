@@ -316,13 +316,33 @@ def inject_og_tags(content: str, relative: Path) -> str:
 #   2. The JS snippet - CF_ANALYTICS_TOKEN is set and the tag is written into every
 #      page below. Use this only if RUM is NOT enabled at the edge, or the site will
 #      carry two beacons.
-ANALYTICS_TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
+def _analytics_token() -> str:
+    """The Web Analytics site token: env var first, then an untracked file.
 
-# Zone-level RUM for waxwinglandscaping.com is enabled in the Cloudflare dashboard
-# (Web Analytics -> waxwinglandscaping.com -> Enable), so the beacon is injected at
-# the edge and never exists as a file here. Flip this to False in the same change
-# that disables RUM, or privacy.html claims a measurement that has stopped.
-EDGE_ANALYTICS = True
+    This token is not a secret in the usual sense - it is written into every page
+    and readable by anyone who views source. It stays out of git so the repo is
+    never the thing that silently changes what is measured. The file fallback
+    exists because a deploy run without the env var used to drop the beacon while
+    privacy.html went on claiming analytics was on.
+    """
+    env = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
+    if env:
+        return env
+    try:
+        return (ROOT / ".analytics-token").read_text(encoding="utf-8").strip()
+    except OSError:
+        return ""
+
+
+ANALYTICS_TOKEN = _analytics_token()
+
+# Measured 2026-11-22: RUM enabled at the zone level (Analytics -> Web Analytics)
+# does NOT inject a beacon into this site. Cloudflare Pages serves the HTML, and
+# injection comes from the Pages project's own Metrics -> Web Analytics toggle on
+# a later deployment; ten requests across two deploys returned zero beacons. The
+# site therefore ships the snippet itself from ANALYTICS_TOKEN. Leave this False
+# unless injection is actually observed in a live page's source.
+EDGE_ANALYTICS = False
 # Byte-for-byte the block from Cloudflare's "Install JS Snippet" panel, including
 # the identifying comments, so what ships is what the dashboard shows you. The
 # module script is deferred without a defer attribute. The token is public - it
