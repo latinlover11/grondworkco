@@ -8,16 +8,36 @@ pre-deploy link/image checker.
 
 ## Analytics
 
-Page counts come from Cloudflare Web Analytics — cookieless, so no consent banner.
-It stays off until `CF_ANALYTICS_TOKEN` is set in Netlify → Site settings →
-Environment variables; `build.py` injects the beacon only when the variable is
-present (`CF_ANALYTICS_TOKEN=… python3 build.py` locally if you want to see it).
+Three states, chosen by what the build actually emits. The paragraph between the
+`analytics-policy` markers in `privacy.html` is rewritten at build time, and the
+build fails rather than ship a beacon the notice doesn't describe.
 
-The notice cannot drift from the beacon: the paragraph between the
-`analytics-policy` markers in `privacy.html` is swapped between the "no analytics"
-and "Cloudflare Web Analytics" copy at build time, and the build fails rather than
-publish a beacon the notice doesn't describe. Bump the notice's *Last updated*
-date when the token lands.
+| State | Trigger | What the notice says |
+| --- | --- | --- |
+| off | no token, no GA4 ID, `EDGE_ANALYTICS = False` | no third-party analytics |
+| Cloudflare | `CF_ANALYTICS_TOKEN` env var or untracked `.analytics-token` | cookieless Cloudflare paragraph |
+| GA4 | `GA4_MEASUREMENT_ID` env var or untracked `.ga4-id` | the `_ga` cookie paragraph, plus the Cloudflare one when both are on |
+
+Cloudflare Web Analytics is cookieless and aggregate. GA4 sets a first-party `_ga`
+cookie, which is why it gets its own state instead of reusing the Cloudflare copy —
+that copy correctly says "sets no cookies". The GA4 tag ships with Google Signals
+and ad personalisation denied, and Consent Mode defaults denying ad storage. Both
+IDs are public (they appear in page source) but stay out of git, so a clone cannot
+silently start measuring. Never switch a state by hand-editing `privacy.html`.
+
+### Consent stance
+
+No banner. The GA4 setup here is first-party analytics, not advertising: no Signals,
+no ad personalisation, nothing sold or shared for advertising. The Colorado Privacy
+Act duties attach at 100k+ consumers a year (or 25k+ while selling data), far above
+this business, so the notice discloses the cookie and gives a refusal route — block
+cookies for the site, or install Google's opt-out add-on — instead of a consent gate.
+
+Revisit before shipping under any of these, and answer with a banner (or Consent
+Mode with denied defaults), not a quieter sentence in the notice: EEA/UK traffic
+becomes material (ePrivacy wants prior consent for analytics cookies); ads or
+remarketing are switched on; audience data is shared; the CPA thresholds are met.
+Not legal advice — the owner signs off on this stance.
 
 Known limitation: pageviews only. It cannot attribute phone calls; form leads carry
 `?src=` into the hidden `source` field and are readable per-channel in Formspree.

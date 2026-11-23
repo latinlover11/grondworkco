@@ -28,3 +28,4 @@ img/photos-to-sort/
 # secret - but keeping it untracked means a commit can never silently start or
 # stop measuring. build.py reads this when CF_ANALYTICS_TOKEN is unset.
 .analytics-token
+.ga4-id

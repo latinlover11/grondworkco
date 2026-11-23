@@ -15,8 +15,9 @@ pages: 19 root + 9 blog + 12 case-studies), injecting shared chrome, meta
 tags, cache-busted asset URLs, and the sitemap. Contact forms post to
 Formspree (`site.js` line 4); lead source is captured from `?src=` / `utm_*`
 query params into a hidden form field (`site.js` lines 10–18). Analytics are
-Cloudflare Web Analytics, gated entirely on the `CF_ANALYTICS_TOKEN` env var
-— unset means nothing is injected.
+gated on two env vars: `CF_ANALYTICS_TOKEN` (Cloudflare Web Analytics) and
+`GA4_MEASUREMENT_ID` (GA4, the only cookie-setting one) — unset means nothing is
+injected.
 
 ## Local Interface & Invariants
 
@@ -168,7 +169,8 @@ Root-level invariants:
 - A build wipes and rewrites `dist/`, minifies `site.css` into it, writes
   `dist/sitemap.xml` with git-derived lastmod dates, and regenerates stale
   print PDFs inside the source tree (`docs/marketing/`).
-- The build reads `CF_ANALYTICS_TOKEN` from the environment and shells out to
+- The build reads `CF_ANALYTICS_TOKEN` / `GA4_MEASUREMENT_ID` (or the untracked
+  `.analytics-token` / `.ga4-id` files) and shells out to
   `git log`.
 - The dev server binds `127.0.0.1` on the first free port from 8010 (or the
   port given as `argv[1]`).

@@ -354,9 +354,85 @@ ANALYTICS_TAGS = (
     "<!-- End Cloudflare Web Analytics -->"
 ) if ANALYTICS_TOKEN else ""
 
+# Google Analytics 4: the one thing on this site that sets a cookie.
+#
+# Off unless GA4_MEASUREMENT_ID is set (env var first, then an untracked .ga4-id
+# file), the same pattern as the Cloudflare token. The tag ships with Google
+# Signals and ad personalisation denied, which is what keeps the notice's "no
+# advertising cookies" sentence true: _ga is a first-party analytics cookie, not
+# an ad cookie.
+#
+# CONSENT STANCE (draft, 2026-11-22; not legal advice):
+#   No consent banner. Under the Colorado Privacy Act the duties attach to a
+#   controller handling 100k+ consumers a year, or 25k+ while selling data; a
+#   two-county landscaping business is far below that, nothing here is used for
+#   targeted advertising, and nothing is sold. The notice discloses the cookie and
+#   offers a refusal route instead.
+#   Revisit, in order of likelihood, before shipping under any of:
+#     1. EEA/UK traffic becomes material - ePrivacy/PECR wants prior consent for
+#        analytics cookies, and no US-default banner satisfies it.
+#     2. Ads or remarketing are enabled, or audience data is shared.
+#     3. The CPA thresholds above are met.
+#   Each of those calls for a banner (or Consent Mode with denied defaults), not a
+#   quieter sentence in the notice.
+GA4_ID_RE = re.compile(r"^G-[A-Z0-9]{4,}$")
+
+
+def _ga4_measurement_id() -> str:
+    """The GA4 web stream ID: env var first, then an untracked file.
+
+    Mirrors _analytics_token(). The value is public - it ships in every page - but
+    keeping it out of git means a clone cannot silently start measuring.
+    """
+    env = os.environ.get("GA4_MEASUREMENT_ID", "").strip()
+    if env:
+        return env
+    try:
+        return (ROOT / ".ga4-id").read_text(encoding="utf-8").strip()
+    except OSError:
+        return ""
+
+
+GA4_MEASUREMENT_ID = _ga4_measurement_id()
+if GA4_MEASUREMENT_ID and not GA4_ID_RE.match(GA4_MEASUREMENT_ID):
+    raise RuntimeError(
+        "GA4_MEASUREMENT_ID is not a GA4 web stream ID (expected G-XXXXXXXXXX, got "
+        f"{GA4_MEASUREMENT_ID[:12]!r}): refusing to ship a tag that collects nothing."
+    )
+# Consent defaults go in first, so they are queued before the config call below.
+# ad_* denied is the honest default for a site that runs no ads and no remarketing.
+GA4_TAGS = (
+    "<!-- Google Analytics 4 -->"
+    "<script>"
+    "window.dataLayer=window.dataLayer||[];"
+    "function gtag(){dataLayer.push(arguments);}"
+    "gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied',"
+    "'ad_personalization':'denied'});"
+    "gtag('js',new Date());"
+    "gtag('config','" + GA4_MEASUREMENT_ID + "',{'allow_google_signals':false,"
+    "'allow_ad_personalization_signals':false});"
+    "</script>"
+    "<script async src='https://www.googletagmanager.com/gtag/js?id=" + GA4_MEASUREMENT_ID + "'></script>"
+    "<!-- End Google Analytics 4 -->"
+) if GA4_MEASUREMENT_ID else ""
+
+# The conversion. Both quote paths - the contact form and the mobile quote sheet -
+# POST to Formspree and then land on /thank-you, so one event there counts both and
+# neither form needs instrumenting. generate_lead is GA4's recommended name; marking
+# it as a key event is a click in the GA4 UI, not something a static build can do.
+# No form contents are sent, only that a lead reached the confirmation page.
+GA4_LEAD_EVENT = (
+    "<script>"
+    "gtag('event','generate_lead',{"
+    "'lead_source':'quote_form',"
+    "'page_location':location.origin+location.pathname"
+    "});"
+    "</script>"
+) if GA4_TAGS else ""
+
 # Anything that measures has to be described in privacy.html - either the tag this
 # build emits or the beacon the edge adds behind its back.
-ANALYTICS_ACTIVE = bool(ANALYTICS_TAGS) or EDGE_ANALYTICS
+ANALYTICS_ACTIVE = bool(ANALYTICS_TAGS) or EDGE_ANALYTICS or bool(GA4_TAGS)
 
 
 # privacy.html has to describe what the build actually ships. The paragraph between
@@ -369,6 +445,26 @@ ANALYTICS_POLICY_ON = """    <p>We use Cloudflare Web Analytics to count page vi
     <p>There are no advertising cookies or tracking pixels on this site, and we do not sell visitor data. Cloudflare processes these measurements on our behalf; see <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare\u2019s privacy policy</a>. Your browser may still retain ordinary technical data required to load and operate the site.</p>"""
 
 
+# GA4 is the only state that sets a cookie, so it cannot reuse the Cloudflare
+# paragraph - that one correctly says "sets no cookies". Cloudflare gets its own
+# short paragraph when it is also on, so enabling GA4 never quietly drops it.
+ANALYTICS_POLICY_GA4 = """    <p>We use Google Analytics 4 to see which pages people find and read. It sets one first-party cookie, <code>_ga</code>, which tells one browser apart from another for up to two years; it does not tell us who you are. Google Signals and ad personalisation are turned off, so the measurements are not used to build an advertising profile or to target ads, and we do not sell or share them for advertising.</p>
+    <p>What is recorded is mostly anonymous and always aggregate: the page you requested, the site or search that referred you, an approximate location derived from your IP address (Google truncates it before storing), device and browser type, and how long a visit lasted. Google processes these measurements on our behalf; see <a href="https://policies.google.com/privacy">Google\u2019s privacy policy</a>. You can refuse the cookie by blocking cookies for this site or installing <a href="https://tools.google.com/dlpage/gaoptout">Google\u2019s opt-out add-on</a>; the site works the same either way and a quote request never depends on it.</p>"""
+ANALYTICS_POLICY_CF_ALONGSIDE = """    <p>We also use Cloudflare Web Analytics, which counts page views without setting a cookie, does not follow you across other sites, and does not build an advertising profile. Cloudflare processes those measurements on our behalf; see <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare\u2019s privacy policy</a>. Your browser may still retain ordinary technical data required to load and operate the site.</p>"""
+
+
+def analytics_policy_block() -> str:
+    """The paragraph(s) privacy.html ships, chosen from what this build emits."""
+    if not ANALYTICS_ACTIVE:
+        return ANALYTICS_POLICY_OFF
+    if not GA4_TAGS:
+        return ANALYTICS_POLICY_ON
+    block = ANALYTICS_POLICY_GA4
+    if ANALYTICS_TAGS or EDGE_ANALYTICS:
+        block += "\n" + ANALYTICS_POLICY_CF_ALONGSIDE
+    return block
+
+
 def apply_analytics_policy(content: str) -> str:
     pattern = re.compile(re.escape(POLICY_START) + r".*?" + re.escape(POLICY_END), re.DOTALL)
     if not pattern.search(content):
@@ -376,7 +472,7 @@ def apply_analytics_policy(content: str) -> str:
             "privacy.html is missing the analytics-policy markers: refusing to ship "
             "an analytics beacon that the privacy notice does not describe."
         )
-    block = ANALYTICS_POLICY_ON if ANALYTICS_ACTIVE else ANALYTICS_POLICY_OFF
+    block = analytics_policy_block()
     return pattern.sub(block, content, count=1)
 
 
@@ -762,6 +858,10 @@ def build_html(source: Path, target: Path) -> None:
     content = content.replace("</head>", ICON_TAGS + "\n</head>", 1)
     if ANALYTICS_TAGS:
         content = content.replace("</head>", ANALYTICS_TAGS + "\n</head>", 1)
+    if GA4_TAGS:
+        content = content.replace("</head>", GA4_TAGS + "\n</head>", 1)
+    if GA4_LEAD_EVENT and source.name == "thank-you.html":
+        content = content.replace("</body>", GA4_LEAD_EVENT + "\n</body>", 1)
     content = inject_skip_link(content)
     if source.name == "privacy.html":
         content = apply_analytics_policy(content)
