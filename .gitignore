@@ -14,6 +14,9 @@ screenshot-*.png
 
 .wrangler/
 
+# Netlify CLI state left by the manual retire deploy (site id, deploy cache).
+.netlify/
+
 # Raw camera originals, sorted by job for the recent-work gallery. build.py
 # already excludes this path from dist/ (343 MB, and the frames carry GPS EXIF),
 # so nothing in here is ever published - the derivatives that ship live beside
