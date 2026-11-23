@@ -307,12 +307,22 @@ def inject_og_tags(content: str, relative: Path) -> str:
 
 
 # Cloudflare Web Analytics: cookieless, aggregate page counts only.
-# Set the token from the Cloudflare dashboard (Web Analytics -> Add a site -> JS install):
-#   CF_ANALYTICS_TOKEN=your_token python3 build.py
-# While the token is unset nothing is injected, so no third-party request is made.
-# NOTE: when this goes live, privacy.html's "Cookies and analytics" section must be
-# updated in the same change - it currently states no analytics platform is in use.
+#
+# Two ways the beacon can reach a page, and they are not interchangeable:
+#   1. Edge injection - the zone's Web Analytics / RUM setting is ON, so Cloudflare
+#      appends the beacon to the HTML as it leaves the edge. Nothing in this repo
+#      or in dist/ contains it, so the build cannot see it. EDGE_ANALYTICS records
+#      the fact so privacy.html still describes what actually ships.
+#   2. The JS snippet - CF_ANALYTICS_TOKEN is set and the tag is written into every
+#      page below. Use this only if RUM is NOT enabled at the edge, or the site will
+#      carry two beacons.
 ANALYTICS_TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
+
+# Zone-level RUM for waxwinglandscaping.com is enabled in the Cloudflare dashboard
+# (Web Analytics -> waxwinglandscaping.com -> Enable), so the beacon is injected at
+# the edge and never exists as a file here. Flip this to False in the same change
+# that disables RUM, or privacy.html claims a measurement that has stopped.
+EDGE_ANALYTICS = True
 # Byte-for-byte the block from Cloudflare's "Install JS Snippet" panel, including
 # the identifying comments, so what ships is what the dashboard shows you. The
 # module script is deferred without a defer attribute. The token is public - it
@@ -324,9 +334,13 @@ ANALYTICS_TAGS = (
     "<!-- End Cloudflare Web Analytics -->"
 ) if ANALYTICS_TOKEN else ""
 
+# Anything that measures has to be described in privacy.html - either the tag this
+# build emits or the beacon the edge adds behind its back.
+ANALYTICS_ACTIVE = bool(ANALYTICS_TAGS) or EDGE_ANALYTICS
+
 
 # privacy.html has to describe what the build actually ships. The paragraph between
-# these markers is chosen from ANALYTICS_TAGS at build time, so the beacon and the
+# these markers is chosen from ANALYTICS_ACTIVE at build time, so the beacon and the
 # notice can never disagree - and the build fails if the markers ever go missing.
 POLICY_START = "<!-- analytics-policy:start -->"
 POLICY_END = "<!-- analytics-policy:end -->"
@@ -342,7 +356,7 @@ def apply_analytics_policy(content: str) -> str:
             "privacy.html is missing the analytics-policy markers: refusing to ship "
             "an analytics beacon that the privacy notice does not describe."
         )
-    block = ANALYTICS_POLICY_ON if ANALYTICS_TAGS else ANALYTICS_POLICY_OFF
+    block = ANALYTICS_POLICY_ON if ANALYTICS_ACTIVE else ANALYTICS_POLICY_OFF
     return pattern.sub(block, content, count=1)
 
 
