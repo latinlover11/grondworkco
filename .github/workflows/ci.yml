@@ -1,19 +1,23 @@
 # Verify links and build dist/ on every push and pull request.
 #
-# Deployment does not happen here on purpose. The site is Git-connected on
-# Netlify (the API reports `build_settings.provider: github`, installation
-# 81663554), so Netlify builds and publishes it itself on every push to main.
-# CI therefore stops at the built artifact: exactly one publisher, no race.
+# Deployment does not happen here on purpose. Production is Cloudflare Pages
+# (project `waxwing`), published by a manual direct upload from the machine that
+# built dist/ - `python3 docs/deploy-pages.py --apply` - not by a host rebuilding
+# this commit. CI therefore stops at the built artifact: exactly one publisher,
+# so two builds of the same commit can never race to say which one is live.
 #
-# Proven, not assumed — with the deploy step set to `if: false` and a marker in
-# 404.html, CI run 43528505509 skipped its deploy while production served the
-# marker, so Netlify published it (commits 6e1a9a6, reverted by ead1517).
+# A green run here means the commit is sound. It says nothing about what
+# production is serving; deploy after merging if the change matters.
 #
-# There used to be a deploy-netlify job running netlify/actions/cli behind a
-# guard that exited 1 when NETLIFY_SITE_ID / NETLIFY_AUTH_TOKEN were unset. Those
-# secrets were never created, so every push to main failed the whole workflow
-# without deploying anything. Both that job and the zip deploy that replaced it
-# are gone now; Netlify's git build is the only path.
+# History, kept so this is not re-litigated: a deploy-netlify job once ran
+# netlify/actions/cli behind a guard that exited 1 when NETLIFY_SITE_ID /
+# NETLIFY_AUTH_TOKEN were unset. Those secrets were never created, so every push
+# to main failed the whole workflow without deploying anything. When the job was
+# replaced by a zip deploy, that step was set to `if: false` with a marker in
+# 404.html: CI run 43528505509 skipped its deploy and production still served the
+# marker, which is how we learned the publish was coming from Netlify's own git
+# build (commits 6e1a9a6, reverted by ead1517). Netlify publishes nothing now -
+# the old host only 301s - so no deploy step belongs here.
 name: Build and link check
 
 on:

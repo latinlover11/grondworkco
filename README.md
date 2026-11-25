@@ -1,8 +1,8 @@
 # Waxwing Landscaping — Site
 
 Static site for waxwinglandscaping.com. Sources are plain HTML in the repo root;
-`build.py` assembles `dist/` for Netlify. See `check_links.py` for the
-pre-deploy link/image checker.
+`build.py` assembles `dist/`, which is deployed to Cloudflare Pages by hand (see
+Deployment). See `check_links.py` for the pre-deploy link/image checker.
 
 ---
 
@@ -46,41 +46,64 @@ Known limitation: pageviews only. It cannot attribute phone calls; form leads ca
 
 ## Deployment
 
-Push to `main` and you are done. The Netlify project (`groundworkllc`, site id
-`38200c77-154d-4ee6-a062-578b904cec1a`) is connected to this repository, so
-Netlify builds the site itself from `netlify.toml` — `python3 build.py` on
-Python 3.12, publishing `dist/`. Nothing runs by hand, and there is no local
-publish step.
+**Cloudflare Pages is production, and it is deployed by hand from this machine.**
+Nothing builds on push. The Pages project is `waxwing` (preview host
+`waxwing-dc3.pages.dev`); `waxwinglandscaping.com` is its custom domain, and every
+canonical uses the apex.
 
-That also means Netlify is where `CF_ANALYTICS_TOKEN` takes effect: it is read
-from the site's environment variables at build time, not from your shell.
+```bash
+python3 build.py                         # assembles dist/ and dist/_headers
+python3 check_links.py --quiet           # link/image gate
+python3 docs/deploy-pages.py --apply     # upload dist/ to Cloudflare Pages
+python3 docs/deploy-pages.py --check     # public DNS + HTTPS verification
+```
+
+`--plan` prints what `--apply` would do without touching the network. This is a
+direct upload, so what ships is the `dist/` built here, not a host's rebuild of
+the commit.
+
+### Two credentials, one deploy
+
+`docs/deploy-pages.py` prefers the Cloudflare API token in
+`~/.secrets/cloudflare.key`, but proves the token can reach Pages before
+uploading. The key on this machine is account-scoped: it passes `/accounts` and
+`/zones` and is refused by `/accounts/{id}/pages/projects`, so the script falls
+back to the wrangler OAuth session (`npx wrangler login`) instead of failing. On
+that path it strips `CLOUDFLARE_API_TOKEN`/`CLOUDFLARE_ACCOUNT_ID` from the child
+environment — wrangler prefers an env token over its session, so leaving them set
+reproduces the failure — and skips project-create and domain-attach, which need
+the API. `python3 docs/handshake.py --receipt` shows the last permission check.
+
+### Analytics IDs are read at build time
+
+`CF_ANALYTICS_TOKEN` and `GA4_MEASUREMENT_ID` come from the environment of
+whichever shell runs `build.py`, or from the untracked `.analytics-token` /
+`.ga4-id` files in the repo root. Both are public (they appear in page source) but
+stay out of git, so a clone cannot silently start measuring.
 
 ### What CI does, and deliberately does not do
 
 Every push and pull request runs `.github/workflows/ci.yml`: the link/image
 checker (`check_links.py --quiet`) gates the build, `dist/` is assembled, and it
-is uploaded as a build artifact. CI never publishes.
-
-That is on purpose. Two publishers for the same commit race each other and make
-it unclear which build is live, so the workflow stops at the artifact and
-leaves deploying to Netlify. This was confirmed, not assumed: with the old CI
-deploy step disabled and a marker added to `404.html`, the workflow skipped its
-deploy while production served the marker — so the publish came from Netlify's
-build.
-
-One consequence worth knowing: GitHub cannot see Netlify's builds, so a failing
-Netlify build still leaves the workflow green. If a push seems not to have
-landed, look at Netlify → Deploys for that commit rather than at the Actions tab.
+is uploaded as a build artifact. CI never publishes — there is exactly one
+publisher, the local upload above, so a green run says the commit is sound and
+nothing about what production is serving.
 
 ### Checking a deploy
 
 - `https://waxwinglandscaping.com` — production
-- Netlify → Deploys — build log and source commit for every deploy
-- HTML is served `must-revalidate` (see `netlify.toml`), so a finished deploy is
-  visible on the next request; `curl -sI https://waxwinglandscaping.com/`
-  confirms the headers
+- Cloudflare dashboard → Workers & Pages → `waxwing` → Deployments — one entry per
+  upload, each with its preview URL and timestamp
+- HTML is served `must-revalidate` and `/img/*` immutable, both from the generated
+  `dist/_headers`, so a finished deploy is visible on the next request;
+  `curl -sI https://waxwinglandscaping.com/` confirms the headers
 
-No Netlify credentials belong in this repo any more. `NETLIFY_AUTH_TOKEN` and
+The old host `groundworkllc.netlify.app` no longer publishes the site. It exists only
+as a 301 to `waxwinglandscaping.com`, via `docs/netlify-retire/_redirects` (or the
+identical catch-all in `netlify.toml`). Retire it whenever inbound links to the old
+host stop mattering; nothing else depends on it.
+
+No Netlify credentials belong in this repo. `NETLIFY_AUTH_TOKEN` and
 `NETLIFY_SITE_ID` are unused by CI; if the token is still sitting in the repo's
 secrets, revoke it in Netlify → Account settings → Access tokens and then run
 `gh secret delete NETLIFY_AUTH_TOKEN`.
@@ -90,7 +113,7 @@ secrets, revoke it in Netlify → Account settings → Access tokens and then ru
 GitHub Pages is **disabled** (removed 2026-11-13) so the site is served from one
 host only. It previously ran a legacy build from `main`, which served the repo
 root rather than `dist/` — a second, publicly reachable copy of every page and a
-duplicate-content liability. Deploying the Netlify site is the production path.
+duplicate-content liability. Cloudflare Pages is the production path.
 If Pages is ever needed again, point it at `dist/` in repo Settings → Pages.
 
 ---
