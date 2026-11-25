@@ -25,6 +25,14 @@ Two deliberate choices:
 
 The token is passed to wrangler in the child process environment, never in argv,
 so it cannot land in shell history or a process listing.
+
+A token that cannot reach Pages is not the same as a missing token: an
+account-scoped token without `Cloudflare Pages: Edit` is accepted by `/accounts`
+and `/zones` and still refused by `/accounts/{id}/pages/projects`. So the
+capability is proved before the upload, and when it is missing the deploy falls
+back to the wrangler OAuth session (`wrangler login`) rather than stopping. Both
+paths upload the same `dist/`; only the project-create and domain-attach steps
+need the API, so those are skipped with a note in OAuth mode.
 """
 
 from __future__ import annotations
@@ -84,6 +92,23 @@ def errors(res: dict) -> str:
     return "; ".join(e.get("message", "?") for e in res.get("errors") or []) or "unknown error"
 
 
+def pages_access(acct: str, token: str) -> bool:
+    """Prove the token can see Pages before handing it to wrangler."""
+    return bool(api("GET", f"/accounts/{acct}/pages/projects", token).get("success"))
+
+
+def oauth_session() -> bool:
+    """True when wrangler holds an OAuth session that can reach Pages."""
+    try:
+        out = subprocess.run(
+            ["npx", "--yes", "wrangler", "whoami"],
+            capture_output=True, text=True, timeout=300,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return False
+    return out.returncode == 0
+
+
 def account_id(token: str) -> str:
     """Discover the account id. The zone carries it, so Zone:Read is enough."""
     res = api("GET", f"/zones?name={DOMAIN}", token)
@@ -109,7 +134,7 @@ def ensure_project(acct: str, token: str) -> None:
     print(f"  created project {PROJECT} -> {res['result'].get('subdomain')}")
 
 
-def upload(acct: str, token: str) -> None:
+def upload(acct: str | None, token: str | None) -> None:
     if not DIST.is_dir():
         raise SystemExit("  ! dist/ is missing - run `python3 build.py` first")
     if not (DIST / "_headers").exists():
@@ -118,8 +143,17 @@ def upload(acct: str, token: str) -> None:
             "re-run `python3 build.py` or the cache rules will not ship"
         )
     files = sum(1 for p in DIST.rglob("*") if p.is_file())
-    print(f"  uploading {files} files via wrangler")
-    env = dict(os.environ, CLOUDFLARE_API_TOKEN=token, CLOUDFLARE_ACCOUNT_ID=acct, CI="1")
+    print(f"  uploading {files} files via wrangler"
+          f" ({'API token' if token else 'OAuth session'})")
+    # In OAuth mode the two variables must be absent, not empty: wrangler prefers
+    # an env token over its session, so leaving them set reproduces the very
+    # failure this fallback exists to survive.
+    env = {k: v for k, v in os.environ.items()
+           if k not in {"CLOUDFLARE_API_TOKEN", "CLOUDFLARE_ACCOUNT_ID"}}
+    env["CI"] = "1"
+    if token:
+        env["CLOUDFLARE_API_TOKEN"] = token
+        env["CLOUDFLARE_ACCOUNT_ID"] = acct
     proc = subprocess.run(
         ["npx", "--yes", "wrangler", "pages", "deploy", str(DIST),
          "--project-name", PROJECT, "--branch", "main", "--commit-dirty=true"],
@@ -199,30 +233,51 @@ def main() -> int:
         print(f"4. same for {WWW}")
         print("   Cloudflare then creates the proxied CNAME itself and issues the cert.\n")
         print("5. Verify: python3 docs/deploy-pages.py --check")
+        print("\nSteps 1, 3 and 4 need an API token with Cloudflare Pages: Edit. Without")
+        print("one, --apply uploads via the wrangler OAuth session and skips them.")
         return 0
 
     token = secret("cloudflare")
-    if not token:
-        raise SystemExit(
-            "No Cloudflare token. Save it as a plain text file at:\n"
-            "  ~/.secrets/cloudflare.key\n"
-            "(any editor; no command needed, trailing newline is fine)\n"
-            "Then run: python3 docs/handshake.py   -- checks every permission first\n"
-            "(Cloudflare -> My Profile -> API Tokens -> Create Custom Token:\n"
-            " Account -> Cloudflare Pages: Edit, Zone -> DNS: Edit, Zone -> Zone: Read)"
-        )
+    acct = ""
+    if token:
+        try:
+            acct = account_id(token)
+        except SystemExit:
+            acct = ""
+        if acct and pages_access(acct, token):
+            print(f"Account {acct}")
+            print("\nProject")
+            ensure_project(acct, token)
+            print("\nUpload")
+            upload(acct, token)
+            print("\nDomain")
+            attach_domain(acct, token, DOMAIN)
+            attach_domain(acct, token, WWW)
+            print("\nDone. Cloudflare creates the DNS record and certificate; then run:")
+            print("  python3 docs/deploy-pages.py --check")
+            return 0
+        print("\n  ! the token in ~/.secrets/cloudflare.key cannot reach Pages"
+              f" ({'no account id' if not acct else 'Cloudflare Pages: Edit missing'}).")
+        print("    Prove it any time with:  python3 docs/handshake.py --receipt")
+    else:
+        print("No token in ~/.secrets/cloudflare.key")
 
-    acct = account_id(token)
-    print(f"Account {acct}")
-    print("\nProject")
-    ensure_project(acct, token)
-    print("\nUpload")
-    upload(acct, token)
+    print("\nFalling back to the wrangler OAuth session")
+    if not oauth_session():
+        raise SystemExit(
+            "  ! no usable credential. Either log in once:\n"
+            "      npx wrangler login\n"
+            "    or save a token with Account -> Cloudflare Pages: Edit,\n"
+            "    Zone -> DNS: Edit, Zone -> Zone: Read to ~/.secrets/cloudflare.key\n"
+            "    (python3 docs/handshake.py proves it before you deploy)."
+        )
+    print("  session ok (domains are managed in the dashboard on this path)\n")
+    print("Upload")
+    upload(None, None)
     print("\nDomain")
-    attach_domain(acct, token, DOMAIN)
-    attach_domain(acct, token, WWW)
-    print("\nDone. Cloudflare creates the DNS record and certificate; then run:")
-    print("  python3 docs/deploy-pages.py --check")
+    print(f"  skipped: attaching {DOMAIN}/{WWW} needs the API token.")
+    print("  Already attached if `python3 docs/deploy-pages.py --check` passes.")
+    print("\nDone. Verify with:  python3 docs/deploy-pages.py --check")
     return 0
 
 
